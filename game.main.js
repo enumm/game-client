@@ -5,6 +5,7 @@ var map = new createjs.Container();
 var lastX = 0;
 var lastY = 0;
 var stats = new Stats();
+var tree;
 
 //screens
 var loginScreen = new createjs.Container();
@@ -12,8 +13,7 @@ var registerScreen = new createjs.Container();
 var menuScreen = new createjs.Container();
 var gameInstanceScreen = new createjs.Container();
 
-window.onload = function()
-{
+window.onload = function(){
     //stats
     stats.setMode(0); 
     stats.domElement.style.position = 'absolute';
@@ -40,8 +40,7 @@ window.onload = function()
     //start ticker
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.setFPS(60);
-    createjs.Ticker.addEventListener("tick", stage);
-   
+    createjs.Ticker.addEventListener("tick", stage);   
 }
 
 function showGameInstance(){
@@ -49,11 +48,43 @@ function showGameInstance(){
     // // create EaselJS image for tileset
     tileset = new Image();
     // // getting imagefile from first tileset
-     tileset.src = mapData.tilesets[0].image;
+    tileset.src = mapData.tilesets[0].image;
     // // callback for loading layers after tileset is loaded
-     tileset.onLoad = initLayers();
+    tileset.onLoad = initLayers();
 
-    stage.addChild(gameInstanceScreen);
+    var buttonBuild; 
+    buttonBuild = new createjs.Text("Build", "48px Arial", "#00F");
+    buttonBuild.x = 10;
+    buttonBuild.y = 80;
+    buttonBuild.alpha = 1;
+    var buildHit = new createjs.Shape();
+    buildHit.graphics.beginFill("#000").drawRect(0, 0, buttonBuild.getMeasuredWidth(), buttonBuild.getMeasuredHeight());       
+    buttonBuild.hitArea = buildHit;
+    buttonBuild.on("click", function() {
+         map.alpha = 0.5;
+
+        $.each(map.children, function( index, value ) {
+            value.on("mouseover", function(){ this.alpha = 2;});
+            value.on("mouseout", function(){ this.alpha = 1;});
+            value.on("click", function(){
+                tileRemoveAllEventListeners();
+                var tree = this.clone(true);
+                tree.gotoAndStop(12);
+                map.addChild(tree);
+                this.alpha = 1;
+            });
+        });
+    });
+
+    stage.addChild(gameInstanceScreen ,buttonBuild);
+}
+
+function tileRemoveAllEventListeners(){
+    $.each(map.children, function( index, value ) {
+        value.removeAllEventListeners();
+    });
+
+  map.alpha = 1;
 }
 
 function hideGameInstance(){
@@ -203,7 +234,7 @@ function initLayers() {
     });
 
     gameInstanceScreen.addChild(map);
-    
+
     //stage.addChild(map);
 	// stage updates (not really used here)
   
