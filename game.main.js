@@ -4,59 +4,164 @@ var mapData;
 var map = new createjs.Container();
 var lastX = 0;
 var lastY = 0;
+var stats = new Stats();
 
-$( document ).ready(function() {
-    var stats = new Stats();
-stats.setMode(1); // 0: fps, 1: ms
-
-// align top-left
-stats.domElement.style.position = 'absolute';
-stats.domElement.style.left = '0px';
-stats.domElement.style.top = '0px';
-
-document.body.appendChild( stats.domElement );
-
-var update = function () {
-
-    stats.begin();
-
-    // monitored code goes here
-
-    stats.end();
-
-    requestAnimationFrame( update );
-
-};
-
-requestAnimationFrame( update );
-});
-
-
-
+//screens
+var loginScreen = new createjs.Container();
+var registerScreen = new createjs.Container();
+var menuScreen = new createjs.Container();
+var gameInstanceScreen = new createjs.Container();
 
 window.onload = function()
 {
-	// json map data at the end of this file for ease of understanding (created on Tiled map editor)
-	//mapData = mapDataJson;
-
+    //stats
+    stats.setMode(0); 
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild( stats.domElement );
+    var update = function () {
+        stats.begin();
+        stats.end();
+        requestAnimationFrame( update );
+    };
+    requestAnimationFrame( update );
     mapData = mapData3;
 
-	// uncomment this to a second example
-	//mapData = mapData2;
-	
-	// creating EaselJS stage
+    //stage
 	stage = new createjs.Stage("canvas");
-	// create EaselJS image for tileset
-	tileset = new Image();
-	// getting imagefile from first tileset
-	tileset.src = mapData.tilesets[0].image;
-	// callback for loading layers after tileset is loaded
-	tileset.onLoad = initLayers();
-
     createjs.Touch.enable(stage);
-    // enabled mouse over / out events
     stage.enableMouseOver(10);
-    stage.mouseMoveOutside = true; // keep tracking the mouse even when it leaves the canvas
+    stage.mouseMoveOutside = true;
+
+    //init login screen
+    showLogin();
+
+    //start ticker
+    createjs.Ticker.timingMode = createjs.Ticker.RAF;
+    createjs.Ticker.setFPS(60);
+    createjs.Ticker.addEventListener("tick", stage);
+   
+}
+
+function showGameInstance(){
+    //gameInstanceScreen
+    // // create EaselJS image for tileset
+    tileset = new Image();
+    // // getting imagefile from first tileset
+     tileset.src = mapData.tilesets[0].image;
+    // // callback for loading layers after tileset is loaded
+     tileset.onLoad = initLayers();
+
+    stage.addChild(gameInstanceScreen);
+}
+
+function hideGameInstance(){
+     stage.removeChild(gameInstanceScreen);
+}
+
+function showRegister(){
+  if(!registerScreen.initialized) {
+        var buttonRegister;
+        var buttonBack;
+
+        buttonRegister = new createjs.Text("Register", "48px Arial", "#00F");
+        buttonRegister.x = 256;
+        buttonRegister.y = 480;
+        buttonRegister.alpha = 0.5;
+        var registerHit = new createjs.Shape();
+        registerHit.graphics.beginFill("#000").drawRect(0, 0, buttonRegister.getMeasuredWidth(), buttonRegister.getMeasuredHeight());       
+        buttonRegister.hitArea = registerHit;
+        buttonRegister.on("mouseover", textMouseOver);
+        buttonRegister.on("mouseout", textMouseOver);
+        buttonRegister.on("click", function() { alert('Registering'); });
+
+        buttonBack = new createjs.Text("Back", "48px Arial", "#00F");
+        buttonBack.x = 768;
+        buttonBack.y = 480;
+        buttonBack.alpha = 0.5;
+        var backHit = new createjs.Shape();
+        backHit.graphics.beginFill("#000").drawRect(0, 0, buttonBack.getMeasuredWidth(), buttonBack.getMeasuredHeight());       
+        buttonBack.hitArea = backHit;
+        buttonBack.on("mouseover", textMouseOver);
+        buttonBack.on("mouseout", textMouseOver);
+        buttonBack.on("click", function() { hideRegister(); showLogin(); });
+        
+        registerScreen.addChild(buttonBack, buttonRegister);
+        registerScreen.initialized = true;
+    }
+
+    stage.addChild(registerScreen);
+}
+
+function hideRegister(){
+     stage.removeChild(registerScreen);
+}
+
+function showMenu(){
+    if(!menuScreen.initialized){
+        var buttonFindGame;
+        buttonFindGame = new createjs.Text("Find game", "48px Arial", "#00F");
+        buttonFindGame.x = 10;
+        buttonFindGame.y = 80;
+        buttonFindGame.alpha = 0.5;
+        var loginHit = new createjs.Shape();
+        loginHit.graphics.beginFill("#000").drawRect(0, 0, buttonFindGame.getMeasuredWidth(), buttonFindGame.getMeasuredHeight());       
+        buttonFindGame.hitArea = loginHit;
+        buttonFindGame.on("mouseover", textMouseOver);
+        buttonFindGame.on("mouseout", textMouseOver);
+        buttonFindGame.on("click", function() { hideMenu(); showGameInstance();});
+        menuScreen.initialized = true;
+        menuScreen.addChild(buttonFindGame);
+    }
+
+    stage.addChild(menuScreen);
+}
+
+function hideMenu(){
+     stage.removeChild(menuScreen);
+}
+
+function showLogin(){
+    if(!loginScreen.initialized) {
+        var buttonLogin;
+        var buttonRegister;
+
+        buttonLogin = new createjs.Text("Login", "48px Arial", "#00F");
+        buttonLogin.x = 256;
+        buttonLogin.y = 480;
+        buttonLogin.alpha = 0.5;
+        var loginHit = new createjs.Shape();
+        loginHit.graphics.beginFill("#000").drawRect(0, 0, buttonLogin.getMeasuredWidth(), buttonLogin.getMeasuredHeight());       
+        buttonLogin.hitArea = loginHit;
+        buttonLogin.on("mouseover", textMouseOver);
+        buttonLogin.on("mouseout", textMouseOver);
+        buttonLogin.on("click", function() { hideLogin(); showMenu(); });
+
+        buttonRegister = new createjs.Text("Register", "48px Arial", "#00F");
+        buttonRegister.x = 768;
+        buttonRegister.y = 480;
+        buttonRegister.alpha = 0.5;
+        var registerHit = new createjs.Shape();
+        registerHit.graphics.beginFill("#000").drawRect(0, 0, buttonRegister.getMeasuredWidth(), buttonRegister.getMeasuredHeight());       
+        buttonRegister.hitArea = registerHit;
+        buttonRegister.on("mouseover", textMouseOver);
+        buttonRegister.on("mouseout", textMouseOver);
+        buttonRegister.on("click", function() { hideLogin(); showRegister(); });
+        
+        loginScreen.addChild(buttonLogin, buttonRegister);
+        loginScreen.initialized = true;
+    }
+
+    stage.addChild(loginScreen);
+}
+
+function hideLogin(){
+     stage.removeChild(loginScreen);
+}
+
+function textMouseOver(event) {
+            event.target.alpha = (event.type == "mouseover") ? 1 : 0.5; 
 }
 
 // loading layers
@@ -97,13 +202,11 @@ function initLayers() {
         lastY = 0;
     });
 
-    stage.addChild(map);
+    gameInstanceScreen.addChild(map);
+    
+    //stage.addChild(map);
 	// stage updates (not really used here)
-    createjs.Ticker.timingMode = createjs.Ticker.RAF;
-	createjs.Ticker.setFPS(60);
-
-	// createjs.Ticker.addEventListener(stage);
-    createjs.Ticker.addEventListener("tick", stage);
+  
 }
 
 // layer initialization

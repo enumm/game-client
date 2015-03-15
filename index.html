@@ -2,13 +2,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Rendering a tmx tilemap on EaselJS</title>
+<title>game!</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="stats.js"></script>
 <script type="text/javascript" src="https://code.createjs.com/easeljs-0.8.0.min.js"></script>
-<script type="text/javascript" src="renderer.js"></script>
+<script type="text/javascript" src="game.main.js"></script>
+<style>
+body {
+	background: #000;
+	}
+	#center {
+		width: 1280px;
+		height: 720px;
+		margin: 0px auto;
+		border: 1px solid #4F4E4D;
+	}	
+</style>
 </head>
 <body>
-<canvas id="canvas" width="1000" height="800"> Canvas not supported. Please update your browser. </canvas>		
+<div id="terminal"></div>
+<div id="center">
+	<canvas id="canvas" width="1280" height="720"> Canvas not supported. Please update your browser. </canvas>	
+</div>
 </body>
 </html>
