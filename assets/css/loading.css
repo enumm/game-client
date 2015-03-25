@@ -1,0 +1,12 @@
+.loading {
+	position: relative;
+}
+
+.loading:after {
+	content: url("../img/loading.gif");
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -13px 0 0 -51px;
+	opacity: 0.8;
+}
