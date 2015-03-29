@@ -4,8 +4,9 @@ var mapData;
 var map = new createjs.Container();
 var lastX = 0;
 var lastY = 0;
-var stats = new Stats();
+//var stats = new Stats();
 var tree;
+var fpsLabel;
 
 //screens
 var loginScreen = new createjs.Container();
@@ -15,18 +16,23 @@ var gameInstanceScreen = new createjs.Container();
 
 window.onload = function(){
     //stats
-    stats.setMode(0); 
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
-    document.body.appendChild( stats.domElement );
-    var update = function () {
-        stats.begin();
-        stats.end();
-        requestAnimationFrame( update );
-    };
-    requestAnimationFrame( update );
+    // stats.setMode(0); 
+    // stats.domElement.style.position = 'absolute';
+    // stats.domElement.style.left = '0px';
+    // stats.domElement.style.top = '0px';
+    // document.body.appendChild( stats.domElement );
+    // var update = function () {
+    //     stats.begin();
+    //     stats.end();
+    //     requestAnimationFrame( update );
+    // };
+    // requestAnimationFrame( update );
+
     mapData = mapData3;
+
+    fpsLabel = new createjs.Text('', "20px Arial", "#0f0");
+    fpsLabel.x = 10;
+    fpsLabel.y = 10;
 
     //stage
 	stage = new createjs.Stage("canvas");
@@ -34,6 +40,7 @@ window.onload = function(){
     stage.enableMouseOver(10);
     stage.mouseMoveOutside = true;
 
+    stage.addChild(fpsLabel);
     //init login screen
     showLogin();
     //showGameInstance();
@@ -41,8 +48,12 @@ window.onload = function(){
     //start ticker
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.setFPS(60);
-    createjs.Ticker.addEventListener("tick", stage);   
+    // createjs.Ticker.addEventListener("tick", stage);
+    createjs.Ticker.addEventListener("tick", tick);   
 }
+
+
+function tick() { stage.update(); fpsLabel.text = 'fps: ' + (createjs.Ticker.getMeasuredFPS()|0); }
 
 function showGameInstance(){
     //gameInstanceScreen
@@ -78,6 +89,8 @@ function showGameInstance(){
     });
 
     stage.addChild(gameInstanceScreen ,buttonBuild);
+
+    stage.swapChildren(gameInstanceScreen, fpsLabel);
 
     map.x = 1400;
     map.y = -1210;
@@ -217,12 +230,13 @@ function initLayers() {
 	};
 	// create spritesheet
 	var tilesetSheet = new createjs.SpriteSheet(imageData);
+    var tilesetSheet1 = new createjs.Sprite(tilesetSheet);
 	
 	// loading each layer at a time
 	for (var idx = 0; idx < mapData.layers.length; idx++) {
 		var layerData = mapData.layers[idx];
 		if (layerData.type == 'tilelayer')
-			initLayer(layerData, tilesetSheet, mapData.tilewidth, mapData.tileheight);
+			initLayer(layerData, tilesetSheet1, mapData.tilewidth, mapData.tileheight);
 	}
     // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
     map.on("pressmove", function (evt) {
@@ -270,7 +284,8 @@ function initLayer(layerData, tilesetSheet, tilewidth, tileheight) {
 
             if(layerData.data[idx] != 0){
                 // create a new Bitmap for each cell
-                var cellBitmap = new createjs.Sprite(tilesetSheet);
+                // var cellBitmap = new createjs.Sprite(tilesetSheet);
+                var cellBitmap = tilesetSheet.clone();
     			// tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
     			cellBitmap.gotoAndStop(layerData.data[idx] - 1);
     			// isometrix tile positioning based on X Y order from Tiled
