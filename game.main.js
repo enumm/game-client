@@ -1,13 +1,14 @@
 var tileset;
 var stage;
 var mapData;
-var map = new createjs.Container();
+var map;
 var lastX = 0;
 var lastY = 0;
 var tree;
+
+//fields
 var fpsLabel;
-
-
+var loadingLabel;
 
 // file loading
 var manifest;
@@ -56,6 +57,28 @@ function hideMenu(){
 }
 
 window.onload = function(){
+    //setting stage
+    fpsLabel = new createjs.Text('', "20px Arial", "#0f0");
+    fpsLabel.x = 10;
+    fpsLabel.y = 10;
+
+    //stage
+    stage = new createjs.Stage("canvas");
+    createjs.Touch.enable(stage);
+    stage.enableMouseOver(10);
+    stage.mouseMoveOutside = true;
+
+    loadingLabel = new createjs.Text("Loading", "bold 24px Arial", "#FFFFFF");
+    loadingLabel.name = 'loadingLabel';
+    loadingLabel.maxWidth = 1000;
+    loadingLabel.textAlign = "center";
+    loadingLabel.textBaseline = "middle";
+    loadingLabel.x = canvas.width / 2;
+    loadingLabel.y = canvas.height / 2;
+
+    stage.addChild(loadingLabel);
+    stage.update();     //update the stage to show text
+
     //loading files
     var assetsPath = "assets/";
 
@@ -74,8 +97,14 @@ window.onload = function(){
     preload = new createjs.LoadQueue(true, assetsPath);
     preload.on("complete", handleComplete);
     preload.on("fileload", handleFileLoad);
+    preload.on("progress", handleProgress);
 
     preload.loadManifest(manifest);
+}
+
+function handleProgress(event) {
+    loadingLabel.text = "Loading " + (preload.progress * 100 | 0) + "%";
+    stage.update();
 }
 
 function handleFileLoad(event) {
@@ -101,27 +130,17 @@ function handleFileLoad(event) {
 
 function handleComplete(event) {
     console.log('Loading complete');
-
-    fpsLabel = new createjs.Text('', "20px Arial", "#0f0");
-    fpsLabel.x = 10;
-    fpsLabel.y = 10;
-
-    //stage
-    stage = new createjs.Stage("canvas");
-    createjs.Touch.enable(stage);
-    stage.enableMouseOver(10);
-    stage.mouseMoveOutside = true;
+    stage.removeChild(loadingLabel);
+    loadingLabel = null;
 
     stage.addChild(fpsLabel);
-
-    //init login screen
-    showLogin();
-
     //start ticker
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.setFPS(60);
     // createjs.Ticker.addEventListener("tick", stage);
-    createjs.Ticker.addEventListener("tick", tick);   
+    createjs.Ticker.addEventListener("tick", tick);  
+
+    showLogin();
 }
 
 function tick() {
@@ -198,6 +217,11 @@ function initLayers() {
 	var tilesetSheet = new createjs.SpriteSheet(imageData);
     var tilesetSheet1 = new createjs.Sprite(tilesetSheet);
 	
+    //map = new createjs.SpriteContainer(tilesetSheet);
+    if(!map){
+        map = new createjs.Container();
+    }
+
 	// loading each layer at a time
 	for (var idx = 0; idx < mapData.layers.length; idx++) {
 		var layerData = mapData.layers[idx];
