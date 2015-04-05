@@ -1,6 +1,6 @@
 (function() {
 
-function Button(label, color) {
+function Button1(label, color) {
 	this.Container_constructor();
 	
 	this.color = color;
@@ -8,8 +8,7 @@ function Button(label, color) {
 	
 	this.setup();
 }
-var p = createjs.extend(Button, createjs.Container);
-
+var p = createjs.extend(Button1, createjs.Container);
 
 p.setup = function() {
 	var text = new createjs.Text(this.label, "20px Arial", "#000");
@@ -45,5 +44,5 @@ p.handleRollOver = function(event) {
 	this.alpha = event.type == "rollover" ? 0.4 : 1;
 };
 
-window.Button = createjs.promote(Button, "Container");
+window.Button1 = createjs.promote(Button1, "Container");
 }());
