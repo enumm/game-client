@@ -8,6 +8,12 @@ var lastX = 0;
 var lastY = 0;
 var tree;
 
+//proton vars
+var renderer;
+var proton;
+var emitter;
+var textures = [];
+
 //fields
 var fpsLabel;
 var loadingLabel;
@@ -23,14 +29,18 @@ var menuScreen;
 var gameInstanceScreen = new createjs.Container();
 
 function showLogin(){
+    loginScreen = null;
+    delete loginScreen;
     loginScreen = new LoginScreen();
-
     stage.addChild(loginScreen);
+    stage.setChildIndex ( fpsLabel,  1);
 }
 
 function hideLogin(){
 	loginScreen.getChildByName('LoginBlock').htmlElement.style.display = "none"
  	stage.removeChild(loginScreen);
+    loginScreen = null;
+    delete loginScreen;
 }
 
 function showRegister(){
@@ -39,6 +49,7 @@ function showRegister(){
     }
 
     stage.addChild(registerScreen);
+    stage.setChildIndex ( fpsLabel,  1);
 }
 
 function hideRegister(){
@@ -51,7 +62,7 @@ function showMenu(){
     }
 
     stage.addChild(menuScreen);
-}
+    stage.setChildIndex ( fpsLabel,  1);}
 
 function hideMenu(){
      stage.removeChild(menuScreen);
@@ -86,6 +97,7 @@ window.onload = function(){
     manifest = [
         {id: "button", src: "js/button.js"},
         {id: "assets", src: "js/assets.js"},
+        {id: "assets", src: "js/proton-1.0.0.min.js"},
         {id: "css", src: "css/style.css"},
         {id: "tileset", src: "img/tileCheck.png"},
         {id: "jquery-2", src: "js/jquery-2.1.3.min.js"},
@@ -93,8 +105,9 @@ window.onload = function(){
         {id: "registerScreen", src: "js/registerScreen.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
         {id: "buttonImg", src: "img/button.png"},
-        {id: "loginBackGround", src: "img/Baby.png"},
-        {id: "mapData", src: "json/map.json"}
+        {id: "loginBackGround", src: "img/bg1.jpg"},
+        {id: "mapData", src: "json/map.json"},
+        {id: "texture1", src : "img/c1.png"}
     ];
 
     preload = new createjs.LoadQueue(true, assetsPath);
@@ -130,8 +143,14 @@ function handleFileLoad(event) {
             else if (id == "tileset"){
             	tileset = result;
             }
-            else{
-            	loginBackGround = result;
+            else if(id == 'texture1'){
+                var texture = new createjs.Shape(new createjs.Graphics().beginBitmapFill(result).drawRect(0, 0, 80, 80));
+                        texture.regX = 40;
+                        texture.regY = 40;
+
+                textures.push(texture);
+            }else{
+                loginBackGround = result;
             }
             break;
         case createjs.AbstractLoader.JSON:
@@ -151,7 +170,10 @@ function handleComplete(event) {
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.setFPS(60);
     // createjs.Ticker.addEventListener("tick", stage);
-    createjs.Ticker.addEventListener("tick", tick);  
+    createjs.Ticker.addEventListener("tick", tick);
+
+    assets.showMenuBackground();
+    assets.showParticles();
 
     showLogin();
 }
@@ -159,9 +181,17 @@ function handleComplete(event) {
 function tick() {
     stage.update();
     fpsLabel.text = 'fps: ' + (createjs.Ticker.getMeasuredFPS()|0);
+
+    if (proton) {
+        proton.update();
+    }
 }
 
 function showGameInstance(){
+    assets.destroyParticles();
+    assets.hideMenuBackground();
+
+    stage.removeAllChildren();
     initLayers();
 
     var buttonBuild; 
@@ -189,10 +219,7 @@ function showGameInstance(){
         });
     });
 
-    stage.addChild(gameInstanceScreen ,buttonBuild);
-
-    stage.swapChildren(gameInstanceScreen, fpsLabel);
-
+    stage.addChild(gameInstanceScreen ,buttonBuild, fpsLabel);
     map.x = 1400;
     map.y = -1210;
 }
@@ -206,11 +233,11 @@ function tileRemoveAllEventListeners(){
 }
 
 function hideGameInstance(){
-     stage.removeChild(gameInstanceScreen);
+    stage.removeChild(gameInstanceScreen);
 }
 
 function textMouseOver(event) {
-            event.target.alpha = (event.type == "mouseover") ? 1 : 0.5; 
+    event.target.alpha = (event.type == "mouseover") ? 1 : 0.5; 
 }
 
 // loading layers

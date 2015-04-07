@@ -29,13 +29,10 @@ p.setup = function() {
     buttonRegister.x = 768;
     buttonRegister.y = 480;
 
-    back = new createjs.Shape();
-	stage.addChild(back);
-	back.x = 0;back.y = 0;
-	back.graphics.beginBitmapFill(loginBackGround,'repeat').drawRect(0,0,canvas.width,canvas.height);
-
+   
     this.addChild(buttonLogin, buttonRegister, loginDOMElement);
 } ;
+
 
 window.LoginScreen = createjs.promote(LoginScreen, "Container");
 }());

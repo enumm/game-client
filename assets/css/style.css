@@ -23,8 +23,6 @@ body {
 }
 #canvas{
     margin: auto;
-    border-style:solid;
-    border-color:#ffffff;
 }
 #main{
     width : 800px;
