@@ -1,4 +1,6 @@
 var tileset;
+var buttonImg;
+var loginBackGround;
 var stage;
 var mapData;
 var map;
@@ -21,15 +23,14 @@ var menuScreen;
 var gameInstanceScreen = new createjs.Container();
 
 function showLogin(){
-    if(!loginScreen){
-        loginScreen = new LoginScreen();
-    }
+    loginScreen = new LoginScreen();
 
     stage.addChild(loginScreen);
 }
 
 function hideLogin(){
-     stage.removeChild(loginScreen);
+	loginScreen.getChildByName('LoginBlock').htmlElement.style.display = "none"
+ 	stage.removeChild(loginScreen);
 }
 
 function showRegister(){
@@ -91,6 +92,8 @@ window.onload = function(){
         {id: "loginScreen", src: "js/loginScreen.js"},
         {id: "registerScreen", src: "js/registerScreen.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
+        {id: "buttonImg", src: "img/button.png"},
+        {id: "loginBackGround", src: "img/Baby.png"},
         {id: "mapData", src: "json/map.json"}
     ];
 
@@ -110,6 +113,7 @@ function handleProgress(event) {
 function handleFileLoad(event) {
     var item = event.item;
     var result = event.result;
+    var id = event.item.id;
 
     switch (item.type) {
         case createjs.AbstractLoader.CSS:
@@ -119,7 +123,16 @@ function handleFileLoad(event) {
             document.body.appendChild(result);
             break;
         case createjs.AbstractLoader.IMAGE:
-            tileset = result;
+            if(id == "buttonImg")
+            {
+            	buttonImg = result;
+            }
+            else if (id == "tileset"){
+            	tileset = result;
+            }
+            else{
+            	loginBackGround = result;
+            }
             break;
         case createjs.AbstractLoader.JSON:
             mapData = result;

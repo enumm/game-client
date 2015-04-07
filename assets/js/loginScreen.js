@@ -1,3 +1,5 @@
+//@ sourceURL=login.js
+
 (function() {
 
 function LoginScreen() {
@@ -10,30 +12,29 @@ var p = createjs.extend(LoginScreen, createjs.Container);
 p.setup = function() {
     var buttonLogin;
     var buttonRegister;
+    var loginBlock = $('.formStyle')[0];
+    var loginDiv = $('#myform');
+    
+    loginDOMElement = new createjs.DOMElement(loginBlock);
+    loginDOMElement.x = (canvas.width * 0.5) - loginDiv.width() * 0.5;
+    loginDOMElement.y = -(canvas.height * 0.5) - loginDiv.height() * 0.5;
+    loginDOMElement.htmlElement.style.display = "block"
+    loginDOMElement.name = "LoginBlock"
 
-    buttonLogin = new createjs.Text("Login", "48px Arial", "#00F");
+    buttonLogin = new Button1("Login", "#00F", function() { hideLogin(); showMenu(); });
     buttonLogin.x = 256;
     buttonLogin.y = 480;
-    buttonLogin.alpha = 0.5;
-    var loginHit = new createjs.Shape();
-    loginHit.graphics.beginFill("#000").drawRect(0, 0, buttonLogin.getMeasuredWidth(), buttonLogin.getMeasuredHeight());       
-    buttonLogin.hitArea = loginHit;
-    buttonLogin.on("mouseover", textMouseOver);
-    buttonLogin.on("mouseout", textMouseOver);
-    buttonLogin.on("click", function() { hideLogin(); showMenu(); });
 
-    buttonRegister = new createjs.Text("Register", "48px Arial", "#00F");
+    buttonRegister = new Button1("Register", "#00F", function() { hideLogin(); showRegister(); });
     buttonRegister.x = 768;
     buttonRegister.y = 480;
-    buttonRegister.alpha = 0.5;
-    var registerHit = new createjs.Shape();
-    registerHit.graphics.beginFill("#000").drawRect(0, 0, buttonRegister.getMeasuredWidth(), buttonRegister.getMeasuredHeight());       
-    buttonRegister.hitArea = registerHit;
-    buttonRegister.on("mouseover", textMouseOver);
-    buttonRegister.on("mouseout", textMouseOver);
-    buttonRegister.on("click", function() { hideLogin(); showRegister(); });
 
-    this.addChild(buttonLogin, buttonRegister);
+    back = new createjs.Shape();
+	stage.addChild(back);
+	back.x = 0;back.y = 0;
+	back.graphics.beginBitmapFill(loginBackGround,'repeat').drawRect(0,0,canvas.width,canvas.height);
+
+    this.addChild(buttonLogin, buttonRegister, loginDOMElement);
 } ;
 
 window.LoginScreen = createjs.promote(LoginScreen, "Container");
