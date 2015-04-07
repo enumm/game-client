@@ -1,10 +1,12 @@
+//@ sourceURL=button.js
 (function() {
 
-function Button1(label, color) {
+function Button1(label, color, OnClick) {
 	this.Container_constructor();
 	
 	this.color = color;
 	this.label = label;
+	this.OnClick = OnClick;
 	
 	this.setup();
 }
@@ -15,8 +17,8 @@ p.setup = function() {
 	text.textBaseline = "top";
 	text.textAlign = "center";
 	
-	var width = text.getMeasuredWidth()+30;
-	var height = text.getMeasuredHeight()+20;
+	var width = text.getMeasuredWidth() + 30;
+	var height = text.getMeasuredHeight() + 20;
 	
 	text.x = width/2;
 	text.y = 10;
@@ -37,7 +39,15 @@ p.setup = function() {
 } ;
 
 p.handleClick = function (event) {
-	alert("You clicked on a button: "+this.label);
+	function isFunction(functionToCheck) {
+ 		var getType = {};
+ 		return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+	}
+
+	if(isFunction(this.OnClick)){
+		this.OnClick();
+	}
+	console.log('You clicked on a button: ' + this.label);
 } ;
 
 p.handleRollOver = function(event) {       
