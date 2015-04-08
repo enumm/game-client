@@ -8,33 +8,49 @@ function RegisterScreen() {
 var p = createjs.extend(RegisterScreen, createjs.Container);
 
 p.setup = function() {
-    var buttonRegister;
-        var buttonBack;
+    var registerForm = $('#registerForm');
+    
+    registerDOMElement = new createjs.DOMElement(registerForm[0]);
+    registerDOMElement.x = (canvas.width * 0.5) - registerForm.width() * 0.5;
+    registerDOMElement.y = -(canvas.height * 0.5) - registerForm.height() * 0.5;
+    registerDOMElement.htmlElement.style.display = "block"
+    registerDOMElement.name = "registerBlock"
 
-        buttonRegister = new createjs.Text("Register", "48px Arial", "#00F");
-        buttonRegister.x = 256;
-        buttonRegister.y = 480;
-        buttonRegister.alpha = 0.5;
-        var registerHit = new createjs.Shape();
-        registerHit.graphics.beginFill("#000").drawRect(0, 0, buttonRegister.getMeasuredWidth(), buttonRegister.getMeasuredHeight());       
-        buttonRegister.hitArea = registerHit;
-        buttonRegister.on("mouseover", textMouseOver);
-        buttonRegister.on("mouseout", textMouseOver);
-        buttonRegister.on("click", function() { alert('Registering'); });
 
-        buttonBack = new createjs.Text("Back", "48px Arial", "#00F");
-        buttonBack.x = 768;
-        buttonBack.y = 480;
-        buttonBack.alpha = 0.5;
-        var backHit = new createjs.Shape();
-        backHit.graphics.beginFill("#000").drawRect(0, 0, buttonBack.getMeasuredWidth(), buttonBack.getMeasuredHeight());       
-        buttonBack.hitArea = backHit;
-        buttonBack.on("mouseover", textMouseOver);
-        buttonBack.on("mouseout", textMouseOver);
-        buttonBack.on("click", function() { hideRegister(); showLogin(); });
-        
-        this.addChild(buttonBack, buttonRegister);
+    var registerFunction = function(){
+        registerScreen.showLoading();
+        if($('#txtRegisterPassword').val() ==  $('#txtRegisterPassword2').val()){
+            assets.sendMSG('user_register', {name: $('#txtRegisterUser').val(), pass: $('#txtRegisterPassword').val()});
+        }else{
+            $('#messageAreaRegister').css('color', '#f00');
+            $('#messageAreaRegister').text('Password doesnt match'); 
+        }
+    };
+
+    var buttonRegister = new Button1("Register", "#00F", registerFunction);
+    buttonRegister.x = 256;
+    buttonRegister.y = 480;
+
+    var buttonBack = new Button1("Back", "#00F", function() { hideRegister(); showLogin(); });
+    buttonBack.x = 768;
+    buttonBack.y = 480;
+
+    this.addChild(buttonBack, buttonRegister, registerDOMElement);
 } ;
+
+p.msgRegisterResponce = function(msg){
+    $('#messageAreaRegister').css('color', '#000');
+    $('#messageAreaRegister').text(msg); 
+}
+
+p.showLoading = function(){
+    $('#messageAreaRegister').css('color', '#000');
+    $('#messageAreaRegister').text('Registering'); 
+}
+
+p.destroy = function(){
+    registerScreen.getChildByName('registerBlock').htmlElement.style.display = "none";
+}
 
 window.RegisterScreen = createjs.promote(RegisterScreen, "Container");
 }());

@@ -39,23 +39,25 @@ function showLogin(){
 }
 
 function hideLogin(){
-	loginScreen.getChildByName('LoginBlock').htmlElement.style.display = "none"
+    loginScreen.destroy();
  	stage.removeChild(loginScreen);
     loginScreen = null;
     delete loginScreen;
 }
 
 function showRegister(){
-    if(!registerScreen) {
-        registerScreen = new RegisterScreen();
-    }
-
+    registerScreen = null;
+    delete registerScreen;
+    registerScreen = new RegisterScreen();
     stage.addChild(registerScreen);
     stage.setChildIndex ( fpsLabel,  1);
 }
 
 function hideRegister(){
-     stage.removeChild(registerScreen);
+    registerScreen.destroy();
+    stage.removeChild(registerScreen);
+    registerScreen = null;
+    delete registerScreen;
 }
 
 function showMenu(){

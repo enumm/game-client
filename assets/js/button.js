@@ -55,7 +55,6 @@ p.handleClick = function (event) {
 	if(isFunction(this.OnClick)){
 		this.OnClick();
 	}
-	console.log('You clicked on a button: ' + this.label);
 } ;
 
 p.handleRollOver = function(event) {       

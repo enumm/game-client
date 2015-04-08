@@ -12,7 +12,8 @@
 <body>
 	<div id="center">
 		<canvas id="canvas" width="1280" height="720"> Canvas not supported. Please update your browser. </canvas>
-        <table id="myform" class="formStyle">
+
+        <table id="loginForm" class="formStyle" style="display: none">
 	        <tr>
 	            <td width="30%">
 	                <label>Login name:</label>
@@ -31,12 +32,42 @@
 	        </tr>
 	        <tr>
 	        	<td colspan = '2'>
-	        		<span id="messageArea"></span>
+	        		<span id="messageAreaLogin"></span>
 	        	</td>
 	        </tr>
+        </table>
 
+        <table id="registerForm" class="formStyle" style="display: none">
+	        <tr>
+	            <td width="30%">
+	                <label>Login name:</label>
+	            </td>
+	            <td class="flowforma-rule-control">
+	                <input id="txtRegisterUser" type="text" value="" />
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>Password:</label>
+	            </td>
+	            <td>
+	                <input type="password" id="txtRegisterPassword" value="" />
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <label>Repeat password:</label>
+	            </td>
+	            <td>
+	                <input type="password" id="txtRegisterPassword2" value="" />
+	            </td>
+	        </tr>
+	        <tr>
+	        	<td colspan = '2'>
+	        		<span id="messageAreaRegister"></span>
+	        	</td>
+	        </tr>
         </table>
 	</div>
-
 </body>
 </html>

@@ -15,4 +15,10 @@ socket.on('user_login_responce', function (data) {
         loginScreen.msgLogginFailed(data.message);
     }
 });
+
+socket.on('user_register_responce', function (data) {
+    debugger;
+    registerScreen.msgRegisterResponce(data.message);  
+});
+
 }());
