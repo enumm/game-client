@@ -72,8 +72,39 @@ function hideMenu(){
      stage.removeChild(menuScreen);
 }
 
+function OnResizeCalled() {
+    var gameWidth = window.innerWidth;
+	var gameHeight = window.innerHeight;
+	var scaleToFitX = gameWidth / 1280;
+	var scaleToFitY = gameHeight / 720;
+
+	var currentScreenRatio = gameWidth / gameHeight;
+	var optimalRatio = Math.min(scaleToFitX, scaleToFitY);
+
+	if (currentScreenRatio >= 1.77 && currentScreenRatio <= 1.79) {
+	    canvas.style.width = gameWidth + "px";
+	    canvas.style.height = gameHeight + "px";
+	}
+	else {
+	    canvas.style.width = 1280 * optimalRatio + "px";
+	    canvas.style.height = 720 * optimalRatio + "px";
+	}
+
+	if(loginScreen) {
+		var loginDiv = $('#loginForm');
+		var loginBlock = loginScreen.getChildByName('LoginBlock');
+	    loginBlock.x = (parseInt(canvas.style.width) * 0.5) - loginDiv.width() * 0.5;
+    	loginBlock.y = -(parseInt(canvas.style.height) * 0.5) - loginDiv.height() * 0.5;
+	}
+	if(registerScreen) {
+		var registerDiv = $('#registerForm');
+		var registerBlock = registerScreen.getChildByName('registerBlock');
+	    registerBlock.x = (parseInt(canvas.style.width) * 0.5) - registerDiv.width() * 0.5;
+    	registerBlock.y = -(parseInt(canvas.style.height) * 0.5) - registerDiv.height() * 0.5;
+	}
+}
+
 window.onload = function(){
-    
     //setting stage
     fpsLabel = new createjs.Text('', "20px Arial", "#0f0");
     fpsLabel.x = 10;
@@ -120,6 +151,8 @@ window.onload = function(){
     preload.on("complete", handleComplete);
     preload.on("fileload", handleFileLoad);
     preload.on("progress", handleProgress);
+
+    window.addEventListener("resize", OnResizeCalled, false);
 
     preload.loadManifest(manifest);
 }
@@ -182,6 +215,8 @@ function handleComplete(event) {
     assets.showParticles();
 
     showLogin();
+
+    OnResizeCalled();
 }
 
 function tick() {

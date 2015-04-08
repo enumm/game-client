@@ -2,13 +2,6 @@ body {
 	background: #000;
 }
 
-#center {
-	width: 1280px;
-	height: 720px;
-	margin: 0px auto;
-	<--border: 1px solid #4F4E4D;-->
-}
-
 .loading {
 	position: relative;
 }
@@ -47,4 +40,18 @@ body {
 }
 #submit{
     text-align: right;
+}
+.canvasHolder {
+    width: 100%;
+    height: 100%;
+    display: -ms-grid;
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 1fr;
+}
+
+#canvas {
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    -ms-grid-column-align: center;
+    -ms-grid-row-align: center;
 }
