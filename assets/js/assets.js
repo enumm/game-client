@@ -77,4 +77,11 @@
     o.hideMenuBackground = function() {
     	stage.removeChild(stage.getChildByName('backgroundImage'))
     }
+
+    o.sendMSG = function( name, data){
+        if(socket && socket.connected){
+            socket.emit(name, data);            
+        }
+    }
+
 })();

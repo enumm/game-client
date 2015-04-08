@@ -7,7 +7,9 @@ var map;
 var lastX = 0;
 var lastY = 0;
 var tree;
+var socket;
 
+           
 //proton vars
 var renderer;
 var proton;
@@ -69,6 +71,7 @@ function hideMenu(){
 }
 
 window.onload = function(){
+    
     //setting stage
     fpsLabel = new createjs.Text('', "20px Arial", "#0f0");
     fpsLabel.x = 10;
@@ -104,6 +107,7 @@ window.onload = function(){
         {id: "loginScreen", src: "js/loginScreen.js"},
         {id: "registerScreen", src: "js/registerScreen.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
+        {id: "serverInterp", src: "js/serverInterpreter.js"},
         {id: "buttonImg", src: "img/button.png"},
         {id: "loginBackGround", src: "img/bg1.jpg"},
         {id: "mapData", src: "json/map.json"},
