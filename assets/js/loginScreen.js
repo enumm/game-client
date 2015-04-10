@@ -13,8 +13,8 @@ p.setup = function() {
     var loginDiv = $('#loginForm');
     
     loginDOMElement = new createjs.DOMElement(loginDiv[0]);
-    //loginDOMElement.x = (canvas.width * 0.5) - loginDiv.width() * 0.5;
-    //loginDOMElement.y = -(canvas.height * 0.5) - loginDiv.height() * 0.5;
+    loginDOMElement.x = (parseInt(canvas.style.width) * 0.5) - loginDiv.width() * 0.5;
+	loginDOMElement.y = -(parseInt(canvas.style.height) * 0.5) - loginDiv.height() * 0.5;
     loginDOMElement.htmlElement.style.display = "block"
     loginDOMElement.name = "LoginBlock"
 

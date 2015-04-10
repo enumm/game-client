@@ -11,8 +11,8 @@ p.setup = function() {
     var registerForm = $('#registerForm');
     
     registerDOMElement = new createjs.DOMElement(registerForm[0]);
-    registerDOMElement.x = (canvas.width * 0.5) - registerForm.width() * 0.5;
-    registerDOMElement.y = -(canvas.height * 0.5) - registerForm.height() * 0.5;
+    registerDOMElement.x = (parseInt(canvas.style.width) * 0.5) - registerForm.width() * 0.5;
+	registerDOMElement.y = -(parseInt(canvas.style.height) * 0.5) - registerForm.height() * 0.5;
     registerDOMElement.htmlElement.style.display = "block"
     registerDOMElement.name = "registerBlock"
 
