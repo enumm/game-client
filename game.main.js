@@ -89,17 +89,20 @@ function OnResizeCalled() {
 	    canvas.style.width = 1280 * optimalRatio + "px";
 	    canvas.style.height = 720 * optimalRatio + "px";
 	}
+    var pageWidth = $('.canvasHolder').width();
+    var margin = (pageWidth - parseInt(canvas.style.width))/2;
+    canvas.style.marginLeft = margin + 'px';
 
 	if(loginScreen) {
 		var loginDiv = $('#loginForm');
 		var loginBlock = loginScreen.getChildByName('LoginBlock');
-	    loginBlock.x = (parseInt(canvas.style.width) * 0.5) - loginDiv.width() * 0.5;
+	    loginBlock.x = ((parseInt(canvas.style.width) * 0.5) - loginDiv.width() * 0.5) + margin;
     	loginBlock.y = -(parseInt(canvas.style.height) * 0.5) - loginDiv.height() * 0.5;
 	}
 	if(registerScreen) {
 		var registerDiv = $('#registerForm');
 		var registerBlock = registerScreen.getChildByName('registerBlock');
-	    registerBlock.x = (parseInt(canvas.style.width) * 0.5) - registerDiv.width() * 0.5;
+	    registerBlock.x = ((parseInt(canvas.style.width) * 0.5) - registerDiv.width() * 0.5) + margin;
     	registerBlock.y = -(parseInt(canvas.style.height) * 0.5) - registerDiv.height() * 0.5;
 	}
 }
