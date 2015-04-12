@@ -39,7 +39,7 @@ p.setup = function() {
 } ;
 
 p.msgRegisterResponce = function(msg){
-    $('#messageAreaRegister').css('color', '#000');
+    $('#messageAreaRegister').css('color', '#f00');
     $('#messageAreaRegister').text(msg); 
 }
 
