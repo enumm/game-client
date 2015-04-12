@@ -32,3 +32,27 @@ body {
 #submit{
     text-align: right;
 }
+
+table#loginForm{
+    background-color: rgba(0,0,0,0.5);
+    border: 0px;
+    width: 350px;
+    height: 80px;
+    border-radius: 6px;
+}
+
+input {
+    margin-bottom: 10px;
+    border: dashed 1px #fff;
+    -webkit-border-radius: 6px;
+    transition: background-color 0.5s ease-in-out;
+    background-color: rgba(255,255,255,0);
+    padding:5px;
+    width: 250px;
+    color: #fff;
+    outline-style: none;
+}
+
+input:hover {
+    background-color: rgba(255,255,255,0.1);
+}
