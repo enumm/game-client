@@ -105,6 +105,7 @@ function OnResizeCalled() {
 	    registerBlock.x = ((parseInt(canvas.style.width) * 0.5) - registerDiv.width() * 0.5) + margin;
     	registerBlock.y = -(parseInt(canvas.style.height) * 0.5) - registerDiv.height() * 0.5;
 	}
+
 }
 
 window.onload = function(){
@@ -147,7 +148,8 @@ window.onload = function(){
         {id: "buttonImg", src: "img/button.png"},
         {id: "loginBackGround", src: "img/bg1.jpg"},
         {id: "mapData", src: "json/map.json"},
-        {id: "texture1", src : "img/c1.png"}
+        {id: "texture1", src : "img/c1.png"},
+        {id: "adressBar", src : "js/hideAddressbar.min.js"}
     ];
 
     preload = new createjs.LoadQueue(true, assetsPath);
@@ -204,6 +206,7 @@ function handleFileLoad(event) {
 
 function handleComplete(event) {
     console.log('Loading complete');
+    hideAddressbar('#canvasHolder');
     stage.removeChild(loadingLabel);
     loadingLabel = null;
 
@@ -231,7 +234,12 @@ function tick() {
     }
 }
 
-function showGameInstance(){
+function showGameInstance(data){
+    var aa = data.host ? 'You are host, Opponent: ' : 'You are guest, Opponent: ' ;
+    var opponentName = new createjs.Text(aa + data.opponent, "20px Arial", "#fff");
+    opponentName.y = 0;
+    opponentName.x = 1000;
+
     assets.destroyParticles();
     assets.hideMenuBackground();
 
@@ -263,7 +271,7 @@ function showGameInstance(){
         });
     });
 
-    stage.addChild(gameInstanceScreen ,buttonBuild, fpsLabel);
+    stage.addChild(gameInstanceScreen ,buttonBuild, fpsLabel, opponentName);
     map.x = 1400;
     map.y = -1210;
 }
@@ -277,7 +285,12 @@ function tileRemoveAllEventListeners(){
 }
 
 function hideGameInstance(){
+    map = null;
+    delete map;
+    //gameInstanceScreen.destroy();
     stage.removeChild(gameInstanceScreen);
+    gameInstanceScreen = null;
+    delete gameInstanceScreen;
 }
 
 function textMouseOver(event) {

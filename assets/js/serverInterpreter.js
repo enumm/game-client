@@ -17,8 +17,16 @@ socket.on('user_login_responce', function (data) {
 });
 
 socket.on('user_register_responce', function (data) {
-    debugger;
     registerScreen.msgRegisterResponce(data.message);  
+});
+
+socket.on('game_starting', function (data) {
+    menuScreen.msgStartGame(data);  
+});
+
+socket.on('game_ended', function (data) {
+    hideGameInstance();
+    showMenu(); 
 });
 
 }());
