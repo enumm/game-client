@@ -9,6 +9,8 @@ var lastY = 0;
 var tree;
 var socket;
 
+var raceSelected = 'human';
+
            
 //proton vars
 var renderer;
@@ -61,15 +63,17 @@ function hideRegister(){
 }
 
 function showMenu(){
-    if(!menuScreen){
-       menuScreen = new MenuScreen();
-    }
-
+    menuScreen = null;
+    delete menuScreen;
+    menuScreen = new MenuScreen();
     stage.addChild(menuScreen);
-    stage.setChildIndex ( fpsLabel,  1);}
+    stage.setChildIndex ( fpsLabel,  1);
+}
 
 function hideMenu(){
-     stage.removeChild(menuScreen);
+    stage.removeChild(menuScreen);
+    menuScreen = null;
+    delete menuScreen;
 }
 
 function OnResizeCalled() {
