@@ -10,8 +10,7 @@ var tree;
 var socket;
 
 var raceSelected = 'human';
-
-           
+    
 //proton vars
 var renderer;
 var proton;
@@ -249,7 +248,8 @@ function showGameInstance(data){
     assets.hideMenuBackground();
 
     stage.removeAllChildren();
-    initLayers();
+    //initLayers();
+     gameInstanceScreen.addChild(assets.buildMap());  
 
     var buttonBuild; 
     buttonBuild = new createjs.Text("Build", "48px Arial", "#00F");
@@ -303,66 +303,66 @@ function textMouseOver(event) {
 }
 
 // loading layers
-function initLayers() {
-	// compose EaselJS tileset from image (fixed 64x64 now, but can be parametized)
-	var w = mapData.tilesets[0].tilewidth;
-	var h = mapData.tilesets[0].tileheight;
-	var imageData = {
-		images : [ tileset ],
-		frames : {
-			width : w,
-			height : h
-		}
-	};
+// function initLayers() {
+// 	// compose EaselJS tileset from image (fixed 64x64 now, but can be parametized)
+// 	var w = mapData.tilesets[0].tilewidth;
+// 	var h = mapData.tilesets[0].tileheight;
+// 	var imageData = {
+// 		images : [ tileset ],
+// 		frames : {
+// 			width : w,
+// 			height : h
+// 		}
+// 	};
 
-	// create spritesheet
-	var tilesetSheet = new createjs.SpriteSheet(imageData);
-    var tilesetSheet1 = new createjs.Sprite(tilesetSheet);
+// 	// create spritesheet
+// 	var tilesetSheet = new createjs.SpriteSheet(imageData);
+//     var tilesetSheet1 = new createjs.Sprite(tilesetSheet);
 	
-    //map = new createjs.SpriteContainer(tilesetSheet);
-    if(!map){
-        map = new createjs.Container();
-    }
+//     //map = new createjs.SpriteContainer(tilesetSheet);
+//     if(!map){
+//         map = new createjs.Container();
+//     }
 
-	// loading each layer at a time
-	for (var idx = 0; idx < mapData.layers.length; idx++) {
-		var layerData = mapData.layers[idx];
-		if (layerData.type == 'tilelayer')
-			initLayer(layerData, tilesetSheet1, mapData.tilewidth, mapData.tileheight);
-	}
+// 	// loading each layer at a time
+// 	for (var idx = 0; idx < mapData.layers.length; idx++) {
+// 		var layerData = mapData.layers[idx];
+// 		if (layerData.type == 'tilelayer')
+// 			initLayer(layerData, tilesetSheet1, mapData.tilewidth, mapData.tileheight);
+// 	}
 
-    // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
-    map.on("pressmove", function (evt) {
-        if(lastX != 0 || lastY !=0){
-            this.x -= lastX - evt.stageX;
-            this.y -= lastY - evt.stageY;
+//     // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
+//     map.on("pressmove", function (evt) {
+//         if(lastX != 0 || lastY !=0){
+//             this.x -= lastX - evt.stageX;
+//             this.y -= lastY - evt.stageY;
 
-            if(this.x <= -255){
-                this.x = -255;
-            } 
-            if(this.x >= 1400){
-                this.x = 1400;
-            }
+//             if(this.x <= -255){
+//                 this.x = -255;
+//             } 
+//             if(this.x >= 1400){
+//                 this.x = 1400;
+//             }
 
-            if(this.y >= -935){
-                this.y = -935;
-            }
-            if(this.y <= -1390){
-                this.y = -1390;  
-            }            
-        }
+//             if(this.y >= -935){
+//                 this.y = -935;
+//             }
+//             if(this.y <= -1390){
+//                 this.y = -1390;  
+//             }            
+//         }
 
-        lastX = evt.stageX;
-        lastY = evt.stageY;
-    });
+//         lastX = evt.stageX;
+//         lastY = evt.stageY;
+//     });
 
-    map.on("pressup", function (evt) {
-        lastX = 0;
-        lastY = 0;
-    });
+//     map.on("pressup", function (evt) {
+//         lastX = 0;
+//         lastY = 0;
+//     });
 
-    gameInstanceScreen.addChild(map);  
-}
+//     gameInstanceScreen.addChild(map);  
+// }
 
 // layer initialization
 function initLayer(layerData, tilesetSheet, tilewidth, tileheight) {
