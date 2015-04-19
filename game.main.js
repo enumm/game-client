@@ -110,6 +110,7 @@ function OnResizeCalled() {
     	registerBlock.y = -(parseInt(canvas.style.height) * 0.5) - registerDiv.height() * 0.5;
 	}
 
+   //hideAddressbar('#canvasHolder');
 }
 
 window.onload = function(){
