@@ -16,6 +16,11 @@ p.setup = function() {
     opponentName.y = 0;
     opponentName.x = 1000;
     
+    var money = new createjs.Text(instanceData.money + '$', "20px Arial", "#ff0");
+    money.name = 'moneyLabel';
+    money.y = 0;
+    money.x = 800;
+
     //initLayers();
     var map = assets.buildMap();
     this.addChild(map);  
@@ -45,7 +50,7 @@ p.setup = function() {
         });
     });
 
-    this.addChild(buttonBuild, opponentName);
+    this.addChild(buttonBuild, opponentName, money);
 
     if(this.connectionData.host){
         map.x = 1400;
@@ -55,6 +60,11 @@ p.setup = function() {
         map.y = -1210;
     }
 };
+p.drawUpdate = function(){
+    gameInstanceScreen.getChildByName('moneyLabel').text = instanceData.money + '$';
+    //instanceData
+    //opponentData
+}
 
 window.GameInstanceScreen = createjs.promote(GameInstanceScreen, "Container");
 }());

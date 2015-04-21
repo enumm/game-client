@@ -9,7 +9,12 @@ var lastY = 0;
 var tree;
 var socket;
 
+var serverUpdateTimer = 0;
+var moneyUpdateTimer = 0;
+
 var raceSelected = 'human';
+var instanceData = {money: 5};
+var opponentData = {money: 5};
     
 //proton vars
 var renderer;
@@ -80,10 +85,16 @@ function showGameInstance(data){
     assets.hideMenuBackground();
     stage.removeAllChildren();
 
+    serverUpdateTimer = 0;
+    moneyUpdateTimer = 0;
+    instanceData = {money: 5};
+    opponentData = {money: 5};
+
     gameInstanceScreen = null;
     delete gameInstanceScreen;
     gameInstanceScreen = new GameInstanceScreen(data);
     stage.addChild(gameInstanceScreen);
+    stage.addChild(fpsLabel);
     stage.setChildIndex ( fpsLabel,  1);
 }
 
@@ -248,9 +259,28 @@ function handleComplete(event) {
     OnResizeCalled();
 }
 
-function tick() {
+function tick(event) {
     stage.update();
-    fpsLabel.text = 'fps: ' + (createjs.Ticker.getMeasuredFPS()|0);
+    fpsLabel.text = 'fps   : ' + ((createjs.Ticker.getMeasuredFPS()|0) + ' time: ' + event.delta/1000);
+    if(gameInstanceScreen){
+
+        moneyUpdateTimer += event.delta/1000;
+        if(moneyUpdateTimer >= 10)
+        {
+            instanceData.money += 5;
+            moneyUpdateTimer = 0;
+            gameInstanceScreen.drawUpdate();
+        }
+
+
+        serverUpdateTimer += event.delta/1000;
+        if(serverUpdateTimer >= 1)
+        {
+            assets.sendMSG('message', instanceData);
+            serverUpdateTimer = 0;
+        }
+
+    }
 
     if (proton) {
         proton.update();
