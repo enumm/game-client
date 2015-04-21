@@ -269,7 +269,6 @@ function tick(event) {
         {
             instanceData.money += 5;
             moneyUpdateTimer = 0;
-            gameInstanceScreen.drawUpdate();
         }
 
 
@@ -279,6 +278,8 @@ function tick(event) {
             assets.sendMSG('message', instanceData);
             serverUpdateTimer = 0;
         }
+
+        gameInstanceScreen.drawUpdate();
 
     }
 

@@ -50,7 +50,14 @@ p.setup = function() {
         });
     });
 
-    this.addChild(buttonBuild, opponentName, money);
+     
+
+    var btntemp = new Button1("-- money", "#00F", function() {instanceData.money--; assets.sendMSG('message', instanceData);});
+
+    btntemp.x = 720;
+    btntemp.y = 40;
+
+    this.addChild(buttonBuild, opponentName, money, btntemp);
 
     if(this.connectionData.host){
         map.x = 1400;
@@ -60,6 +67,7 @@ p.setup = function() {
         map.y = -1210;
     }
 };
+
 p.drawUpdate = function(){
     gameInstanceScreen.getChildByName('moneyLabel').text = instanceData.money + '$';
     //instanceData

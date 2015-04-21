@@ -29,4 +29,8 @@ socket.on('game_ended', function (data) {
     showMenu(); 
 });
 
+socket.on('message', function (data) {
+    instanceData = data;
+});
+
 }());
