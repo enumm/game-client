@@ -1,5 +1,3 @@
-//@ sourceURL=login.js
-
 (function() {
 
 function LoginScreen() {
