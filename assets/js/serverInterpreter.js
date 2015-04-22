@@ -29,8 +29,9 @@ socket.on('game_ended', function (data) {
     showMenu(); 
 });
 
-socket.on('message', function (data) {
+socket.on('message', function (data, oData) {
     instanceData = data;
+    opponentData = oData;
 });
 
 }());

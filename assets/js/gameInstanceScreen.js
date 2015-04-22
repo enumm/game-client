@@ -1,5 +1,3 @@
-//@ sourceURL=login.js
-
 (function() {
 
 function GameInstanceScreen(data) {
@@ -23,7 +21,17 @@ p.setup = function() {
 
     //initLayers();
     var map = assets.buildMap();
-    this.addChild(map);  
+    this.addChild(map); 
+
+    //build castles
+    var castleGood = assets.createBuilding(11, 'castleGood');
+    castleGood.x = -1280;
+    castleGood.y = 1472;
+    var castleBaad = assets.createBuilding(11, 'castleBaad');
+    castleBaad.x = 1280;
+    castleBaad.y = 1472;
+
+    map.addChild(castleGood, castleBaad);
 
     var buttonBuild; 
     buttonBuild = new createjs.Text("Build", "48px Arial", "#00F");
@@ -41,16 +49,21 @@ p.setup = function() {
             value.on("mouseover", function(){ this.alpha = 2;});
             value.on("mouseout", function(){ this.alpha = 1;});
             value.on("click", function(){
-                tileRemoveAllEventListeners(map);
-                var tree = this.clone(true);
-                tree.gotoAndStop(11);
-                map.addChild(tree);
+                assets.tileRemoveAllEventListeners(map);
+
+                instanceData.buildings.push({
+                    name: 'building' + instanceData.buildings.length,
+                    x: this.x,
+                    y: this.y,
+                    frame: 10
+                });
+
+                assets.sendMSG('message', instanceData);
+
                 this.alpha = 1;
             });
         });
     });
-
-     
 
     var btntemp = new Button1("-- money", "#00F", function() {instanceData.money--; assets.sendMSG('message', instanceData);});
 
@@ -70,6 +83,27 @@ p.setup = function() {
 
 p.drawUpdate = function(){
     gameInstanceScreen.getChildByName('moneyLabel').text = instanceData.money + '$';
+    var map = gameInstanceScreen.getChildByName('map');
+
+    $.each(instanceData.buildings, function(index, value){
+        if(!map.getChildByName(value.name)){
+            var building = assets.createBuilding(11, value.name);
+            building.x = value.x;
+            building.y = value.y;
+
+            map.addChild(building);
+        }
+    });
+
+    $.each(opponentData.buildings, function(index, value){
+        if(!map.getChildByName(value.name)){
+            var building = assets.createBuilding(11, value.name);
+            building.x = value.x;
+            building.y = value.y;
+            map.addChild(building);
+        }
+    });
+
     //instanceData
     //opponentData
 }

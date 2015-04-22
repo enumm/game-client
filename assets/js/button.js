@@ -1,4 +1,3 @@
-//@ sourceURL=button.js
 (function() {
 
 function Button1(label, color, OnClick) {

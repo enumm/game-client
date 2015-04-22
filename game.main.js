@@ -13,8 +13,10 @@ var serverUpdateTimer = 0;
 var moneyUpdateTimer = 0;
 
 var raceSelected = 'human';
-var instanceData = {money: 5};
-var opponentData = {money: 5};
+
+//check other places
+var instanceData = {money: 5, buildings: []};
+var opponentData = {money: 5, buildings: []};
     
 //proton vars
 var renderer;
@@ -87,8 +89,8 @@ function showGameInstance(data){
 
     serverUpdateTimer = 0;
     moneyUpdateTimer = 0;
-    instanceData = {money: 5};
-    opponentData = {money: 5};
+    instanceData = {money: 5, buildings: []};
+    opponentData = {money: 5, buildings: []};
 
     gameInstanceScreen = null;
     delete gameInstanceScreen;
@@ -288,10 +290,4 @@ function tick(event) {
     }
 }
 
-function tileRemoveAllEventListeners(map){
-    $.each(map.children, function( index, value ) {
-        value.removeAllEventListeners();
-    });
 
-  map.alpha = 1;
-}

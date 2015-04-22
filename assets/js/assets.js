@@ -106,6 +106,7 @@
         var tilesetSheet1 = new createjs.Sprite(tilesetSheet);
 
         var map = new createjs.Container();
+        map.name = 'map';
 
         // loading each layer at a time
         for (var idx = 0; idx < mapData.layers.length; idx++) {
@@ -145,7 +146,7 @@
         });
 
         return map;
-    }
+    } 
 
     o.initLayer = function (map, layerData, tilesetSheet, tilewidth, tileheight) {
         for ( var y = 0; y < layerData.height; y++) {
@@ -166,6 +167,30 @@
                 }
             }
         }
+    }
+
+    o.tileRemoveAllEventListeners = function (map){
+        $.each(map.children, function( index, value ) {
+            value.removeAllEventListeners();
+        });
+        map.alpha = 1;
+    }
+
+    o.createBuilding = function(frame, name){
+        var w = mapData.tilesets[0].tilewidth;
+        var h = mapData.tilesets[0].tileheight;
+        var imageData = {
+            images : [ tileset ],
+            frames : {
+                width : w,
+                height : h
+            }
+        };
+        var tilesetSheet = new createjs.SpriteSheet(imageData);
+        var sprite =  new createjs.Sprite(tilesetSheet);
+        sprite.name = name;
+        sprite.gotoAndStop(frame);
+        return sprite;
     }
 }
 )();
