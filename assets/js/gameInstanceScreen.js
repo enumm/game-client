@@ -74,14 +74,16 @@ p.setup = function() {
                 value.on("click", function(){
                     assets.tileRemoveAllEventListeners(map);
 
-                    instanceData.buildings.push({
+                    if(instanceData.money >= 2){
+                        instanceData.buildings.push({
                         name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildings.length: 'obuilding' + instanceData.buildings.length,
-                        x: this.x,
-                        y: this.y,
-                        frame: 10,
-                        price: 2,
-                        old: false
-                    });
+                            x: this.x,
+                            y: this.y,
+                            frame: 10,
+                            price: 2,
+                            old: false
+                        });
+                    }
 
                     assets.sendData();
 
