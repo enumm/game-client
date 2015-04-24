@@ -120,7 +120,7 @@ p.drawUpdate = function(){
 
     $.each(instanceData.buildings, function(index, value){
         if(!map.getChildByName(value.name)){
-            var building = assets.createBuilding(11, value.name);
+            var building = assets.createBuilding(gameInstanceScreen.connectionData.host ? 27 : 28, value.name);
             building.x = value.x;
             building.y = value.y;
             
@@ -131,7 +131,7 @@ p.drawUpdate = function(){
 
     $.each(opponentData.buildings, function(index, value){
         if(!map.getChildByName(value.name)){
-            var building = assets.createBuilding(11, value.name);
+            var building = assets.createBuilding(gameInstanceScreen.connectionData.host ? 27 : 28, value.name);
             building.x = value.x;
             building.y = value.y;
             map.addChild(building);
