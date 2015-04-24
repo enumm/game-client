@@ -33,16 +33,39 @@ p.setup = function() {
 
     map.addChild(castleGood, castleBaad);
 
-    var buttonBuild; 
-    buttonBuild = new createjs.Text("Build", "48px Arial", "#00F");
-    buttonBuild.x = 10;
-    buttonBuild.y = 80;
-    buttonBuild.alpha = 1;
+    // var buttonBuild; 
+    // buttonBuild = new createjs.Text("Build", "48px Arial", "#00F");
+    // buttonBuild.x = 10;
+    // buttonBuild.y = 80;
+    // buttonBuild.alpha = 1;
 
-    var buildHit = new createjs.Shape();
-    buildHit.graphics.beginFill("#000").drawRect(0, 0, buttonBuild.getMeasuredWidth(), buttonBuild.getMeasuredHeight());       
-    buttonBuild.hitArea = buildHit;
-    buttonBuild.on("click", function() {
+    // var buildHit = new createjs.Shape();
+    // buildHit.graphics.beginFill("#000").drawRect(0, 0, buttonBuild.getMeasuredWidth(), buttonBuild.getMeasuredHeight());       
+    // buttonBuild.hitArea = buildHit;
+    // buttonBuild.on("click", function() {
+    //     map.alpha = 0.5;
+
+    //     $.each(map.children, function( index, value ) {
+    //         value.on("mouseover", function(){ this.alpha = 2;});
+    //         value.on("mouseout", function(){ this.alpha = 1;});
+    //         value.on("click", function(){
+    //             assets.tileRemoveAllEventListeners(map);
+
+    //             instanceData.buildings.push({
+    //                 name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildings.length: 'obuilding' + instanceData.buildings.length,
+    //                 x: this.x,
+    //                 y: this.y,
+    //                 frame: 10
+    //             });
+
+    //             assets.sendMSG('message', instanceData);
+
+    //             this.alpha = 1;
+    //         });
+    //     });
+    // });
+
+    var btnBuilding1 = new Button1('Pleb hut  - 2$', '#fff', function(){
         map.alpha = 0.5;
 
         $.each(map.children, function( index, value ) {
@@ -55,22 +78,27 @@ p.setup = function() {
                     name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildings.length: 'obuilding' + instanceData.buildings.length,
                     x: this.x,
                     y: this.y,
-                    frame: 10
+                    frame: 10,
+                    price: 2,
+                    old: false
                 });
 
-                assets.sendMSG('message', instanceData);
+                assets.sendData();
 
                 this.alpha = 1;
             });
         });
     });
 
-    var btntemp = new Button1("-- money", "#00F", function() {instanceData.money--; assets.sendMSG('message', instanceData);});
+    btnBuilding1.x = 10;
+    btnBuilding1.y = 80;
 
-    btntemp.x = 720;
-    btntemp.y = 40;
+    // var btntemp = new Button1("-- money", "#00F", function() {instanceData.money--; assets.sendData()});
 
-    this.addChild(buttonBuild, opponentName, money, btntemp);
+    // btntemp.x = 720;
+    // btntemp.y = 40;
+
+    this.addChild(btnBuilding1, opponentName, money);
 
     if(this.connectionData.host){
         map.x = 1400;

@@ -277,7 +277,7 @@ function tick(event) {
         serverUpdateTimer += event.delta/1000;
         if(serverUpdateTimer >= 1)
         {
-            assets.sendMSG('message', instanceData);
+            assets.sendData();
             serverUpdateTimer = 0;
         }
 

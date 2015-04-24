@@ -89,6 +89,12 @@
         }
     }
 
+    o.sendData = function(){
+        if(socket && socket.connected){
+            socket.emit('message', instanceData);            
+        }
+    }
+
     o.buildMap = function(){
         // compose EaselJS tileset from image (fixed 64x64 now, but can be parametized)
         var w = mapData.tilesets[0].tilewidth;
