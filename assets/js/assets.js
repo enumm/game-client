@@ -159,7 +159,6 @@
             for ( var x = 0; x < layerData.width; x++) {
                 // layer data has single dimension array
                 var idx = x + y * layerData.width;
-
                 if(layerData.data[idx] != 0){
                     // create a new Bitmap for each cell
                     // var cellBitmap = new createjs.Sprite(tilesetSheet);
@@ -169,6 +168,10 @@
                     // isometrix tile positioning based on X Y order from Tiled
                     cellBitmap.x = x * tilewidth/2 - y * tilewidth/2;
                     cellBitmap.y = y * tileheight/2 + x * tileheight/2;
+
+                    if(layerData.name == 'base1'){ cellBitmap.base1 = true;}
+                    if(layerData.name == 'base2'){ cellBitmap.base2 = true;}
+                    
                     map.addChild(cellBitmap);
                 }
             }
@@ -179,7 +182,6 @@
         $.each(map.children, function( index, value ) {
             value.removeAllEventListeners();
         });
-        map.alpha = 1;
     }
 
     o.createBuilding = function(frame, name){

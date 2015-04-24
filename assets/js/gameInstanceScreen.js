@@ -66,27 +66,30 @@ p.setup = function() {
     // });
 
     var btnBuilding1 = new Button1('Pleb hut  - 2$', '#fff', function(){
-        map.alpha = 0.5;
-
         $.each(map.children, function( index, value ) {
-            value.on("mouseover", function(){ this.alpha = 2;});
-            value.on("mouseout", function(){ this.alpha = 1;});
-            value.on("click", function(){
-                assets.tileRemoveAllEventListeners(map);
+            if(value.base1 && gameInstanceScreen.connectionData.host || value.base2 && !gameInstanceScreen.connectionData.host ){
+                value.alpha = 0.5;
+                value.on("mouseover", function(){ this.alpha = 1;});
+                value.on("mouseout", function(){ this.alpha = 0.5;});
+                value.on("click", function(){
+                    assets.tileRemoveAllEventListeners(map);
 
-                instanceData.buildings.push({
-                    name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildings.length: 'obuilding' + instanceData.buildings.length,
-                    x: this.x,
-                    y: this.y,
-                    frame: 10,
-                    price: 2,
-                    old: false
+                    instanceData.buildings.push({
+                        name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildings.length: 'obuilding' + instanceData.buildings.length,
+                        x: this.x,
+                        y: this.y,
+                        frame: 10,
+                        price: 2,
+                        old: false
+                    });
+
+                    assets.sendData();
+
+                    $.each(map.children, function( index, value ) {
+                        value.alpha = 1;
+                    });
                 });
-
-                assets.sendData();
-
-                this.alpha = 1;
-            });
+            }
         });
     });
 
