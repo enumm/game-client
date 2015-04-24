@@ -52,7 +52,7 @@ p.setup = function() {
                 assets.tileRemoveAllEventListeners(map);
 
                 instanceData.buildings.push({
-                    name: 'building' + instanceData.buildings.length,
+                    name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildings.length: 'obuilding' + instanceData.buildings.length,
                     x: this.x,
                     y: this.y,
                     frame: 10
@@ -90,6 +90,7 @@ p.drawUpdate = function(){
             var building = assets.createBuilding(11, value.name);
             building.x = value.x;
             building.y = value.y;
+            
 
             map.addChild(building);
         }
