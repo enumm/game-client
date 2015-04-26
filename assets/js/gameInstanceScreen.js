@@ -24,14 +24,17 @@ p.setup = function() {
     this.addChild(map); 
 
     //build castles
-    var castleGood = assets.createBuilding(11, 'castleGood');
+    var castleGood = new Castle(true);
+    castleGood.bame = 'castlegood';
     castleGood.x = -1280;
     castleGood.y = 1472;
-    var castleBaad = assets.createBuilding(11, 'castleBaad');
-    castleBaad.x = 1280;
+    var castleBaad = new Castle(false);
+    castleBaad.name = 'castleBad';
+    castleBaad.x = 1200;
     castleBaad.y = 1472;
 
     map.addChild(castleGood, castleBaad);
+
 
     // var buttonBuild; 
     // buttonBuild = new createjs.Text("Build", "48px Arial", "#00F");
@@ -131,7 +134,7 @@ p.drawUpdate = function(){
 
     $.each(opponentData.buildings, function(index, value){
         if(!map.getChildByName(value.name)){
-            var building = assets.createBuilding(gameInstanceScreen.connectionData.host ? 27 : 28, value.name);
+            var building = assets.createBuilding(gameInstanceScreen.connectionData.host ? 28 : 27, value.name);
             building.x = value.x;
             building.y = value.y;
             map.addChild(building);

@@ -179,6 +179,7 @@ window.onload = function(){
         {id: "loginScreen", src: "js/loginScreen.js"},
         {id: "registerScreen", src: "js/registerScreen.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
+        {id: "castle", src: "js/castle.js"},
         {id: "instanceScreen", src: "js/gameInstanceScreen.js"},
         {id: "serverInterp", src: "js/serverInterpreter.js"},
         {id: "buttonImg", src: "img/button.png"},
