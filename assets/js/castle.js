@@ -8,6 +8,8 @@ function Castle(good) {
 var p = createjs.extend(Castle, createjs.Container);
 
 p.setup = function() {
+	this.hp = 100;
+
 	var w = mapData.tilesets[0].tilewidth;
 	var h = mapData.tilesets[0].tileheight;
 	var imageData = {
@@ -45,6 +47,11 @@ p.setup = function() {
 
 	this.addChild(sprite11, sprite12, sprite21, sprite22); 
 	this.name = 'castle';
+};
+
+p.setHp = function(hp){
+	this.hp = hp;
+
 };
 
 window.Castle = createjs.promote(Castle, "Container");
