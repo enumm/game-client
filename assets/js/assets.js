@@ -184,7 +184,7 @@
         });
     }
 
-    o.createBuilding = function(frame, name){
+    o.createBuilding = function(frame){
         var w = mapData.tilesets[0].tilewidth;
         var h = mapData.tilesets[0].tileheight;
         var imageData = {
@@ -196,9 +196,13 @@
         };
         var tilesetSheet = new createjs.SpriteSheet(imageData);
         var sprite =  new createjs.Sprite(tilesetSheet);
-        sprite.name = name;
         sprite.gotoAndStop(frame);
         return sprite;
+    }
+
+    o.getBuilding = function(name){
+        var map = gameInstanceScreen.getChildByName('map');
+        return map.getChildByName(value.name);
     }
 }
 )();

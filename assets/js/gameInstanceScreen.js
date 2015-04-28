@@ -117,33 +117,39 @@ p.setup = function() {
     }
 };
 
-p.drawUpdate = function(){
+p.drawUpdate = function(delta){
     gameInstanceScreen.getChildByName('moneyLabel').text = instanceData.money + '$';
     var map = gameInstanceScreen.getChildByName('map');
 
     $.each(instanceData.buildings, function(index, value){
-        if(!map.getChildByName(value.name)){
-            var building = assets.createBuilding(gameInstanceScreen.connectionData.host ? 27 : 28, value.name);
+        var building = map.getChildByName(value.name);
+
+        if(!building){
+            building = new Building(value.name, true);
             building.x = value.x;
             building.y = value.y;
-            
-
             map.addChild(building);
+        }else{
+            building.updateTime(delta);
         }
     });
 
     $.each(opponentData.buildings, function(index, value){
-        if(!map.getChildByName(value.name)){
-            var building = assets.createBuilding(gameInstanceScreen.connectionData.host ? 28 : 27, value.name);
+       var building = map.getChildByName(value.name);
+
+        if(!building){
+            building = new Building(value.name, false);
             building.x = value.x;
             building.y = value.y;
             map.addChild(building);
+        }else{
+            building.updateTime(delta);
         }
     });
 
     //instanceData
     //opponentData
-}
+};
 
 window.GameInstanceScreen = createjs.promote(GameInstanceScreen, "Container");
 }());

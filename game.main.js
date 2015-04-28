@@ -15,8 +15,8 @@ var moneyUpdateTimer = 0;
 var raceSelected = 'human';
 
 //check other places
-var instanceData = {money: 5, buildings: []};
-var opponentData = {money: 5, buildings: []};
+var instanceData = {money: 5, buildings: [], units: []};
+var opponentData = {money: 5, buildings: [], units: []};
     
 //proton vars
 var renderer;
@@ -89,8 +89,8 @@ function showGameInstance(data){
 
     serverUpdateTimer = 0;
     moneyUpdateTimer = 0;
-    instanceData = {money: 5, buildings: []};
-    opponentData = {money: 5, buildings: []};
+    instanceData = {money: 5, buildings: [], units: []};
+    opponentData = {money: 5, buildings: [], units: []};
 
     gameInstanceScreen = null;
     delete gameInstanceScreen;
@@ -180,6 +180,7 @@ window.onload = function(){
         {id: "registerScreen", src: "js/registerScreen.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
         {id: "castle", src: "js/castle.js"},
+        {id: "building", src: "js/building.js"},
         {id: "instanceScreen", src: "js/gameInstanceScreen.js"},
         {id: "serverInterp", src: "js/serverInterpreter.js"},
         {id: "buttonImg", src: "img/button.png"},
@@ -274,15 +275,7 @@ function tick(event) {
             moneyUpdateTimer = 0;
         }
 
-
-        serverUpdateTimer += event.delta/1000;
-        if(serverUpdateTimer >= 1)
-        {
-            assets.sendData();
-            serverUpdateTimer = 0;
-        }
-
-        gameInstanceScreen.drawUpdate();
+        gameInstanceScreen.drawUpdate(event.delta/1000);
 
     }
 
