@@ -27,15 +27,17 @@ p.updateTime = function(delta) {
 	this.buildTimer += delta;
 	if(this.buildTimer >= 10){
 		this.buildTimer = 0;
+
+		console.log(this.name + '  ours: ' +this.ours);
 		if(this.ours){
-			instanceData.units.push({name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.buildings.length: 'ounit' + instanceData.units.length, x: this.x, y: this.y});
-
-
-			// console.log(instanceData.units);	
-		}else{
-			opponentData.units.push({name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.buildings.length: 'ounit' + instanceData.units.length, x: this.x, y: this.y});
-			// console.log('enemy units + 1');
+			instanceData.units.push({name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.units.length: 'ounit' + instanceData.units.length, x: this.x, y: this.y});
 		}
+		//else{
+		// 	//opponentData.units.push({name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.buildings.length: 'ounit' + instanceData.units.length, x: this.x, y: this.y});
+		// 	// console.log('enemy units + 1');
+		// }
+
+		assets.sendData();
 	}
 };
 

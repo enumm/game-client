@@ -227,5 +227,16 @@
             }
         }
     }
+
+    o.mapToScreen = function(x, y ){
+        return [ x * mapData.tilewidth/2 - y * mapData.tilewidth/2, y * mapData.tileheight/2 + x * mapData.tileheight/2]
+    }
+
+    o.screenToMap = function(x, y ){
+        //todo: custom x,y
+        mapx = (x / mapData.tilewidth + y / mapData.tileheight);
+        mapy = (y / mapData.tileheight -(x / mapData.tilewidth));
+        return([mapx, mapy])
+    }
 }
 )();

@@ -121,6 +121,32 @@ p.drawUpdate = function(delta){
     gameInstanceScreen.getChildByName('moneyLabel').text = instanceData.money + '$';
     var map = gameInstanceScreen.getChildByName('map');
 
+    $.each(instanceData.units, function(index, value){
+        var unit = map.getChildByName(value.name);
+
+        if(!unit){
+            unit = new Unit(value.name, true);
+            unit.x = value.x;
+            unit.y = value.y;
+            map.addChild(unit);
+        }else{
+            unit.updateTime(delta);
+        }
+    });
+
+    $.each(opponentData.units, function(index, value){
+        var unit = map.getChildByName(value.name);
+
+        if(!unit){
+            unit = new Unit(value.name, false);
+            unit.x = value.x;
+            unit.y = value.y;
+            map.addChild(unit);
+        }else{
+            unit.updateTime(delta);
+        }
+    });
+
     $.each(instanceData.buildings, function(index, value){
         var building = map.getChildByName(value.name);
 

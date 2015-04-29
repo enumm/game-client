@@ -185,6 +185,7 @@ window.onload = function(){
         {id: "mainPanel", src: "js/mainPanel.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
         {id: "castle", src: "js/castle.js"},
+        {id: "unit", src: "js/unit.js"},
         {id: "building", src: "js/building.js"},
         {id: "instanceScreen", src: "js/gameInstanceScreen.js"},
         {id: "serverInterp", src: "js/serverInterpreter.js"},
