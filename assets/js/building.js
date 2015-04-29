@@ -21,12 +21,16 @@ p.updateTime = function(delta) {
 		this.buildTimer = 0;
 		if(this.ours){
 			instanceData.units.push({name: 'unit'});
-			console.log('our units + 1');	
+			// console.log(instanceData.units);	
 		}else{
 			opponentData.units.push({name: 'unit'});
-			console.log('enemy units + 1');
+			// console.log('enemy units + 1');
 		}
 	}
+};
+
+p.isProducing = function(){
+	return true; // todo stop production
 };
 
 window.Building = createjs.promote(Building, "Container");

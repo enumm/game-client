@@ -129,7 +129,7 @@ p.drawUpdate = function(delta){
             building.x = value.x;
             building.y = value.y;
             map.addChild(building);
-        }else{
+        }else if(building.isProducing()){
             building.updateTime(delta);
         }
     });
@@ -142,7 +142,7 @@ p.drawUpdate = function(delta){
             building.x = value.x;
             building.y = value.y;
             map.addChild(building);
-        }else{
+        }else if(building.isProducing()){
             building.updateTime(delta);
         }
     });
