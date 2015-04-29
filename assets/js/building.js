@@ -28,9 +28,18 @@ p.updateTime = function(delta) {
 	if(this.buildTimer >= 10){
 		this.buildTimer = 0;
 
-		console.log(this.name + '  ours: ' +this.ours);
+		// console.log(this.name + '  ours: ' +this.ours);
 		if(this.ours){
-			instanceData.units.push({name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.units.length: 'ounit' + instanceData.units.length, x: this.x, y: this.y});
+			var tilePos = assets.screenToMap(this.x, this.y);
+			var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host);
+			if(unitTilePos){
+				var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
+				instanceData.units.push({
+					name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.units.length: 'ounit' + instanceData.units.length,
+					x: unitPos[0],
+					y: unitPos[1]
+				});	
+			}
 		}
 		//else{
 		// 	//opponentData.units.push({name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.buildings.length: 'ounit' + instanceData.units.length, x: this.x, y: this.y});
