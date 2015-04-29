@@ -5,32 +5,47 @@ function Building(name, ours) {
 	this.buildingName = name;
 	this.ours = ours;
 	this.buildTimer = 0;
+	this.producing = true;
 	this.setup();
 }
 var p = createjs.extend(Building, createjs.Container);
 
 p.setup = function() {
 	this.name = this.buildingName;
-	var building = assets.createBuilding(gameInstanceScreen.connectionData.host ? 27 : 28);
+	var building = null;
+
+	if(gameInstanceScreen.connectionData.host){
+		building = assets.createBuilding(this.ours ? 27 : 28);
+	}else{
+		building = assets.createBuilding(this.ours ? 28 : 27);
+	}
+	
     this.addChild(building);
 };
 
 p.updateTime = function(delta) {
 	this.buildTimer += delta;
-	if(this.buildTimer >= 20){
+	if(this.buildTimer >= 10){
 		this.buildTimer = 0;
 		if(this.ours){
-			instanceData.units.push({name: 'unit'});
+			instanceData.units.push({name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.buildings.length: 'ounit' + instanceData.units.length, x: this.x, y: this.y});
+
+
 			// console.log(instanceData.units);	
 		}else{
-			opponentData.units.push({name: 'unit'});
+			opponentData.units.push({name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.buildings.length: 'ounit' + instanceData.units.length, x: this.x, y: this.y});
 			// console.log('enemy units + 1');
 		}
 	}
 };
 
 p.isProducing = function(){
-	return true; // todo stop production
+	return this.producing; // todo stop production
+};
+
+p.setProducing = function(producing){
+	this.producing = producing;
+	this.buildTimer = 0;
 };
 
 window.Building = createjs.promote(Building, "Container");
