@@ -18,7 +18,7 @@ body {
 }
 
 #logo{
-    background-image: url(../assets/img/logo-l.png);
+    background-image: url(assets/img/logo-l.png);
     position: absolute;
     top: -37.5%; left: 0; bottom: 0; right: 0;
     background-repeat: no-repeat;
@@ -78,11 +78,11 @@ input.btnMain{
 }
 
 input.btnLogin {
-    background-image: url(../assets/img/login.png);
+    background-image: url(assets/img/login.png);
 }
 
 input.btnRegister {
-    background-image: url(../assets/img/register.png);
+    background-image: url(assets/img/register.png);
 }
 
 input.btnBack {
