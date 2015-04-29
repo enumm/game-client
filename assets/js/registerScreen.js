@@ -38,7 +38,7 @@ p.setup = function() {
     this.addChild(buttonBack, buttonRegister, registerDOMElement);
 } ;
 
-p.msgRegisterResponce = function(msg){
+p.msgRegisterResponse = function(msg){
     $('#messageAreaRegister').css('color', '#f00');
     $('#messageAreaRegister').text(msg); 
 }

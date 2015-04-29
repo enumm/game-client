@@ -65,7 +65,7 @@
 				}
 			});
 
-			socket.on('user_register_responce', function (data) {
+			socket.on('user_register_response', function (data) {
 				$('#messageArea').text(data.message);	
 			});
 
@@ -74,7 +74,7 @@
     			socket.emit('user_login',  {name: $('#txtUser').val(), pass: $('#txtPassword').val()});
 			});
 
-			socket.on('user_login_responce', function (data) {
+			socket.on('user_login_response', function (data) {
 				if(data.success){
 					socket.emit('user_authenticated',  {uuid: data.uuid});
 

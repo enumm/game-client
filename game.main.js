@@ -130,14 +130,18 @@ function OnResizeCalled() {
 	if(loginScreen) {
 		var loginDiv = $('#loginForm');
 		var loginBlock = loginScreen.getChildByName('LoginBlock');
-	    loginBlock.x = ((parseInt(canvas.style.width) * 0.5) - loginDiv.width() * 0.5) + margin;
-    	loginBlock.y = -(parseInt(canvas.style.height) * 0.5) - loginDiv.height() * 0.5;
+        if(loginBlock){
+        loginBlock.x = ((parseInt(canvas.style.width) * 0.5) - loginDiv.width() * 0.5) + margin;
+        loginBlock.y = -(parseInt(canvas.style.height) * 0.5) - loginDiv.height() * 0.5;    
+        }
 	}
 	if(registerScreen) {
 		var registerDiv = $('#registerForm');
 		var registerBlock = registerScreen.getChildByName('registerBlock');
-	    registerBlock.x = ((parseInt(canvas.style.width) * 0.5) - registerDiv.width() * 0.5) + margin;
-    	registerBlock.y = -(parseInt(canvas.style.height) * 0.5) - registerDiv.height() * 0.5;
+        if(registerBlock){
+            registerBlock.x = ((parseInt(canvas.style.width) * 0.5) - registerDiv.width() * 0.5) + margin;
+            registerBlock.y = -(parseInt(canvas.style.height) * 0.5) - registerDiv.height() * 0.5;    
+        }
 	}
 
    //hideAddressbar('#canvasHolder');
@@ -178,6 +182,7 @@ window.onload = function(){
         {id: "jquery-2", src: "js/jquery-2.1.3.min.js"},
         {id: "loginScreen", src: "js/loginScreen.js"},
         {id: "registerScreen", src: "js/registerScreen.js"},
+        {id: "mainPanel", src: "js/mainPanel.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
         {id: "castle", src: "js/castle.js"},
         {id: "building", src: "js/building.js"},
@@ -283,5 +288,3 @@ function tick(event) {
         proton.update();
     }
 }
-
-

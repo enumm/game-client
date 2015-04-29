@@ -13,61 +13,38 @@
 	<div class="canvasHolder" id="canvasHolder">
 		<canvas id="canvas" width="1280" height="720"> Canvas not supported. Please update your browser. </canvas>
 
-        <table id="loginForm" style="text-align:center; display: none" class="formStyle">
-	        <tr>
-	            <td width="30%">
-	                <label>Login name:</label>
-	            </td>
-	            <td class="flowforma-rule-control">
-	                <input id="txtUser" type="text" value="" />
-	            </td>
-	        </tr>
-	        <tr>
-	            <td>
-	                <label>Password:</label>
-	            </td>
-	            <td>
-	                <input type="password" id="txtPassword" value="" />
-	            </td>
-	        </tr>
-	        <tr>
-	        	<td colspan = '2'>
-	        		<span id="messageAreaLogin"></span>
-	        	</td>
-	        </tr>
+ 		<table id="loginForm" style="text-align:center; display: none" class="formStyle">
         </table>
 
-        <table id="registerForm" class="formStyle" style="display: none">
-	        <tr>
-	            <td width="30%">
-	                <label>Login name:</label>
-	            </td>
-	            <td class="flowforma-rule-control">
-	                <input id="txtRegisterUser" type="text" value="" />
-	            </td>
-	        </tr>
-	        <tr>
-	            <td>
-	                <label>Password:</label>
-	            </td>
-	            <td>
-	                <input type="password" id="txtRegisterPassword" value="" />
-	            </td>
-	        </tr>
-	        <tr>
-	            <td>
-	                <label>Repeat password:</label>
-	            </td>
-	            <td>
-	                <input type="password" id="txtRegisterPassword2" value="" />
-	            </td>
-	        </tr>
-	        <tr>
-	        	<td colspan = '2'>
-	        		<span id="messageAreaRegister"></span>
-	        	</td>
-	        </tr>
-        </table>
+		<div id="mainPanelContainer">
+			<div id="logo"></div>
+			<div class="messageAreaLogin">
+			    <input class="text" id="txtUser" type="text" value="" />
+			    <input class="btnMain btnLogin" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.login();"><br>
+			    <input class="text" type="password" id="txtPassword" value="" />
+			    <input class="btnMain btnRegister" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.register();"><br>
+			    <span id="messageAreaLogin"></span>
+	        </div>
+	        <div class="messageAreaRegister">
+		        <table>
+		        <tr>
+		        	<td width="30%">Login name:</td>
+		        	<td><input class="text" id="txtRegisterUser" type="text"/></td>
+	        	</tr>
+	        	<tr>
+		        	<td>Password:</td>
+		        	<td><input class="text" type="password" id="txtRegisterPassword"/></td>
+	        	</tr>
+	        	<tr>
+		        	<td>Repeat password:</td>
+		        	<td><input class="text" type="password" id="txtRegisterPassword2"/></td>
+	        	</tr>
+		        </table>
+		        <span id="messageAreaRegister"></span><br>
+		        <input class="btnMain btnBack" type="submit" style="cursor: hand;" onclick="mainPanel.back();" value="back">
+		        <input class="btnMain btnRegister" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.submitRegister();">
+	        </div>
+        </div>
 	</div>
 </body>
 </html>
