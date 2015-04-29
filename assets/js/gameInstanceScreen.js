@@ -25,7 +25,7 @@ p.setup = function() {
 
     //build castles
     var castleGood = new Castle(true);
-    castleGood.bame = 'castlegood';
+    castleGood.name = 'castleGood';
     castleGood.x = -1280;
     castleGood.y = 1472;
     var castleBaad = new Castle(false);

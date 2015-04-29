@@ -236,6 +236,17 @@
             mapMatrix[pos[0]][pos[1]] = 1;
         }
 
+        //goodcastle
+        mapMatrix[13][33] = 1;
+        mapMatrix[14][32] = 1;
+        mapMatrix[11][31] = 1;
+        mapMatrix[12][30] = 1;
+        //todo: badcastle
+        // mapMatrix[13][33] = 1;
+        // mapMatrix[14][32] = 1;
+        // mapMatrix[11][31] = 1;
+        // mapMatrix[12][30] = 1;
+
         return mapMatrix;
     }
 
@@ -254,15 +265,15 @@
         var matrix = assets.getMapMatrix();
         //todo: review possitions...
         if(host){
-            if(matrix[tX - 1 ][tY] == 0) return [tX - 1, tY];
-            if(matrix[tX][tY -1 ] == 0) return [tX, tY - 1];
             if(matrix[tX + 1 ][tY] == 0) return [tX + 1, tY];
+            if(matrix[tX][tY -1 ] == 0) return [tX, tY - 1];
             if(matrix[tX][tY + 1] == 0) return [tX, tY + 1];
+            if(matrix[tX - 1 ][tY] == 0) return [tX - 1, tY];
         }else{
             if(matrix[tX][tY + 1] == 0) return [tX, tY + 1];
+            if(matrix[tX - 1 ][tY] == 0) return [tX - 1, tY];
             if(matrix[tX + 1 ][tY] == 0) return [tX + 1, tY];
             if(matrix[tX][tY -1 ] == 0) return [tX, tY - 1];
-            if(matrix[tX - 1 ][tY] == 0) return [tX - 1, tY];
         }
 
         return null;
