@@ -204,5 +204,28 @@
         var map = gameInstanceScreen.getChildByName('map');
         return map.getChildByName(value.name);
     }
+
+    o.getMapMatrix = function(){
+        for (var idx = 0; idx < mapData.layers.length; idx++) {
+            var layerData = mapData.layers[idx];
+
+            if (layerData.name == 'trees'){
+                var matrix = [];
+                for ( var y = 0; y < layerData.height; y++) {
+                    var arrayRow = [];
+
+                    for ( var x = 0; x < layerData.width; x++) {
+                        var idx = x + y * layerData.width;
+                        //console.log(x + ' + ' + y +' * ' + layerData.width + ' = ' + idx);
+                        arrayRow.push(layerData.data[idx] != 0 ? 1 : 0); 
+                    }
+
+                    matrix.push(arrayRow);
+                }
+
+                return matrix;
+            }
+        }
+    }
 }
 )();
