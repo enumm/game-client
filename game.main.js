@@ -264,6 +264,7 @@ function handleComplete(event) {
     assets.showParticles();
 
     showLogin();
+    mainPanel.show();
 
     OnResizeCalled();
 }
