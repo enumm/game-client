@@ -58,11 +58,12 @@ p.updateTime = function(delta) {
 			dx *= 60 * delta;
 			dy *= 60 * delta;
 
-			this.x += dx|0;
-			this.y += dy|0;
+			this.x += dx;
+			this.y += dy;
 		}
 
-		if(this.x == positionToGo[0] && this.y == positionToGo[1]){
+		//console.log('skirtumas x: ' +(this.x -  positionToGo[0]) + ' y: ' + (this.y - positionToGo[1]));
+		if(this.x - positionToGo[0] < 1 && this.x - positionToGo[0] > - 1 && this.y - positionToGo[1] < 1 && this.y - positionToGo[1] > -1){
 			this.path.shift();
 		}
 	}
