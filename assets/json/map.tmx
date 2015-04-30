@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="isometric" width="46" height="46" tilewidth="128" tileheight="64">
+<map version="1.0" orientation="isometric" renderorder="right-down" width="46" height="46" tilewidth="128" tileheight="64" nextobjectid="1">
  <tileset firstgid="1" name="tileCheck" tilewidth="128" tileheight="128">
   <image source="../img/tileCheck.png" trans="ff00ff" width="1024" height="1024"/>
  </tileset>
@@ -20,22 +20,12 @@
  </layer>
  <layer name="treesBot" width="46" height="46">
   <data encoding="base64" compression="zlib">
-   eJzt1TEKwzAQRNE9RipHVcqUuf/RgkEDxsTJ2llpdmE+TCM1DzUyUypHTzbgQqv5ZbXsMJvVsW/NKLv9kxlltX8zo2x2jxllscN87/PEtu/Nrc8Ty35kPuOZbf9lvlm+d18szoxG25e+SDMaZR9pRtH2GWYUZT8yP/p5pBn9a2eYkff/3cc0Xw3mtYpm1KyeeXtXzYzaBMeZPOasyc5Jdk6yc5Kdk+ycZOckO6fKdqVUTG96vxxa
-  </data>
- </layer>
- <layer name="game" width="46" height="46">
-  <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAwJcBIRAAAQ==
+   eJzt1rEKwzAMhGE9RqfUU8eOff9HKwEfhNCkcmr7JHo/aLGXDy+WmVIxerIBF1rNL8tlh9ksj31rRtHtn8woqv3MjKLZPWYUxQ7zvY4ntn1vLnU8sexH5hbPbPs3883ivfti/cxotH2p09OMRtlHmlFv+wwz6mU/Mj/qeU8z+tXOMCPv/7uPab4azGsZzahYPvP2LpsZFfPvfDPymFHLvjqjf7JHqsUeLdk5yc5Jdk6yc5Kdk+xKqcy9AQRkHRQ=
   </data>
  </layer>
  <layer name="treesTop" width="46" height="46">
   <data encoding="base64" compression="zlib">
-   eJzt0DEOwjAQRNE5B0hmK0pK7n80soqsRAiMSJHsRP9JbuzmeyQAAAAAAP7zODpgo6f82qs23wZvVZtDS1u8vVVtzp3XzaFl+6rNoc/N679UctH3nas2XzU33qfT5NGcss2tOeTXPNo57yo2h8bN7aCukV87V2xOjs1dyK+5c2zuaN4Hzftwa27ya+4cm3FeL3vzEdc=
-  </data>
- </layer>
- <layer name="gui" width="46" height="46">
-  <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAwJcBIRAAAQ==
+   eJzt0EEOgkAQRNE6ByZDrVy69P5Hk452IEaHQAx2ab2kN8zmU4CZmZmZmZn9Mz5ui8vnM3YhtrVfoddeqTlxurHzXrE5EHMbn96qNsfOy2Zi3r5qM/G6efkvlQx4v3PV5hPujefpGjSaQ7SpNRN6zb2d41vFZqLf3L7U1bO2c8XmoNicCL3mpNic3HwMNx9DrblBrzkpNtvvugFA4xK3
   </data>
  </layer>
 </map>

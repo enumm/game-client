@@ -31,6 +31,7 @@ p.updateTime = function(delta) {
 		// console.log(this.name + '  ours: ' +this.ours);
 		if(this.ours){
 			var tilePos = assets.screenToMap(this.x, this.y);
+			console.log('house: ' + this.name + ' pos ' + tilePos[0] + ' ' + tilePos[1]);
 			var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host);
 			if(unitTilePos){
 				var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
