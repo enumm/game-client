@@ -236,17 +236,6 @@
             mapMatrix[pos[0]][pos[1]] = 1;
         }
 
-        //goodcastle
-        mapMatrix[13][33] = 1;
-        mapMatrix[14][32] = 1;
-        mapMatrix[11][31] = 1;
-        mapMatrix[12][30] = 1;
-        //todo: badcastle
-        // mapMatrix[13][33] = 1;
-        // mapMatrix[14][32] = 1;
-        // mapMatrix[11][31] = 1;
-        // mapMatrix[12][30] = 1;
-
         return mapMatrix;
     }
 
