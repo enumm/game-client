@@ -36,6 +36,13 @@ p.setup = function() {
     map.addChild(castleGood, castleBaad);
 
 
+    //pathfinder
+    finder = new PF.AStarFinder({
+        allowDiagonal: true
+    });
+
+
+
     // var buttonBuild; 
     // buttonBuild = new createjs.Text("Build", "48px Arial", "#00F");
     // buttonBuild.x = 10;
@@ -125,9 +132,7 @@ p.drawUpdate = function(delta){
         var unit = map.getChildByName(value.name);
 
         if(!unit){
-            unit = new Unit(value.name, true);
-            unit.x = value.x;
-            unit.y = value.y;
+            unit = new Unit(value.name, true, value.x, value.y);
             map.addChild(unit);
         }else{
             unit.updateTime(delta);
@@ -138,9 +143,7 @@ p.drawUpdate = function(delta){
         var unit = map.getChildByName(value.name);
 
         if(!unit){
-            unit = new Unit(value.name, false);
-            unit.x = value.x;
-            unit.y = value.y;
+            unit = new Unit(value.name, false, value.x, value.y);
             map.addChild(unit);
         }else{
             unit.updateTime(delta);

@@ -24,6 +24,9 @@ var proton;
 var emitter;
 var textures = [];
 
+//pathfinding
+var finder;
+
 //fields
 var fpsLabel;
 var loadingLabel;
@@ -189,6 +192,7 @@ window.onload = function(){
         {id: "building", src: "js/building.js"},
         {id: "instanceScreen", src: "js/gameInstanceScreen.js"},
         {id: "serverInterp", src: "js/serverInterpreter.js"},
+        {id: "pathFinding", src: "js/pathfinding-browser.min.js"},
         {id: "buttonImg", src: "img/button.png"},
         {id: "loginBackGround", src: "img/bg1.jpg"},
         {id: "mapData", src: "json/map.json"},
