@@ -26,23 +26,25 @@ p.setup = function() {
 	var sprite21 = sprite11.clone();
 	var sprite22 = sprite11.clone();
 
-	sprite11.gotoAndStop(this.good ? 18 : 8);
+    sprite21.gotoAndStop(this.good ? 38 : 54); 
+    sprite22.gotoAndStop(this.good ? 39 : 55);
+    sprite11.gotoAndStop(this.good ? 46 : 62);
+    sprite12.gotoAndStop(this.good ? 47 : 63);
+
   	sprite11.x = 0 * mapData.tilewidth/2 - 0 * mapData.tilewidth/2;		
     sprite11.y = 0 * mapData.tileheight/2 + 0 * mapData.tileheight/2;
-console.log('x,y: ' + sprite11.x + ' ' +sprite11.y);
-	sprite12.gotoAndStop(this.good ? 19 : 9);
+	console.log('x,y: ' + sprite11.x + ' ' +sprite11.y);
   	sprite12.x = 1 * mapData.tilewidth/2 - -1 * mapData.tilewidth/2;		
     sprite12.y = -1 * mapData.tileheight/2 + 1 * mapData.tileheight/2;
-console.log('x,y: ' + sprite12.x + ' ' +sprite12.y );
-   	sprite21.gotoAndStop(this.good ? 13 : 3);
-  	sprite21.x = -2 * mapData.tilewidth/2 - -2 * mapData.tilewidth/2;		
+	console.log('x,y: ' + sprite12.x + ' ' +sprite12.y );
+    sprite21.x = -2 * mapData.tilewidth/2 - -2 * mapData.tilewidth/2;		
     sprite21.y = -2 * mapData.tileheight/2 + -2 * mapData.tileheight/2;
-console.log('x,y: ' + sprite21.x + ' ' +sprite21.y);
-    sprite22.gotoAndStop(this.good ? 14 : 4);
-  	sprite22.x = -1 * mapData.tilewidth/2 - -3 * mapData.tilewidth/2;		
+	console.log('x,y: ' + sprite21.x + ' ' +sprite21.y);
+    sprite22.x = -1 * mapData.tilewidth/2 - -3 * mapData.tilewidth/2;		
     sprite22.y = -3 * mapData.tileheight/2 + -1 * mapData.tileheight/2;
-console.log('x,y: ' + sprite22.x + ' ' +sprite22.y );
-    
+	console.log('x,y: ' + sprite22.x + ' ' +sprite22.y );
+
+
 	this.addChild(sprite11, sprite12, sprite21, sprite22); 
 	this.name = 'castle';
 };

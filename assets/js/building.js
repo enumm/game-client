@@ -15,9 +15,9 @@ p.setup = function() {
 	var building = null;
 
 	if(gameInstanceScreen.connectionData.host){
-		building = assets.createBuilding(this.ours ? 27 : 28);
+		building = assets.createBuilding(this.ours ? 56 : 57);
 	}else{
-		building = assets.createBuilding(this.ours ? 28 : 27);
+		building = assets.createBuilding(this.ours ? 57 : 56);
 	}
 	
     this.addChild(building);

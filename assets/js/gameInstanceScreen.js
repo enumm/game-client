@@ -26,12 +26,12 @@ p.setup = function() {
     //build castles
     var castleGood = new Castle(true);
     castleGood.name = 'castleGood';
-    castleGood.x = -1280;
-    castleGood.y = 1472;
+    castleGood.x = assets.mapToScreen(13,33)[0];
+    castleGood.y = assets.mapToScreen(13,33)[1];
     var castleBaad = new Castle(false);
     castleBaad.name = 'castleBad';
-    castleBaad.x = 1200;
-    castleBaad.y = 1472;
+    castleBaad.x = assets.mapToScreen(32,14)[0];
+    castleBaad.y = assets.mapToScreen(32,14)[1];
 
     map.addChild(castleGood, castleBaad);
 
