@@ -22,6 +22,12 @@
 
   }
 
+	$(window).load(function() {
+		FB.getLoginStatus(function(response) {
+			statusChangeCallback(response);
+		});
+	});
+
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
@@ -34,10 +40,6 @@
       xfbml      : true,
       version    : 'v2.3'
     });
-
-	FB.getLoginStatus(function(response) {
-	statusChangeCallback(response);
-	});
   };
 
   (function(d, s, id){
