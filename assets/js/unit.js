@@ -13,7 +13,23 @@ var p = createjs.extend(Unit, createjs.Container);
 p.setup = function() {
 	this.name = this.unitName;
 	var circle = new createjs.Shape();
-	circle.graphics.beginFill("yellow").drawCircle(0, 0, 10);
+
+
+
+	if(gameInstanceScreen.connectionData.host){
+		if(this.ours){
+			circle.graphics.beginFill("yellow").drawCircle(0, 0, 10);
+		}else{
+			circle.graphics.beginFill("red").drawCircle(0, 0, 10);
+		}
+	}else{
+		if(this.ours){
+			circle.graphics.beginFill("red").drawCircle(0, 0, 10);
+		}else{
+			circle.graphics.beginFill("yellow").drawCircle(0, 0, 10);
+		}
+	}
+
 	circle.x = 64;
 	circle.y = 84;
 
@@ -40,7 +56,7 @@ p.setup = function() {
 	this.addChild(circle);
 };
 
-p.updateTime = function(delta) {
+p.updateTime = function(delta, unitData) {
 	if(this.path.length != 0){
 		var mapPositionToGo = this.path[0];
 		var positionToGo = assets.mapToScreen(mapPositionToGo[0], mapPositionToGo[1]);
@@ -60,6 +76,9 @@ p.updateTime = function(delta) {
 
 			this.x += dx;
 			this.y += dy;
+
+			unitData.x = this.x;
+			unitData.y = this.y;
 		}
 
 		//console.log('skirtumas x: ' +(this.x -  positionToGo[0]) + ' y: ' + (this.y - positionToGo[1]));
@@ -67,26 +86,6 @@ p.updateTime = function(delta) {
 			this.path.shift();
 		}
 	}
-
-	// if(this.ours){
-	// 	if(gameInstanceScreen.connectionData.host){
-	// 		//move right
-	// 		this.x += 10 * delta;
-	// 	}else{
-	// 		//move left
-	// 		this.x -= 10 * delta;
-	// 	}
-	// }
-	// else{
-	// 	if(gameInstanceScreen.connectionData.host){
-	// 			//move left
-	// 			this.x -= 10 * delta;
-	// 		}else{
-	// 			//move right
-	// 			this.x += 10 * delta;
-	// 		}	
-	// 	}
-	// }
 };
 
 window.Unit = createjs.promote(Unit, "Container");

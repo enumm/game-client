@@ -252,7 +252,6 @@
         for (var i = 0, len = instanceData.buildings.length; i < len; i++) {
             var pos = assets.screenToMap(instanceData.buildings[i].x, instanceData.buildings[i].y);
             mapMatrix[pos[1]][pos[0]] = 1;
-            console.log('x: ' + pos[0] + ' y: ' + pos[1]);
         }
 
         return mapMatrix;
@@ -287,5 +286,8 @@
         return null;
     }
 
+    o.orderCanvas = function(){
+        
+    }
 }
 )();

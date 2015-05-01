@@ -102,7 +102,7 @@ p.drawUpdate = function(delta){
             unit = new Unit(value.name, true, value.x, value.y);
             map.addChild(unit);
         }else{
-            unit.updateTime(delta);
+            unit.updateTime(delta, value);
         }
     });
 
@@ -113,7 +113,7 @@ p.drawUpdate = function(delta){
             unit = new Unit(value.name, false, value.x, value.y);
             map.addChild(unit);
         }else{
-            unit.updateTime(delta);
+            unit.updateTime(delta, value);
         }
     });
 
