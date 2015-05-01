@@ -1,12 +1,13 @@
 //# sourceURL=button.js
 (function() {
 
-function Button1(label, color, image, OnClick, width, height) {
+function Button1(label, color, images, OnClick, width, height) {
 	this.Container_constructor();
 	
+	this.selected = false;
 	this.color = color;
 	this.label = label;
-	this.image = image;
+	this.images = images;
 	this.OnClick = OnClick;
 	this.width = width;
 	this.height = height;
@@ -17,7 +18,8 @@ var p = createjs.extend(Button1, createjs.Container);
 
 p.setup = function() {
 
-	var sprite = this.image ? this.image : buttonImg;
+	var sprites = this.images ? this.images : null;
+	var sprite = this.images ? this.images[0] : buttonImg;
     
 
 	var text = new createjs.Text(this.label, "20px Arial", "#000");
@@ -60,6 +62,7 @@ p.handleClick = function (event) {
 	if(isFunction(this.OnClick)){
 		this.OnClick();
 	}
+
 } ;
 
 p.handleRollOver = function(event) {       

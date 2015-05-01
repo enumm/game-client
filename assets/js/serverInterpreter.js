@@ -33,6 +33,10 @@ socket.on('game_ended', function (data) {
     showMenu(); 
 });
 
+socket.on('matchmaking_canceled', function (data) {
+    console.log('matchmaking canceled');
+});
+
 socket.on('message', function (data, oData) {
     instanceData = data;
     opponentData = oData;

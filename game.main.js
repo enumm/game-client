@@ -1,7 +1,7 @@
 var tileset;
 var buttonImg;
-var btnRacePlebs;
-var btnRaceBlablas;
+var btnRacePlebs = [];
+var btnRaceBlablas = [];
 var loginBackGround;
 var stage;
 var mapData;
@@ -229,10 +229,10 @@ function handleFileLoad(event) {
                 textures.push(texture);
             }
             else if(id =="btnRacePlebs"){
-                btnRacePlebs = result;
+                btnRacePlebs[0] = result;
             }
             else if(id =="btnRaceBlablas"){
-                btnRaceBlablas = result;
+                btnRaceBlablas[0] = result;
             }else{
                 loginBackGround = result;
             }

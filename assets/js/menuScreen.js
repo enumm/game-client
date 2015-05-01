@@ -39,15 +39,15 @@ p.setup = function() {
     raceBlabla.y = 350;
 
 
-    var buttonCancel =  new Button1("Cancel", "#00F", function() {
-        assets.sendMSG('end_game');
+    var buttonCancel =  new Button1("Cancel", "#00F", null, function() {
+        assets.sendMSG('cancel_matchmaking');
         text.text = '';
         this.parent.removeChild(this);
     });
     buttonCancel.x = 500;
     buttonCancel.y = 300;
 
-    var buttonPlay = new Button1("Find game", "#00F", function() {
+    var buttonPlay = new Button1("Find game", "#00F", null, function() {
         text.text = 'searching for a game';
         assets.sendMSG('find_game');
         this.parent.addChild(buttonCancel);
