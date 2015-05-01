@@ -14,12 +14,9 @@
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
-    $( document ).ready(function() {
-        if (response.status === 'connected') {
-      	mainPanel.OnFacebook_Login();
-    } 
+    if (response.status === 'connected') {
+  	mainPanel.OnFacebook_Login();
 	});
-
   }
 
   function checkLoginState() {
@@ -36,7 +33,7 @@
     });
 
 	FB.getLoginStatus(function(response) {
-	statusChangeCallback(response);
+		setTimeout(statusChangeCallback(response), 2000);
 	});
   };
 
