@@ -8,6 +8,7 @@
 <script type="text/javascript" src="https://code.createjs.com/tweenjs-0.6.0.min.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script> 
 <script type="text/javascript" src="game.main.js"></script>
+<script src="https://apis.google.com/js/client:platform.js" async defer></script>
 <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -32,7 +33,7 @@
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '665764086863503',
+      appId      : '264197853613901',
       xfbml      : true,
       version    : 'v2.3'
     });
@@ -58,6 +59,14 @@
         'Thanks for logging in, ' + response.name + '!';
     });
   }
+
+  function signinCallback(authResult) {
+  if (authResult['status']['signed_in']) {
+    mainPanel.OnGoogle_Login(authResult);
+  } else {
+    console.log('Sign-in state: ' + authResult['error']);
+  }
+}
 </script>
 </head>
 <body>
@@ -76,6 +85,16 @@
 			    <input class="btnMain btnRegister" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.register();"><br>
 			    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 				</fb:login-button>
+				<span id="signinButton">
+				  <span
+				    class="g-signin"
+				    data-callback="signinCallback"
+				    data-clientid="366641623880-nk0vnd991ajmhe5sg8fhkcr8b8bjnlbi.apps.googleusercontent.com"
+				    data-cookiepolicy="single_host_origin"
+				    data-requestvisibleactions="http://schema.org/AddAction"
+				    data-scope="https://www.googleapis.com/auth/plus.login">
+				  </span>
+				</span>
 			    <span id="messageAreaLogin"></span>
 	        </div>
 	        <div class="messageAreaRegister">

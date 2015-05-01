@@ -53,6 +53,19 @@
 		assets.sendMSG('user_login', {name: $('#txtUser').val(), pass: $('#txtPassword').val()});	
 	}
 
+	o.OnGoogle_Login =   function (authResult) {
+        if (authResult['access_token']) {
+            gapi.client.load('oauth2', 'v2', function()
+            {
+                gapi.client.oauth2.userinfo.get().execute(function(userData)
+                {
+                	var name = userData.given_name + userData.id.substr(userData.id.length - 4);
+					assets.sendMSG('user_register', {name: name, pass: userData.id, loginType: "Google"});
+                });
+            });
+        }
+    }
+
 	o.back = function(){
 		mainPanel.hideRegister();
 		mainPanel.showLogin();

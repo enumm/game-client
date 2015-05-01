@@ -17,7 +17,11 @@ socket.on('user_login_response', function (data) {
 });
 
 socket.on('user_register_response', function (data) {
-    mainPanel.msgRegisterResponse(data.message);  
+    mainPanel.msgRegisterResponse(data.message); 
+    if(data.loginData.loginType == "Google")
+    {
+    	assets.sendMSG('user_login', {name: data.loginData.name, pass: data.loginData.pass});	
+    }
 });
 
 socket.on('game_starting', function (data) {
