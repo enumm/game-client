@@ -1,5 +1,7 @@
 var tileset;
 var buttonImg;
+var btnRacePlebs;
+var btnRaceBlablas;
 var loginBackGround;
 var stage;
 var mapData;
@@ -172,6 +174,8 @@ window.onload = function(){
         {id: "serverInterp", src: "js/serverInterpreter.js"},
         {id: "pathFinding", src: "js/pathfinding-browser.min.js"},
         {id: "buttonImg", src: "img/button.png"},
+        {id: "btnRacePlebs", src: "img/race_plebs.jpg"},
+        {id: "btnRaceBlablas", src: "img/race_blablas.jpg"},
         {id: "loginBackGround", src: "img/bg1.jpg"},
         {id: "mapData", src: "json/map.json"},
         {id: "texture1", src : "img/c1.png"},
@@ -223,6 +227,12 @@ function handleFileLoad(event) {
                         texture.regY = 40;
 
                 textures.push(texture);
+            }
+            else if(id =="btnRacePlebs"){
+                btnRacePlebs = result;
+            }
+            else if(id =="btnRaceBlablas"){
+                btnRaceBlablas = result;
             }else{
                 loginBackGround = result;
             }

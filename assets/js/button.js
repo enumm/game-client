@@ -1,26 +1,32 @@
+//# sourceURL=button.js
 (function() {
 
-function Button1(label, color, OnClick) {
+function Button1(label, color, image, OnClick, width, height) {
 	this.Container_constructor();
 	
 	this.color = color;
 	this.label = label;
+	this.image = image;
 	this.OnClick = OnClick;
+	this.width = width;
+	this.height = height;
 	
 	this.setup();
 }
 var p = createjs.extend(Button1, createjs.Container);
 
 p.setup = function() {
-    var sprite = buttonImg;
+
+	var sprite = this.image ? this.image : buttonImg;
+    
 
 	var text = new createjs.Text(this.label, "20px Arial", "#000");
 	text.textBaseline = "top";
 	text.textAlign = "center";
 	
-	var width = text.getMeasuredWidth() + 30;
-	var height = text.getMeasuredHeight() + 20;
-	
+	var width = this.width ? this.width : text.getMeasuredWidth() + 30;
+	var height = this.height ? this.height : text.getMeasuredHeight() + 20;
+
 	text.x = width/2;
 	text.y = 10;
 	
@@ -29,7 +35,7 @@ p.setup = function() {
 	
 	var data = {
     images: [sprite],
-    frames: { width: 200, height: 45},
+    frames: { width: sprite.width, height: sprite.height},
 	};
 	var spriteSheet = new createjs.SpriteSheet(data);
 	var button = new createjs.Sprite(spriteSheet);

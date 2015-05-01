@@ -42,7 +42,7 @@ p.setup = function() {
         allowDiagonal: true
     });
 
-    var btnBuilding1 = new Button1('Pleb hut  - 2$', '#fff', function(){
+    var btnBuilding1 = new Button1('Pleb hut  - 2$', '#fff', null, function(){
         $.each(map.getChildByName('bottom').children, function( index, value ) {
             if(value.base1 && gameInstanceScreen.connectionData.host || value.base2 && !gameInstanceScreen.connectionData.host ){
                 value.alpha = 0.5;
@@ -75,7 +75,7 @@ p.setup = function() {
     btnBuilding1.x = 10;
     btnBuilding1.y = 80;
 
-    // var btntemp = new Button1("-- money", "#00F", function() {instanceData.money--; assets.sendData()});
+    // var btntemp = new Button1("-- money", "#00F", null,function() {instanceData.money--; assets.sendData()});
 
     // btntemp.x = 720;
     // btntemp.y = 40;

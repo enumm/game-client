@@ -1,3 +1,4 @@
+//# sourceURL=menuScreen.js
 (function() {
 
 function MenuScreen() {
@@ -12,7 +13,6 @@ p.setup = function() {
     assets.showParticles();
 
     var text = new createjs.Text('', "20px Arial", "#fff");
-    
     text.x = 550;
     text.y = 100;
 
@@ -24,19 +24,19 @@ p.setup = function() {
     srace.x = 200;
     srace.y = 220;
 
-    var raceHumans =  new Button1("Humans", "#00F", function() {
+    var raceHumans =  new Button1("", "#00F", btnRacePlebs, function() {
         raceSelected = 'human';
         srace.text = raceSelected;
     });
     raceHumans.x = 200;
     raceHumans.y = 250;
 
-    var raceBlabla =  new Button1("BlaBla", "#00F", function() {
+    var raceBlabla =  new Button1("", "#00F", btnRaceBlablas,  function() {
         raceSelected = 'blabla'; 
         srace.text = raceSelected;
     });
     raceBlabla.x = 200;
-    raceBlabla.y = 300;
+    raceBlabla.y = 350;
 
 
     var buttonCancel =  new Button1("Cancel", "#00F", function() {

@@ -19,11 +19,11 @@ p.setup = function() {
 
     var debug = true;
 
-    var btnDebug1 = new Button1("Debug A", "#00F", function() { mainPanel.hide(); assets.sendMSG('user_login', {name: 'jesus', pass: 'jesus'}) });
+    var btnDebug1 = new Button1("Debug A", "#00F", null, function() { mainPanel.hide(); assets.sendMSG('user_login', {name: 'jesus', pass: 'jesus'}) });
         btnDebug1.x = 256;
         btnDebug1.y = 300;
         
-    var btnDebug2 = new Button1("Debug B", "#00F", function() { mainPanel.hide(); assets.sendMSG('user_login', {name: 'vvvv', pass: 'vvvv'}) });
+    var btnDebug2 = new Button1("Debug B", "#00F", null, function() { mainPanel.hide(); assets.sendMSG('user_login', {name: 'vvvv', pass: 'vvvv'}) });
         btnDebug2.x = 256;
         btnDebug2.y = 350;
 
@@ -35,9 +35,9 @@ p.setup = function() {
 } ;
 
 p.destroy = function(){
-    $(this.children).each(function(index, child){
-        this.removeChild(child);
-    });
+    for(var i = 0;this.children.length > i;i++){
+       this.removeChild(this.children[i]); 
+    }
 }
 
 window.DebugScreen = createjs.promote(DebugScreen, "Container");
