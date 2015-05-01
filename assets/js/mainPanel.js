@@ -1,3 +1,4 @@
+//# sourceURL=mainPanel.js
 (function() {
 
 	var o = window.mainPanel = {};
@@ -83,16 +84,24 @@
 	    $('#messageAreaRegister').text(msg); 
 	}
 
-	o.msgLoggedIn = function(){
-	    hideLogin(); //LEFT FOR DEBUG ONLY
+	o.showLoading = function(){
+    $('#messageAreaRegister').css('color', '#000');
+    $('#messageAreaRegister').text('Registering'); 
+	}
 
+	o.msgLoggedIn = function(){
 	    mainPanel.hide();
 	    showMenu();
+	    hideDebug();
 	}
 
 	o.msgLoginFailed = function(msg){
 	    $('#messageAreaLogin').css('color', '#f00');
 	    $('#messageAreaLogin').text(msg); 
+	}
+
+	o.destroy = function(){
+    //registerScreen.getChildByName('registerBlock').htmlElement.style.display = "none";
 	}
 
 }());
