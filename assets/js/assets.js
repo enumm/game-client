@@ -287,7 +287,37 @@
     }
 
     o.orderCanvas = function(){
-        
+//         var sort = function(array) {
+//             var len = array.length;
+
+//             if(len < 2) { 
+//                 return array;
+//             }
+
+//             var pivot = Math.ceil(len/2);
+
+//             return merge(sort(array.slice(0,pivot)), sort(array.slice(pivot)));
+//         };
+
+//         var merge = function(left, right) {
+//             var result = [];
+//             while((left.length > 0) && (right.length > 0)) {
+//                 if(left[0].y > right[0].y) {
+//                 result.push(left.shift());
+//                 }else {
+//                     result.push(right.shift());
+//                 }
+//             }
+
+//             result = result.concat(left, right);
+//             return result;
+//         };
+// // gameInstanceScreen.getChildByName('map');
+//     var layer = gameInstanceScreen.getChildByName('map').getChildByName('units').children;
+//     gameInstanceScreen.getChildByName('map').getChildByName('units').children = sort(layer);
+//         //var largeList = sort(array);
+        gameInstanceScreen.getChildByName('map').getChildByName('units').children.sort(function(a, b){return a.y > b.y});
     }
+
 }
 )();
