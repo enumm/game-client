@@ -11,22 +11,6 @@
 <script src="https://apis.google.com/js/client:platform.js" async defer></script>
 <script>
   // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    $( document ).ready(function() {
-        if (response.status === 'connected') {
-      	mainPanel.OnFacebook_Login();
-    } 
-	});
-
-  }
-
-	$(window).load(function() {
-		FB.getLoginStatus(function(response) {
-			statusChangeCallback(response);
-		});
-	});
 
   function checkLoginState() {
     FB.getLoginStatus(function(response) {

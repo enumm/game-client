@@ -183,6 +183,10 @@ window.onload = function(){
     preload.on("fileload", handleFileLoad);
     preload.on("progress", handleProgress);
 
+	FB.getLoginStatus(function(response) {
+		mainPanel.statusChangeCallback(response);
+	});
+
     window.addEventListener("resize", OnResizeCalled, false);
 
     preload.loadManifest(manifest);
