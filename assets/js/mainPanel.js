@@ -74,6 +74,14 @@
     });
   }
 
+    o.statusChangeCallback = function (response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+  		mainPanel.OnFacebook_Login();
+	} 
+  }
+
 	o.back = function(){
 		mainPanel.hideRegister();
 		mainPanel.showLogin();
