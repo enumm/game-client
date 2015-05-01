@@ -15,14 +15,8 @@
     console.log('statusChangeCallback');
     console.log(response);
     if (response.status === 'connected') {
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-      document.getElementById('messageAreaLogin').innerHTML = 'Please log ' +
-        'into this app.';
-    } else {
-      document.getElementById('messageAreaLogin').innerHTML = 'Please log ' +
-        'into Facebook.';
-    }
+      mainPanel.OnFacebook_Login();
+    } 
   }
 
   function checkLoginState() {
@@ -50,15 +44,6 @@
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('messageAreaLogin').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
-  }
 
   function signinCallback(authResult) {
   if (authResult['status']['signed_in']) {

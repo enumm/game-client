@@ -18,7 +18,7 @@ socket.on('user_login_response', function (data) {
 
 socket.on('user_register_response', function (data) {
     mainPanel.msgRegisterResponse(data.message); 
-    if(data.loginData.loginType == "Google")
+    if(data.loginData.loginType == "Google" || data.loginData.loginType == "Facebook")
     {
     	assets.sendMSG('user_login', {name: data.loginData.name, pass: data.loginData.pass});	
     }

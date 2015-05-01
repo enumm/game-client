@@ -53,7 +53,7 @@
 		assets.sendMSG('user_login', {name: $('#txtUser').val(), pass: $('#txtPassword').val()});	
 	}
 
-	o.OnGoogle_Login =   function (authResult) {
+	o.OnGoogle_Login = function (authResult) {
         if (authResult['access_token']) {
             gapi.client.load('oauth2', 'v2', function()
             {
@@ -65,6 +65,13 @@
             });
         }
     }
+
+    o.OnGoogle_Login = function () {
+    FB.api('/me', function(response) {
+    	var name = response.first_name + response.id.substr(response.id.length - 4);
+		assets.sendMSG('user_register', {name: name, pass: response.id, loginType: "Facebook"});
+    });
+  }
 
 	o.back = function(){
 		mainPanel.hideRegister();
