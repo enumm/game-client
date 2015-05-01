@@ -1,12 +1,12 @@
 var tileset;
 var buttonImg;
-var btnRacePlebs = [];
-var btnRaceBlablas = [];
-var btnMmCasual = [];
-var btnMmRanked = [];
-var btnMmPrivate = [];
-var btnFindGame = [];
-var btnCancel = [];
+var btnRacePlebsImg = [];
+var btnRaceBlablasImg = [];
+var btnMmCasualImg = [];
+var btnMmRankedImg = [];
+var btnMmPrivateImg = [];
+var btnFindGameImg = [];
+var btnCancelImg = [];
 var loginBackGround;
 var stage;
 var mapData;
@@ -241,25 +241,25 @@ function handleFileLoad(event) {
                 textures.push(texture);
             }
             else if(id =="btnMmCasual"){
-                btnMmCasual[0] = result;
+                btnMmCasualImg[0] = result;
             }
             else if(id =="btnMmRanked"){
-                btnMmRanked[0] = result;
+                btnMmRankedImg[0] = result;
             }
             else if(id =="btnMmPrivate"){
-                btnMmPrivate[0] = result;
+                btnMmPrivateImg[0] = result;
             }
             else if(id =="btnRacePlebs"){
-                btnRacePlebs[0] = result;
+                btnRacePlebsImg[0] = result;
             }
             else if(id =="btnFindGame"){
-                btnFindGame[0] = result;
+                btnFindGameImg[0] = result;
             }
             else if(id =="btnCancel"){
-                btnCancel[0] = result;
+                btnCancelImg[0] = result;
             }
             else if(id =="btnRaceBlablas"){
-                btnRaceBlablas[0] = result;
+                btnRaceBlablasImg[0] = result;
             }else{
                 loginBackGround = result;
             }

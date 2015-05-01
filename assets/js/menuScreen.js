@@ -12,69 +12,70 @@ p.setup = function() {
     assets.showMenuBackground();
     assets.showParticles();
 
-    var text = new createjs.Text('', "20px Arial", "#fff");
-    text.x = 550;
-    text.y = 100;
+    var lblSearchingForGame = new createjs.Text('', "20px Arial", "#fff");
+    lblSearchingForGame.x = 550;
+    lblSearchingForGame.y = 100;
 
-    var race = new createjs.Text('Select race:', "20px Arial", "#fff");
-    race.x = 200;
-    race.y = 200;
+    var lblRace = new createjs.Text('Select race:', "20px Arial", "#fff");
+    lblRace.x = 200;
+    lblRace.y = 200;
 
-    var srace = new createjs.Text(raceSelected, "20px Arial", "#fff");
-    srace.x = 200;
-    srace.y = 220;
+    var lblSelectedRace = new createjs.Text(raceSelected, "20px Arial", "#fff");
+    lblSelectedRace.x = 200;
+    lblSelectedRace.y = 220;
 
-    var raceHumans =  new Button1("", "#00F", btnRacePlebs, function() {
+    var btnRacePlebs =  new Button1("", "#00F", btnRacePlebsImg, function() {
         raceSelected = 'plebs';
-        srace.text = raceSelected;
+        lblSelectedRace.text = raceSelected;
     });
-    raceHumans.x = 200;
-    raceHumans.y = 250;
+    btnRacePlebs.x = 200;
+    btnRacePlebs.y = 250;
 
-    var raceBlabla =  new Button1("", "#00F", btnRaceBlablas,  function() {
+    var btnRaceBlablas =  new Button1("", "#00F", btnRaceBlablasImg,  function() {
         raceSelected = 'blablas'; 
-        srace.text = raceSelected;
+        lblSelectedRace.text = raceSelected;
     });
-    raceBlabla.x = 200;
-    raceBlabla.y = 350;
+    btnRaceBlablas.x = 200;
+    btnRaceBlablas.y = 350;
 
-    var buttonMmCasual =  new Button1("", "#00F", btnMmCasual, function() {
+    var btnMmCasual =  new Button1("", "#00F", btnMmCasualImg, function() {
         gameType = 'casual';
     });
-    buttonMmCasual.x = 200;
-    buttonMmCasual.y = 450;
+    btnMmCasual.x = 200;
+    btnMmCasual.y = 450;
 
-    var buttonMmRanked =  new Button1("", "#00F", btnMmRanked, function() {
+    var btnMmRanked =  new Button1("", "#00F", btnMmRankedImg, function() {
         gameType = 'ranked';
     });
-    buttonMmRanked.x = 283;
-    buttonMmRanked.y = 450;
+    btnMmRanked.x = 283;
+    btnMmRanked.y = 450;
 
-    var buttonMmPrivate =  new Button1("", "#00F", btnMmPrivate, function() {
+    var btnMmPrivate =  new Button1("", "#00F", btnMmPrivateImg, function() {
         gameType = 'private';
     });
-    buttonMmPrivate.x = 366;
-    buttonMmPrivate.y = 450;
+    btnMmPrivate.x = 366;
+    btnMmPrivate.y = 450;
 
-    var buttonPlay = new Button1("", "#00F", btnFindGame, function() {
-        text.text = 'searching for a game';
+    var btnFindGame = new Button1("", "#00F", btnFindGameImg, function() {
+        lblSearchingForGame.text = 'searching for a game';
         assets.sendMSG('find_game', {gameType: gameType});
-        this.parent.addChild(buttonCancel);
+        this.parent.addChild(btnCancel);
     });
-    buttonPlay.x = 200;
-    buttonPlay.y = 530;
+    btnFindGame.x = 200;
+    btnFindGame.y = 530;
 
-    var buttonCancel =  new Button1("", "#00F", btnCancel, function() {
+    var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
         assets.sendMSG('cancel_matchmaking');
-        text.text = '';
+        lblSearchingForGame.text = '';
         this.parent.removeChild(this);
     });
-    buttonCancel.x = 200;
-    buttonCancel.y = 630;
+    btnCancel.x = 200;
+    btnCancel.y = 630;
 
-    this.addChild(buttonPlay, text, race, srace);
-    this.addChild(raceHumans, raceBlabla);
-    this.addChild(buttonMmCasual, buttonMmRanked, buttonMmPrivate);
+    this.addChild(lblSearchingForGame, lblRace, lblSelectedRace);
+    this.addChild(btnRacePlebs, btnRaceBlablas);
+    this.addChild(btnMmCasual, btnMmRanked, btnMmPrivate);
+    this.addChild(btnFindGame);
 };
 
 p.msgStartGame = function(data){
