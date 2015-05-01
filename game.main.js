@@ -37,7 +37,6 @@ var preload;
 
 //game screens
 var loginScreen;
-var registerScreen;
 var menuScreen;
 var gameInstanceScreen;
 
@@ -54,21 +53,6 @@ function hideLogin(){
  	stage.removeChild(loginScreen);
     loginScreen = null;
     delete loginScreen;
-}
-
-function showRegister(){
-    registerScreen = null;
-    delete registerScreen;
-    registerScreen = new RegisterScreen();
-    stage.addChild(registerScreen);
-    stage.setChildIndex ( fpsLabel,  1);
-}
-
-function hideRegister(){
-    registerScreen.destroy();
-    stage.removeChild(registerScreen);
-    registerScreen = null;
-    delete registerScreen;
 }
 
 function showMenu(){
@@ -138,14 +122,6 @@ function OnResizeCalled() {
         loginBlock.y = -(parseInt(canvas.style.height) * 0.5) - loginDiv.height() * 0.5;    
         }
 	}
-	if(registerScreen) {
-		var registerDiv = $('#registerForm');
-		var registerBlock = registerScreen.getChildByName('registerBlock');
-        if(registerBlock){
-            registerBlock.x = ((parseInt(canvas.style.width) * 0.5) - registerDiv.width() * 0.5) + margin;
-            registerBlock.y = -(parseInt(canvas.style.height) * 0.5) - registerDiv.height() * 0.5;    
-        }
-	}
 
    //hideAddressbar('#canvasHolder');
 }
@@ -184,7 +160,6 @@ window.onload = function(){
         {id: "tileset", src: "img/tileCheck.png"},
         {id: "jquery-2", src: "js/jquery-2.1.3.min.js"},
         {id: "loginScreen", src: "js/loginScreen.js"},
-        {id: "registerScreen", src: "js/registerScreen.js"},
         {id: "mainPanel", src: "js/mainPanel.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
         {id: "castle", src: "js/castle.js"},

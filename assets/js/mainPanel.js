@@ -83,6 +83,11 @@
 	    $('#messageAreaRegister').text(msg); 
 	}
 
+	o.showLoading = function(){
+    $('#messageAreaRegister').css('color', '#000');
+    $('#messageAreaRegister').text('Registering'); 
+	}
+
 	o.msgLoggedIn = function(){
 	    hideLogin(); //LEFT FOR DEBUG ONLY
 
@@ -93,6 +98,9 @@
 	o.msgLoginFailed = function(msg){
 	    $('#messageAreaLogin').css('color', '#f00');
 	    $('#messageAreaLogin').text(msg); 
+	}
+
+    //registerScreen.getChildByName('registerBlock').htmlElement.style.display = "none";
 	}
 
 }());
