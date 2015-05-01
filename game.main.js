@@ -2,6 +2,11 @@ var tileset;
 var buttonImg;
 var btnRacePlebs = [];
 var btnRaceBlablas = [];
+var btnMmCasual = [];
+var btnMmRanked = [];
+var btnMmPrivate = [];
+var btnFindGame = [];
+var btnCancel = [];
 var loginBackGround;
 var stage;
 var mapData;
@@ -158,12 +163,13 @@ window.onload = function(){
     var assetsPath = "assets/";
 
     manifest = [
+        {id: "jquery-2", src: "js/jquery-2.1.3.min.js"},
+        {id: "assets", src: "js/proton-1.0.0.min.js"},
+        {id: "pathFinding", src: "js/pathfinding-browser.min.js"},
+        {id: "adressBar", src : "js/hideAddressbar.min.js"},
+
         {id: "button", src: "js/button.js"},
         {id: "assets", src: "js/assets.js"},
-        {id: "assets", src: "js/proton-1.0.0.min.js"},
-        {id: "css", src: "css/style.css"},
-        {id: "tileset", src: "img/tileCheck.png"},
-        {id: "jquery-2", src: "js/jquery-2.1.3.min.js"},
         {id: "debugScreen", src: "js/debugScreen.js"},
         {id: "mainPanel", src: "js/mainPanel.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
@@ -172,14 +178,23 @@ window.onload = function(){
         {id: "building", src: "js/building.js"},
         {id: "instanceScreen", src: "js/gameInstanceScreen.js"},
         {id: "serverInterp", src: "js/serverInterpreter.js"},
-        {id: "pathFinding", src: "js/pathfinding-browser.min.js"},
+
+        {id: "css", src: "css/style.css"},
+
+        {id: "tileset", src: "img/tileCheck.png"},
         {id: "buttonImg", src: "img/button.png"},
         {id: "btnRacePlebs", src: "img/race_plebs.jpg"},
         {id: "btnRaceBlablas", src: "img/race_blablas.jpg"},
+        {id: "btnMmCasual", src: "img/mmBtnCasual.jpg"},
+        {id: "btnMmRanked", src: "img/mmBtnPrivate.jpg"},
+        {id: "btnMmPrivate", src: "img/mmBtnRanked.jpg"},
+        {id: "btnFindGame", src: "img/btnFindGame.jpg"},
+        {id: "btnCancel", src: "img/btnCancel.jpg"},
+
         {id: "loginBackGround", src: "img/bg1.jpg"},
-        {id: "mapData", src: "json/map.json"},
         {id: "texture1", src : "img/c1.png"},
-        {id: "adressBar", src : "js/hideAddressbar.min.js"}
+
+        {id: "mapData", src: "json/map.json"},
     ];
 
     preload = new createjs.LoadQueue(true, assetsPath);
@@ -224,8 +239,23 @@ function handleFileLoad(event) {
 
                 textures.push(texture);
             }
+            else if(id =="btnMmCasual"){
+                btnMmCasual[0] = result;
+            }
+            else if(id =="btnMmRanked"){
+                btnMmRanked[0] = result;
+            }
+            else if(id =="btnMmPrivate"){
+                btnMmPrivate[0] = result;
+            }
             else if(id =="btnRacePlebs"){
                 btnRacePlebs[0] = result;
+            }
+            else if(id =="btnFindGame"){
+                btnFindGame[0] = result;
+            }
+            else if(id =="btnCancel"){
+                btnCancel[0] = result;
             }
             else if(id =="btnRaceBlablas"){
                 btnRaceBlablas[0] = result;

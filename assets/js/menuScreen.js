@@ -38,26 +38,49 @@ p.setup = function() {
     raceBlabla.x = 200;
     raceBlabla.y = 350;
 
-
-    var buttonCancel =  new Button1("Cancel", "#00F", null, function() {
+    var buttonMmCasual =  new Button1("", "#00F", btnMmCasual, function() {
         assets.sendMSG('cancel_matchmaking');
         text.text = '';
         this.parent.removeChild(this);
     });
-    buttonCancel.x = 500;
-    buttonCancel.y = 300;
+    buttonMmCasual.x = 200;
+    buttonMmCasual.y = 450;
 
-    var buttonPlay = new Button1("Find game", "#00F", null, function() {
+    var buttonMmRanked =  new Button1("", "#00F", btnMmRanked, function() {
+        assets.sendMSG('cancel_matchmaking');
+        text.text = '';
+        this.parent.removeChild(this);
+    });
+    buttonMmRanked.x = 273+10;
+    buttonMmRanked.y = 450;
+
+    var buttonMmPrivate =  new Button1("", "#00F", btnMmPrivate, function() {
+        assets.sendMSG('cancel_matchmaking');
+        text.text = '';
+        this.parent.removeChild(this);
+    });
+    buttonMmPrivate.x = 273+73+20;
+    buttonMmPrivate.y = 450;
+
+    var buttonPlay = new Button1("", "#00F", btnFindGame, function() {
         text.text = 'searching for a game';
         assets.sendMSG('find_game');
         this.parent.addChild(buttonCancel);
-        //hideMenu();
-        //showGameInstance();
     });
-    buttonPlay.x = 500;
-    buttonPlay.y = 200;
+    buttonPlay.x = 200;
+    buttonPlay.y = 530;
 
-    this.addChild(buttonPlay, text, race, srace, raceHumans, raceBlabla);
+    var buttonCancel =  new Button1("", "#00F", btnCancel, function() {
+        assets.sendMSG('cancel_matchmaking');
+        text.text = '';
+        this.parent.removeChild(this);
+    });
+    buttonCancel.x = 200;
+    buttonCancel.y = 630;
+
+    this.addChild(buttonPlay, text, race, srace);
+    this.addChild(raceHumans, raceBlabla);
+    this.addChild(buttonMmCasual, buttonMmRanked, buttonMmPrivate);
 };
 
 p.msgStartGame = function(data){
