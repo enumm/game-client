@@ -217,7 +217,7 @@
         return map.getChildByName(value.name);
     }
 
-    o.getMapMatrix = function(){
+    o.getMapMatrix = function(includeOpponentBuildings){
         //reikalinga!!!!
         // var matrix = [];
         // for ( var y = 0; y < mapData.height; y++) {
@@ -252,6 +252,13 @@
         for (var i = 0, len = instanceData.buildings.length; i < len; i++) {
             var pos = assets.screenToMap(instanceData.buildings[i].x, instanceData.buildings[i].y);
             mapMatrix[pos[1]][pos[0]] = 1;
+        }
+
+        if(includeOpponentBuildings){
+            for (var i = 0, len = opponentData.buildings.length; i < len; i++) {
+                var pos = assets.screenToMap(opponentData.buildings[i].x, opponentData.buildings[i].y);
+                mapMatrix[pos[1]][pos[0]] = 1;
+            }
         }
 
         return mapMatrix;

@@ -14,8 +14,6 @@ p.setup = function() {
 	this.name = this.unitName;
 	var circle = new createjs.Shape();
 
-
-
 	if(gameInstanceScreen.connectionData.host){
 		if(this.ours){
 			circle.graphics.beginFill("yellow").drawCircle(0, 0, 10);
@@ -36,7 +34,13 @@ p.setup = function() {
 	this.x = this.posX;
 	this.y = this.posY;
 
-	var grid = new PF.Grid(assets.getMapMatrix());
+	var grid;
+	if(this.ours){
+		grid = new PF.Grid(assets.getMapMatrix());
+	}else{
+		grid = new PF.Grid(assets.getMapMatrix(true));
+	}
+
 	var pos = assets.screenToMap(this.x, this.y);
 
 	if(gameInstanceScreen.connectionData.host){
@@ -54,9 +58,25 @@ p.setup = function() {
 	}
 
 	this.addChild(circle);
+
+	//life
+	this.life = 100;
+	
+	var rect = new createjs.Shape();
+ 	rect.graphics.beginFill("#0f0").drawRect(50, 64, 30, 5);
+ 	rect.name = 'greenHP';
+ 	var rect1 = new createjs.Shape();
+ 	rect1.graphics.beginFill("#f00").drawRect(50, 64, 30, 5);
+ 	rect1.name = 'redHP';
+ 	
+ 	this.addChild(rect1, rect);
 };
 
 p.updateTime = function(delta, unitData) {
+	var rectHP = this.getChildByName('greenHP');
+	rectHP.graphics.clear()
+	rectHP.graphics.beginFill("#0f0").drawRect(50, 64, 0.3 * this.life, 5);
+
 	if(this.path.length != 0){
 		var mapPositionToGo = this.path[0];
 		var positionToGo = assets.mapToScreen(mapPositionToGo[0], mapPositionToGo[1]);
@@ -87,6 +107,32 @@ p.updateTime = function(delta, unitData) {
 		}
 	}
 };
+
+p.setLife = function(life){
+	this.life = life;
+};
+
+
+p.doDamage = function(dmg){
+	this.life -= dmg;
+	
+	if(this.life <= 0){
+		//this.parent.removeChild(this);
+
+		// for( i = instanceData.units.length-1; i>=0; i--) {
+		// 	if( instanceData.units[i].name == this.name) instanceData.units.splice(i,1);
+		// }
+
+		// assets.sendData();
+
+		for( i = instanceData.units.length-1; i>=0; i--) {
+			if( instanceData.units[i].name == this.name) {instanceData.units[i].kill = true;}
+		}
+
+		assets.sendData();
+	}
+};
+
 
 window.Unit = createjs.promote(Unit, "Container");
 }());

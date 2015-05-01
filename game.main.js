@@ -287,7 +287,7 @@ function tick(event) {
         }
 
         gameInstanceScreen.drawUpdate(event.delta/1000);
-        assets.orderCanvas();
+        //assets.orderCanvas();
 
     }
 
