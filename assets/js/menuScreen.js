@@ -25,46 +25,40 @@ p.setup = function() {
     srace.y = 220;
 
     var raceHumans =  new Button1("", "#00F", btnRacePlebs, function() {
-        raceSelected = 'human';
+        raceSelected = 'plebs';
         srace.text = raceSelected;
     });
     raceHumans.x = 200;
     raceHumans.y = 250;
 
     var raceBlabla =  new Button1("", "#00F", btnRaceBlablas,  function() {
-        raceSelected = 'blabla'; 
+        raceSelected = 'blablas'; 
         srace.text = raceSelected;
     });
     raceBlabla.x = 200;
     raceBlabla.y = 350;
 
     var buttonMmCasual =  new Button1("", "#00F", btnMmCasual, function() {
-        assets.sendMSG('cancel_matchmaking');
-        text.text = '';
-        this.parent.removeChild(this);
+        gameType = 'casual';
     });
     buttonMmCasual.x = 200;
     buttonMmCasual.y = 450;
 
     var buttonMmRanked =  new Button1("", "#00F", btnMmRanked, function() {
-        assets.sendMSG('cancel_matchmaking');
-        text.text = '';
-        this.parent.removeChild(this);
+        gameType = 'ranked';
     });
-    buttonMmRanked.x = 273+10;
+    buttonMmRanked.x = 283;
     buttonMmRanked.y = 450;
 
     var buttonMmPrivate =  new Button1("", "#00F", btnMmPrivate, function() {
-        assets.sendMSG('cancel_matchmaking');
-        text.text = '';
-        this.parent.removeChild(this);
+        gameType = 'private';
     });
-    buttonMmPrivate.x = 273+73+20;
+    buttonMmPrivate.x = 366;
     buttonMmPrivate.y = 450;
 
     var buttonPlay = new Button1("", "#00F", btnFindGame, function() {
         text.text = 'searching for a game';
-        assets.sendMSG('find_game');
+        assets.sendMSG('find_game', {gameType: gameType});
         this.parent.addChild(buttonCancel);
     });
     buttonPlay.x = 200;

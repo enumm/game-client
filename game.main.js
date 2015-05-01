@@ -21,7 +21,8 @@ var socket;
 var serverUpdateTimer = 0;
 var moneyUpdateTimer = 0;
 
-var raceSelected = 'human';
+var raceSelected = 'plebs';
+var gameType = 'casual';
 
 //check other places
 var instanceData = {money: 5, buildings: [], units: []};
@@ -186,8 +187,8 @@ window.onload = function(){
         {id: "btnRacePlebs", src: "img/race_plebs.jpg"},
         {id: "btnRaceBlablas", src: "img/race_blablas.jpg"},
         {id: "btnMmCasual", src: "img/mmBtnCasual.jpg"},
-        {id: "btnMmRanked", src: "img/mmBtnPrivate.jpg"},
-        {id: "btnMmPrivate", src: "img/mmBtnRanked.jpg"},
+        {id: "btnMmRanked", src: "img/mmBtnRanked.jpg"},
+        {id: "btnMmPrivate", src: "img/mmBtnPrivate.jpg"},
         {id: "btnFindGame", src: "img/btnFindGame.jpg"},
         {id: "btnCancel", src: "img/btnCancel.jpg"},
 
