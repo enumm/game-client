@@ -96,7 +96,6 @@
     }
 
     o.buildMap = function(){
-        // compose EaselJS tileset from image (fixed 64x64 now, but can be parametized)
         var w = mapData.tilesets[0].tilewidth;
         var h = mapData.tilesets[0].tileheight;
         var imageData = {
@@ -114,11 +113,24 @@
         var map = new createjs.Container();
         map.name = 'map';
 
+        var top = new createjs.Container();
+        var units = new createjs.Container();
+        var bottom = new createjs.Container();
+        units.name = 'units';
+        top.name = 'top';
+        bottom.name = 'bottom';
+
+        map.addChild(bottom, units, top);
         // loading each layer at a time
         for (var idx = 0; idx < mapData.layers.length; idx++) {
             var layerData = mapData.layers[idx];
-            if (layerData.type == 'tilelayer')
-                assets.initLayer(map, layerData, tilesetSheet1, mapData.tilewidth, mapData.tileheight);
+            if (layerData.type == 'tilelayer'){
+                if(layerData.name == 'ground' || layerData.name == 'base1' || layerData.name == 'base2' || layerData.name == 'treesBot'){
+                    assets.initLayer(bottom, layerData, tilesetSheet1, mapData.tilewidth, mapData.tileheight);    
+                }else{
+                    assets.initLayer(top, layerData, tilesetSheet1, mapData.tilewidth, mapData.tileheight);    
+                }
+            }
         }
 
         // the pressmove event is dispatched when the mouse moves after a mousedown on the target until the mouse is released.
@@ -242,16 +254,6 @@
             mapMatrix[pos[1]][pos[0]] = 1;
             console.log('x: ' + pos[0] + ' y: ' + pos[1]);
         }
-
-        // mapMatrix[13][30] = 1;
-        // mapMatrix[16][28] = 1;
-        // mapMatrix[15][27] = 1;
-        // mapMatrix[17][29] = 1;
-        // mapMatrix[16][29] = 1;
-        // mapMatrix[15][28] = 1;
-        // mapMatrix[14][27] = 1;
-        // mapMatrix[17][30] = 1;
-        // mapMatrix[24][36] = 1;
 
         return mapMatrix;
     }

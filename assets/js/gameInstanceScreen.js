@@ -19,8 +19,9 @@ p.setup = function() {
     money.y = 0;
     money.x = 800;
 
-    //initLayers();
     var map = assets.buildMap();
+
+
     this.addChild(map); 
 
     //build castles
@@ -40,15 +41,15 @@ p.setup = function() {
     finder = new PF.AStarFinder({
         allowDiagonal: true
     });
-    
+
     var btnBuilding1 = new Button1('Pleb hut  - 2$', '#fff', function(){
-        $.each(map.children, function( index, value ) {
+        $.each(map.getChildByName('bottom').children, function( index, value ) {
             if(value.base1 && gameInstanceScreen.connectionData.host || value.base2 && !gameInstanceScreen.connectionData.host ){
                 value.alpha = 0.5;
                 value.on("mouseover", function(){ this.alpha = 1;});
                 value.on("mouseout", function(){ this.alpha = 0.5;});
                 value.on("click", function(){
-                    assets.tileRemoveAllEventListeners(map);
+                    assets.tileRemoveAllEventListeners(map.getChildByName('bottom'));
 
                     if(instanceData.money >= 2){
                         instanceData.buildings.push({
@@ -63,7 +64,7 @@ p.setup = function() {
 
                     assets.sendData();
 
-                    $.each(map.children, function( index, value ) {
+                    $.each(map.getChildByName('bottom').children, function( index, value ) {
                         value.alpha = 1;
                     });
                 });
@@ -92,7 +93,7 @@ p.setup = function() {
 
 p.drawUpdate = function(delta){
     gameInstanceScreen.getChildByName('moneyLabel').text = instanceData.money + '$';
-    var map = gameInstanceScreen.getChildByName('map');
+    var map = gameInstanceScreen.getChildByName('map').getChildByName('units');
 
     $.each(instanceData.units, function(index, value){
         var unit = map.getChildByName(value.name);
