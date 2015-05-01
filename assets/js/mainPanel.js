@@ -66,7 +66,7 @@
         }
     }
 
-    o.OnGoogle_Login = function () {
+    o.OnFacebook_Login = function () {
     FB.api('/me', function(response) {
     	var name = response.first_name + response.id.substr(response.id.length - 4);
 		assets.sendMSG('user_register', {name: name, pass: response.id, loginType: "Facebook"});
