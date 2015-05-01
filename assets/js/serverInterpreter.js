@@ -7,6 +7,7 @@ socket.on('hello', function (data) {
 });
 
 socket.on('user_login_response', function (data) {
+    debugger;
     if(data.success){
         socket.emit('user_authenticated',  {uuid: data.uuid});
         mainPanel.msgLoggedIn();
@@ -17,6 +18,7 @@ socket.on('user_login_response', function (data) {
 });
 
 socket.on('user_register_response', function (data) {
+    debugger;
     mainPanel.msgRegisterResponse(data.message); 
     if(data.loginData.loginType == "Google" || data.loginData.loginType == "Facebook")
     {
