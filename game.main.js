@@ -4,6 +4,8 @@ var loginBackGround;
 var stage;
 var mapData;
 
+var debug = true;
+
 var lastX = 0;
 var lastY = 0;
 var tree;
@@ -37,22 +39,23 @@ var preload;
 
 //game screens
 var loginScreen;
+var debugScreen;
 var menuScreen;
 var gameInstanceScreen;
 
-function showLogin(){
-    loginScreen = null;
-    delete loginScreen;
-    loginScreen = new LoginScreen();
-    stage.addChild(loginScreen);
+function showDebug(){
+    debugScreen = null;
+    delete debugScreen;
+    debugScreen = new DebugScreen();
+    stage.addChild(debugScreen);
     stage.setChildIndex ( fpsLabel,  1);
 }
 
-function hideLogin(){
-    loginScreen.destroy();
- 	stage.removeChild(loginScreen);
-    loginScreen = null;
-    delete loginScreen;
+function hideDebug(){
+    debugScreen.destroy();
+ 	stage.removeChild(debugScreen);
+    debugScreen = null;
+    delete debugScreen;
 }
 
 function showMenu(){
@@ -159,7 +162,7 @@ window.onload = function(){
         {id: "css", src: "css/style.css"},
         {id: "tileset", src: "img/tileCheck.png"},
         {id: "jquery-2", src: "js/jquery-2.1.3.min.js"},
-        {id: "loginScreen", src: "js/loginScreen.js"},
+        {id: "debugScreen", src: "js/debugScreen.js"},
         {id: "mainPanel", src: "js/mainPanel.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
         {id: "castle", src: "js/castle.js"},
@@ -243,7 +246,10 @@ function handleComplete(event) {
     assets.showMenuBackground();
     assets.showParticles();
 
-    showLogin();
+    if(debug){
+        showDebug();
+    }
+
     mainPanel.show();
 
     OnResizeCalled();

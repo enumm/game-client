@@ -1,3 +1,4 @@
+//# sourceURL=mainPanel.js
 (function() {
 
 	var o = window.mainPanel = {};
@@ -89,10 +90,9 @@
 	}
 
 	o.msgLoggedIn = function(){
-	    hideLogin(); //LEFT FOR DEBUG ONLY
-
 	    mainPanel.hide();
 	    showMenu();
+	    hideDebug();
 	}
 
 	o.msgLoginFailed = function(msg){
@@ -100,6 +100,7 @@
 	    $('#messageAreaLogin').text(msg); 
 	}
 
+	o.destroy = function(){
     //registerScreen.getChildByName('registerBlock').htmlElement.style.display = "none";
 	}
 

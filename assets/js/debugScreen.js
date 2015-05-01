@@ -1,11 +1,12 @@
+//# sourceURL=debugScreen.js
 (function() {
 
-function LoginScreen() {
+function DebugScreen() {
 	this.Container_constructor();	
 	this.setup();
 }
 
-var p = createjs.extend(LoginScreen, createjs.Container);
+var p = createjs.extend(DebugScreen, createjs.Container);
 
 p.setup = function() {
     var loginDiv = $('#loginForm');
@@ -33,26 +34,11 @@ p.setup = function() {
    //this.addChild(loginDOMElement);
 } ;
 
-p.msgLoggedIn = function(){
-    hideLogin(); //LEFT FOR DEBUG ONLY
-
-    mainPanel.hide();
-    showMenu();
-}
-
-p.msgLoginFailed = function(msg){
-    $('#messageAreaLogin').css('color', '#f00');
-    $('#messageAreaLogin').text(msg); 
-}
-
-p.showLoading = function(){
-    $('#messageAreaLogin').css('color', '#000');
-    $('#messageAreaLogin').text('Connecting'); 
-}
-
 p.destroy = function(){
-    //loginScreen.getChildByName('LoginBlock').htmlElement.style.display = "none";
+    $(this.children).each(function(index, child){
+        this.removeChild(child);
+    });
 }
 
-window.LoginScreen = createjs.promote(LoginScreen, "Container");
+window.DebugScreen = createjs.promote(DebugScreen, "Container");
 }());
