@@ -36,12 +36,10 @@
       xfbml      : true,
       version    : 'v2.3'
     });
-  };
 
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-
+	FB.getLoginStatus(function(response) {
+	statusChangeCallback(response);
+	});
   };
 
   (function(d, s, id){
