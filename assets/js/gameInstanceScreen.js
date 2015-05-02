@@ -34,8 +34,7 @@ p.setup = function() {
     castleBaad.x = assets.mapToScreen(32,14)[0];
     castleBaad.y = assets.mapToScreen(32,14)[1];
 
-    map.addChild(castleGood, castleBaad);
-
+    map.getChildByName('bottom').addChild(castleGood, castleBaad);
 
     //pathfinder
     finder = new PF.AStarFinder({

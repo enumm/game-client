@@ -73,10 +73,52 @@ p.setup = function() {
 };
 
 p.updateTime = function(delta, unitData) {
+	//hp
 	var rectHP = this.getChildByName('greenHP');
 	rectHP.graphics.clear()
 	rectHP.graphics.beginFill("#0f0").drawRect(50, 64, 0.3 * this.life, 5);
 
+	//attacking
+
+	
+	var name = this.name;
+	var x = this.x;
+	var y = this.y;
+
+	var distanceToEnemy = 100000;
+	var enemyX;
+	var enemyY;
+
+	if(this.ours){
+		$.each(opponentData.units, function(index, value){
+			if(!value.kill && value.name != name){
+				//console.log(name + ' distance to ' + value.name + ' = ' + assets.getDistance(x, y, value.x, value.y));
+				var dst = assets.getDistance(x, y, value.x, value.y);
+				if(distanceToEnemy > dst){
+					distanceToEnemy = dst;
+					enemyX = value.x;
+					enemyY = value.y;
+				}
+				
+			}
+		});
+	}else{
+		$.each(instanceData.units, function(index, value){
+			if(!value.kill && value.name != name){
+				//console.log(name + ' distance to ' + value.name + ' = ' + assets.getDistance(x, y, value.x, value.y));
+				var dst = assets.getDistance(x, y, value.x, value.y);
+				if(distanceToEnemy > dst){
+					distanceToEnemy = dst;
+					enemyX = value.x;
+					enemyY = value.y;
+				}
+			}
+		});	
+	}
+
+	if(distanceToEnemy < 200) console.log('turetume eit iki enemy pradet');
+
+	//pathfinding
 	if(this.path.length != 0){
 		var mapPositionToGo = this.path[0];
 		var positionToGo = assets.mapToScreen(mapPositionToGo[0], mapPositionToGo[1]);
