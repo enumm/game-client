@@ -116,15 +116,13 @@ p.updateTime = function(delta, unitData) {
 		});	
 	}
 
-	if(distanceToEnemy < 200) console.log('turetume eit iki enemy pradet');
-
-	//pathfinding
-	if(this.path.length != 0){
-		var mapPositionToGo = this.path[0];
-		var positionToGo = assets.mapToScreen(mapPositionToGo[0], mapPositionToGo[1]);
-
-		var dx = positionToGo[0]-this.x;
-		var dy = positionToGo[1]-this.y;
+	if(distanceToEnemy < 10){
+		//fight
+	}
+	else if(distanceToEnemy < 100){
+		//walk to enemy
+		var dx = enemyX - this.x;
+		var dy = enemyY - this.y;
 
 		var length = Math.sqrt(dx*dx+dy*dy);
 
@@ -143,9 +141,36 @@ p.updateTime = function(delta, unitData) {
 			unitData.y = this.y;
 		}
 
-		//console.log('skirtumas x: ' +(this.x -  positionToGo[0]) + ' y: ' + (this.y - positionToGo[1]));
-		if(this.x - positionToGo[0] < 1 && this.x - positionToGo[0] > - 1 && this.y - positionToGo[1] < 1 && this.y - positionToGo[1] > -1){
-			this.path.shift();
+	}else{
+		//pathfinding
+		if(this.path.length != 0){
+			var mapPositionToGo = this.path[0];
+			var positionToGo = assets.mapToScreen(mapPositionToGo[0], mapPositionToGo[1]);
+
+			var dx = positionToGo[0]-this.x;
+			var dy = positionToGo[1]-this.y;
+
+			var length = Math.sqrt(dx*dx+dy*dy);
+
+			if(length != 0 ){
+				dx/=length;
+				dy/=length;
+
+
+				dx *= 60 * delta;
+				dy *= 60 * delta;
+
+				this.x += dx;
+				this.y += dy;
+
+				unitData.x = this.x;
+				unitData.y = this.y;
+			}
+
+			//console.log('skirtumas x: ' +(this.x -  positionToGo[0]) + ' y: ' + (this.y - positionToGo[1]));
+			if(this.x - positionToGo[0] < 1 && this.x - positionToGo[0] > - 1 && this.y - positionToGo[1] < 1 && this.y - positionToGo[1] > -1){
+				this.path.shift();
+			}
 		}
 	}
 };
