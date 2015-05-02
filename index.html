@@ -34,11 +34,28 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
+  var token;
   function signinCallback(authResult) {
   if (authResult['status']['signed_in']) {
+  	token = authResult.access_token
     mainPanel.OnGoogle_Login(authResult);
-  } else {
-    console.log('Sign-in state: ' + authResult['error']);
+  } else if (authResult.error == "user_signed_out"){
+  	var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' + token;
+	  // Perform an asynchronous GET request.
+	  $.ajax({
+	    type: 'GET',
+	    url: revokeUrl,
+	    async: false,
+	    contentType: "application/json",
+	    dataType: 'jsonp',
+	    success: function(nullResponse) {
+	    },
+	    error: function(e) {
+	    }
+	  });  
+  }
+  else{
+  	console.log('Sign-in state: ' + authResult['error']);
   }
 }
 </script>

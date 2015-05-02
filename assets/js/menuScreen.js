@@ -78,11 +78,27 @@ p.setup = function() {
     });
     btnCancel.x = 200;
     btnCancel.y = 630;
+
+    var btnLogOut =  new Button1("", "#00F", btnCancelImg, function() {
+	    gapi.auth.signOut();
+
+	    if(FB.getAccessToken()){
+		    FB.logout(function(response) {
+			});
+	    }
+
+	    mainPanel.show();
+	    hideMenu();
+	    showDebug();
+    });
+    btnLogOut.x = 800;
+    btnLogOut.y = 630;
     //--------------------------------------------
 
     this.addChild(btnRacePlebs, btnRaceBlablas);
     this.addChild(btnMmCasual, btnMmRanked, btnMmPrivate);
     this.addChild(btnFindGame);
+    this.addChild(btnLogOut);
 };
 
 p.msgStartGame = function(data){
