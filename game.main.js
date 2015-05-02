@@ -51,6 +51,27 @@ var debugScreen;
 var menuScreen;
 var gameInstanceScreen;
 
+function translateRank(rank){
+    var ranks = [
+        "potato",
+        "wooden",
+        "bronze",
+        "silver",
+        "gold",
+        "platinum",
+        "diamond",
+        "kappa"
+    ];
+
+    var yourRank = ranks[0];
+
+    for(var i = 1; rank > 0; i++){
+        rank -= i;
+        yourRank = ranks[i];
+    }
+    return yourRank;
+}
+
 function showDebug(){
     debugScreen = null;
     delete debugScreen;

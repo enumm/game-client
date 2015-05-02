@@ -12,6 +12,7 @@ p.setup = function() {
     assets.showMenuBackground();
     assets.showParticles();
 
+    //labels--------------------------------------
     var lblSearchingForGame = new createjs.Text('', "20px Arial", "#fff");
     lblSearchingForGame.x = 550;
     lblSearchingForGame.y = 100;
@@ -24,6 +25,12 @@ p.setup = function() {
     lblSelectedRace.x = 200;
     lblSelectedRace.y = 220;
 
+    assets.sendMSG('get_user_statistics');
+
+    this.addChild(lblSearchingForGame, lblRace, lblSelectedRace);
+    //--------------------------------------------
+
+    //buttons-------------------------------------
     var btnRacePlebs =  new Button1("", "#00F", btnRacePlebsImg, function() {
         raceSelected = 'plebs';
         lblSelectedRace.text = raceSelected;
@@ -71,8 +78,8 @@ p.setup = function() {
     });
     btnCancel.x = 200;
     btnCancel.y = 630;
+    //--------------------------------------------
 
-    this.addChild(lblSearchingForGame, lblRace, lblSelectedRace);
     this.addChild(btnRacePlebs, btnRaceBlablas);
     this.addChild(btnMmCasual, btnMmRanked, btnMmPrivate);
     this.addChild(btnFindGame);
