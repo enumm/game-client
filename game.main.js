@@ -332,7 +332,20 @@ function handleComplete(event) {
         mainPanel.statusChangeCallback(response);
     });
 
+    render_google_btn();
+
     OnResizeCalled();
+}
+
+function render_google_btn() {
+    gapi.signin.render('customBtn', {
+        'redirecturi':  "postmessage",
+        'accesstype':   "offline",
+        'callback':     "signinCallback",
+        'scope':        "https://www.googleapis.com/auth/plus.login",
+        'clientid':     "366641623880-nk0vnd991ajmhe5sg8fhkcr8b8bjnlbi.apps.googleusercontent.com",
+        'cookiepolicy': "single_host_origin"
+    });
 }
 
 function tick(event) {

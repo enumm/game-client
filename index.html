@@ -74,18 +74,13 @@
 			    <input class="btnMain btnLogin" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.login();"><br>
 			    <input class="text" type="password" id="txtPassword" value="" />
 			    <input class="btnMain btnRegister" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.register();"><br>
-			    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-				</fb:login-button>
-				<span id="signinButton">
-				  <span
-				    class="g-signin"
-				    data-callback="signinCallback"
-				    data-clientid="366641623880-nk0vnd991ajmhe5sg8fhkcr8b8bjnlbi.apps.googleusercontent.com"
-				    data-cookiepolicy="single_host_origin"
-				    data-requestvisibleactions="http://schema.org/AddAction"
-				    data-scope="https://www.googleapis.com/auth/plus.login">
-				  </span>
-				</span>
+				<div id="gSignInWrapper" style="display: inline-block;">
+				    <div id="customBtn" class="g-signin customGPlusSignIn" data-gapiattached="true">
+				        <span class="icon"></span>
+				        <span class="buttonText">Sign in</span>
+				    </div>
+    			    <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
+				</div>
 			    <span id="messageAreaLogin"></span>
 	        </div>
 	        <div class="messageAreaRegister">
