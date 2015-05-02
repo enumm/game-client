@@ -53,23 +53,37 @@ var gameInstanceScreen;
 
 function translateRank(rank){
     var ranks = [
-        "potato",
-        "wooden",
-        "bronze",
-        "silver",
-        "gold",
-        "platinum",
-        "diamond",
-        "kappa"
+        {rank:"potato", strength:2},
+        {rank:"pleb", strength:2},
+        {rank:"wooden", strength:3},
+        {rank:"plastic", strength:3},
+        {rank:"bronze", strength:3},
+        {rank:"silver", strength:4},
+        {rank:"gold", strength:4},
+        {rank:"platinum", strength:5},
+        {rank:"diamond", strength:5},
+        {rank:"kappa", strength:0}
     ];
 
-    var yourRank = ranks[0];
+    var yourRank = ranks[0].rank;
 
-    for(var i = 1; rank > 0; i++){
-        rank -= i;
-        yourRank = ranks[i];
+    for(var i = 0; i < ranks.length; i++){
+        if(rankCalculation(rank, ranks[i].strength)){
+            return ranks[i].rank;
+        }else{
+            rank -= ranks[i].strength;
+        }
     }
-    return yourRank;
+
+    function rankCalculation(rank, rankStrength){
+        for(var wins = 0; wins < rankStrength; wins++){
+            if(!rank){
+                return true;
+            }
+            rank--;
+        }
+        return false;
+    };
 }
 
 function showDebug(){
