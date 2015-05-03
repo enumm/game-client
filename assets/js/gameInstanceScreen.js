@@ -52,7 +52,7 @@ p.setup = function() {
 
                     if(instanceData.money >= 2){
                         instanceData.buildings.push({
-                        name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildings.length: 'obuilding' + instanceData.buildings.length,
+                        name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildingCount++: 'obuilding' + instanceData.buildingCount++,
                             x: this.x,
                             y: this.y,
                             frame: 10,
@@ -94,73 +94,47 @@ p.drawUpdate = function(delta){
     gameInstanceScreen.getChildByName('moneyLabel').text = instanceData.money + '$';
     var map = gameInstanceScreen.getChildByName('map').getChildByName('units');
 
-    for(i = instanceData.units.length - 1; i >= 0; i--){
-        var unit = map.getChildByName(instanceData.units[i].name);
+    instanceData.units = $.grep(instanceData.units, function (el, i) {
+        var unit = map.getChildByName(el.name);
 
-        if(instanceData.units[i].kill){
+        if (el.kill) { // or whatever
             if(unit){
                 unit.parent.removeChild(unit);
             }
-            instanceData.units.splice(i,1);
-        }else{
-            if(!unit){
-                unit = new Unit(instanceData.units[i].name, true, instanceData.units[i].x, instanceData.units[i].y);
-                map.addChild(unit);
-            }else{
-                unit.updateTime(delta, instanceData.units[i]);
-            }
+            
+            return false;
         }
-    }
-    
-    for(i = opponentData.units.length - 1; i >= 0; i--){
-        var unit = map.getChildByName(opponentData.units[i].name);
 
-        if(opponentData.units[i].kill){
+        if(!unit){
+            unit = new Unit(el.name, true, el.x, el.y);
+            map.addChild(unit);
+        }else{
+            unit.updateTime(delta, instanceData.units[i]);
+        }
+
+        return true;
+    });
+
+    opponentData.units = $.grep(opponentData.units, function (el, i) {
+        var unit = map.getChildByName(el.name);
+
+        if (el.kill) { // or whatever
             if(unit){
                 unit.parent.removeChild(unit);
             }
-            opponentData.units.splice(i,1);
-        }else{
-            if(!unit){
-                unit = new Unit(opponentData.units[i].name, false, opponentData.units[i].x, opponentData.units[i].y);
-                map.addChild(unit);
-            }else{
-                unit.updateTime(delta, opponentData.units[i]);
-            }
+            
+            return false;
         }
-    }        
 
+        if(!unit){
+            unit = new Unit(el.name, false, el.x, el.y);
+            map.addChild(unit);
+        }else{
+            unit.updateTime(delta, opponentData.units[i]);
+        }
 
-    // $.each(instanceData.units, function(index, value){
-    //     var unit = map.getChildByName(value.name);
-
-    //     if(!value.kill){
-
-    //         for( i = instanceData.units.length-1; i>=0; i--) {
-    //             if( instanceData.units[i].name == this.name) instanceData.units.splice(i,1);
-    //         }
-    //     }else{
-    //         if(!unit){
-    //             unit = new Unit(value.name, true, value.x, value.y);
-    //             map.addChild(unit);
-    //         }else{
-    //             unit.updateTime(delta, value);
-    //         }
-    //     }
-    // });
-
-    // $.each(opponentData.units, function(index, value){
-    //     if(!value.isDead){
-    //         var unit = map.getChildByName(value.name);
-
-    //         if(!unit){
-    //             unit = new Unit(value.name, false, value.x, value.y);
-    //             map.addChild(unit);
-    //         }else{
-    //             unit.updateTime(delta, value);
-    //         }
-    //     }
-    // });
+        return true;
+    });
 
     $.each(instanceData.buildings, function(index, value){
         var building = map.getChildByName(value.name);

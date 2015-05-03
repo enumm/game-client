@@ -86,6 +86,7 @@ p.updateTime = function(delta, unitData) {
 	var y = this.y;
 
 	var distanceToEnemy = 100000;
+	var enemyName;
 	var enemyX;
 	var enemyY;
 
@@ -96,6 +97,7 @@ p.updateTime = function(delta, unitData) {
 				var dst = assets.getDistance(x, y, value.x, value.y);
 				if(distanceToEnemy > dst){
 					distanceToEnemy = dst;
+					enemyName = value.name; 
 					enemyX = value.x;
 					enemyY = value.y;
 				}
@@ -109,6 +111,7 @@ p.updateTime = function(delta, unitData) {
 				var dst = assets.getDistance(x, y, value.x, value.y);
 				if(distanceToEnemy > dst){
 					distanceToEnemy = dst;
+					enemyName = value.name;
 					enemyX = value.x;
 					enemyY = value.y;
 				}
@@ -117,6 +120,11 @@ p.updateTime = function(delta, unitData) {
 	}
 
 	if(distanceToEnemy < 10){
+		var enemy = gameInstanceScreen.getChildByName('map').getChildByName('units').getChildByName(enemyName);
+		if(enemy){
+			enemy.doDamage(0.5);
+		}
+		
 		//fight
 	}
 	else if(distanceToEnemy < 100){

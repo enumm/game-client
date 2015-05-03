@@ -25,8 +25,8 @@ var raceSelected = 'plebs';
 var gameType = 'casual';
 
 //check other places
-var instanceData = {money: 5, buildings: [], units: []};
-var opponentData = {money: 5, buildings: [], units: []};
+var instanceData = {money: 5, buildings: [], units: [], buildingCount: 0, unitCount: 0};
+var opponentData = {money: 5, buildings: [], units: [], buildingCount: 0, unitCount: 0};
     
 //proton vars
 var renderer;
@@ -122,8 +122,8 @@ function showGameInstance(data){
 
     serverUpdateTimer = 0;
     moneyUpdateTimer = 0;
-    instanceData = {money: 5, buildings: [], units: []};
-    opponentData = {money: 5, buildings: [], units: []};
+    instanceData = {money: 5, buildings: [], units: [], buildingCount: 0, unitCount: 0};
+    opponentData = {money: 5, buildings: [], units: [], buildingCount: 0, unitCount: 0};
 
     gameInstanceScreen = null;
     delete gameInstanceScreen;

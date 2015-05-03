@@ -35,7 +35,7 @@ p.updateTime = function(delta) {
 			if(unitTilePos){
 				var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
 				instanceData.units.push({
-					name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.units.length: 'ounit' + instanceData.units.length,
+					name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
 					x: unitPos[0],
 					y: unitPos[1]
 				});	
