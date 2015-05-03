@@ -78,9 +78,13 @@ p.doDamage = function(dmg){
 	this.life -= dmg;
 	
 	if(this.life <= 0){
-		for( i = instanceData.buildings.length-1; i>=0; i--) {
-			if( instanceData.buildings[i].name == this.name) {instanceData.buildings[i].kill = true;}
-		}
+		// for( i = instanceData.buildings.length-1; i>=0; i--) {
+		// 	if( instanceData.buildings[i].name == this.name) {instanceData.buildings[i].kill = true;}
+		// }
+
+		$.each(instanceData.buildings, function(index, value){
+			if( value.name == this.name) {value.kill = true;}
+		});
 
 		assets.sendData();
 	}

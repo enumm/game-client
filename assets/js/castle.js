@@ -8,7 +8,7 @@ function Castle(good) {
 var p = createjs.extend(Castle, createjs.Container);
 
 p.setup = function() {
-	this.hp = 100;
+	this.life = 1000;
 
 	var w = mapData.tilesets[0].tilewidth;
 	var h = mapData.tilesets[0].tileheight;
@@ -42,12 +42,21 @@ p.setup = function() {
 
 	this.addChild(sprite11, sprite12, sprite21, sprite22); 
 	this.name = 'castle';
+
+	var rect = new createjs.Shape();
+ 	rect.graphics.beginFill("#0f0").drawRect(10, 10, 0.2 * this.life, 5);
+ 	rect.name = 'greenHP';
+ 	var rect1 = new createjs.Shape();
+ 	rect1.graphics.beginFill("#f00").drawRect(10, 10, 0.2 * this.life, 5);
+ 	rect1.name = 'redHP';
+ 	
+ 	this.addChild(rect1, rect);
 };
 
-p.setHp = function(hp){
-	this.hp = hp;
+// p.setHp = function(hp){
+// 	this.life = life;
 
-};
+// };
 
 window.Castle = createjs.promote(Castle, "Container");
 }());
