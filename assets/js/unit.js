@@ -45,15 +45,15 @@ p.setup = function() {
 
 	if(gameInstanceScreen.connectionData.host){
 		if(this.ours){
-			this.path = finder.findPath(pos[0], pos[1], 31, 14, grid);
+			this.path = finder.findPath(pos[0]|0, pos[1]|0, 31, 14, grid);
 		}else{
-			this.path = finder.findPath(pos[0], pos[1], 14, 31, grid);
+			this.path = finder.findPath(pos[0]|0, pos[1]|0, 14, 31, grid);
 		}
 	}else{
 		if(this.ours){
-			this.path = finder.findPath(pos[0], pos[1], 14, 31, grid);	
+			this.path = finder.findPath(pos[0]|0, pos[1]|0, 14, 31, grid);	
 		}else{
-			this.path = finder.findPath(pos[0], pos[1], 31, 14, grid);		
+			this.path = finder.findPath(pos[0]|0, pos[1]|0, 31, 14, grid);		
 		}
 	}
 
