@@ -104,6 +104,18 @@ p.updateTime = function(delta, unitData) {
 				
 			}
 		});
+
+		if(gameInstanceScreen.connectionData.host){
+			if((assets.screenToMap(x, y)[0]|0) == 30 && (assets.screenToMap(x, y)[1]|0) == 14){
+				enemyName = 'castleBad'; 
+				distanceToEnemy = 9;
+			}
+		}else{
+			if((assets.screenToMap(x, y)[0]|0) == 14 && (assets.screenToMap(x, y)[1]|0) == 30){
+				enemyName = 'castleGood'; 
+				distanceToEnemy = 9;
+			}
+		}
 	}else{
 		$.each(instanceData.units.concat(instanceData.buildings), function(index, value){
 			if(!value.kill && value.name != name){
@@ -116,7 +128,19 @@ p.updateTime = function(delta, unitData) {
 					enemyY = value.y;
 				}
 			}
-		});	
+		});
+
+		if(gameInstanceScreen.connectionData.host){
+			if((assets.screenToMap(x, y)[0]|0) == 14 && (assets.screenToMap(x, y)[1]|0) == 30){
+				enemyName = 'castleGood'; 
+				distanceToEnemy = 9;
+			}
+		}else{
+			if((assets.screenToMap(x, y)[0]|0) == 30 && (assets.screenToMap(x, y)[1]|0) == 14){
+				enemyName = 'castleBad'; 
+				distanceToEnemy = 9;
+			}
+		}
 	}
 
 	if(distanceToEnemy < 10){
@@ -126,8 +150,7 @@ p.updateTime = function(delta, unitData) {
 		}
 		
 		//fight
-	}
-	else if(distanceToEnemy < 100){
+	}else if(distanceToEnemy < 100){
 		//walk to enemy
 		var dx = enemyX - this.x;
 		var dy = enemyY - this.y;

@@ -44,19 +44,35 @@ p.setup = function() {
 	this.name = 'castle';
 
 	var rect = new createjs.Shape();
- 	rect.graphics.beginFill("#0f0").drawRect(10, 10, 0.2 * this.life, 5);
+ 	rect.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * this.life, 5);
  	rect.name = 'greenHP';
  	var rect1 = new createjs.Shape();
- 	rect1.graphics.beginFill("#f00").drawRect(10, 10, 0.2 * this.life, 5);
+ 	rect1.graphics.beginFill("#f00").drawRect(20, -119, 0.2 * this.life, 5);
  	rect1.name = 'redHP';
  	
  	this.addChild(rect1, rect);
 };
 
-// p.setHp = function(hp){
-// 	this.life = life;
+p.doDamage = function(dmg){
+	this.life -= dmg;
 
-// };
+	var rectHP = this.getChildByName('greenHP');
+	rectHP.graphics.clear()
+	rectHP.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * this.life, 5);
+	
+	if(this.life <= 0){
+		// for( i = instanceData.buildings.length-1; i>=0; i--) {
+		// 	if( instanceData.buildings[i].name == this.name) {instanceData.buildings[i].kill = true;}
+		// }
+		var name = this.name;
+
+		// $.each(instanceData.buildings, function(index, value){
+		// 	if( value.name == name) {value.kill = true;}
+		// });
+
+		assets.sendData();
+	}
+};
 
 window.Castle = createjs.promote(Castle, "Container");
 }());
