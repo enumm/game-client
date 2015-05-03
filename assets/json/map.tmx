@@ -5,25 +5,25 @@
  </tileset>
  <layer name="ground" width="46" height="46">
   <data encoding="base64" compression="zlib">
-   eJzt1tEKwjAMBdBuQ6Tiy/z/j3UPK5SarLlduqSyC2GKgR1LzAzhzj9l3WukrEWNkNI8gp2yercfna9Xu2QmvNmROfZij1u9QYu1PWY1ij0SJbVb7UjKjNgt9vu01TOMZZ+yOmu/6tk0ESW1f4T30LZT5pr9FeQz08N+ZNaaGW27xFza0zlb2RGzl3NvMVN26ux72UsH8j3m/fogvPl3aHmuombus7yW4qqxZzTMErvmzGiaa/Y5/J5/y28V+S1KzWV/7qPet9jR3ddqt9qRGvaFeZ3PjsQeG8xn7Rrnfjbc/q71c/MtsWuFuyfaL7Fr5+i+GnbpLGra0f4rzZwF7bcwUxa038pMWdB+KzNl6dHfM1KLJ3MKshO9hbN5Nqdw/wk8m1M87Q00I5pTRjTfqecLQ2AQiA==
+   eJzt1t0OgyAMBWDUK71zd/t5/+ecF5KQWqQHy1oWT9Jsy5rwjUBdCHf+KetePWUl1UOouQc7Z/VuP9tfr3bJmfBmR86xF/t7qw9osbbPe/Vkn0khdqsZ+QpHN2K3mO/DVs/Ql31I6qr9V8+mgSmp/SFcQ9vOmUv2JdjOmTOz1pnRtkvM1L4Y2xGzl32vMXN2uvct7dSB/I6Rsaf39MpzFTXnvktrIq8ac0bDLLFrnhlNc8k+huP+19xV5C5KzbQ/9XGfa+zo7Ku1W81IDfuUeZ+eHam9Npb7fjW5+V3qz51viV0ruTXRfoldO2fratlbpeW+tw66ngczZ0H7rcycBe23MnOWFv0tI7V4MscgM9FbcjbP5pjcfwLP5hhPcwNNj+aYHs13yvkCVyUVsg==
   </data>
  </layer>
- <layer name="base2" width="46" height="46">
+ <layer name="base2" width="46" height="46" visible="0">
   <data encoding="base64" compression="zlib">
    eJzt1lEKgCAURNG3Bdv/YsMPIcRHIFgzeg8Ifd5iiiIAnKj8HTChNl/h1V4GR92oWb39uY3+2qE9O+p7d9xK49pdZTt38PbMle9j13dVfT+7trOZdbL/AJd212+803PuOTY3js0AAAAAAHztBuCjCJs=
   </data>
  </layer>
- <layer name="base1" width="46" height="46">
+ <layer name="base1" width="46" height="46" visible="0">
   <data encoding="base64" compression="zlib">
    eJzt1tEKgCAQRNHN/v+fwwdhkVUiAmfgHgh8vMgURQAAAAAAgJ3rdMAHvfkOr/areNRVzertuXFspKWzenuL+r7V9161zmdVu5073Hs+O72rmXN7N7+77WzOa25771bfGvXNrHrd28fuVe224nDvq72rq/5nXDg2D47NAP7xAPb+AKA=
   </data>
  </layer>
- <layer name="treesBot" width="46" height="46">
+ <layer name="treesBot" width="46" height="46" visible="0">
   <data encoding="base64" compression="zlib">
    eJzt1rEKwzAMhGE9RqfUU8eOff9HKwEfhNCkcmr7JHo/aLGXDy+WmVIxerIBF1rNL8tlh9ksj31rRtHtn8woqv3MjKLZPWYUxQ7zvY4ntn1vLnU8sexH5hbPbPs3883ivfti/cxotH2p09OMRtlHmlFv+wwz6mU/Mj/qeU8z+tXOMCPv/7uPab4azGsZzahYPvP2LpsZFfPvfDPymFHLvjqjf7JHqsUeLdk5yc5Jdk6yc5Kdk+xKqcy9AQRkHRQ=
   </data>
  </layer>
- <layer name="treesTop" width="46" height="46">
+ <layer name="treesTop" width="46" height="46" visible="0">
   <data encoding="base64" compression="zlib">
    eJzt0EEOgkAQRNE6ByZDrVy69P5Hk452IEaHQAx2ab2kN8zmU4CZmZmZmZn9Mz5ui8vnM3YhtrVfoddeqTlxurHzXrE5EHMbn96qNsfOy2Zi3r5qM/G6efkvlQx4v3PV5hPujefpGjSaQ7SpNRN6zb2d41vFZqLf3L7U1bO2c8XmoNicCL3mpNic3HwMNx9DrblBrzkpNtvvugFA4xK3
   </data>
