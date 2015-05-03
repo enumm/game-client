@@ -199,9 +199,10 @@ p.doDamage = function(dmg){
 		// }
 
 		// assets.sendData();
+		var name = this.name
 
 		$.each(instanceData.units, function(index, value){
-			if( value.name == this.name) {value.kill = true;}
+			if( value.name == name) {value.kill = true;}
 		});
 
 		// for( i = instanceData.units.length-1; i>=0; i--) {
