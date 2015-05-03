@@ -63,10 +63,10 @@ p.setup = function() {
 	this.life = 100;
 	
 	var rect = new createjs.Shape();
- 	rect.graphics.beginFill("#0f0").drawRect(50, 64, 30, 5);
+ 	rect.graphics.beginFill("#0f0").drawRect(50, 64, 0.3 * this.life, 5);
  	rect.name = 'greenHP';
  	var rect1 = new createjs.Shape();
- 	rect1.graphics.beginFill("#f00").drawRect(50, 64, 30, 5);
+ 	rect1.graphics.beginFill("#f00").drawRect(50, 64, 0.3 * this.life, 5);
  	rect1.name = 'redHP';
  	
  	this.addChild(rect1, rect);
@@ -91,7 +91,7 @@ p.updateTime = function(delta, unitData) {
 	var enemyY;
 
 	if(this.ours){
-		$.each(opponentData.units, function(index, value){
+		$.each(opponentData.units.concat(opponentData.buildings), function(index, value){
 			if(!value.kill && value.name != name){
 				//console.log(name + ' distance to ' + value.name + ' = ' + assets.getDistance(x, y, value.x, value.y));
 				var dst = assets.getDistance(x, y, value.x, value.y);
@@ -105,7 +105,7 @@ p.updateTime = function(delta, unitData) {
 			}
 		});
 	}else{
-		$.each(instanceData.units, function(index, value){
+		$.each(instanceData.units.concat(instanceData.buildings), function(index, value){
 			if(!value.kill && value.name != name){
 				//console.log(name + ' distance to ' + value.name + ' = ' + assets.getDistance(x, y, value.x, value.y));
 				var dst = assets.getDistance(x, y, value.x, value.y);

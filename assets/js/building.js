@@ -21,9 +21,24 @@ p.setup = function() {
 	}
 	
     this.addChild(building);
+
+	this.life = 200;
+    var rect = new createjs.Shape();
+ 	rect.graphics.beginFill("#0f0").drawRect(35, 30, 0.3 * this.life, 5);
+ 	rect.name = 'greenHP';
+ 	var rect1 = new createjs.Shape();
+ 	rect1.graphics.beginFill("#f00").drawRect(35, 30, 0.3 * this.life, 5);
+ 	rect1.name = 'redHP';
+ 	
+ 	this.addChild(rect1, rect);
 };
 
 p.updateTime = function(delta) {
+	//hp
+	var rectHP = this.getChildByName('greenHP');
+	rectHP.graphics.clear()
+	rectHP.graphics.beginFill("#0f0").drawRect(35, 30, 0.3 * this.life, 5);
+
 	this.buildTimer += delta;
 	if(this.buildTimer >= 10){
 		this.buildTimer = 0;
@@ -57,6 +72,18 @@ p.isProducing = function(){
 p.setProducing = function(producing){
 	this.producing = producing;
 	this.buildTimer = 0;
+};
+
+p.doDamage = function(dmg){
+	this.life -= dmg;
+	
+	if(this.life <= 0){
+		for( i = instanceData.buildings.length-1; i>=0; i--) {
+			if( instanceData.buildings[i].name == this.name) {instanceData.buildings[i].kill = true;}
+		}
+
+		assets.sendData();
+	}
 };
 
 window.Building = createjs.promote(Building, "Container");

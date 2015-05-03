@@ -94,6 +94,7 @@ p.drawUpdate = function(delta){
     gameInstanceScreen.getChildByName('moneyLabel').text = instanceData.money + '$';
     var map = gameInstanceScreen.getChildByName('map').getChildByName('units');
 
+    //units
     instanceData.units = $.grep(instanceData.units, function (el, i) {
         var unit = map.getChildByName(el.name);
 
@@ -136,31 +137,79 @@ p.drawUpdate = function(delta){
         return true;
     });
 
-    $.each(instanceData.buildings, function(index, value){
-        var building = map.getChildByName(value.name);
+    //buildings
+
+    instanceData.buildings = $.grep(instanceData.buildings, function (el, i) {
+        var building = map.getChildByName(el.name);
+
+        if (el.kill) { // or whatever
+            if(building){
+                building.parent.removeChild(building);
+            }
+            
+            return false;
+        }
 
         if(!building){
-            building = new Building(value.name, true);
-            building.x = value.x;
-            building.y = value.y;
+            building = new Building(el.name, true);
+            building.x = el.x;
+            building.y = el.y;
             map.addChild(building);
         }else if(building.isProducing()){
             building.updateTime(delta);
         }
+
+        return true;
     });
 
-    $.each(opponentData.buildings, function(index, value){
-       var building = map.getChildByName(value.name);
+    opponentData.buildings = $.grep(opponentData.buildings, function (el, i) {
+        var building = map.getChildByName(el.name);
+
+        if (el.kill) { // or whatever
+            if(building){
+                building.parent.removeChild(building);
+            }
+            
+            return false;
+        }
 
         if(!building){
-            building = new Building(value.name, false);
-            building.x = value.x;
-            building.y = value.y;
+            building = new Building(el.name, false);
+            building.x = el.x;
+            building.y = el.y;
             map.addChild(building);
         }else if(building.isProducing()){
             building.updateTime(delta);
         }
+
+        return true;
     });
+
+    // $.each(instanceData.buildings, function(index, value){
+    //     var building = map.getChildByName(value.name);
+
+    //     if(!building){
+    //         building = new Building(value.name, true);
+    //         building.x = value.x;
+    //         building.y = value.y;
+    //         map.addChild(building);
+    //     }else if(building.isProducing()){
+    //         building.updateTime(delta);
+    //     }
+    // });
+
+    // $.each(opponentData.buildings, function(index, value){
+    //    var building = map.getChildByName(value.name);
+
+    //     if(!building){
+    //         building = new Building(value.name, false);
+    //         building.x = value.x;
+    //         building.y = value.y;
+    //         map.addChild(building);
+    //     }else if(building.isProducing()){
+    //         building.updateTime(delta);
+    //     }
+    // });
 
     //instanceData
     //opponentData
