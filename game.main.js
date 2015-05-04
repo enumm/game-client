@@ -8,6 +8,7 @@ var btnMmPrivateImg = [];
 var btnFindGameImg = [];
 var btnCancelImg = [];
 var loginBackGround;
+var overlayImg;
 var stage;
 var mapData;
 
@@ -220,6 +221,7 @@ window.onload = function(){
         {id: "css", src: "css/style.css"},
 
         {id: "tileset", src: "img/tileCheck.png"},
+        {id: "overlay", src: "img/overlay.png"},
         {id: "buttonImg", src: "img/button.png"},
         {id: "btnRacePlebs", src: "img/race_plebs.jpg"},
         {id: "btnRaceBlablas", src: "img/race_blablas.jpg"},
@@ -297,6 +299,8 @@ function handleFileLoad(event) {
             }
             else if(id =="btnRaceBlablas"){
                 btnRaceBlablasImg[0] = result;
+            }else if(id =="overlay"){
+                overlayImg = result;
             }else{
                 loginBackGround = result;
             }

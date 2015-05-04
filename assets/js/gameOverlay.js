@@ -9,7 +9,12 @@ var p = createjs.extend(GameOverlay, createjs.Container);
 
 p.setup = function() {
 
-	var btnBuilding1 = new Button1('Pleb hut  - 2$', '#fff', null, function(){
+    var overlay = new createjs.Bitmap(overlayImg);
+    overlay.name = 'overlayImg'; 
+    overlay.y = 446;
+    this.addChild(overlay);
+	
+    var btnBuilding1 = new Button1('Pleb hut  - 2$', '#fff', null, function(){
 		var map = gameInstanceScreen.getChildByName('map');
 
         $.each(map.getChildByName('bottom').children, function( index, value ) {
