@@ -23,6 +23,7 @@ var moneyUpdateTimer = 0;
 
 var raceSelected = 'plebs';
 var gameType = 'casual';
+var userCurrentSelection;
 
 //check other places
 var instanceData = {money: 5, castleHp: 1000, buildings: [], units: [], buildingCount: 0, unitCount: 0};
@@ -214,6 +215,7 @@ window.onload = function(){
         {id: "building", src: "js/building.js"},
         {id: "instanceScreen", src: "js/gameInstanceScreen.js"},
         {id: "serverInterp", src: "js/serverInterpreter.js"},
+        {id: "gameOverlay", src: "js/gameOverlay.js"},
 
         {id: "css", src: "css/style.css"},
 

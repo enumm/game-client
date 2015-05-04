@@ -163,6 +163,13 @@
             lastY = 0;
         });
 
+        top.on("click", function(){
+            userCurrentSelection = null;
+        }); 
+        bottom.on("click", function(){
+            userCurrentSelection = null;
+        }); 
+
         return map;
     } 
 

@@ -70,6 +70,12 @@ p.setup = function() {
  	rect1.name = 'redHP';
  	
  	this.addChild(rect1, rect);
+
+ 	if(this.ours){
+	 	this.on("click", function(){
+	 		userCurrentSelection = this.name;
+	 	});	
+ 	}
 };
 
 p.updateTime = function(delta, unitData) {

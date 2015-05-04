@@ -1,8 +1,9 @@
 (function() {
 
-function Castle(good) {
+function Castle(good, data) {
 	this.Container_constructor();
 	this.good = good;
+	this.connectionData = data;
 	this.setup();
 }
 var p = createjs.extend(Castle, createjs.Container);
@@ -51,6 +52,16 @@ p.setup = function() {
  	rect1.name = 'redHP';
  	
  	this.addChild(rect1, rect);
+
+ 	if(this.connectionData.host && this.good){
+	 	this.on("click", function(){
+	 		userCurrentSelection = this.name;
+	 	});	
+ 	}else if(!this.connectionData.host && !this.good){
+ 		this.on("click", function(){
+	 		userCurrentSelection = this.name;
+	 	});	
+ 	}
 };
 
 p.doDamage = function(dmg){
