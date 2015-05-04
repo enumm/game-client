@@ -56,10 +56,10 @@ socket.on('set_user_data', function (data) {
             statsString += "statistics.losses\n";
         };
         statsString += "Please remove the following fields:\n"
-        if(userStatistics.win){
+        if(typeof(userStatistics.win) != "undefined"){
             statsString += "statistics.win\n";
         }
-        if(userStatistics.loss){
+        if(typeof(userStatistics.loss) != "undefined"){
             statsString += "statistics.loss\n";
         };
     }
