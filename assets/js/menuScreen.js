@@ -93,12 +93,25 @@ p.setup = function() {
     });
     btnLogOut.x = 800;
     btnLogOut.y = 630;
-    //--------------------------------------------
 
+    var btnAddFriend =  new Button1("Add Friend", "#00F", null, function() {
+        //assets.sendMSG('cancel_matchmaking');       
+    });
+    btnAddFriend.x = 200;
+    btnAddFriend.y = 150;
+
+    var btnFriends =  new Button1("Friends", "#00F", null, function() {
+        //assets.sendMSG('cancel_matchmaking');
+    });
+    btnFriends.x = 200;
+    btnFriends.y = 100;
+    
+    this.addChild(btnFriends,btnAddFriend);
     this.addChild(btnRacePlebs, btnRaceBlablas);
     this.addChild(btnMmCasual, btnMmRanked, btnMmPrivate);
     this.addChild(btnFindGame);
     this.addChild(btnLogOut);
+    //--------------------------------------------
 };
 
 p.msgStartGame = function(data){

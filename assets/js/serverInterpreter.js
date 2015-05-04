@@ -1,7 +1,7 @@
 //# sourceURL=serverInterpreter.js
 (function() {
-socket = io('http://pc.enumm.me:10101');
-//socket = io('http://127.0.0.1:3003');
+//socket = io('http://pc.enumm.me:10101');
+socket = io('http://127.0.0.1:3003');
     
 socket.on('hello', function (data) {
     console.log('Server says: ' + data.msg);
@@ -25,7 +25,7 @@ socket.on('user_register_response', function (data) {
     }
 });
 
-socket.on('set_user_data', function (data) {
+socket.on('show_user_data', function (data) {
     var userStatistics = data.statistics;
     var userUsername = data.username;
     var statsString;
