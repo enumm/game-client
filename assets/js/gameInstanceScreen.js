@@ -105,7 +105,7 @@ p.drawUpdate = function(delta){
         }
 
         if(!building){
-            building = new Building(el.name, true);
+            building = new Building(el.name, el.type, true);
             building.x = el.x;
             building.y = el.y;
             map.addChild(building);
@@ -128,7 +128,7 @@ p.drawUpdate = function(delta){
         }
 
         if(!building){
-            building = new Building(el.name, false);
+            building = new Building(el.name, el.type, false);
             building.x = el.x;
             building.y = el.y;
             map.addChild(building);

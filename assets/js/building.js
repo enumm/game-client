@@ -1,9 +1,10 @@
 (function() {
 
-function Building(name, ours) {
+function Building(name, buildingType, ours) {
 	this.Container_constructor();
 	this.buildingName = name;
 	this.ours = ours;
+	this.buildingType = buildingType;
 	this.buildTimer = 0;
 	this.setup();
 }
@@ -14,14 +15,14 @@ p.setup = function() {
 	var building = null;
 
 	if(gameInstanceScreen.connectionData.host){
-		building = assets.createBuilding(this.ours ? 56 : 57);
+		building = assets.createBuilding(this.ours ? this.buildingType.hframe : this.buildingType.oframe);
 	}else{
-		building = assets.createBuilding(this.ours ? 57 : 56);
+		building = assets.createBuilding(this.ours ? this.buildingType.oframe : this.buildingType.hframe);
 	}
 	
     this.addChild(building);
 
-	this.life = 200;
+	this.life = this.buildingType.life;
     var rect = new createjs.Shape();
  	rect.graphics.beginFill("#0f0").drawRect(35, 30, 0.3 * this.life, 5);
  	rect.name = 'greenHP';
@@ -47,22 +48,27 @@ p.updateTime = function(delta, element) {
 
 	if(element.producing){
 		this.buildTimer += delta;
+
 		if(this.buildTimer >= 10){
 			this.buildTimer = 0;
-
-			if(this.ours){
-				var tilePos = assets.screenToMap(this.x, this.y);
-				var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host);
-				if(unitTilePos){
-					var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
+			var tilePos = assets.screenToMap(this.x, this.y);
+			var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host, this.ours);
+			if(unitTilePos){
+				var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
+				if(this.ours){
 					instanceData.units.push({
+						name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
+						x: unitPos[0],
+						y: unitPos[1]
+					});	
+				}else{
+					opponentData.units.push({
 						name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
 						x: unitPos[0],
 						y: unitPos[1]
 					});	
 				}
 			}
-			//assets.sendData();
 		}
 	}else{
 		this.buildTimer = 0;
