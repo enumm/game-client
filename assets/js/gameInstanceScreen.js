@@ -109,8 +109,8 @@ p.drawUpdate = function(delta){
             building.x = el.x;
             building.y = el.y;
             map.addChild(building);
-        }else if(building.isProducing()){
-            building.updateTime(delta);
+        }else{
+            building.updateTime(delta, instanceData.buildings[i]);
         }
 
         return true;
@@ -132,8 +132,8 @@ p.drawUpdate = function(delta){
             building.x = el.x;
             building.y = el.y;
             map.addChild(building);
-        }else if(building.isProducing()){
-            building.updateTime(delta);
+        }else{
+            building.updateTime(delta, opponentData.buildings[i]);
         }
 
         return true;

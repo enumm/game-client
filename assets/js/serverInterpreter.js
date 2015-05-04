@@ -2,7 +2,7 @@
 (function() {
     socket = io('http://127.0.0.1:3003');
     socket = io('http://pc.enumm.me:10101');
-    
+
     socket.on('hello', function (data) {
         console.log('Server says: ' + data.msg);
     });
@@ -89,6 +89,7 @@
     });
 
     socket.on('message', function (data, oData) {
+        console.log('got game data from server');
         instanceData = data;
         opponentData = oData;
     });

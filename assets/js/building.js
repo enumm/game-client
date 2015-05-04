@@ -5,7 +5,6 @@ function Building(name, ours) {
 	this.buildingName = name;
 	this.ours = ours;
 	this.buildTimer = 0;
-	this.producing = true;
 	this.setup();
 }
 var p = createjs.extend(Building, createjs.Container);
@@ -39,45 +38,35 @@ p.setup = function() {
  	}
 };
 
-p.updateTime = function(delta) {
+p.updateTime = function(delta, element) {
 	//hp
 	var rectHP = this.getChildByName('greenHP');
 	rectHP.graphics.clear()
 	rectHP.graphics.beginFill("#0f0").drawRect(35, 30, 0.3 * this.life, 5);
 
-	this.buildTimer += delta;
-	if(this.buildTimer >= 10){
-		this.buildTimer = 0;
 
-		// console.log(this.name + '  ours: ' +this.ours);
-		if(this.ours){
-			var tilePos = assets.screenToMap(this.x, this.y);
-			var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host);
-			if(unitTilePos){
-				var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
-				instanceData.units.push({
-					name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
-					x: unitPos[0],
-					y: unitPos[1]
-				});	
+	if(element.producing){
+		this.buildTimer += delta;
+		if(this.buildTimer >= 10){
+			this.buildTimer = 0;
+
+			if(this.ours){
+				var tilePos = assets.screenToMap(this.x, this.y);
+				var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host);
+				if(unitTilePos){
+					var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
+					instanceData.units.push({
+						name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
+						x: unitPos[0],
+						y: unitPos[1]
+					});	
+				}
 			}
+			//assets.sendData();
 		}
-		//else{
-		// 	//opponentData.units.push({name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.buildings.length: 'ounit' + instanceData.units.length, x: this.x, y: this.y});
-		// 	// console.log('enemy units + 1');
-		// }
-
-		assets.sendData();
+	}else{
+		this.buildTimer = 0;
 	}
-};
-
-p.isProducing = function(){
-	return this.producing; // todo stop production
-};
-
-p.setProducing = function(producing){
-	this.producing = producing;
-	this.buildTimer = 0;
 };
 
 p.doDamage = function(dmg){
