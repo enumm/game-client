@@ -95,7 +95,8 @@ p.setup = function() {
     btnLogOut.y = 630;
 
     var btnAddFriend =  new Button1("Add Friend", "#00F", null, function() {
-        //assets.sendMSG('cancel_matchmaking');       
+        friendScreen.showAddFriendInput()
+        //assets.sendMSG('cancel_matchmaking');
     });
     btnAddFriend.x = 200;
     btnAddFriend.y = 150;
