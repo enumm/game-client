@@ -272,7 +272,7 @@
     }
 
     o.mapToScreen = function(x, y ){
-        return [ x * mapData.tilewidth/2 - y * mapData.tilewidth/2, y * mapData.tileheight/2 + x * mapData.tileheight/2]
+        return [x * mapData.tilewidth/2 - y * mapData.tilewidth/2, y * mapData.tileheight/2 + x * mapData.tileheight/2];
     }
 
     o.screenToMap = function(x, y ){
@@ -287,27 +287,27 @@
         //todo: review possitions...
         if(host){
             if(ours){
-                if(matrix[tX + 1 ][tY] == 0) return [tX + 1, tY];
-                if(matrix[tX][tY -1 ] == 0) return [tX, tY - 1];
-                if(matrix[tX][tY + 1] == 0) return [tX, tY + 1];
-                if(matrix[tX - 1 ][tY] == 0) return [tX - 1, tY];    
+                if(matrix[tY][tX + 1] == 0) return [tX + 1, tY];
+                if(matrix[tY -1][tX] == 0) return [tX, tY - 1];
+                if(matrix[tY + 1][tX] == 0) return [tX, tY + 1];
+                if(matrix[tY][tX - 1] == 0) return [tX - 1, tY];    
             }else{
-                if(matrix[tX][tY + 1] == 0) return [tX, tY + 1];
-                if(matrix[tX - 1 ][tY] == 0) return [tX - 1, tY];
-                if(matrix[tX + 1 ][tY] == 0) return [tX + 1, tY];
-                if(matrix[tX][tY -1 ] == 0) return [tX, tY - 1];    
+                if(matrix[tY + 1][tX] == 0) return [tX, tY + 1];
+                if(matrix[tY][tX - 1] == 0) return [tX - 1, tY];
+                if(matrix[tY][tX + 1] == 0) return [tX + 1, tY];
+                if(matrix[tY -1 ][tX] == 0) return [tX, tY - 1];    
             }
         }else{
             if(ours){
-                if(matrix[tX][tY + 1] == 0) return [tX, tY + 1];
-                if(matrix[tX - 1 ][tY] == 0) return [tX - 1, tY];
-                if(matrix[tX + 1 ][tY] == 0) return [tX + 1, tY];
-                if(matrix[tX][tY -1 ] == 0) return [tX, tY - 1];    
+                if(matrix[tY + 1][tX] == 0) return [tX, tY + 1];
+                if(matrix[tY][tX - 1] == 0) return [tX - 1, tY];
+                if(matrix[tY][tX + 1] == 0) return [tX + 1, tY];
+                if(matrix[tY -1 ][tX] == 0) return [tX, tY - 1];   
             }else{
-                if(matrix[tX + 1 ][tY] == 0) return [tX + 1, tY];
-                if(matrix[tX][tY -1 ] == 0) return [tX, tY - 1];
-                if(matrix[tX][tY + 1] == 0) return [tX, tY + 1];
-                if(matrix[tX - 1 ][tY] == 0) return [tX - 1, tY];  
+                if(matrix[tY][tX + 1] == 0) return [tX + 1, tY];
+                if(matrix[tY -1][tX] == 0) return [tX, tY - 1];
+                if(matrix[tY + 1][tX] == 0) return [tX, tY + 1];
+                if(matrix[tY][tX - 1] == 0) return [tX - 1, tY];   
             }
         }
         

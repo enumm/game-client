@@ -111,17 +111,17 @@ p.updateTime = function(delta, unitData) {
 			}
 		});
 
-		if(gameInstanceScreen.connectionData.host){
-			if((assets.screenToMap(x, y)[0]|0) == 30 && (assets.screenToMap(x, y)[1]|0) == 14){
-				enemyName = 'castleBad'; 
-				distanceToEnemy = 9;
-			}
-		}else{
-			if((assets.screenToMap(x, y)[0]|0) == 14 && (assets.screenToMap(x, y)[1]|0) == 30){
-				enemyName = 'castleGood'; 
-				distanceToEnemy = 9;
-			}
-		}
+		// if(gameInstanceScreen.connectionData.host){
+		// 	if((assets.screenToMap(x, y)[0]|0) == 30 && (assets.screenToMap(x, y)[1]|0) == 14){
+		// 		enemyName = 'castleBad'; 
+		// 		distanceToEnemy = 9;
+		// 	}
+		// }else{
+		// 	if((assets.screenToMap(x, y)[0]|0) == 14 && (assets.screenToMap(x, y)[1]|0) == 30){
+		// 		enemyName = 'castleGood'; 
+		// 		distanceToEnemy = 9;
+		// 	}
+		// }
 	}else{
 		$.each(instanceData.units.concat(instanceData.buildings), function(index, value){
 			if(!value.kill && value.name != name){
@@ -136,23 +136,23 @@ p.updateTime = function(delta, unitData) {
 			}
 		});
 
-		if(gameInstanceScreen.connectionData.host){
-			if((assets.screenToMap(x, y)[0]|0) == 14 && (assets.screenToMap(x, y)[1]|0) == 30){
-				enemyName = 'castleGood'; 
-				distanceToEnemy = 9;
-			}
-		}else{
-			if((assets.screenToMap(x, y)[0]|0) == 30 && (assets.screenToMap(x, y)[1]|0) == 14){
-				enemyName = 'castleBad'; 
-				distanceToEnemy = 9;
-			}
-		}
+		// if(gameInstanceScreen.connectionData.host){
+		// 	if((assets.screenToMap(x, y)[0]|0) == 14 && (assets.screenToMap(x, y)[1]|0) == 30){
+		// 		enemyName = 'castleGood'; 
+		// 		distanceToEnemy = 9;
+		// 	}
+		// }else{
+		// 	if((assets.screenToMap(x, y)[0]|0) == 30 && (assets.screenToMap(x, y)[1]|0) == 14){
+		// 		enemyName = 'castleBad'; 
+		// 		distanceToEnemy = 9;
+		// 	}
+		// }
 	}
 
 	if(distanceToEnemy < 10){
 		var enemy = gameInstanceScreen.getChildByName('map').getChildByName('units').getChildByName(enemyName);
 		if(enemy){
-			enemy.doDamage(0.5);
+			//enemy.doDamage(0.5);
 		}
 		
 		//fight
