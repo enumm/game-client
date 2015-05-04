@@ -1,6 +1,7 @@
 //# sourceURL=serverInterpreter.js
 (function() {
-        
+    socket = io('http://pc.enumm.me:10101');
+    
     socket.on('hello', function (data) {
         console.log('Server says: ' + data.msg);
     });
