@@ -102,6 +102,7 @@ p.setup = function() {
     btnAddFriend.y = 150;
 
     var btnFriends =  new Button1("Friends", "#00F", null, function() {
+        friendScreen.showFriendPanel();
         //assets.sendMSG('cancel_matchmaking');
     });
     btnFriends.x = 200;

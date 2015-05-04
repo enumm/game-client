@@ -24,6 +24,7 @@ var moneyUpdateTimer = 0;
 
 var raceSelected = 'plebs';
 var gameType = 'casual';
+var userFriends = [];
 var userCurrentSelection;
 
 //check other places
