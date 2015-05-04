@@ -31,7 +31,8 @@ p.setup = function() {
                         name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildingCount++: 'obuilding' + instanceData.buildingCount++,
                             x: this.x,
                             y: this.y,
-                            type: BuildingTypes.PlebHut,
+                            buildingType: BuildingTypes.PlebHut,
+                            hp: BuildingTypes.PlebHut.life,
                             old: false, 
                             producing: true
                         });
@@ -61,12 +62,13 @@ p.setup = function() {
                 value.on("click", function(){
                     assets.tileRemoveAllEventListeners(map.getChildByName('bottom'));
 
-                    if(instanceData.money >= BuildingTypes.Otherhut.cost){
+                    if(instanceData.money >= BuildingTypes.OtherHut.cost){
                         instanceData.buildings.push({
                         name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildingCount++: 'obuilding' + instanceData.buildingCount++,
                             x: this.x,
                             y: this.y,
-                            type: BuildingTypes.Otherhut,
+                            buildingType: BuildingTypes.OtherHut,
+                            hp: BuildingTypes.OtherHut.life,
                             old: false, 
                             producing: true
                         });
@@ -83,7 +85,7 @@ p.setup = function() {
     });
 
     btnBuilding2.x = 10;
-    btnBuilding2.y = 100;
+    btnBuilding2.y = 125;
 
     this.addChild(btnBuilding1, btnBuilding2);
 

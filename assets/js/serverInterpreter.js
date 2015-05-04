@@ -1,6 +1,6 @@
 //# sourceURL=serverInterpreter.js
 (function() {
-    socket = io('http://127.0.0.1:3003');
+    //socket = io('http://127.0.0.1:3003');
     socket = io('http://pc.enumm.me:10101');
 
     socket.on('hello', function (data) {
@@ -89,7 +89,7 @@
     });
 
     socket.on('message', function (data, oData) {
-        console.log('got game data from server');
+        console.log(data);
         instanceData = data;
         opponentData = oData;
     });
