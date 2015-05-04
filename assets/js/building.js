@@ -49,7 +49,7 @@ p.updateTime = function(delta, element) {
 	if(element.producing){
 		this.buildTimer += delta;
 
-		if(this.buildTimer >= 10){
+		if(this.buildTimer >=  this.buildingType.buildTime){
 			this.buildTimer = 0;
 			var tilePos = assets.screenToMap(this.x, this.y);
 			var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host, this.ours);
@@ -76,20 +76,20 @@ p.updateTime = function(delta, element) {
 };
 
 p.doDamage = function(dmg){
-	this.life -= dmg;
+	// this.life -= dmg;
 	
-	if(this.life <= 0){
-		// for( i = instanceData.buildings.length-1; i>=0; i--) {
-		// 	if( instanceData.buildings[i].name == this.name) {instanceData.buildings[i].kill = true;}
-		// }
-		var name = this.name;
+	// if(this.life <= 0){
+	// 	// for( i = instanceData.buildings.length-1; i>=0; i--) {
+	// 	// 	if( instanceData.buildings[i].name == this.name) {instanceData.buildings[i].kill = true;}
+	// 	// }
+	// 	var name = this.name;
 
-		$.each(instanceData.buildings, function(index, value){
-			if( value.name == name) {value.kill = true;}
-		});
+	// 	$.each(instanceData.buildings, function(index, value){
+	// 		if( value.name == name) {value.kill = true;}
+	// 	});
 
-		assets.sendData();
-	}
+	// 	assets.sendData();
+	// }
 };
 
 window.Building = createjs.promote(Building, "Container");
