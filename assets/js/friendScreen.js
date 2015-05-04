@@ -13,7 +13,7 @@
 	}
 
 	o.showFriendPanel = function(){
-		assets.sendMSG('load_friends');
+		assets.sendMSG('get_user_friends');
 	}
 
 	o.destroy = function(){
