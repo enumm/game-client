@@ -163,14 +163,12 @@ function OnResizeCalled() {
     var margin = (pageWidth - parseInt(canvas.style.width))/2;
     canvas.style.marginLeft = margin + 'px';
 
-	if(loginScreen) {
-		var loginDiv = $('#loginForm');
-		var loginBlock = loginScreen.getChildByName('LoginBlock');
-        if(loginBlock){
+    var loginDiv = $('#mainPanelContainer');
+    var loginBlock = stage.getChildByName('MainPanel');
+    if(loginBlock){
         loginBlock.x = ((parseInt(canvas.style.width) * 0.5) - loginDiv.width() * 0.5) + margin;
-        loginBlock.y = -(parseInt(canvas.style.height) * 0.5) - loginDiv.height() * 0.5;    
-        }
-	}
+        loginBlock.y = -(parseInt(canvas.style.height) * 0.5) - loginDiv.height() * 0.5;
+    }
 
    //hideAddressbar('#canvasHolder');
 }
@@ -334,7 +332,7 @@ function handleComplete(event) {
         showDebug();
     }
 
-    mainPanel.show();
+    mainPanel.init();
 
     FB.getLoginStatus(function(response) {
         mainPanel.statusChangeCallback(response);

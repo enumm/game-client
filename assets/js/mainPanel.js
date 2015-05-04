@@ -3,6 +3,23 @@
 
 	var o = window.mainPanel = {};
 
+	o.init = function(){
+		var panelDiv = document.getElementById("mainPanelContainer");
+	    var mainPanelDOMElement = new createjs.DOMElement(panelDiv);
+	    mainPanelDOMElement.name = 'MainPanel';
+	    stage.addChild(mainPanelDOMElement);
+	    this.show();
+	}
+
+	o.hide = function(){
+		$('#mainPanelContainer').css('display','none');
+		stage.getChildByName('MainPanel').htmlElement.style.display = "none";
+	}
+
+	o.show = function(){
+		stage.getChildByName('MainPanel').htmlElement.style.display = "block";
+	}	
+
 	o.showLogin = function(){
 		$('.messageAreaLogin').css('display','block');
 	}
@@ -23,14 +40,6 @@
 		var heigth = 300;
 		$('#mainPanelContainer').css('height', heigth + 'px');
 		$('#logo').css('top', -1*heigth/8 + '%');
-	}
-
-	o.hide = function(){
-		$('#mainPanelContainer').css('display','none');
-	}
-
-	o.show = function(){
-		$('#mainPanelContainer').css('display','block');
 	}
 
 	o.submitRegister = function(){
