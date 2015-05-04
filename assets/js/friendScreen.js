@@ -12,6 +12,10 @@
 		$('#addFriend').css('display','block');
 	}
 
+	o.showFriendPanel = function(){
+		assets.sendMSG('load_friends');
+	}
+
 	o.destroy = function(){
     //registerScreen.getChildByName('registerBlock').htmlElement.style.display = "none";
 	}
