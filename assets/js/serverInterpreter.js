@@ -1,7 +1,7 @@
 //# sourceURL=serverInterpreter.js
 (function() {
-//socket = io('http://pc.enumm.me:10101');
-socket = io('http://127.0.0.1:3003');
+socket = io('http://pc.enumm.me:10101');
+//socket = io('http://127.0.0.1:3003');
     
 socket.on('hello', function (data) {
     console.log('Server says: ' + data.msg);
