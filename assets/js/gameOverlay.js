@@ -9,10 +9,10 @@ var p = createjs.extend(GameOverlay, createjs.Container);
 
 p.setup = function() {
 
-    var overlay = new createjs.Bitmap(overlayImg);
-    overlay.name = 'overlayImg'; 
-    overlay.y = 446;
-    this.addChild(overlay);
+    // var overlay = new createjs.Bitmap(overlayImg);
+    // overlay.name = 'overlayImg'; 
+    // overlay.y = 446;
+    // this.addChild(overlay);
 	
     var btnBuilding1 = new Button1('Pleb hut  - 2$', '#fff', null, function(){
 		var map = gameInstanceScreen.getChildByName('map');
@@ -32,7 +32,8 @@ p.setup = function() {
                             y: this.y,
                             frame: 10,
                             price: 2,
-                            old: false
+                            old: false, 
+                            producing: true
                         });
                     }
 
@@ -66,10 +67,40 @@ p.setup = function() {
     selection.y = 600;
     selection.x = 500;
 
-    this.addChild(opponentName, money, selection);
+    var stopProduction = new Button1('Start/Stop Prod.', '#fff', null, function(){
+        if(userCurrentSelection){
+            $.each(instanceData.buildings, function(index, value){
+                if(value.name == userCurrentSelection){
+                    value.producing = !value.producing;
+                }
+            }); 
+
+            assets.sendData();
+        }
+    });
+
+    stopProduction.name = 'btnStopProduction';
+    stopProduction.y = 650;
+    stopProduction.x = 500;
+
+    if(!userCurrentSelection){
+        stopProduction.visible = false;
+    }
+
+    this.addChild(opponentName, money, selection, stopProduction);
 };
 
 p.update = function() {
+    if(userCurrentSelection){
+        if(userCurrentSelection.indexOf('building') == 1){
+             this.getChildByName('btnStopProduction').visible = true;
+        }else{
+            this.getChildByName('btnStopProduction').visible = false;    
+        }
+    }else{
+         this.getChildByName('btnStopProduction').visible = false;    
+    }
+    
 	this.getChildByName('moneyLabel').text = instanceData.money + '$';
 	this.getChildByName('selection').text = userCurrentSelection;
 };
