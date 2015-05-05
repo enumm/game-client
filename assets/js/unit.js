@@ -91,125 +91,127 @@ p.updateTime = function(delta, unitData) {
 	var x = this.x;
 	var y = this.y;
 
-	var distanceToEnemy = 100000;
-	var enemyName;
-	var enemyX;
-	var enemyY;
+	this.x += 10 * delta;
 
-	if(this.ours){
-		$.each(opponentData.units.concat(opponentData.buildings), function(index, value){
-			if(!value.kill && value.name != name){
-				//console.log(name + ' distance to ' + value.name + ' = ' + assets.getDistance(x, y, value.x, value.y));
-				var dst = assets.getDistance(x, y, value.x, value.y);
-				if(distanceToEnemy > dst){
-					distanceToEnemy = dst;
-					enemyName = value.name; 
-					enemyX = value.x;
-					enemyY = value.y;
-				}
+	// var distanceToEnemy = 100000;
+	// var enemyName;
+	// var enemyX;
+	// var enemyY;
+
+	// if(this.ours){
+	// 	$.each(opponentData.units.concat(opponentData.buildings), function(index, value){
+	// 		if(!value.kill && value.name != name){
+	// 			//console.log(name + ' distance to ' + value.name + ' = ' + assets.getDistance(x, y, value.x, value.y));
+	// 			var dst = assets.getDistance(x, y, value.x, value.y);
+	// 			if(distanceToEnemy > dst){
+	// 				distanceToEnemy = dst;
+	// 				enemyName = value.name; 
+	// 				enemyX = value.x;
+	// 				enemyY = value.y;
+	// 			}
 				
-			}
-		});
+	// 		}
+	// 	});
 
-		// if(gameInstanceScreen.connectionData.host){
-		// 	if((assets.screenToMap(x, y)[0]|0) == 30 && (assets.screenToMap(x, y)[1]|0) == 14){
-		// 		enemyName = 'castleBad'; 
-		// 		distanceToEnemy = 9;
-		// 	}
-		// }else{
-		// 	if((assets.screenToMap(x, y)[0]|0) == 14 && (assets.screenToMap(x, y)[1]|0) == 30){
-		// 		enemyName = 'castleGood'; 
-		// 		distanceToEnemy = 9;
-		// 	}
-		// }
-	}else{
-		$.each(instanceData.units.concat(instanceData.buildings), function(index, value){
-			if(!value.kill && value.name != name){
-				//console.log(name + ' distance to ' + value.name + ' = ' + assets.getDistance(x, y, value.x, value.y));
-				var dst = assets.getDistance(x, y, value.x, value.y);
-				if(distanceToEnemy > dst){
-					distanceToEnemy = dst;
-					enemyName = value.name;
-					enemyX = value.x;
-					enemyY = value.y;
-				}
-			}
-		});
+	// 	// if(gameInstanceScreen.connectionData.host){
+	// 	// 	if((assets.screenToMap(x, y)[0]|0) == 30 && (assets.screenToMap(x, y)[1]|0) == 14){
+	// 	// 		enemyName = 'castleBad'; 
+	// 	// 		distanceToEnemy = 9;
+	// 	// 	}
+	// 	// }else{
+	// 	// 	if((assets.screenToMap(x, y)[0]|0) == 14 && (assets.screenToMap(x, y)[1]|0) == 30){
+	// 	// 		enemyName = 'castleGood'; 
+	// 	// 		distanceToEnemy = 9;
+	// 	// 	}
+	// 	// }
+	// }else{
+	// 	$.each(instanceData.units.concat(instanceData.buildings), function(index, value){
+	// 		if(!value.kill && value.name != name){
+	// 			//console.log(name + ' distance to ' + value.name + ' = ' + assets.getDistance(x, y, value.x, value.y));
+	// 			var dst = assets.getDistance(x, y, value.x, value.y);
+	// 			if(distanceToEnemy > dst){
+	// 				distanceToEnemy = dst;
+	// 				enemyName = value.name;
+	// 				enemyX = value.x;
+	// 				enemyY = value.y;
+	// 			}
+	// 		}
+	// 	});
 
-		// if(gameInstanceScreen.connectionData.host){
-		// 	if((assets.screenToMap(x, y)[0]|0) == 14 && (assets.screenToMap(x, y)[1]|0) == 30){
-		// 		enemyName = 'castleGood'; 
-		// 		distanceToEnemy = 9;
-		// 	}
-		// }else{
-		// 	if((assets.screenToMap(x, y)[0]|0) == 30 && (assets.screenToMap(x, y)[1]|0) == 14){
-		// 		enemyName = 'castleBad'; 
-		// 		distanceToEnemy = 9;
-		// 	}
-		// }
-	}
+	// 	// if(gameInstanceScreen.connectionData.host){
+	// 	// 	if((assets.screenToMap(x, y)[0]|0) == 14 && (assets.screenToMap(x, y)[1]|0) == 30){
+	// 	// 		enemyName = 'castleGood'; 
+	// 	// 		distanceToEnemy = 9;
+	// 	// 	}
+	// 	// }else{
+	// 	// 	if((assets.screenToMap(x, y)[0]|0) == 30 && (assets.screenToMap(x, y)[1]|0) == 14){
+	// 	// 		enemyName = 'castleBad'; 
+	// 	// 		distanceToEnemy = 9;
+	// 	// 	}
+	// 	// }
+	// }
 
-	if(distanceToEnemy < 10){
-		var enemy = gameInstanceScreen.getChildByName('map').getChildByName('units').getChildByName(enemyName);
-		if(enemy){
-			//enemy.doDamage(0.5);
-		}
+	// if(distanceToEnemy < 10){
+	// 	var enemy = gameInstanceScreen.getChildByName('map').getChildByName('units').getChildByName(enemyName);
+	// 	if(enemy){
+	// 		//enemy.doDamage(0.5);
+	// 	}
 		
-		//fight
-	}else if(distanceToEnemy < 100){
-		//walk to enemy
-		var dx = enemyX - this.x;
-		var dy = enemyY - this.y;
+	// 	//fight
+	// }else if(distanceToEnemy < 100){
+	// 	//walk to enemy
+	// 	var dx = enemyX - this.x;
+	// 	var dy = enemyY - this.y;
 
-		var length = Math.sqrt(dx*dx+dy*dy);
+	// 	var length = Math.sqrt(dx*dx+dy*dy);
 
-		if(length != 0 ){
-			dx/=length;
-			dy/=length;
-
-
-			dx *= 60 * delta;
-			dy *= 60 * delta;
-
-			this.x += dx;
-			this.y += dy;
-
-			unitData.x = this.x;
-			unitData.y = this.y;
-		}
-
-	}else{
-		//pathfinding
-		if(this.path.length != 0){
-			var mapPositionToGo = this.path[0];
-			var positionToGo = assets.mapToScreen(mapPositionToGo[0], mapPositionToGo[1]);
-
-			var dx = positionToGo[0]-this.x;
-			var dy = positionToGo[1]-this.y;
-
-			var length = Math.sqrt(dx*dx+dy*dy);
-
-			if(length != 0 ){
-				dx/=length;
-				dy/=length;
+	// 	if(length != 0 ){
+	// 		dx/=length;
+	// 		dy/=length;
 
 
-				dx *= 60 * delta;
-				dy *= 60 * delta;
+	// 		dx *= 60 * delta;
+	// 		dy *= 60 * delta;
 
-				this.x += dx;
-				this.y += dy;
+	// 		this.x += dx;
+	// 		this.y += dy;
 
-				unitData.x = this.x;
-				unitData.y = this.y;
-			}
+	// 		unitData.x = this.x;
+	// 		unitData.y = this.y;
+	// 	}
 
-			//console.log('skirtumas x: ' +(this.x -  positionToGo[0]) + ' y: ' + (this.y - positionToGo[1]));
-			if(this.x - positionToGo[0] < 1 && this.x - positionToGo[0] > - 1 && this.y - positionToGo[1] < 1 && this.y - positionToGo[1] > -1){
-				this.path.shift();
-			}
-		}
-	}
+	// }else{
+	// 	//pathfinding
+	// 	if(this.path.length != 0){
+	// 		var mapPositionToGo = this.path[0];
+	// 		var positionToGo = assets.mapToScreen(mapPositionToGo[0], mapPositionToGo[1]);
+
+	// 		var dx = positionToGo[0]-this.x;
+	// 		var dy = positionToGo[1]-this.y;
+
+	// 		var length = Math.sqrt(dx*dx+dy*dy);
+
+	// 		if(length != 0 ){
+	// 			dx/=length;
+	// 			dy/=length;
+
+
+	// 			dx *= 60 * delta;
+	// 			dy *= 60 * delta;
+
+	// 			this.x += dx;
+	// 			this.y += dy;
+
+	// 			unitData.x = this.x;
+	// 			unitData.y = this.y;
+	// 		}
+
+	// 		//console.log('skirtumas x: ' +(this.x -  positionToGo[0]) + ' y: ' + (this.y - positionToGo[1]));
+	// 		if(this.x - positionToGo[0] < 1 && this.x - positionToGo[0] > - 1 && this.y - positionToGo[1] < 1 && this.y - positionToGo[1] > -1){
+	// 			this.path.shift();
+	// 		}
+	// 	}
+	// }
 };
 
 p.setLife = function(life){

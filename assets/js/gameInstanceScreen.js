@@ -49,47 +49,47 @@ p.drawUpdate = function(delta){
     var map = gameInstanceScreen.getChildByName('map').getChildByName('units');
 
     //units
-    // instanceData.units = $.grep(instanceData.units, function (el, i) {
-    //     var unit = map.getChildByName(el.name);
+    instanceData.units = $.grep(instanceData.units, function (el, i) {
+        var unit = map.getChildByName(el.name);
 
-    //     if (el.kill) { // or whatever
-    //         if(unit){
-    //             unit.parent.removeChild(unit);
-    //         }
+        if (el.kill) { // or whatever
+            if(unit){
+                unit.parent.removeChild(unit);
+            }
             
-    //         return false;
-    //     }
+            return false;
+        }
 
-    //     if(!unit){
-    //         unit = new Unit(el.name, true, el.x, el.y);
-    //         map.addChild(unit);
-    //     }else{
-    //         unit.updateTime(delta, instanceData.units[i]);
-    //     }
+        if(!unit){
+            unit = new Unit(el.name, true, el.x, el.y);
+            map.addChild(unit);
+        }else{
+            unit.updateTime(delta, instanceData.units[i]);
+        }
 
-    //     return true;
-    // });
+        return true;
+    });
 
-    // opponentData.units = $.grep(opponentData.units, function (el, i) {
-    //     var unit = map.getChildByName(el.name);
+    opponentData.units = $.grep(opponentData.units, function (el, i) {
+        var unit = map.getChildByName(el.name);
 
-    //     if (el.kill) { // or whatever
-    //         if(unit){
-    //             unit.parent.removeChild(unit);
-    //         }
+        if (el.kill) { // or whatever
+            if(unit){
+                unit.parent.removeChild(unit);
+            }
             
-    //         return false;
-    //     }
+            return false;
+        }
 
-    //     if(!unit){
-    //         unit = new Unit(el.name, false, el.x, el.y);
-    //         map.addChild(unit);
-    //     }else{
-    //         unit.updateTime(delta, opponentData.units[i]);
-    //     }
+        if(!unit){
+            unit = new Unit(el.name, false, el.x, el.y);
+            map.addChild(unit);
+        }else{
+            unit.updateTime(delta, opponentData.units[i]);
+        }
 
-    //     return true;
-    // });
+        return true;
+    });
 
     //buildings
 

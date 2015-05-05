@@ -89,7 +89,7 @@
     });
 
     socket.on('message', function (data, oData) {
-        console.log(data);
+        console.log('update from server');
         instanceData = data;
         opponentData = oData;
     });
