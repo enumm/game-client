@@ -43,36 +43,41 @@ p.updateTime = function(delta, element) {
 	//hp
 	var rectHP = this.getChildByName('greenHP');
 	rectHP.graphics.clear()
-	rectHP.graphics.beginFill("#0f0").drawRect(35, 30, 0.3 * this.life, 5);
+	rectHP.graphics.beginFill("#0f0").drawRect(35, 30, 0.3 * element.hp, 5);
 
 
-	// if(element.producing){
-	// 	this.buildTimer += delta;
+	if(element.producing){
+		this.buildTimer += delta;
 
-	// 	if(this.buildTimer >=  this.buildingType.buildTime){
-	// 		this.buildTimer = 0;
-	// 		var tilePos = assets.screenToMap(this.x, this.y);
-	// 		var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host, this.ours);
-	// 		if(unitTilePos){
-	// 			var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
-	// 			if(this.ours){
-	// 				instanceData.units.push({
-	// 					name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
-	// 					x: unitPos[0],
-	// 					y: unitPos[1]
-	// 				});	
-	// 			}else{
-	// 				opponentData.units.push({
-	// 					name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
-	// 					x: unitPos[0],
-	// 					y: unitPos[1]
-	// 				});	
-	// 			}
-	// 		}
-	// 	}
-	// }else{
-	// 	this.buildTimer = 0;
-	// }
+		if(this.buildTimer >=  BuildingTypes[this.buildingType].buildTime){
+			this.buildTimer = 0;
+			var tilePos = assets.screenToMap(this.x, this.y);
+			var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host, this.ours);
+			if(unitTilePos){
+				var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
+				if(this.ours){
+					instanceData.units.push({
+						name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
+						x: unitPos[0],
+						y: unitPos[1],
+						unitType: BuildingTypes[this.buildingType].unitType
+					});
+					// console.log('---------------our data--------------');
+					// console.log(instanceData);	
+					// console.log('-------------------------------------');		
+				}else{
+					opponentData.units.push({
+						name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
+						x: unitPos[0],
+						y: unitPos[1],
+						unitType: BuildingTypes[this.buildingType].unitType
+					});		
+				}
+			}
+		}
+	}else{
+		this.buildTimer = 0;
+	}
 };
 
 p.doDamage = function(dmg){
