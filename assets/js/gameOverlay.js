@@ -144,6 +144,27 @@ p.setup = function() {
     destroyBuilding.y = 680;
     destroyBuilding.x = 500;
 
+    //building destroy --------------------------------------------------------------
+    var destroyBuilding = new Button1('Sell', '#fff', null, function(){
+        if(userCurrentSelection){
+            $.each(instanceData.buildings, function(index, value){
+                if(value.name == userCurrentSelection){
+                    value.kill = true;
+                    value.sell = true;
+                    instanceData.money += BuildingTypes[value.buildingType].cost/2;
+                }
+            }); 
+
+            userCurrentSelection = null;
+
+            assets.sendData();
+        }
+    });
+
+    destroyBuilding.name = 'btnDestroyBuilding';
+    destroyBuilding.y = 680;
+    destroyBuilding.x = 500;
+
     if(!userCurrentSelection){
         destroyBuilding.visible = false;
     }
