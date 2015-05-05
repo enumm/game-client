@@ -56,20 +56,15 @@ p.updateTime = function(delta, element) {
 			if(unitTilePos){
 				var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
 				if(this.ours){
-					console.log('pushing unit to our data ' + gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount + 1: 'ounit' + instanceData.unitCount +1);
 					instanceData.units.push({
 						name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
 						x: unitPos[0],
 						y: unitPos[1],
 						unitType: BuildingTypes[this.buildingType].unitType
-					});
-					// console.log('---------------our data--------------');
-					// console.log(instanceData);	
-					// console.log('-------------------------------------');		
+					});	
 				}else{
-					console.log('pushing unit to opponent data:  ' + gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount + 1: 'ounit' + instanceData.unitCount +1);
 					opponentData.units.push({
-						name: gameInstanceScreen.connectionData.host ? 'hunit' + opponentData.unitCount++: 'ounit' + opponentData.unitCount++,
+						name: gameInstanceScreen.connectionData.host ? 'ounit' + opponentData.unitCount++: 'hunit' + opponentData.unitCount++,
 						x: unitPos[0],
 						y: unitPos[1],
 						unitType: BuildingTypes[this.buildingType].unitType

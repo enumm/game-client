@@ -91,7 +91,9 @@ p.updateTime = function(delta, unitData) {
 	var x = this.x;
 	var y = this.y;
 
-	this.x += 10 * delta;
+
+	unitData.x += 10 * delta;
+	this.x = unitData.x;
 
 	// var distanceToEnemy = 100000;
 	// var enemyName;
