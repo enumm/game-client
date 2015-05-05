@@ -31,7 +31,7 @@ p.setup = function() {
                         name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildingCount++: 'obuilding' + instanceData.buildingCount++,
                             x: this.x,
                             y: this.y,
-                            buildingType: BuildingTypes.PlebHut,
+                            buildingType: BuildingTypes.PlebHut.name,
                             hp: BuildingTypes.PlebHut.life,
                             old: false, 
                             producing: true
@@ -67,7 +67,7 @@ p.setup = function() {
                         name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildingCount++: 'obuilding' + instanceData.buildingCount++,
                             x: this.x,
                             y: this.y,
-                            buildingType: BuildingTypes.OtherHut,
+                            buildingType: BuildingTypes.OtherHut.name,
                             hp: BuildingTypes.OtherHut.life,
                             old: false, 
                             producing: true

@@ -15,14 +15,14 @@ p.setup = function() {
 	var building = null;
 
 	if(gameInstanceScreen.connectionData.host){
-		building = assets.createBuilding(this.ours ? this.buildingType.hframe : this.buildingType.oframe);
+		building = assets.createBuilding(this.ours ? BuildingTypes[this.buildingType].hframe : BuildingTypes[this.buildingType].oframe);
 	}else{
-		building = assets.createBuilding(this.ours ? this.buildingType.oframe : this.buildingType.hframe);
+		building = assets.createBuilding(this.ours ? BuildingTypes[this.buildingType].oframe : BuildingTypes[this.buildingType].hframe);
 	}
 	
     this.addChild(building);
 
-	this.life = this.buildingType.life;
+	this.life = BuildingTypes[this.buildingType].life;
     var rect = new createjs.Shape();
  	rect.graphics.beginFill("#0f0").drawRect(35, 30, 0.3 * this.life, 5);
  	rect.name = 'greenHP';
@@ -46,33 +46,33 @@ p.updateTime = function(delta, element) {
 	rectHP.graphics.beginFill("#0f0").drawRect(35, 30, 0.3 * this.life, 5);
 
 
-	if(element.producing){
-		this.buildTimer += delta;
+	// if(element.producing){
+	// 	this.buildTimer += delta;
 
-		if(this.buildTimer >=  this.buildingType.buildTime){
-			this.buildTimer = 0;
-			var tilePos = assets.screenToMap(this.x, this.y);
-			var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host, this.ours);
-			if(unitTilePos){
-				var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
-				if(this.ours){
-					instanceData.units.push({
-						name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
-						x: unitPos[0],
-						y: unitPos[1]
-					});	
-				}else{
-					opponentData.units.push({
-						name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
-						x: unitPos[0],
-						y: unitPos[1]
-					});	
-				}
-			}
-		}
-	}else{
-		this.buildTimer = 0;
-	}
+	// 	if(this.buildTimer >=  this.buildingType.buildTime){
+	// 		this.buildTimer = 0;
+	// 		var tilePos = assets.screenToMap(this.x, this.y);
+	// 		var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host, this.ours);
+	// 		if(unitTilePos){
+	// 			var unitPos = assets.mapToScreen(unitTilePos[0], unitTilePos[1]);
+	// 			if(this.ours){
+	// 				instanceData.units.push({
+	// 					name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
+	// 					x: unitPos[0],
+	// 					y: unitPos[1]
+	// 				});	
+	// 			}else{
+	// 				opponentData.units.push({
+	// 					name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
+	// 					x: unitPos[0],
+	// 					y: unitPos[1]
+	// 				});	
+	// 			}
+	// 		}
+	// 	}
+	// }else{
+	// 	this.buildTimer = 0;
+	// }
 };
 
 p.doDamage = function(dmg){
