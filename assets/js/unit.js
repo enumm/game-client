@@ -66,9 +66,9 @@ p.updateTime = function(delta, unitData) {
 	// var x = this.x;
 	// var y = this.y;
 
-	this.x = unitData.x;
-	this.y = unitData.y;	
-	unitData.x += 10 * delta;
+	//this.x = unitData.x;
+	//this.y = unitData.y;	
+	//unitData.x += 10 * delta;
 
 	// var distanceToEnemy = 100000;
 	// var enemyName;
@@ -176,11 +176,11 @@ p.updateTime = function(delta, unitData) {
 				dx *= 60 * delta;
 				dy *= 60 * delta;
 
-				this.x += dx;
-				this.y += dy;
+				unitData.x += dx;
+				unitData.y += dy;
 
-				unitData.x = this.x;
-				unitData.y = this.y;
+				this.x  = unitData.x;
+				this.y = unitData.y;
 			}
 
 			//console.log('skirtumas x: ' +(this.x -  positionToGo[0]) + ' y: ' + (this.y - positionToGo[1]));
@@ -188,6 +188,11 @@ p.updateTime = function(delta, unitData) {
 				unitData.path.shift();
 			}
 		}
+
+		//fallback, update position from server
+		this.x  = unitData.x;
+		this.y = unitData.y;
+		
 	// }
 };
 
