@@ -5,7 +5,6 @@ function Building(name, buildingType, ours) {
 	this.buildingName = name;
 	this.ours = ours;
 	this.buildingType = buildingType;
-	this.buildTimer = 0;
 	this.setup();
 }
 var p = createjs.extend(Building, createjs.Container);
@@ -47,10 +46,10 @@ p.updateTime = function(delta, element) {
 
 
 	if(element.producing){
-		this.buildTimer += delta;
+		element.productionTimer += delta;
 
-		if(this.buildTimer >=  BuildingTypes[this.buildingType].buildTime){
-			this.buildTimer = 0;
+		if(element.productionTimer >=  BuildingTypes[this.buildingType].buildTime){
+			element.productionTimer = 0;
 			var tilePos = assets.screenToMap(this.x, this.y);
 			var unitTilePos = assets.getFreeTilePOS(tilePos[0], tilePos[1], gameInstanceScreen.connectionData.host, this.ours);
 			if(unitTilePos){
@@ -60,20 +59,24 @@ p.updateTime = function(delta, element) {
 						name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
 						x: unitPos[0],
 						y: unitPos[1],
-						unitType: BuildingTypes[this.buildingType].unitType
+						unitType: BuildingTypes[this.buildingType].unitType,
+						path: assets.getPath(unitTilePos[0], unitTilePos[1], true)
 					});	
+					// console.log(JSON.stringify(assets.getPath(unitTilePos[0], unitTilePos[1], true)));
 				}else{
 					opponentData.units.push({
 						name: gameInstanceScreen.connectionData.host ? 'ounit' + opponentData.unitCount++: 'hunit' + opponentData.unitCount++,
 						x: unitPos[0],
 						y: unitPos[1],
-						unitType: BuildingTypes[this.buildingType].unitType
-					});		
+						unitType: BuildingTypes[this.buildingType].unitType,
+						path: assets.getPath(unitTilePos[0], unitTilePos[1], false)
+					});
+					// console.log(JSON.stringify(assets.getPath(unitTilePos[0], unitTilePos[1], false)));		
 				}
 			}
 		}
 	}else{
-		this.buildTimer = 0;
+		element.productionTimer
 	}
 };
 

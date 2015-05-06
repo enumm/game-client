@@ -34,28 +34,28 @@ p.setup = function() {
 	this.x = this.posX;
 	this.y = this.posY;
 
-	var grid;
-	if(this.ours){
-		grid = new PF.Grid(assets.getMapMatrix());
-	}else{
-		grid = new PF.Grid(assets.getMapMatrix(true));
-	}
+	// var grid;
+	// if(this.ours){
+	// 	grid = new PF.Grid(assets.getMapMatrix());
+	// }else{
+	// 	grid = new PF.Grid(assets.getMapMatrix(true));
+	// }
 
-	var pos = assets.screenToMap(this.x, this.y);
+	// var pos = assets.screenToMap(this.x, this.y);
 
-	if(gameInstanceScreen.connectionData.host){
-		if(this.ours){
-			this.path = finder.findPath(pos[0]|0, pos[1]|0, 31, 14, grid);
-		}else{
-			this.path = finder.findPath(pos[0]|0, pos[1]|0, 14, 31, grid);
-		}
-	}else{
-		if(this.ours){
-			this.path = finder.findPath(pos[0]|0, pos[1]|0, 14, 31, grid);	
-		}else{
-			this.path = finder.findPath(pos[0]|0, pos[1]|0, 31, 14, grid);		
-		}
-	}
+	// if(gameInstanceScreen.connectionData.host){
+	// 	if(this.ours){
+	// 		this.path = finder.findPath(pos[0]|0, pos[1]|0, 31, 14, grid);
+	// 	}else{
+	// 		this.path = finder.findPath(pos[0]|0, pos[1]|0, 14, 31, grid);
+	// 	}
+	// }else{
+	// 	if(this.ours){
+	// 		this.path = finder.findPath(pos[0]|0, pos[1]|0, 14, 31, grid);	
+	// 	}else{
+	// 		this.path = finder.findPath(pos[0]|0, pos[1]|0, 31, 14, grid);		
+	// 	}
+	// }
 
 	this.addChild(circle);
 
@@ -71,11 +71,11 @@ p.setup = function() {
  	
  	this.addChild(rect1, rect);
 
- 	if(this.ours){
+ 	// if(this.ours){
 	 	this.on("click", function(){
 	 		userCurrentSelection = this.name;
 	 	});	
- 	}
+ 	// }
 };
 
 p.updateTime = function(delta, unitData) {
@@ -88,12 +88,12 @@ p.updateTime = function(delta, unitData) {
 
 	
 	var name = this.name;
-	var x = this.x;
-	var y = this.y;
+	// var x = this.x;
+	// var y = this.y;
 
-
-	unitData.x += 10 * delta;
 	this.x = unitData.x;
+	this.y = unitData.y;	
+	unitData.x += 10 * delta;
 
 	// var distanceToEnemy = 100000;
 	// var enemyName;

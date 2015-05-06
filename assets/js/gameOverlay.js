@@ -104,6 +104,12 @@ p.setup = function() {
     selection.y = 600;
     selection.x = 500;
 
+    //debug
+    var pos = new createjs.Text('', "20px Arial", "#fff");
+    pos.name = 'pos';
+    pos.y = 500;
+    pos.x = 500;
+
     //building stop production--------------------------------------------------------
     var stopProduction = new Button1('Start/Stop Prod.', '#fff', null, function(){
         if(userCurrentSelection){
@@ -169,7 +175,7 @@ p.setup = function() {
         destroyBuilding.visible = false;
     }
 
-    this.addChild(opponentName, money, selection, stopProduction, destroyBuilding);
+    this.addChild(opponentName, money, selection, stopProduction, destroyBuilding, pos);
 };
 
 p.update = function() {
@@ -188,6 +194,19 @@ p.update = function() {
     
 	this.getChildByName('moneyLabel').text = instanceData.money + '$';
 	this.getChildByName('selection').text = userCurrentSelection;
+
+    var map = gameInstanceScreen.getChildByName('map').getChildByName('units').getChildByName(userCurrentSelection);
+    if(map){
+        var item = $.grep(instanceData.units, function (el, i) {
+            if(el.name == map.name){
+                return true;
+            }
+        });
+
+        if(item.length > 0){
+            this.getChildByName('pos').text = 'c- x: ' + map.x + ' y: ' + map.y + ' s- x: ' + item[0].x + ' y: ' + item[0].y;        
+        }   
+    }
 };
 
 window.GameOverlay = createjs.promote(GameOverlay, "Container");
