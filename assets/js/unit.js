@@ -34,29 +34,6 @@ p.setup = function() {
 	this.x = this.posX;
 	this.y = this.posY;
 
-	// var grid;
-	// if(this.ours){
-	// 	grid = new PF.Grid(assets.getMapMatrix());
-	// }else{
-	// 	grid = new PF.Grid(assets.getMapMatrix(true));
-	// }
-
-	// var pos = assets.screenToMap(this.x, this.y);
-
-	// if(gameInstanceScreen.connectionData.host){
-	// 	if(this.ours){
-	// 		this.path = finder.findPath(pos[0]|0, pos[1]|0, 31, 14, grid);
-	// 	}else{
-	// 		this.path = finder.findPath(pos[0]|0, pos[1]|0, 14, 31, grid);
-	// 	}
-	// }else{
-	// 	if(this.ours){
-	// 		this.path = finder.findPath(pos[0]|0, pos[1]|0, 14, 31, grid);	
-	// 	}else{
-	// 		this.path = finder.findPath(pos[0]|0, pos[1]|0, 31, 14, grid);		
-	// 	}
-	// }
-
 	this.addChild(circle);
 
 	//life
@@ -85,8 +62,6 @@ p.updateTime = function(delta, unitData) {
 	rectHP.graphics.beginFill("#0f0").drawRect(50, 64, 0.3 * this.life, 5);
 
 	//attacking
-
-	
 	var name = this.name;
 	// var x = this.x;
 	// var y = this.y;
@@ -184,35 +159,35 @@ p.updateTime = function(delta, unitData) {
 
 	// }else{
 	// 	//pathfinding
-	// 	if(this.path.length != 0){
-	// 		var mapPositionToGo = this.path[0];
-	// 		var positionToGo = assets.mapToScreen(mapPositionToGo[0], mapPositionToGo[1]);
+		if(unitData.path.length != 0){
+			var mapPositionToGo = unitData.path[0];
+			var positionToGo = assets.mapToScreen(mapPositionToGo[0], mapPositionToGo[1]);
 
-	// 		var dx = positionToGo[0]-this.x;
-	// 		var dy = positionToGo[1]-this.y;
+			var dx = positionToGo[0]-this.x;
+			var dy = positionToGo[1]-this.y;
 
-	// 		var length = Math.sqrt(dx*dx+dy*dy);
+			var length = Math.sqrt(dx*dx+dy*dy);
 
-	// 		if(length != 0 ){
-	// 			dx/=length;
-	// 			dy/=length;
+			if(length != 0 ){
+				dx/=length;
+				dy/=length;
 
 
-	// 			dx *= 60 * delta;
-	// 			dy *= 60 * delta;
+				dx *= 60 * delta;
+				dy *= 60 * delta;
 
-	// 			this.x += dx;
-	// 			this.y += dy;
+				this.x += dx;
+				this.y += dy;
 
-	// 			unitData.x = this.x;
-	// 			unitData.y = this.y;
-	// 		}
+				unitData.x = this.x;
+				unitData.y = this.y;
+			}
 
-	// 		//console.log('skirtumas x: ' +(this.x -  positionToGo[0]) + ' y: ' + (this.y - positionToGo[1]));
-	// 		if(this.x - positionToGo[0] < 1 && this.x - positionToGo[0] > - 1 && this.y - positionToGo[1] < 1 && this.y - positionToGo[1] > -1){
-	// 			this.path.shift();
-	// 		}
-	// 	}
+			//console.log('skirtumas x: ' +(this.x -  positionToGo[0]) + ' y: ' + (this.y - positionToGo[1]));
+			if(this.x - positionToGo[0] < 1 && this.x - positionToGo[0] > - 1 && this.y - positionToGo[1] < 1 && this.y - positionToGo[1] > -1){
+				unitData.path.shift();
+			}
+		}
 	// }
 };
 
