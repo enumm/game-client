@@ -1,8 +1,8 @@
 (function() {
 
-function Castle(good, data) {
+function Castle(ours, data) {
 	this.Container_constructor();
-	this.good = good;
+	this.ours = ours;
 	this.connectionData = data;
 	this.setup();
 }
@@ -11,13 +11,33 @@ var p = createjs.extend(Castle, createjs.Container);
 p.setup = function() {
 	this.life = 1000;
 
-	var w = mapData.tilesets[0].tilewidth;
-	var h = mapData.tilesets[0].tileheight;
+	var racetileset;
+	if(this.ours){
+		switch(raceSelected){
+			case 'Plebs':
+				racetileset = tilesetPlebs;
+				break;
+			case 'BlaBlas':
+				racetileset = tilesetBlaBlas;
+				break;
+		}	
+	}else{
+		switch(this.connectionData.enemyRace){
+			case 'Plebs':
+				racetileset = tilesetPlebs;
+				break;
+			case 'BlaBlas':
+				racetileset = tilesetBlaBlas;
+				break;
+		}	
+	}
+	
+
 	var imageData = {
-	    images : [ tileset ],
+	    images : [ racetileset ],
 	    frames : {
-	        width : w,
-	        height : h
+	        width : 128,
+	        height : 128
 	    }
 	};
 
@@ -27,10 +47,23 @@ p.setup = function() {
 	var sprite21 = sprite11.clone();
 	var sprite22 = sprite11.clone();
 
-    sprite21.gotoAndStop(this.good ? 38 : 54); 
-    sprite22.gotoAndStop(this.good ? 39 : 55);
-    sprite11.gotoAndStop(this.good ? 46 : 62);
-    sprite12.gotoAndStop(this.good ? 47 : 63);
+
+	if(this.connectionData.host){
+	    sprite21.gotoAndStop(this.ours ? 0 : 10); 
+	    sprite22.gotoAndStop(this.ours ? 1 : 11);
+	    sprite11.gotoAndStop(this.ours ? 5 : 15);
+	    sprite12.gotoAndStop(this.ours ? 6 : 16);
+	}else{
+	    sprite21.gotoAndStop(this.ours ? 10 : 0); 
+	    sprite22.gotoAndStop(this.ours ? 11 : 1);
+	    sprite11.gotoAndStop(this.ours ? 15 : 5);
+	    sprite12.gotoAndStop(this.ours ? 16 : 6);
+	}
+
+    // sprite21.gotoAndStop(this.connectionData.host && this.ours ? 0 : 10); 
+    // sprite22.gotoAndStop(this.connectionData.host && this.ours ? 1 : 11);
+    // sprite11.gotoAndStop(this.connectionData.host && this.ours ? 5 : 15);
+    // sprite12.gotoAndStop(this.connectionData.host && this.ours ? 6 : 16);
 
   	sprite11.x = 0 * mapData.tilewidth/2 - 0 * mapData.tilewidth/2;		
     sprite11.y = 0 * mapData.tileheight/2 + 0 * mapData.tileheight/2;
@@ -53,11 +86,11 @@ p.setup = function() {
  	
  	this.addChild(rect1, rect);
 
- 	if(this.connectionData.host && this.good){
+ 	if(this.connectionData.host && this.ours){
 	 	this.on("click", function(){
 	 		userCurrentSelection = this.name;
 	 	});	
- 	}else if(!this.connectionData.host && !this.good){
+ 	}else if(!this.connectionData.host && !this.ours){
  		this.on("click", function(){
 	 		userCurrentSelection = this.name;
 	 	});	

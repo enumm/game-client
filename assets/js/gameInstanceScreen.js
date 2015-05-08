@@ -17,16 +17,34 @@ p.setup = function() {
     this.addChild(overlay);     
 
     //build castles
-    var castleGood = new Castle(true, this.connectionData);
-    castleGood.name = 'castleGood';
-    castleGood.x = assets.mapToScreen(13,33)[0];
-    castleGood.y = assets.mapToScreen(13,33)[1];
-    var castleBaad = new Castle(false, this.connectionData);
-    castleBaad.name = 'castleBad';
-    castleBaad.x = assets.mapToScreen(32,14)[0];
-    castleBaad.y = assets.mapToScreen(32,14)[1];
+    var castleOurs;
+    var castleEnemy;
 
-    map.getChildByName('units').addChild(castleGood, castleBaad);
+    if(this.connectionData.host){
+        castleOurs = new Castle(true, this.connectionData);
+        castleOurs.name = 'castleOurs';
+        castleOurs.x = assets.mapToScreen(13,33)[0];
+        castleOurs.y = assets.mapToScreen(13,33)[1];
+
+        castleEnemy = new Castle(false, this.connectionData);
+        castleEnemy.name = 'castleEnemy';
+        castleEnemy.x = assets.mapToScreen(32,14)[0];
+        castleEnemy.y = assets.mapToScreen(32,14)[1];
+    }
+    else{
+        castleOurs = new Castle(true, this.connectionData);
+        castleOurs.name = 'castleOurs';
+        castleOurs.x = assets.mapToScreen(32,14)[0];
+        castleOurs.y = assets.mapToScreen(32,14)[1];
+    
+
+        castleEnemy = new Castle(false, this.connectionData);
+        castleEnemy.name = 'castleEnemy';
+        castleEnemy.x = assets.mapToScreen(13,33)[0];
+        castleEnemy.y = assets.mapToScreen(13,33)[1];
+    }
+
+    map.getChildByName('units').addChild(castleOurs, castleEnemy);
 
     //pathfinder
     finder = new PF.AStarFinder({

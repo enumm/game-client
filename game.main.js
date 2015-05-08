@@ -1,4 +1,7 @@
 var tileset;
+var tilesetPlebs;
+var tilesetBlaBlas;
+
 var buttonImg;
 var btnRacePlebsImg = [];
 var btnRaceBlablasImg = [];
@@ -7,6 +10,7 @@ var btnMmRankedImg = [];
 var btnMmPrivateImg = [];
 var btnFindGameImg = [];
 var btnCancelImg = [];
+
 var loginBackGround;
 var overlayImg;
 var stage;
@@ -22,7 +26,7 @@ var socket;
 var serverUpdateTimer = 0;
 var moneyUpdateTimer = 0;
 
-var raceSelected = 'plebs';
+var raceSelected = 'Plebs';
 var gameType = 'casual';
 var userFriends = [];
 var userCurrentSelection;
@@ -222,6 +226,8 @@ window.onload = function(){
         {id: "css", src: "css/style.css"},
 
         {id: "tileset", src: "img/tileCheck.png"},
+        {id: "tilesetPlebs", src: "img/plebsTile.png"},
+        {id: "tilesetBlaBlas", src: "img/blablasTile.png"},
         {id: "overlay", src: "img/overlay.png"},
         {id: "buttonImg", src: "img/button.png"},
         {id: "btnRacePlebs", src: "img/race_plebs.jpg"},
@@ -272,6 +278,12 @@ function handleFileLoad(event) {
             }
             else if (id == "tileset"){
             	tileset = result;
+            }
+            else if (id == "tilesetPlebs"){
+                tilesetPlebs = result;
+            }
+            else if (id == "tilesetBlaBlas"){
+                tilesetBlaBlas = result;
             }
             else if(id == 'texture1'){
                 var texture = new createjs.Shape(new createjs.Graphics().beginBitmapFill(result).drawRect(0, 0, 80, 80));

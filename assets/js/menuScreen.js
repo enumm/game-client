@@ -32,14 +32,14 @@ p.setup = function() {
 
     //buttons-------------------------------------
     var btnRacePlebs =  new Button1("", "#00F", btnRacePlebsImg, function() {
-        raceSelected = 'plebs';
+        raceSelected = 'Plebs';
         lblSelectedRace.text = raceSelected;
     });
     btnRacePlebs.x = 200;
     btnRacePlebs.y = 250;
 
     var btnRaceBlablas =  new Button1("", "#00F", btnRaceBlablasImg,  function() {
-        raceSelected = 'blablas'; 
+        raceSelected = 'BlaBlas'; 
         lblSelectedRace.text = raceSelected;
     });
     btnRaceBlablas.x = 200;
@@ -65,7 +65,7 @@ p.setup = function() {
 
     var btnFindGame = new Button1("", "#00F", btnFindGameImg, function() {
         lblSearchingForGame.text = 'searching for a game';
-        assets.sendMSG('find_game', {gameType: gameType});
+        assets.sendMSG('find_game', {gameType: gameType, race: raceSelected});
         this.parent.addChild(btnCancel);
     });
     btnFindGame.x = 200;
