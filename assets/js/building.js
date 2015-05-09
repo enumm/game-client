@@ -13,10 +13,10 @@ p.setup = function() {
 	this.name = this.buildingName;
 	var building = null;
 
-	if(gameInstanceScreen.connectionData.host){
-		building = assets.createBuilding(this.ours ? BuildingTypes[this.buildingType].hframe : BuildingTypes[this.buildingType].oframe);
+	if(this.ours){
+		building = assets.createBuilding(raceSelected, BuildingTypes[this.buildingType].frame);
 	}else{
-		building = assets.createBuilding(this.ours ? BuildingTypes[this.buildingType].oframe : BuildingTypes[this.buildingType].hframe);
+		building = assets.createBuilding(gameInstanceScreen.connectionData.enemyRace, BuildingTypes[this.buildingType].frame);
 	}
 	
     this.addChild(building);

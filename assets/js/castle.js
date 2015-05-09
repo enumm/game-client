@@ -9,9 +9,8 @@ function Castle(ours, data) {
 var p = createjs.extend(Castle, createjs.Container);
 
 p.setup = function() {
-	this.life = 1000;
-
 	var racetileset;
+
 	if(this.ours){
 		switch(raceSelected){
 			case 'Plebs':
@@ -32,7 +31,6 @@ p.setup = function() {
 		}	
 	}
 	
-
 	var imageData = {
 	    images : [ racetileset ],
 	    frames : {
@@ -60,22 +58,16 @@ p.setup = function() {
 	    sprite12.gotoAndStop(this.ours ? 16 : 6);
 	}
 
-    // sprite21.gotoAndStop(this.connectionData.host && this.ours ? 0 : 10); 
-    // sprite22.gotoAndStop(this.connectionData.host && this.ours ? 1 : 11);
-    // sprite11.gotoAndStop(this.connectionData.host && this.ours ? 5 : 15);
-    // sprite12.gotoAndStop(this.connectionData.host && this.ours ? 6 : 16);
-
-  	sprite11.x = 0 * mapData.tilewidth/2 - 0 * mapData.tilewidth/2;		
-    sprite11.y = 0 * mapData.tileheight/2 + 0 * mapData.tileheight/2;
-  	sprite12.x = 1 * mapData.tilewidth/2 - -1 * mapData.tilewidth/2;		
-    sprite12.y = -1 * mapData.tileheight/2 + 1 * mapData.tileheight/2;
-    sprite21.x = -2 * mapData.tilewidth/2 - -2 * mapData.tilewidth/2;		
-    sprite21.y = -2 * mapData.tileheight/2 + -2 * mapData.tileheight/2;
-    sprite22.x = -1 * mapData.tilewidth/2 - -3 * mapData.tilewidth/2;		
-    sprite22.y = -3 * mapData.tileheight/2 + -1 * mapData.tileheight/2;
+  	sprite11.x = 0 * 64 - 0 * 64;		
+    sprite11.y = 0 * 32 + 0 * 32;
+  	sprite12.x = 1 * 64 - -1 * 64;		
+    sprite12.y = -1 * 32 + 1 * 32;
+    sprite21.x = -2 * 64 - -2 * 64;		
+    sprite21.y = -2 * 32 + -2 * 32;
+    sprite22.x = -1 * 64 - -3 * 64;		
+    sprite22.y = -3 * 32 + -1 * 32;
 
 	this.addChild(sprite11, sprite12, sprite21, sprite22); 
-	this.name = 'castle';
 
 	var rect = new createjs.Shape();
  	rect.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * this.life, 5);
@@ -90,32 +82,11 @@ p.setup = function() {
 	 	this.on("click", function(){
 	 		userCurrentSelection = this.name;
 	 	});	
- 	}else if(!this.connectionData.host && !this.ours){
+ 	}else if(!this.connectionData.host && this.ours){
  		this.on("click", function(){
 	 		userCurrentSelection = this.name;
 	 	});	
  	}
-};
-
-p.doDamage = function(dmg){
-	this.life -= dmg;
-
-	var rectHP = this.getChildByName('greenHP');
-	rectHP.graphics.clear()
-	rectHP.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * this.life, 5);
-	
-	if(this.life <= 0){
-		// for( i = instanceData.buildings.length-1; i>=0; i--) {
-		// 	if( instanceData.buildings[i].name == this.name) {instanceData.buildings[i].kill = true;}
-		// }
-		var name = this.name;
-
-		// $.each(instanceData.buildings, function(index, value){
-		// 	if( value.name == name) {value.kill = true;}
-		// });
-
-		assets.sendData();
-	}
 };
 
 window.Castle = createjs.promote(Castle, "Container");

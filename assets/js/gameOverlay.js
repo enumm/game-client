@@ -8,86 +8,47 @@ function GameOverlay(data) {
 var p = createjs.extend(GameOverlay, createjs.Container);
 
 p.setup = function() {
+    var outer = this;
+    //building buttons
+    $.each(Races[raceSelected].buildings, function(index, item){
+        var btnBuilding = new Button1(item + ' - ' + BuildingTypes[item].cost + '$', '#fff', null, function(){
+            var map = gameInstanceScreen.getChildByName('map');
 
-    // var overlay = new createjs.Bitmap(overlayImg);
-    // overlay.name = 'overlayImg'; 
-    // overlay.y = 446;
-    // this.addChild(overlay);
-	
-    //plebhut
-    var btnBuilding1 = new Button1('Pleb hut  - 2$', '#fff', null, function(){
-		var map = gameInstanceScreen.getChildByName('map');
+            $.each(map.getChildByName('bottom').children, function( index, value ) {
+                if(value.base1 && gameInstanceScreen.connectionData.host || value.base2 && !gameInstanceScreen.connectionData.host ){
+                    value.alpha = 0.5;
+                    value.on("mouseover", function(){ this.alpha = 1;});
+                    value.on("mouseout", function(){ this.alpha = 0.5;});
+                    value.on("click", function(){
+                        assets.tileRemoveAllEventListeners(map.getChildByName('bottom'));
 
-        $.each(map.getChildByName('bottom').children, function( index, value ) {
-            if(value.base1 && gameInstanceScreen.connectionData.host || value.base2 && !gameInstanceScreen.connectionData.host ){
-                value.alpha = 0.5;
-                value.on("mouseover", function(){ this.alpha = 1;});
-                value.on("mouseout", function(){ this.alpha = 0.5;});
-                value.on("click", function(){
-                    assets.tileRemoveAllEventListeners(map.getChildByName('bottom'));
+                        if(instanceData.money >= BuildingTypes[item].cost){
+                            instanceData.buildings.push({
+                            name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildingCount++: 'obuilding' + instanceData.buildingCount++,
+                                x: this.x,
+                                y: this.y,
+                                buildingType: BuildingTypes[item].name,
+                                hp: BuildingTypes[item].life,
+                                old: false, 
+                                producing: true
+                            });
+                        }
 
-                    if(instanceData.money >= BuildingTypes.PlebHut.cost){
-                        instanceData.buildings.push({
-                        name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildingCount++: 'obuilding' + instanceData.buildingCount++,
-                            x: this.x,
-                            y: this.y,
-                            buildingType: BuildingTypes.PlebHut.name,
-                            hp: BuildingTypes.PlebHut.life,
-                            old: false, 
-                            producing: true
+                        assets.sendData();
+
+                        $.each(map.getChildByName('bottom').children, function( index, value ) {
+                            value.alpha = 1;
                         });
-                    }
-
-                    assets.sendData();
-
-                    $.each(map.getChildByName('bottom').children, function( index, value ) {
-                        value.alpha = 1;
                     });
-                });
-            }
+                }
+            });
         });
+        
+        btnBuilding.name = 'Button' +BuildingTypes[item].name ;
+        btnBuilding.x = 10;
+        btnBuilding.y = 80 + 45 * index;
+        outer.addChild(btnBuilding);
     });
-
-    btnBuilding1.x = 10;
-    btnBuilding1.y = 80;
-    //otherhut
-    var btnBuilding2 = new Button1('other hut  - 5$', '#fff', null, function(){
-        var map = gameInstanceScreen.getChildByName('map');
-
-        $.each(map.getChildByName('bottom').children, function( index, value ) {
-            if(value.base1 && gameInstanceScreen.connectionData.host || value.base2 && !gameInstanceScreen.connectionData.host ){
-                value.alpha = 0.5;
-                value.on("mouseover", function(){ this.alpha = 1;});
-                value.on("mouseout", function(){ this.alpha = 0.5;});
-                value.on("click", function(){
-                    assets.tileRemoveAllEventListeners(map.getChildByName('bottom'));
-
-                    if(instanceData.money >= BuildingTypes.OtherHut.cost){
-                        instanceData.buildings.push({
-                        name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildingCount++: 'obuilding' + instanceData.buildingCount++,
-                            x: this.x,
-                            y: this.y,
-                            buildingType: BuildingTypes.OtherHut.name,
-                            hp: BuildingTypes.OtherHut.life,
-                            old: false, 
-                            producing: true
-                        });
-                    }
-
-                    assets.sendData();
-
-                    $.each(map.getChildByName('bottom').children, function( index, value ) {
-                        value.alpha = 1;
-                    });
-                });
-            }
-        });
-    });
-
-    btnBuilding2.x = 10;
-    btnBuilding2.y = 125;
-
-    this.addChild(btnBuilding1, btnBuilding2);
 
 	var aa = this.connectionData.host ? 'You are host, Opponent: ' : 'You are guest, Opponent: ' ;
     var opponentName = new createjs.Text(aa + this.connectionData.opponent, "20px Arial", "#fff");

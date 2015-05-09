@@ -203,16 +203,26 @@
         });
     }
 
-    o.createBuilding = function(frame){
-        var w = mapData.tilesets[0].tilewidth;
-        var h = mapData.tilesets[0].tileheight;
+    o.createBuilding = function(race, frame){
+        var racetileset;
+
+        switch(race){
+            case 'Plebs':
+                racetileset = tilesetPlebs;
+                break;
+            case 'BlaBlas':
+                racetileset = tilesetBlaBlas;
+                break;
+        }   
+
         var imageData = {
-            images : [ tileset ],
+            images : [ racetileset ],
             frames : {
-                width : w,
-                height : h
+                width : 128,
+                height : 128
             }
         };
+        
         var tilesetSheet = new createjs.SpriteSheet(imageData);
         var sprite =  new createjs.Sprite(tilesetSheet);
         sprite.gotoAndStop(frame);
