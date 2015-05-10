@@ -125,6 +125,7 @@ p.updateTime = function(delta, unitData) {
                 //walk to enemy
                 var dx = enemy.x - unitData.x;
                 var dy = enemy.y - unitData.y;
+				this.animate(dx, dy);
 
                 var length = Math.sqrt(dx*dx+dy*dy);
 
@@ -132,13 +133,11 @@ p.updateTime = function(delta, unitData) {
                     dx/=length;
                     dy/=length;
 
-
                     dx *= UnitTypes[unitData.unitType].movementSpeed * delta;
                     dy *= UnitTypes[unitData.unitType].movementSpeed * delta;
 
                     unitData.x += dx;
-                    unitData.y += dy;
-                    this.animate(dx, dy);
+                    unitData.y += dy;             
                  }
             }
         }
@@ -149,6 +148,7 @@ p.updateTime = function(delta, unitData) {
 
 			var dx = positionToGo[0]-this.x;
 			var dy = positionToGo[1]-this.y;
+			this.animate(dx, dy);
 
 			var length = Math.sqrt(dx*dx+dy*dy);
 
@@ -156,16 +156,11 @@ p.updateTime = function(delta, unitData) {
 				dx/=length;
 				dy/=length;
 
-
 				dx *= UnitTypes[unitData.unitType].movementSpeed * delta;
 				dy *= UnitTypes[unitData.unitType].movementSpeed * delta;
 
 				unitData.x += dx;
 				unitData.y += dy;
-				this.animate(dx, dy);
-
-				// this.x  = unitData.x;
-				// this.y = unitData.y;
 			}
 
 			if(this.x - positionToGo[0] < 1 && this.x - positionToGo[0] > - 1 && this.y - positionToGo[1] < 1 && this.y - positionToGo[1] > -1){
@@ -183,26 +178,27 @@ p.animate = function(dx, dy){
 
 	if(sprite){
 		var anim;
-		// console.log(dx|0 + ' ' +dy|0);
-		if(dx|0 == 0 && dy|0 > 0){
+		// console.log(dx.toFixed(0) + ' ' +dy.toFixed(0));
+		if(dx.toFixed(0) == 0 && dy.toFixed(0) > 0){
 			anim = 'runTop';
-		}else if(dx|0 == 0 && dy|0 < 0){
+		}else if(dx.toFixed(0) == 0 && dy.toFixed(0) < 0){
 			anim = 'runBot';
-		}else if(dx|0 > 0 && dy|0 == 0){
+		}else if(dx.toFixed(0) > 0 && dy.toFixed(0) == 0){
 			anim = 'runRight';
-		}else if(dx|0 < 0 && dy|0 == 0){
+		}else if(dx.toFixed(0) < 0 && dy.toFixed(0) == 0){
 			anim = 'runLeft';
-		}else if(dx|0 > 0 && dy|0 > 0 ){
+		}else if(dx.toFixed(0) > 0 && dy.toFixed(0) > 0 ){
 			anim = 'runTopRight';
-		}else if(dx|0 > 0 && dy|0 < 0){
+		}else if(dx.toFixed(0) > 0 && dy.toFixed(0) < 0){
 			anim = 'runBotRight';
-		}else if(dx|0 < 0 && dy|0 > 0 ){
+		}else if(dx.toFixed(0) < 0 && dy.toFixed(0) > 0 ){
 			anim = 'runTopLeft';
-		}else if(dx|0 < 0 && dy|0 < 0){
+		}else if(dx.toFixed(0) < 0 && dy.toFixed(0) < 0){
 			anim = 'runBotLeft';
 		}
 
 		if(sprite.currentAnimation != anim){
+			console.log(anim);
 			sprite.gotoAndPlay(anim);
 		}
 	}
