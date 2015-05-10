@@ -22,17 +22,17 @@ p.setup = function() {
 		        runBotLeft:[0, 15],
 		        runBotRight:[16, 31],
 		        runTopLeft:[32, 47],
-		        runTopRight:[47, 62],
-		        runRight:[62, 77],
-		        runLeft:[77, 92],
-		        runBot:[92, 107],
-		        runTop:[107, 122]
+		        runTopRight:[48, 63],
+		        runRight:[64, 79],
+		        runLeft:[80, 95],
+		        runBot:[96, 111],
+		        runTop:[112, 127]
 		    }
 		};
 
 		var spriteSheet = new createjs.SpriteSheet(data);
 
-		var sprite = new createjs.Sprite(spriteSheet, "runBotLeft");
+		var sprite = new createjs.Sprite(spriteSheet, "runBot");
 		sprite.name = 'texture';
 		sprite.x = 52;
 		sprite.y = 50;
@@ -180,25 +180,24 @@ p.animate = function(dx, dy){
 		var anim;
 		// console.log(dx.toFixed(0) + ' ' +dy.toFixed(0));
 		if(dx.toFixed(0) == 0 && dy.toFixed(0) > 0){
-			anim = 'runTop';
-		}else if(dx.toFixed(0) == 0 && dy.toFixed(0) < 0){
 			anim = 'runBot';
+		}else if(dx.toFixed(0) == 0 && dy.toFixed(0) < 0){
+			anim = 'runTop';
 		}else if(dx.toFixed(0) > 0 && dy.toFixed(0) == 0){
 			anim = 'runRight';
 		}else if(dx.toFixed(0) < 0 && dy.toFixed(0) == 0){
 			anim = 'runLeft';
 		}else if(dx.toFixed(0) > 0 && dy.toFixed(0) > 0 ){
-			anim = 'runTopRight';
-		}else if(dx.toFixed(0) > 0 && dy.toFixed(0) < 0){
 			anim = 'runBotRight';
+		}else if(dx.toFixed(0) > 0 && dy.toFixed(0) < 0){
+			anim = 'runTopRight';
 		}else if(dx.toFixed(0) < 0 && dy.toFixed(0) > 0 ){
-			anim = 'runTopLeft';
-		}else if(dx.toFixed(0) < 0 && dy.toFixed(0) < 0){
 			anim = 'runBotLeft';
+		}else if(dx.toFixed(0) < 0 && dy.toFixed(0) < 0){
+			anim = 'runTopLeft';
 		}
 
 		if(sprite.currentAnimation != anim){
-			console.log(anim);
 			sprite.gotoAndPlay(anim);
 		}
 	}
