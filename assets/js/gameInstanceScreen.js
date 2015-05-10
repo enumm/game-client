@@ -79,7 +79,7 @@ p.drawUpdate = function(delta){
         }
 
         if(!unit){
-            unit = new Unit(el.name, true, el.x, el.y);
+            unit = new Unit(el, true);
             map.addChild(unit);
         }else{
             unit.updateTime(delta, instanceData.units[i]);
@@ -100,7 +100,7 @@ p.drawUpdate = function(delta){
         }
 
         if(!unit){
-            unit = new Unit(el.name, false, el.x, el.y);
+            unit = new Unit(el, false);
             map.addChild(unit);
         }else{
             unit.updateTime(delta, opponentData.units[i]);

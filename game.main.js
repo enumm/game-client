@@ -2,6 +2,8 @@ var tileset;
 var tilesetPlebs;
 var tilesetBlaBlas;
 
+var PlebTile;
+
 var buttonImg;
 var btnRacePlebsImg = [];
 var btnRaceBlablasImg = [];
@@ -228,6 +230,7 @@ window.onload = function(){
         {id: "tileset", src: "img/tileCheck.png"},
         {id: "tilesetPlebs", src: "img/plebsTile.png"},
         {id: "tilesetBlaBlas", src: "img/blablasTile.png"},
+        {id: "tilesetPlebUnit", src: "img/isometric_exampleKappa.png"},
         {id: "overlay", src: "img/overlay.png"},
         {id: "buttonImg", src: "img/button.png"},
         {id: "btnRacePlebs", src: "img/race_plebs.jpg"},
@@ -275,42 +278,33 @@ function handleFileLoad(event) {
             if(id == "buttonImg")
             {
             	buttonImg = result;
-            }
-            else if (id == "tileset"){
+            }else if (id == "tileset"){
             	tileset = result;
-            }
-            else if (id == "tilesetPlebs"){
+            }else if (id == "tilesetPlebs"){
                 tilesetPlebs = result;
-            }
-            else if (id == "tilesetBlaBlas"){
+            }else if (id == "tilesetBlaBlas"){
                 tilesetBlaBlas = result;
-            }
-            else if(id == 'texture1'){
+            }else if (id == "tilesetPlebUnit"){
+                PlebTile = result;
+            }else if(id == 'texture1'){
                 var texture = new createjs.Shape(new createjs.Graphics().beginBitmapFill(result).drawRect(0, 0, 80, 80));
                         texture.regX = 40;
                         texture.regY = 40;
 
                 textures.push(texture);
-            }
-            else if(id =="btnMmCasual"){
+            }else if(id =="btnMmCasual"){
                 btnMmCasualImg[0] = result;
-            }
-            else if(id =="btnMmRanked"){
+            }else if(id =="btnMmRanked"){
                 btnMmRankedImg[0] = result;
-            }
-            else if(id =="btnMmPrivate"){
+            }else if(id =="btnMmPrivate"){
                 btnMmPrivateImg[0] = result;
-            }
-            else if(id =="btnRacePlebs"){
+            }else if(id =="btnRacePlebs"){
                 btnRacePlebsImg[0] = result;
-            }
-            else if(id =="btnFindGame"){
+            }else if(id =="btnFindGame"){
                 btnFindGameImg[0] = result;
-            }
-            else if(id =="btnCancel"){
+            }else if(id =="btnCancel"){
                 btnCancelImg[0] = result;
-            }
-            else if(id =="btnRaceBlablas"){
+            }else if(id =="btnRaceBlablas"){
                 btnRaceBlablasImg[0] = result;
             }else if(id =="overlay"){
                 overlayImg = result;
