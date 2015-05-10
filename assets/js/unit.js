@@ -66,24 +66,48 @@ p.updateTime = function(delta, unitData) {
     var enemy;
     // var outer = this;
 
+    UnitTypes[unitData.unitType].type
+
     if(this.ours){
         opponentData.units.concat(opponentData.buildings).forEach(function(value){   
             if(!value.kill){
-                var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
-                if(distanceToEnemy > dst){
-                    distanceToEnemy = dst;
-                    enemy = value; 
-                } 
+            	if(UnitTypes[unitData.unitType].type == 'ground'){
+            		if(value.unitType && UnitTypes[value.unitType].type != 'flying'){
+            			var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
+	                	if(distanceToEnemy > dst){
+	                    	distanceToEnemy = dst;
+	                    	enemy = value; 
+	                	} 
+            		}
+            	}
+            	else{
+                	var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
+                	if(distanceToEnemy > dst){
+                    	distanceToEnemy = dst;
+                    	enemy = value; 
+                	} 
+            	}
             }
         });
     }else{
        instanceData.units.concat(instanceData.buildings).forEach(function(value){
             if(!value.kill){
-                var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
-                if(distanceToEnemy > dst){
-                    distanceToEnemy = dst;
-                    enemy = value; 
-                } 
+            	if(UnitTypes[unitData.unitType].type == 'ground'){
+            		if(value.unitType && UnitTypes[value.unitType].type != 'flying'){
+            			var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
+	                	if(distanceToEnemy > dst){
+	                    	distanceToEnemy = dst;
+	                    	enemy = value; 
+	                	} 
+            		}
+            	}
+            	else{
+                	var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
+                	if(distanceToEnemy > dst){
+                    	distanceToEnemy = dst;
+                    	enemy = value; 
+                	} 
+            	}
             }
         });
     }
