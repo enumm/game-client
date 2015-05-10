@@ -59,7 +59,7 @@ p.updateTime = function(delta, unitData) {
 	//hp
 	var rectHP = this.getChildByName('greenHP');
 	rectHP.graphics.clear()
-	rectHP.graphics.beginFill("#0f0").drawRect(50, 64, 0.3 * this.life, 5);
+	rectHP.graphics.beginFill("#0f0").drawRect(50, 64, 0.3 * unitData.hp, 5);
 	var name = this.name;
 
     var distanceToEnemy = 100000;
@@ -68,19 +68,13 @@ p.updateTime = function(delta, unitData) {
 
     UnitTypes[unitData.unitType].type
 
+
     if(this.ours){
         opponentData.units.concat(opponentData.buildings).forEach(function(value){   
             if(!value.kill){
-            	if(UnitTypes[unitData.unitType].type == 'ground'){
-            		if(value.unitType && UnitTypes[value.unitType].type != 'flying'){
-            			var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
-	                	if(distanceToEnemy > dst){
-	                    	distanceToEnemy = dst;
-	                    	enemy = value; 
-	                	} 
-            		}
-            	}
-            	else{
+            	if(UnitTypes[unitData.unitType].type == 'ground' && UnitTypes[value.unitType] &&  UnitTypes[value.unitType].type == 'flying'){ 
+            		
+            	}else{
                 	var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
                 	if(distanceToEnemy > dst){
                     	distanceToEnemy = dst;
@@ -92,16 +86,9 @@ p.updateTime = function(delta, unitData) {
     }else{
        instanceData.units.concat(instanceData.buildings).forEach(function(value){
             if(!value.kill){
-            	if(UnitTypes[unitData.unitType].type == 'ground'){
-            		if(value.unitType && UnitTypes[value.unitType].type != 'flying'){
-            			var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
-	                	if(distanceToEnemy > dst){
-	                    	distanceToEnemy = dst;
-	                    	enemy = value; 
-	                	} 
-            		}
-            	}
-            	else{
+            	if(UnitTypes[unitData.unitType].type == 'ground' && UnitTypes[value.unitType] &&  UnitTypes[value.unitType].type == 'flying'){ 
+            		
+            	}else{
                 	var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
                 	if(distanceToEnemy > dst){
                     	distanceToEnemy = dst;
