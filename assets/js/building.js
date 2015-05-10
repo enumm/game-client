@@ -23,10 +23,10 @@ p.setup = function() {
 
 	this.life = BuildingTypes[this.buildingType].life;
     var rect = new createjs.Shape();
- 	rect.graphics.beginFill("#0f0").drawRect(35, 30, 0.3 * this.life, 5);
+ 	rect.graphics.beginFill("#0f0").drawRect(35, 15, 0.3 * this.life, 5);
  	rect.name = 'greenHP';
  	var rect1 = new createjs.Shape();
- 	rect1.graphics.beginFill("#f00").drawRect(35, 30, 0.3 * this.life, 5);
+ 	rect1.graphics.beginFill("#f00").drawRect(35, 15, 0.3 * this.life, 5);
  	rect1.name = 'redHP';
  	
  	this.addChild(rect1, rect);
@@ -42,7 +42,7 @@ p.updateTime = function(delta, element) {
 	//hp
 	var rectHP = this.getChildByName('greenHP');
 	rectHP.graphics.clear()
-	rectHP.graphics.beginFill("#0f0").drawRect(35, 30, 0.3 * element.hp, 5);
+	rectHP.graphics.beginFill("#0f0").drawRect(35, 15, 0.3 * element.hp, 5);
 
 
 	if(element.producing){
@@ -57,6 +57,7 @@ p.updateTime = function(delta, element) {
 				if(this.ours){
 					instanceData.units.push({
 						name: gameInstanceScreen.connectionData.host ? 'hunit' + instanceData.unitCount++: 'ounit' + instanceData.unitCount++,
+						hp: UnitTypes[BuildingTypes[this.buildingType].unitType].life,
 						x: unitPos[0],
 						y: unitPos[1],
 						unitType: BuildingTypes[this.buildingType].unitType,
@@ -66,6 +67,7 @@ p.updateTime = function(delta, element) {
 				}else{
 					opponentData.units.push({
 						name: gameInstanceScreen.connectionData.host ? 'ounit' + opponentData.unitCount++: 'hunit' + opponentData.unitCount++,
+						hp: UnitTypes[BuildingTypes[this.buildingType].unitType].life,
 						x: unitPos[0],
 						y: unitPos[1],
 						unitType: BuildingTypes[this.buildingType].unitType,

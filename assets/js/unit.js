@@ -61,10 +61,10 @@ p.setup = function() {
 	this.y = this.unitData.y;
 
 	var rect = new createjs.Shape();
- 	rect.graphics.beginFill("#0f0").drawRect(50, 64, 0.3 * this.unitData.hp, 5);
+ 	rect.graphics.beginFill("#0f0").drawRect(50, 30, 0.3 * this.unitData.hp, 5);
  	rect.name = 'greenHP';
  	var rect1 = new createjs.Shape();
- 	rect1.graphics.beginFill("#f00").drawRect(50, 64, 0.3 * this.unitData.hp, 5);
+ 	rect1.graphics.beginFill("#f00").drawRect(50, 30, 0.3 * this.unitData.hp, 5);
  	rect1.name = 'redHP';
  	
  	this.addChild(rect1, rect);
@@ -80,7 +80,7 @@ p.updateTime = function(delta, unitData) {
 	//hp
 	var rectHP = this.getChildByName('greenHP');
 	rectHP.graphics.clear()
-	rectHP.graphics.beginFill("#0f0").drawRect(50, 64, 0.3 * unitData.hp, 5);
+	rectHP.graphics.beginFill("#0f0").drawRect(50, 30, 0.3 * unitData.hp, 5);
 	var name = this.name;
 
     var distanceToEnemy = 100000;
@@ -117,7 +117,7 @@ p.updateTime = function(delta, unitData) {
         });
     }
 
-    if(distanceToEnemy < 200){
+    if(distanceToEnemy < 130){
         if(enemy){
             if(distanceToEnemy < UnitTypes[unitData.unitType].range){
                 //fight
@@ -138,6 +138,7 @@ p.updateTime = function(delta, unitData) {
 
                     unitData.x += dx;
                     unitData.y += dy;
+                    this.animate(dx, dy);
                  }
             }
         }
@@ -161,6 +162,7 @@ p.updateTime = function(delta, unitData) {
 
 				unitData.x += dx;
 				unitData.y += dy;
+				this.animate(dx, dy);
 
 				// this.x  = unitData.x;
 				// this.y = unitData.y;
@@ -174,6 +176,36 @@ p.updateTime = function(delta, unitData) {
 
 	this.x  = unitData.x;
 	this.y = unitData.y;
+};
+
+p.animate = function(dx, dy){
+	var sprite = this.getChildByName('texture');
+
+	if(sprite){
+		var anim;
+		// console.log(dx|0 + ' ' +dy|0);
+		if(dx|0 == 0 && dy|0 > 0){
+			anim = 'runTop';
+		}else if(dx|0 == 0 && dy|0 < 0){
+			anim = 'runBot';
+		}else if(dx|0 > 0 && dy|0 == 0){
+			anim = 'runRight';
+		}else if(dx|0 < 0 && dy|0 == 0){
+			anim = 'runLeft';
+		}else if(dx|0 > 0 && dy|0 > 0 ){
+			anim = 'runTopRight';
+		}else if(dx|0 > 0 && dy|0 < 0){
+			anim = 'runBotRight';
+		}else if(dx|0 < 0 && dy|0 > 0 ){
+			anim = 'runTopLeft';
+		}else if(dx|0 < 0 && dy|0 < 0){
+			anim = 'runBotLeft';
+		}
+
+		if(sprite.currentAnimation != anim){
+			sprite.gotoAndPlay(anim);
+		}
+	}
 };
 
 p.doDamage = function(dmg){
