@@ -121,6 +121,19 @@ p.updateTime = function(delta, unitData) {
         if(enemy){
             if(distanceToEnemy < UnitTypes[unitData.unitType].range){
                 //fight
+
+
+                 //fight
+                unitData.attackTimer += delta;
+
+                if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
+                    unitData.attackTimer = 0;
+                    enemy.hp -= UnitTypes[unitData.unitType].damage;
+
+                    if (enemy.hp <= 0) {
+                        enemy.kill = true;
+                    }
+                }
             }else{
                 //walk to enemy
                 var dx = enemy.x - unitData.x;
