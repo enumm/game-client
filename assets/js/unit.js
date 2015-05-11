@@ -12,50 +12,76 @@ p.setup = function() {
 	this.name = this.unitData.name;
 	var circle = new createjs.Shape();
 
-	if(this.unitData.unitType == 'Pleb')
-	{
-		var data = {
-		    images: [PlebTile],
-		    frames: {width:24, height:60},
-		    animations: {
-		        stand:0,
-		        runBotLeft:[0, 15],
-		        runBotRight:[16, 31],
-		        runTopLeft:[32, 47],
-		        runTopRight:[48, 63],
-		        runRight:[64, 79],
-		        runLeft:[80, 95],
-		        runBot:[96, 111],
-		        runTop:[112, 127]
-		    }
-		};
+	// if(this.unitData.unitType == 'Pleb')
+	// {
 
-		var spriteSheet = new createjs.SpriteSheet(data);
+		//var tilePlebGround, tilePlebRanged, tilePlebFlying, tileBlaGround, tileBlaRanged, tileBlaFlying,;
+	var img = null;
 
-		var sprite = new createjs.Sprite(spriteSheet, "runBot");
-		sprite.name = 'texture';
-		sprite.x = 52;
-		sprite.y = 50;
-
-		this.addChild(sprite);
-	}else{
-		if(gameInstanceScreen.connectionData.host){
-			if(this.ours){
-				circle.graphics.beginFill("yellow").drawCircle(0, 0, 10);
-			}else{
-				circle.graphics.beginFill("red").drawCircle(0, 0, 10);
-			}
-		}else{
-			if(this.ours){
-				circle.graphics.beginFill("red").drawCircle(0, 0, 10);
-			}else{
-				circle.graphics.beginFill("yellow").drawCircle(0, 0, 10);
-			}
-		}
-		circle.x = 64;
-		circle.y = 84;
-		this.addChild(circle);
+	switch (this.unitData.unitType){
+		case 'Pleb':
+			img = tilePlebGround;
+			break;
+		case 'Bla':
+			img = tileBlaGround;
+			break;
+		case 'RangedPleb':
+			img = tilePlebRanged;
+			break;
+		case 'RangedBla':
+			img = tileBlaRanged;
+			break;
+		case 'FlyingPleb':
+			img = tilePlebFlying;
+			break;
+		case 'FlyingBla':
+			img = tileBlaFlying;
+			break;
 	}
+
+
+	var data = {
+	    images: [img],
+	    frames: {width:24, height:60},
+	    animations: {
+	        stand:0,
+	        runBotLeft:[0, 15],
+	        runBotRight:[16, 31],
+	        runTopLeft:[32, 47],
+	        runTopRight:[48, 63],
+	        runRight:[64, 79],
+	        runLeft:[80, 95],
+	        runBot:[96, 111],
+	        runTop:[112, 127]
+	    }
+	};
+
+	var spriteSheet = new createjs.SpriteSheet(data);
+
+	var sprite = new createjs.Sprite(spriteSheet, "runBot");
+	sprite.name = 'texture';
+	sprite.x = 52;
+	sprite.y = 50;
+
+	this.addChild(sprite);
+	// }else{
+	// 	if(gameInstanceScreen.connectionData.host){
+	// 		if(this.ours){
+	// 			circle.graphics.beginFill("yellow").drawCircle(0, 0, 10);
+	// 		}else{
+	// 			circle.graphics.beginFill("red").drawCircle(0, 0, 10);
+	// 		}
+	// 	}else{
+	// 		if(this.ours){
+	// 			circle.graphics.beginFill("red").drawCircle(0, 0, 10);
+	// 		}else{
+	// 			circle.graphics.beginFill("yellow").drawCircle(0, 0, 10);
+	// 		}
+	// 	}
+	// 	circle.x = 64;
+	// 	circle.y = 84;
+	// 	this.addChild(circle);
+	// }
 
 	this.x = this.unitData.x;
 	this.y = this.unitData.y;

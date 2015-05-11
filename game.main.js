@@ -2,7 +2,7 @@ var tileset;
 var tilesetPlebs;
 var tilesetBlaBlas;
 
-var PlebTile;
+var tilePlebGround, tilePlebRanged, tilePlebFlying, tileBlaGround, tileBlaRanged, tileBlaFlying;
 
 var buttonImg;
 var btnRacePlebsImg = [];
@@ -230,7 +230,15 @@ window.onload = function(){
         {id: "tileset", src: "img/tileCheck.png"},
         {id: "tilesetPlebs", src: "img/plebsTile.png"},
         {id: "tilesetBlaBlas", src: "img/blablasTile.png"},
-        {id: "tilesetPlebUnit", src: "img/isometric_exampleKappa.png"},
+
+        {id: "tilesetPlebGround", src: "img/groundPleb.png"},
+        {id: "tilesetPlebFlying", src: "img/flyingPleb.png"},
+        {id: "tilesetPlebRanged", src: "img/rangedPleb.png"},
+
+        {id: "tilesetBlaGround", src: "img/groundBla.png"},
+        {id: "tilesetBlaFlying", src: "img/flyingBla.png"},
+        {id: "tilesetBlaRanged", src: "img/rangedBla.png"},
+
         {id: "overlay", src: "img/overlay.png"},
         {id: "buttonImg", src: "img/button.png"},
         {id: "btnRacePlebs", src: "img/race_plebs.jpg"},
@@ -284,9 +292,27 @@ function handleFileLoad(event) {
                 tilesetPlebs = result;
             }else if (id == "tilesetBlaBlas"){
                 tilesetBlaBlas = result;
-            }else if (id == "tilesetPlebUnit"){
-                PlebTile = result;
-            }else if(id == 'texture1'){
+            }else
+
+
+            if (id == "tilesetPlebGround"){
+                tilePlebGround = result;
+            }else if(id == "tilesetPlebRanged"){
+                tilePlebRanged = result;
+            }else if(id == "tilesetPlebFlying"){
+                tilePlebFlying = result;
+            }else
+
+            if (id == "tilesetBlaGround"){
+                tileBlaGround = result;
+            }else if(id == "tilesetBlaRanged"){
+                tileBlaRanged = result;
+            }else if(id == "tilesetBlaFlying"){
+                tileBlaFlying = result;
+            }
+
+
+            else if(id == 'texture1'){
                 var texture = new createjs.Shape(new createjs.Graphics().beginBitmapFill(result).drawRect(0, 0, 80, 80));
                         texture.regX = 40;
                         texture.regY = 40;
