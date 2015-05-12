@@ -81,7 +81,10 @@ p.updateTime = function(delta, unitData) {
                 	if(distanceToEnemy > dst){
                     	distanceToEnemy = dst;
                     	enemy = value; 
-                	} 
+                	}else if(distanceToEnemy == dst && enemy.hp < value.hp){
+                		distanceToEnemy = dst;
+                    	enemy = value;
+                	}
             	}
             }
         });
@@ -95,7 +98,10 @@ p.updateTime = function(delta, unitData) {
                 	if(distanceToEnemy > dst){
                     	distanceToEnemy = dst;
                     	enemy = value; 
-                	} 
+                	} else if(distanceToEnemy == dst && enemy.hp < value.hp){
+                		distanceToEnemy = dst;
+                    	enemy = value;
+                	}
             	}
             }
         });
@@ -104,10 +110,6 @@ p.updateTime = function(delta, unitData) {
     if(distanceToEnemy < 130){
         if(enemy){
             if(distanceToEnemy < UnitTypes[unitData.unitType].range){
-                //fight
-
-
-                 //fight
                 unitData.attackTimer += delta;
 
                 if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
@@ -119,6 +121,8 @@ p.updateTime = function(delta, unitData) {
                     }
                 }
             }else{
+            	unitData.attackTimer = 0;
+
                 //walk to enemy
                 var dx = enemy.x - unitData.x;
                 var dy = enemy.y - unitData.y;
