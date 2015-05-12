@@ -209,7 +209,6 @@ window.onload = function(){
         {id: "jquery-2", src: "js/jquery-2.1.3.min.js"},
         {id: "assets", src: "js/proton-1.0.0.min.js"},
         {id: "pathFinding", src: "js/pathfinding-browser.min.js"},
-        {id: "adressBar", src : "js/hideAddressbar.min.js"},
 
         {id: "button", src: "js/button.js"},
         {id: "assets", src: "js/assets.js"},
@@ -301,16 +300,41 @@ function handleComplete(event) {
     tilesetPlebs = preload.getResult("tilesetPlebs");
     tilesetBlaBlas = preload.getResult("tilesetBlaBlas");
 
-    tilePlebGround = preload.getResult("tilesetPlebGround");
-    tilePlebRanged = preload.getResult("tilesetPlebRanged");
-    tilePlebFlying = preload.getResult("tilesetPlebFlying");
+    //create sprites
+    var data = {
+        images: [preload.getResult("tilesetPlebGround")],
+        frames: {width:24, height:60},
+        animations: {
+            stand:0,
+            runBotLeft:[0, 15],
+            runBotRight:[16, 31],
+            runTopLeft:[32, 47],
+            runTopRight:[48, 63],
+            runRight:[64, 79],
+            runLeft:[80, 95],
+            runBot:[96, 111],
+            runTop:[112, 127]
+        }
+    };
 
-    tileBlaGround = preload.getResult("tilesetBlaGround");
-    tileBlaRanged = preload.getResult("tilesetBlaRanged");
-    tileBlaFlying = preload.getResult("tilesetBlaFlying");
+    tilePlebGround = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
 
-   
+    data.images = [preload.getResult("tilesetPlebRanged")];
+    tilePlebRanged = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
 
+    data.images = [preload.getResult("tilesetPlebFlying")];
+    tilePlebFlying = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
+
+    data.images = [preload.getResult("tilesetBlaGround")];
+    tileBlaGround = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
+
+    data.images = [preload.getResult("tilesetBlaRanged")];
+    tileBlaRanged = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
+
+    data.images = [preload.getResult("tilesetBlaFlying")];
+    tileBlaFlying = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
+
+    //other loaded data
     var texture = new createjs.Shape(new createjs.Graphics().beginBitmapFill(preload.getResult("texture1")).drawRect(0, 0, 80, 80));
     texture.regX = 40;
     texture.regY = 40;

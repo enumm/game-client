@@ -3,85 +3,43 @@
 function Unit(data, ours) {
 	this.Container_constructor();
 	this.unitData = data;
+	this.name = data.name;
 	this.ours = ours;
 	this.setup();
 }
 var p = createjs.extend(Unit, createjs.Container);
 
 p.setup = function() {
-	this.name = this.unitData.name;
-	var circle = new createjs.Shape();
-
-	// if(this.unitData.unitType == 'Pleb')
-	// {
-
-		//var tilePlebGround, tilePlebRanged, tilePlebFlying, tileBlaGround, tileBlaRanged, tileBlaFlying,;
-	var img = null;
+	var sprite = null;
 
 	switch (this.unitData.unitType){
 		case 'Pleb':
-			img = tilePlebGround;
+			sprite = tilePlebGround.clone();
 			break;
 		case 'Bla':
-			img = tileBlaGround;
+			sprite = tileBlaGround.clone();
 			break;
 		case 'RangedPleb':
-			img = tilePlebRanged;
+			sprite = tilePlebRanged.clone();
 			break;
 		case 'RangedBla':
-			img = tileBlaRanged;
+			sprite = tileBlaRanged.clone();
 			break;
 		case 'FlyingPleb':
-			img = tilePlebFlying;
+			sprite = tilePlebFlying.clone();
 			break;
 		case 'FlyingBla':
-			img = tileBlaFlying;
+			sprite = tileBlaFlying.clone();
 			break;
 	}
 
+	if(sprite){
+		sprite.name = 'texture';
+		sprite.x = 52;
+		sprite.y = 50;
 
-	var data = {
-	    images: [img],
-	    frames: {width:24, height:60},
-	    animations: {
-	        stand:0,
-	        runBotLeft:[0, 15],
-	        runBotRight:[16, 31],
-	        runTopLeft:[32, 47],
-	        runTopRight:[48, 63],
-	        runRight:[64, 79],
-	        runLeft:[80, 95],
-	        runBot:[96, 111],
-	        runTop:[112, 127]
-	    }
-	};
-
-	var spriteSheet = new createjs.SpriteSheet(data);
-
-	var sprite = new createjs.Sprite(spriteSheet, "runBot");
-	sprite.name = 'texture';
-	sprite.x = 52;
-	sprite.y = 50;
-
-	this.addChild(sprite);
-	// }else{
-	// 	if(gameInstanceScreen.connectionData.host){
-	// 		if(this.ours){
-	// 			circle.graphics.beginFill("yellow").drawCircle(0, 0, 10);
-	// 		}else{
-	// 			circle.graphics.beginFill("red").drawCircle(0, 0, 10);
-	// 		}
-	// 	}else{
-	// 		if(this.ours){
-	// 			circle.graphics.beginFill("red").drawCircle(0, 0, 10);
-	// 		}else{
-	// 			circle.graphics.beginFill("yellow").drawCircle(0, 0, 10);
-	// 		}
-	// 	}
-	// 	circle.x = 64;
-	// 	circle.y = 84;
-	// 	this.addChild(circle);
-	// }
+		this.addChild(sprite);
+	}
 
 	this.x = this.unitData.x;
 	this.y = this.unitData.y;
@@ -240,31 +198,6 @@ p.animate = function(dx, dy){
 			sprite.gotoAndPlay(anim);
 		}
 	}
-};
-
-p.doDamage = function(dmg){
-	// this.life -= dmg;
-	
-	// if(this.life <= 0){
-	// 	//this.parent.removeChild(this);
-
-	// 	// for( i = instanceData.units.length-1; i>=0; i--) {
-	// 	// 	if( instanceData.units[i].name == this.name) instanceData.units.splice(i,1);
-	// 	// }
-
-	// 	// assets.sendData();
-	// 	var name = this.name
-
-	// 	$.each(instanceData.units, function(index, value){
-	// 		if( value.name == name) {value.kill = true;}
-	// 	});
-
-	// 	// for( i = instanceData.units.length-1; i>=0; i--) {
-	// 	// 	if( instanceData.units[i].name == this.name) {instanceData.units[i].kill = true;}
-	// 	// }
-
-	// 	assets.sendData();
-	// }
 };
 
 window.Unit = createjs.promote(Unit, "Container");
