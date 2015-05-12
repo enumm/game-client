@@ -282,80 +282,48 @@ function handleFileLoad(event) {
         case createjs.AbstractLoader.JAVASCRIPT:
             document.body.appendChild(result);
             break;
-        case createjs.AbstractLoader.IMAGE:
-            if(id == "buttonImg")
-            {
-            	buttonImg = result;
-            }else if (id == "tileset"){
-            	tileset = result;
-            }else if (id == "tilesetPlebs"){
-                tilesetPlebs = result;
-            }else if (id == "tilesetBlaBlas"){
-                tilesetBlaBlas = result;
-            }else
-
-
-            if (id == "tilesetPlebGround"){
-                tilePlebGround = result;
-            }else if(id == "tilesetPlebRanged"){
-                tilePlebRanged = result;
-            }else if(id == "tilesetPlebFlying"){
-                tilePlebFlying = result;
-            }else
-
-            if (id == "tilesetBlaGround"){
-                tileBlaGround = result;
-            }else if(id == "tilesetBlaRanged"){
-                tileBlaRanged = result;
-            }else if(id == "tilesetBlaFlying"){
-                tileBlaFlying = result;
-            }
-
-
-            else if(id == 'texture1'){
-                var texture = new createjs.Shape(new createjs.Graphics().beginBitmapFill(result).drawRect(0, 0, 80, 80));
-                        texture.regX = 40;
-                        texture.regY = 40;
-
-                textures.push(texture);
-            }else if(id =="btnMmCasual"){
-                btnMmCasualImg[0] = result;
-            }else if(id =="btnMmRanked"){
-                btnMmRankedImg[0] = result;
-            }else if(id =="btnMmPrivate"){
-                btnMmPrivateImg[0] = result;
-            }else if(id =="btnRacePlebs"){
-                btnRacePlebsImg[0] = result;
-            }else if(id =="btnFindGame"){
-                btnFindGameImg[0] = result;
-            }else if(id =="btnCancel"){
-                btnCancelImg[0] = result;
-            }else if(id =="btnRaceBlablas"){
-                btnRaceBlablasImg[0] = result;
-            }else if(id =="overlay"){
-                overlayImg = result;
-            }else{
-                loginBackGround = result;
-            }
-            break;
-        case createjs.AbstractLoader.JSON:
-            mapData = result;
-            break;
-
     }
 }
 
 function handleComplete(event) {
+    buttonImg = preload.getResult("buttonImg");
+    tileset = preload.getResult("tileset");
+    tilesetPlebs = preload.getResult("tilesetPlebs");
+    tilesetBlaBlas = preload.getResult("tilesetBlaBlas");
+    tilePlebGround = preload.getResult("tilesetPlebGround");
+    tilePlebRanged = preload.getResult("tilesetPlebRanged");
+    tilePlebFlying = preload.getResult("tilesetPlebFlying");
+    tileBlaGround = preload.getResult("tilesetBlaGround");
+    tileBlaRanged = preload.getResult("tilesetBlaRanged");
+    tileBlaFlying = preload.getResult("tilesetBlaFlying");
+    btnMmCasualImg[0] = preload.getResult("btnMmCasual");
+    btnMmRankedImg[0] = preload.getResult("btnMmRanked");
+    btnMmPrivateImg[0] = preload.getResult("btnMmPrivate");
+    btnRacePlebsImg[0] = preload.getResult("btnRacePlebs");
+    btnFindGameImg[0] = preload.getResult("btnFindGame");
+    btnCancelImg[0] = preload.getResult("btnCancel");
+    btnRaceBlablasImg[0] = preload.getResult("btnRaceBlablas");
+    overlayImg = preload.getResult("overlay");
+    loginBackGround = preload.getResult("loginBackGround");
+
+    var texture = new createjs.Shape(new createjs.Graphics().beginBitmapFill(preload.getResult("texture1")).drawRect(0, 0, 80, 80));
+    texture.regX = 40;
+    texture.regY = 40;
+
+    textures.push(texture);
+
+    mapData = preload.getResult("mapData");
+
     console.log('Loading complete');
-    hideAddressbar('#canvasHolder');
+    //hideAddressbar('#canvasHolder');
+
     stage.removeChild(loadingLabel);
     loadingLabel = null;
 
     stage.addChild(fpsLabel);
-    //start ticker
+
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.setFPS(60);
-    // createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", tick);
 
     assets.showMenuBackground();
