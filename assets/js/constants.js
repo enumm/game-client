@@ -1,6 +1,18 @@
 (function() {
     //kazkaip atrodo hack
 
+    CastleHost = {
+        x: -1150,
+        y: 1500,
+        range: 95
+    };
+
+    CastleOpponent= {
+        x: 1250,
+        y: 1500,
+        range: 95
+    };
+
     Races = {
     	Plebs: {name :'Plebs', buildings: ['PlebHut', 'PlebRanger', 'PlebFlying']},
     	BlaBlas: {name :'BlaBlas', buildings: ['BlaHut', 'BlaRanger', 'BlaFlying']}
@@ -12,8 +24,8 @@
         FlyingPleb: {name: 'FlyingPleb', type: 'flying', damage: 5, armor: 4, movementSpeed: 60, life: 100, attackSpeed: 3, range: 35},
 
 
-        Bla: {name: 'Bla', type: 'ground', damage: 10, armor: 10, movementSpeed: 60, life: 100, attackSpeed: 1, range: 10},
-        RangedBla: {name: 'RangedBla', type: 'ranged', damage: 8, armor: 5, movementSpeed: 60, life: 100, attackSpeed: 2, range: 100},
+        Bla: {name: 'Bla', type: 'ground', damage: 10, armor: 10, movementSpeed: 60, life: 100, attackSpeed: 1, range: 15},
+        RangedBla: {name: 'RangedBla', type: 'ranged', damage: 8, armor: 5, movementSpeed: 60, life: 100, attackSpeed: 2, range: 120},
         FlyingBla: {name: 'FlyingBla', type: 'flying', damage: 5, armor: 4, movementSpeed: 60, life: 100, attackSpeed: 3, range: 35}
 	};
 
