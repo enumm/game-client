@@ -288,14 +288,6 @@ function handleFileLoad(event) {
 function handleComplete(event) {
     buttonImg = preload.getResult("buttonImg");
     tileset = preload.getResult("tileset");
-    tilesetPlebs = preload.getResult("tilesetPlebs");
-    tilesetBlaBlas = preload.getResult("tilesetBlaBlas");
-    tilePlebGround = preload.getResult("tilesetPlebGround");
-    tilePlebRanged = preload.getResult("tilesetPlebRanged");
-    tilePlebFlying = preload.getResult("tilesetPlebFlying");
-    tileBlaGround = preload.getResult("tilesetBlaGround");
-    tileBlaRanged = preload.getResult("tilesetBlaRanged");
-    tileBlaFlying = preload.getResult("tilesetBlaFlying");
     btnMmCasualImg[0] = preload.getResult("btnMmCasual");
     btnMmRankedImg[0] = preload.getResult("btnMmRanked");
     btnMmPrivateImg[0] = preload.getResult("btnMmPrivate");
@@ -306,6 +298,19 @@ function handleComplete(event) {
     overlayImg = preload.getResult("overlay");
     loginBackGround = preload.getResult("loginBackGround");
 
+    tilesetPlebs = preload.getResult("tilesetPlebs");
+    tilesetBlaBlas = preload.getResult("tilesetBlaBlas");
+
+    tilePlebGround = preload.getResult("tilesetPlebGround");
+    tilePlebRanged = preload.getResult("tilesetPlebRanged");
+    tilePlebFlying = preload.getResult("tilesetPlebFlying");
+
+    tileBlaGround = preload.getResult("tilesetBlaGround");
+    tileBlaRanged = preload.getResult("tilesetBlaRanged");
+    tileBlaFlying = preload.getResult("tilesetBlaFlying");
+
+   
+
     var texture = new createjs.Shape(new createjs.Graphics().beginBitmapFill(preload.getResult("texture1")).drawRect(0, 0, 80, 80));
     texture.regX = 40;
     texture.regY = 40;
@@ -315,7 +320,6 @@ function handleComplete(event) {
     mapData = preload.getResult("mapData");
 
     console.log('Loading complete');
-    //hideAddressbar('#canvasHolder');
 
     stage.removeChild(loadingLabel);
     loadingLabel = null;
