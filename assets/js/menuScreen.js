@@ -113,6 +113,9 @@ p.setup = function() {
     this.addChild(btnMmCasual, btnMmRanked, btnMmPrivate);
     this.addChild(btnFindGame);
     this.addChild(btnLogOut);
+
+    var chatWindow = new ChatWindow();
+    this.addChild(chatWindow);
     //--------------------------------------------
 };
 

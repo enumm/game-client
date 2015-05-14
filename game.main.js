@@ -211,6 +211,7 @@ window.onload = function(){
         {id: "pathFinding", src: "js/pathfinding-browser.min.js"},
 
         {id: "button", src: "js/button.js"},
+        {id: "chatWindow", src: "js/chatWindow.js"},
         {id: "assets", src: "js/assets.js"},
         {id: "debugScreen", src: "js/debugScreen.js"},
         {id: "mainPanel", src: "js/mainPanel.js"},
