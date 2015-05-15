@@ -119,6 +119,8 @@ function showMenu(){
 }
 
 function hideMenu(){
+    var chatElement = document.getElementById("mainChat");
+    $(chatElement).hide();
     stage.removeChild(menuScreen);
     menuScreen = null;
     delete menuScreen;
@@ -171,9 +173,14 @@ function OnResizeCalled() {
 
     var loginDiv = $('#mainPanelContainer');
     var loginBlock = stage.getChildByName('MainPanel');
+
     if(loginBlock){
         loginBlock.x = ((parseInt(canvas.style.width) * 0.5) - loginDiv.width() * 0.5) + margin;
         loginBlock.y = -(parseInt(canvas.style.height) * 0.5) - loginDiv.height() * 0.5;
+    }
+
+    if(menuScreen){
+        menuScreen.getChildByName('chatWindow').setChatscale();
     }
 
    //hideAddressbar('#canvasHolder');
