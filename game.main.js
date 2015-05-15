@@ -180,7 +180,7 @@ function OnResizeCalled() {
     }
 
     if(menuScreen){
-        menuScreen.getChildByName('chatWindow').setChatscale();
+        menuScreen.getChildByName('chatWindow').setChatScale();
     }
 
    //hideAddressbar('#canvasHolder');

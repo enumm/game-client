@@ -1,3 +1,4 @@
+//# sourceURL=chatWindow.js
 (function() {
 function ChatWindow() {
 	this.Container_constructor();	
@@ -56,15 +57,29 @@ p.setup = function() {
     this.addChild(chatDOM);
 
     shape1.on("click", function(){
+        var chatWindow = this.parent;
+        if(!chatWindow.open){
+            chatWindow.open = true;;
+        }else{
+            chatWindow.open = false;
+        }
+        
+        var moveToXCoords;
+        if(chatWindow.open){
+            moveToXCoords = 1080 * parseInt(canvas.style.width)/1280;
+        }else{
+            moveToXCoords = 1280 * parseInt(canvas.style.width)/1280;
+        }
+
         createjs.Tween.get(chatDOM, { loop: false })
-        .to({ x: chatDOM.x == 1080* parseInt(canvas.style.width)/1280 ? 1280*parseInt(canvas.style.width)/1280: 1080*parseInt(canvas.style.width)/1280}, 1000, createjs.Ease.getPowInOut(4));
+        .to({ x: moveToXCoords}, 1000, createjs.Ease.getPowInOut(4));
 
         createjs.Tween.get(shape1, { loop: false })
         .to({ x: shape1.x == 1030 ? 1230 : 1030}, 1000, createjs.Ease.getPowInOut(4));
     });
 };
 
-p.setChatscale = function(){
+p.setChatScale = function(){
     var chatDOM = this.getChildByName('chatDOM');
 
     if(window.innerWidth > parseInt(canvas.style.width)){
@@ -73,7 +88,11 @@ p.setChatscale = function(){
         chatDOM.regX = 0;
     }
 
-    chatDOM.x = 1280 * parseInt(canvas.style.width)/1280;
+    if(this.open){
+        chatDOM.x = 1080 * parseInt(canvas.style.width)/1280;
+    }else{
+        chatDOM.x = 1280 * parseInt(canvas.style.width)/1280;
+    }
     chatDOM.y = 110 * parseInt(canvas.style.height)/720;
 
     chatDOM.scaleX = parseInt(canvas.style.width)/1280;
