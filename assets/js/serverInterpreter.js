@@ -97,8 +97,15 @@
     socket.on('chatMessage', function (data) {
         if(menuScreen){
             var chatArea = $('#chatArea');
-            chatArea.append('<span>' + data.user + ': ' + data.message +'</span></br>');
+            chatArea.append('<span><span style="color: purple">' + data.user  +'</span>: ' + data.message +'</span></br>');
         }
     });
+
+    socket.on('usersConnected', function (data) {
+        if(menuScreen){
+            var userCount = $('#onlineUsers');
+            userCount.html('Online: ' + data);
+        }
+    });    
 
 }());
