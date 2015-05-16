@@ -107,6 +107,7 @@ p.onOpenClosed = function(){
 }
 
 p.getChatX = function(){
+    //TODO: 200 hardcoded chatDOM width.
     var scale = $(canvas).width()/1280;
     if(this.open){
         return $(window).width()/2+parseInt(canvas.style.width)/2-(200*scale);
