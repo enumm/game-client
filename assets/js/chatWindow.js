@@ -62,7 +62,8 @@ p.setup = function() {
     chatDOM.x = this.getChatX();
     chatDOM.y = 110 * parseInt(canvas.style.height)/720;
 
-    chatDOM.scaleX = parseInt(canvas.style.width)/1280;
+    // chatDOM.scaleX = parseInt(canvas.style.width)/1280;
+    chatDOM.scaleX = 0;
     chatDOM.scaleY = parseInt(canvas.style.height)/720;
 
     this.addChild(chatDOM);
@@ -81,7 +82,13 @@ p.setup = function() {
 
 p.setChatScale = function(){
     var chatDOM = this.getChildByName('chatDOM');
-    chatDOM.scaleX = parseInt(canvas.style.width)/1280;
+    if (this.open) {
+        chatDOM.scaleX = parseInt(canvas.style.width)/1280;
+    }else{
+        chatDOM.scaleX = 0;
+    }
+
+    //chatDOM.scaleX = parseInt(canvas.style.width)/1280;
     chatDOM.scaleY = parseInt(canvas.style.height)/720;
 };
 
@@ -100,7 +107,7 @@ p.setChatPosition = function(clicked){
         .to({ x: chatButton.x == 1030 ? 1230 : 1030}, 1000, createjs.Ease.getPowInOut(4));
 
         createjs.Tween.get(chatDOM, { loop: false })
-        .to({ x: this.getChatX()}, 1000, createjs.Ease.getPowInOut(4))
+        .to({ x: this.getChatX(), scaleX: this.getChatScaleX()}, 1000, createjs.Ease.getPowInOut(4))
         .call(function(){
             this.parent.animationComplete = true;
         });
@@ -122,6 +129,14 @@ p.getChatX = function(){
         return $(window).width()/2+parseInt(canvas.style.width)/2-(200*scale);
     }else{
         return $(window).width()/2+parseInt(canvas.style.width)/2;
+    }
+}
+
+p.getChatScaleX = function(){
+    if(this.open){
+        return parseInt(canvas.style.width)/1280;
+    }else{
+        return 0;
     }
 }
 
