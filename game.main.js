@@ -12,6 +12,12 @@ var btnMmRankedImg = [];
 var btnMmPrivateImg = [];
 var btnFindGameImg = [];
 var btnCancelImg = [];
+var buttons = {
+    btnRaceBlabla: null,
+    btnRacePleb:null,
+    btnCancel:null,
+    btnLogout:null
+    };
 
 var loginBackGround;
 var overlayImg;
@@ -35,6 +41,7 @@ var raceSelected = 'Plebs';
 var gameType = 'casual';
 var userFriends = [];
 var userCurrentSelection;
+var statsString = '';
 
 //check other places
 var instanceData = {money: 5, castleHp: 1000, buildings: [], units: [], buildingCount: 0, unitCount: 0};
@@ -223,6 +230,7 @@ window.onload = function(){
         {id: "pathFinding", src: "js/pathfinding-browser.min.js"},
 
         {id: "button", src: "js/button.js"},
+        {id: "buttonNX", src: "js/butonPisauAntMergeNX.js"},
         {id: "chatWindow", src: "js/chatWindow.js"},
         {id: "assets", src: "js/assets.js"},
         {id: "debugScreen", src: "js/debugScreen.js"},
@@ -250,6 +258,14 @@ window.onload = function(){
         {id: "tilesetBlaGround", src: "img/groundBla.png"},
         {id: "tilesetBlaFlying", src: "img/flyingBla.png"},
         {id: "tilesetBlaRanged", src: "img/rangedBla.png"},
+
+        {id: "btnSheetBlaBlaRace", src: "img/buttons/raceButtons_blablaBtnSheet.jpg"},
+        {id: "btnSheetPlebRace", src: "img/buttons/raceButtons_plebBtnSheet.jpg"},
+        {id: "btnSheetCancel", src: "img/buttons/raceButtons_cancelBtnSheet.jpg"},
+        {id: "btnSheetLogout", src: "img/buttons/raceButtons_logoutBtnSheet.jpg"},
+        // {id: "btnSheetRanked", src: "img/rangedBla.png"},
+        // {id: "btnSheetCasual", src: "img/rangedBla.png"},
+        // {id: "btnSheetPlay", src: "img/rangedBla.png"},
 
         {id: "overlay", src: "img/overlay.png"},
         {id: "buttonImg", src: "img/button.png"},
@@ -329,6 +345,30 @@ function handleComplete(event) {
             runTop:[112, 127]
         }
     };
+
+    buttons.btnRaceBlabla = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetBlaBlaRace")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.btnRacePleb = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetPlebRace")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.btnCancel = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetCancel")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.btnLogout = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetLogout")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
 
     tilePlebGround = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
 
