@@ -18,7 +18,10 @@ var overlayImg;
 var stage;
 var mapData;
 
+//debug vars
 var debug = true;
+var debugChatDOM; //this is chatDOM
+//debug vars end
 
 var lastX = 0;
 var lastY = 0;
@@ -116,6 +119,7 @@ function showMenu(){
     menuScreen = new MenuScreen();
     stage.addChild(menuScreen);
     stage.setChildIndex ( fpsLabel,  1);
+    debugChatDOM = menuScreen.getChildByName('chatWindow').children[2];
 }
 
 function hideMenu(){
@@ -181,6 +185,7 @@ function OnResizeCalled() {
 
     if(menuScreen){
         menuScreen.getChildByName('chatWindow').setChatScale();
+        menuScreen.getChildByName('chatWindow').setChatPosition();
     }
 
    //hideAddressbar('#canvasHolder');

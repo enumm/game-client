@@ -19,22 +19,24 @@ p.setup = function() {
 
     this.addChild(shape);
 
-    var shape1 = new createjs.Shape();
-    shape1.graphics.beginFill('green');
-    shape1.graphics.drawRect(0, 0, 50, 100);
-    shape1.graphics.endFill();
-    shape1.x = 1230;
-    shape1.y = 310;
-    shape1.name = 'rekt1';
+    var chatButton = new createjs.Shape();
+    chatButton.graphics.beginFill('green');
+    chatButton.graphics.drawRect(0, 0, 50, 100);
+    chatButton.graphics.endFill();
+    chatButton.x = 1230;
+    chatButton.y = 310;
+    chatButton.name = 'chatButton';
 
-    this.addChild(shape1);
+    this.addChild(chatButton);
 
- //    shape1.on("click", function(){
- //    	createjs.Tween.get(shape, { loop: false })
+    //TODO PV, AR REIK CIA COMMENTS?
+
+    //    chatButton.on("click", function(){
+    //    	createjs.Tween.get(shape, { loop: false })
 	// 	.to({ x: shape.x == 1080 ? 1280: 1080}, 1000, createjs.Ease.getPowInOut(4));
 
-	// 	createjs.Tween.get(shape1, { loop: false })
-	// 	.to({ x: shape1.x == 1030 ? 1230 : 1030}, 1000, createjs.Ease.getPowInOut(4));
+	// 	createjs.Tween.get(chatButton, { loop: false })
+	// 	.to({ x: chatButton.x == 1030 ? 1230 : 1030}, 1000, createjs.Ease.getPowInOut(4));
 	// });
 
     var chatElement = document.getElementById("mainChat");
@@ -42,62 +44,76 @@ p.setup = function() {
     var chatDOM = new createjs.DOMElement(chatElement);
     chatDOM.name = 'chatDOM';
 
-    if(window.innerWidth > parseInt(canvas.style.width)){
-        chatDOM.regX = -(window.innerWidth - parseInt(canvas.style.width))/2;
-    }else{
-        chatDOM.regX = 0;
-    }
+    // if(window.innerWidth > parseInt(canvas.style.width)){
+    //     chatDOM.regX = -(window.innerWidth - parseInt(canvas.style.width))/2;
+    // }else{
+    //     chatDOM.regX = 0;
+    // }
 
-    chatDOM.x = 1280 * parseInt(canvas.style.width)/1280;
+    chatDOM.x = this.getChatX();
     chatDOM.y = 110 * parseInt(canvas.style.height)/720;
 
     chatDOM.scaleX = parseInt(canvas.style.width)/1280;
     chatDOM.scaleY = parseInt(canvas.style.height)/720;
 
     this.addChild(chatDOM);
+    this.open = false;
+    this.animationComplete = true;
 
-    shape1.on("click", function(){
+    chatButton.on("click", function(){
         var chatWindow = this.parent;
-        if(!chatWindow.open){
-            chatWindow.open = true;;
-        }else{
-            chatWindow.open = false;
+        if(chatWindow.animationComplete){
+            chatWindow.onOpenClosed();
+            chatWindow.animationComplete = false;
+            chatWindow.setChatPosition(true);
         }
-        
-        var moveToXCoords;
-        if(chatWindow.open){
-            moveToXCoords = 1080 * parseInt(canvas.style.width)/1280;
-        }else{
-            moveToXCoords = 1280 * parseInt(canvas.style.width)/1280;
-        }
-
-        createjs.Tween.get(chatDOM, { loop: false })
-        .to({ x: moveToXCoords}, 1000, createjs.Ease.getPowInOut(4));
-
-        createjs.Tween.get(shape1, { loop: false })
-        .to({ x: shape1.x == 1030 ? 1230 : 1030}, 1000, createjs.Ease.getPowInOut(4));
     });
 };
 
 p.setChatScale = function(){
     var chatDOM = this.getChildByName('chatDOM');
-
-    if(window.innerWidth > parseInt(canvas.style.width)){
-        chatDOM.regX = -(window.innerWidth - parseInt(canvas.style.width))/2;
-    }else{
-        chatDOM.regX = 0;
-    }
-
-    if(this.open){
-        chatDOM.x = 1080 * parseInt(canvas.style.width)/1280;
-    }else{
-        chatDOM.x = 1280 * parseInt(canvas.style.width)/1280;
-    }
-    chatDOM.y = 110 * parseInt(canvas.style.height)/720;
-
     chatDOM.scaleX = parseInt(canvas.style.width)/1280;
     chatDOM.scaleY = parseInt(canvas.style.height)/720;
 };
+
+p.setChatPosition = function(clicked){
+    var chatDOM = this.getChildByName('chatDOM');
+    var chatButton = this.getChildByName('chatButton');
+    if(!clicked){
+        chatDOM.x = this.getChatX();
+        chatDOM.y = 110 * parseInt(canvas.style.height)/720; 
+
+    }else{
+        // var toAlpha;
+        // toAlpha = this.open ? 1 : 0;
+
+        createjs.Tween.get(chatButton, { loop: false })
+        .to({ x: chatButton.x == 1030 ? 1230 : 1030}, 1000, createjs.Ease.getPowInOut(4));
+
+        createjs.Tween.get(chatDOM, { loop: false })
+        .to({ x: this.getChatX()}, 1000, createjs.Ease.getPowInOut(4))
+        .call(function(){
+            this.parent.animationComplete = true;
+        });
+    }
+}
+
+p.onOpenClosed = function(){
+    if(!this.open){
+        this.open = true;
+    }else{
+        this.open = false;
+    }
+}
+
+p.getChatX = function(){
+    var scale = $(canvas).width()/1280;
+    if(this.open){
+        return $(window).width()/2+parseInt(canvas.style.width)/2-(200*scale);
+    }else{
+        return $(window).width()/2+parseInt(canvas.style.width)/2;
+    }
+}
 
 window.ChatWindow = createjs.promote(ChatWindow, "Container");
 }());

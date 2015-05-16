@@ -2,7 +2,11 @@ body {
 	background: #000;
     margin: 0;
     color: #fff;
+    overflow: hidden;
 }
+/*OTHER*/
+
+/*--OTHER--*/
 
 /*MAINPANEL*/
 #mainPanelContainer{
