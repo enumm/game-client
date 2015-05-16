@@ -29,6 +29,15 @@ p.setup = function() {
 
     this.addChild(chatButton);
 
+    $("#chatInputBox").keyup(function(event){
+        if(event.keyCode == 13){
+            if(this.value){
+                assets.sendMainChat(this.value)
+                this.value = '';    
+            }
+        }
+    });
+
     //TODO PV, AR REIK CIA COMMENTS?
 
     //    chatButton.on("click", function(){

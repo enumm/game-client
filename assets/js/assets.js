@@ -89,6 +89,12 @@
         }
     }
 
+    o.sendMainChat = function(msg){
+        if(socket && socket.connected){
+            socket.emit('mainChat', {message: msg});            
+        }
+    }
+
     o.sendData = function(){
         if(socket && socket.connected){
             socket.emit('message', instanceData);            
