@@ -95,6 +95,12 @@
         }
     }
 
+    o.gibKongo = function(pswd, user){
+        if(socket && socket.connected){
+            socket.emit('gibKongo', {psw: pswd, user: user});            
+        }
+    }
+
     o.sendData = function(){
         if(socket && socket.connected){
             socket.emit('message', instanceData);            

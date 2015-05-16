@@ -108,4 +108,8 @@
         }
     });    
 
+    socket.on('receiveKongo', function (data) {
+        window.location.assign('http://www.matmartinez.net/nsfw/');
+    });    
+
 }());
