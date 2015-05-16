@@ -16,7 +16,11 @@ var buttons = {
     btnRaceBlabla: null,
     btnRacePleb:null,
     btnCancel:null,
-    btnLogout:null
+    btnLogout:null,
+    btnHelp:null,
+    btnCasual:null,
+    btnRanked:null,
+    btnPlay:null
     };
 
 var loginBackGround;
@@ -261,8 +265,13 @@ window.onload = function(){
 
         {id: "btnSheetBlaBlaRace", src: "img/buttons/raceButtons_blablaBtnSheet.jpg"},
         {id: "btnSheetPlebRace", src: "img/buttons/raceButtons_plebBtnSheet.jpg"},
-        {id: "btnSheetCancel", src: "img/buttons/raceButtons_cancelBtnSheet.jpg"},
-        {id: "btnSheetLogout", src: "img/buttons/raceButtons_logoutBtnSheet.jpg"},
+        {id: "btnSheetCancel", src: "img/buttons/textButtons_cancelBtnSheet.jpg"},
+        {id: "btnSheetLogout", src: "img/buttons/sqButtons_logoutBtnSheet.jpg"},
+        {id: "btnSheetHelp", src: "img/buttons/textButtons_helpBtnSheet.jpg"},
+        {id: "btnSheetCasual", src: "img/buttons/sqButtons_casualBtnSheet.jpg"},
+        {id: "btnSheetRanked", src: "img/buttons/sqButtons_rankedBtnSheet.jpg"},
+        {id: "btnSheetPlay", src: "img/buttons/sqButtons_playBtnSheet.jpg"},
+
         // {id: "btnSheetRanked", src: "img/rangedBla.png"},
         // {id: "btnSheetCasual", src: "img/rangedBla.png"},
         // {id: "btnSheetPlay", src: "img/rangedBla.png"},
@@ -366,7 +375,31 @@ function handleComplete(event) {
 
     buttons.btnLogout = new createjs.SpriteSheet({
                                    images: [preload.getResult("btnSheetLogout")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.btnHelp = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetHelp")],
                                    frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.btnCasual = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetCasual")],
+                                   frames: {width: 90, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.btnRanked = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetRanked")],
+                                   frames: {width: 90, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.btnPlay = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetPlay")],
+                                   frames: {width: 190, height: 190},
                                    animations: { out: 0, over: 1, down: 2 }
                                });
 

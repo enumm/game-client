@@ -65,7 +65,7 @@
         }
 
         var lblStats = new createjs.Text(statsString, "20px Arial", "#fff");
-        lblStats.x = 450+240+10;
+        lblStats.x = 400+240+10;
         lblStats.y = 110;
 
         menuScreen.addChild(lblStats);

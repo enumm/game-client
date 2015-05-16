@@ -10,7 +10,7 @@ var p = createjs.extend(MenuScreen, createjs.Container);
 
 p.setup = function() {
     var raceButtons = [];
-    var leftMargin = 450;
+    var leftMargin = 400;
     var topMargin = 110;
 
     assets.showMenuBackground();
@@ -33,55 +33,59 @@ p.setup = function() {
     });
 
     lblSearchingForGame.x = 550;
-    lblSearchingForGame.y = 100;
-    //lblRace.x = leftMargin+240+10;
-    //lblRace.y = 200;
-    //lblSelectedRace.x = leftMargin+240+10;
-    // lblSelectedRace.y = 220;
+    lblSearchingForGame.y = 50;
+
+    //TODO remove lblRace, lblSelectedRace
+    lblRace.x = 50;
+    lblRace.y = 50;
+    lblSelectedRace.x = 50;
+    lblSelectedRace.y = 75;
 
     btnRacePlebs.x = leftMargin;
     btnRacePlebs.y = topMargin;
     btnRaceBlablas.x = leftMargin;
     btnRaceBlablas.y = topMargin + 100;
-    
+
     this.addChild(btnRacePlebs,btnRaceBlablas);
     this.addChild(lblSearchingForGame, lblRace, lblSelectedRace);
 
-    var btnMmCasual =  new Button1("", "#00F", btnMmCasualImg, function() {
+    var btnMmCasual =  new InitButton("btnCasual", buttons.btnCasual, function() {
         gameType = 'casual';
     });
-    btnMmCasual.x = 200;
-    btnMmCasual.y = 450;
 
-    var btnMmRanked =  new Button1("", "#00F", btnMmRankedImg, function() {
+    btnMmCasual.x = leftMargin+240+10;
+    btnMmCasual.y = topMargin+240+70+20;
+
+    var btnMmRanked =  new InitButton("btnRanked", buttons.btnRanked, function() {
         gameType = 'ranked';
     });
-    btnMmRanked.x = 283;
-    btnMmRanked.y = 450;
+    btnMmRanked.x = leftMargin+240+10;
+    btnMmRanked.y = topMargin+240+70+90+30;
 
-    var btnMmPrivate =  new Button1("", "#00F", btnMmPrivateImg, function() {
-        gameType = 'private';
-    });
-    btnMmPrivate.x = 366;
-    btnMmPrivate.y = 450;
-
-    var btnFindGame = new Button1("", "#00F", btnFindGameImg, function() {
+    var btnFindGame = new InitButton("btnPlay", buttons.btnPlay, function() {
         lblSearchingForGame.text = 'searching for a game';
         assets.sendMSG('find_game', {gameType: gameType, race: raceSelected});
         this.parent.addChild(btnCancel);
     });
-    btnFindGame.x = 200;
-    btnFindGame.y = 530;
+    btnFindGame.x = leftMargin+240+10+90+10;
+    btnFindGame.y = topMargin+240+70+20;
 
+    var btnHelp = new InitButton("btnHelp", buttons.btnHelp, function() {
+        //TODO open help window
+    });
+    btnHelp.x = leftMargin;
+    btnHelp.y = topMargin+430;
+
+    //TODO make searching opponent window, move lblSearchingForGame, btnCancel
     var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
         assets.sendMSG('cancel_matchmaking');
         lblSearchingForGame.text = '';
         this.parent.removeChild(this);
     });
-    btnCancel.x = 200;
-    btnCancel.y = 630;
+    btnCancel.x = 100;
+    btnCancel.y = topMargin+430;
 
-    var btnLogOut =  new Button1("", "#00F", btnCancelImg, function() {
+    var btnLogOut =  new InitButton("btnLogout", buttons.btnLogout, function() {
 	    gapi.auth.signOut();
 
 	    if(FB.getAccessToken()){
@@ -93,28 +97,27 @@ p.setup = function() {
 	    hideMenu();
 	    showDebug();
     });
-    btnLogOut.x = 800;
-    btnLogOut.y = 630;
+    btnLogOut.x = 1200;
+    btnLogOut.y = 10;
 
+    //TODO friends panel
     var btnAddFriend =  new Button1("Add Friend", "#00F", null, function() {
         friendScreen.showAddFriendInput()
-        //assets.sendMSG('cancel_matchmaking');
     });
-    btnAddFriend.x = 200;
+    btnAddFriend.x = 100;
     btnAddFriend.y = 150;
 
     var btnFriends =  new Button1("Friends", "#00F", null, function() {
         friendScreen.showFriendPanel();
-        //assets.sendMSG('cancel_matchmaking');
     });
-    btnFriends.x = 200;
+    btnFriends.x = 100;
     btnFriends.y = 100;
     
     this.addChild(btnFriends,btnAddFriend);
 
-    this.addChild(btnMmCasual, btnMmRanked, btnMmPrivate);
+    this.addChild(btnMmCasual, btnMmRanked);
     this.addChild(btnFindGame);
-    this.addChild(btnLogOut);
+    this.addChild(btnLogOut, btnHelp);
 
     var chatWindow = new ChatWindow();
     this.addChild(chatWindow);
