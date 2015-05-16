@@ -94,4 +94,11 @@
         opponentData = oData;
     });
 
+    socket.on('chatMessage', function (data) {
+        if(menuScreen){
+            var chatArea = $('#chatArea');
+            chatArea.append('<span>' + data.user + ': ' + data.message +'</span></br>');
+        }
+    });
+
 }());
