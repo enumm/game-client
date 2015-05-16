@@ -98,6 +98,7 @@
         if(menuScreen){
             var chatArea = $('#chatArea');
             chatArea.append('<span><span style="color: purple">' + data.user  +'</span>: ' + data.message +'</span></br>');
+            chatArea.scrollTop(chatArea.prop('scrollHeight'))
         }
     });
 
