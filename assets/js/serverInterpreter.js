@@ -3,6 +3,22 @@
     //socket = io('http://127.0.0.1:3003');
     socket = io('http://pc.enumm.me:10101');
 
+    socket.on('connect_error', function(){
+        gapi.auth.signOut();
+
+        if(FB.getAccessToken()){
+            FB.logout(function(response) {
+            });
+        }
+
+        mainPanel.show();
+        hideMenu();
+        showDebug();
+    });
+
+    // maybe implement more events:  http://socket.io/docs/client-api/#io#emitter
+
+
     socket.on('hello', function (data) {
         console.log('Server says: ' + data.msg);
     });
