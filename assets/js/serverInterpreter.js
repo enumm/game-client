@@ -80,8 +80,7 @@
     });
 
     socket.on('game_ended', function (data) {
-        hideGameInstance();
-        showMenu(); 
+        assets.gameEnded(data);
     });
 
     socket.on('matchmaking_canceled', function (data) {

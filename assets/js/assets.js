@@ -89,6 +89,12 @@
         }
     }
 
+    o.sendEndGameCheck = function(){
+        if(socket && socket.connected){
+            socket.emit('check_game_status', '');            
+        }
+    }
+
     o.sendMainChat = function(msg){
         if(socket && socket.connected){
             socket.emit('mainChat', {message: msg});            
@@ -409,6 +415,33 @@
         }
         return path;
     }
-    
+
+    o.gameEnded = function(data){
+        if (gameInstanceScreen) {
+            var shape = new createjs.Shape();
+            shape.graphics.beginFill('black');
+            shape.graphics.drawRect(0, 0, 1280, 720);
+            shape.graphics.endFill();
+            shape.alpha = 0.5;
+
+            var text = new createjs.Text(data.msg, "20px Arial", "#ff7700");
+            text.x = (1280/2) - (text.getMeasuredWidth()/2) ;
+            text.y = 720/2;
+
+            var cont = new Button1('Continue', '#fff', null, function(){
+                hideGameInstance();
+                showMenu();    
+            });
+
+            cont.x =  (1280/2) - 100;
+            cont.y = 720/2 + 50;
+
+            gameInstanceScreen.addChild(shape, text, cont);
+
+        }else{
+            hideGameInstance();
+            showMenu();    
+        }
+    }
 }
 )();
