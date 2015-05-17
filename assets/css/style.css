@@ -79,15 +79,15 @@ input.btnMain{
 }
 
 input.btnLogin {
-    background-image: url(assets/img/login.png);
+    background-image: url(assets/img/buttons/cssLogin.png);
 }
 
 input.btnRegister {
-    background-image: url(assets/img/register.png);
+    background-image: url(assets/img/buttons/cssRegister.png);
 }
 
 input.btnBack {
-    
+    background-image: url(assets/img/buttons/cssBack.png);
 }
 
 #customBtn {
