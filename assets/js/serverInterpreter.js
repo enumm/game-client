@@ -25,6 +25,7 @@
 
     socket.on('user_login_response', function (data) {
         if(data.success){
+            username = data.username;
             socket.emit('user_authenticated',  {uuid: data.uuid});
             mainPanel.msgLoggedIn();
         }
@@ -112,7 +113,7 @@
     socket.on('chatMessage', function (data) {
         if(menuScreen){
             var chatArea = $('#chatArea');
-            chatArea.append('<span><span style="color: purple">' + data.user  +'</span>: ' + data.message +'</span></br>');
+            chatArea.append('<span><span style="color: ' + (username ==  data.user ? 'violet' : 'purple') + ';">' + data.user  +'</span>: ' + data.message +'</span></br>');
             chatArea.scrollTop(chatArea.prop('scrollHeight'))
         }
     });

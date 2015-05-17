@@ -41,6 +41,7 @@ var socket;
 var serverUpdateTimer = 0;
 var moneyUpdateTimer = 0;
 
+var username;
 var raceSelected = 'Plebs';
 var gameType = 'casual';
 var userFriends = [];
