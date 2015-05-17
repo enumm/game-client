@@ -101,9 +101,9 @@ p.update = function(){
 	rectHP.graphics.clear()
 
 	if (this.ours){
- 		rectHP.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * instanceData.castleHp, 5);
+ 		rectHP.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * (instanceData.castleHp > 0 ? instanceData.castleHp : 0), 5);
 	}else{
-		rectHP.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * opponentData.castleHp, 5);
+		rectHP.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * (opponentData.castleHp > 0 ? opponentData.castleHp : 0), 5);
 	}
 	
 }

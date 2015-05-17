@@ -157,6 +157,60 @@ p.updateTime = function(delta, unitData) {
             }
         }
     }else{
+
+    	if(this.ours){
+    		if(gameInstanceScreen.connectionData.host){
+    			//kaire
+    			if(assets.getDistance(unitData.x, unitData.y, CastleOpponent.x, CastleOpponent.y) - CastleOpponent.range < UnitTypes[unitData.unitType].range){
+		            unitData.path = [];
+		            unitData.attackTimer += delta;
+
+		            if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
+		                unitData.attackTimer = 0;
+		               	opponentData.castleHp -= UnitTypes[unitData.unitType].damage;
+		            }
+		        }
+    		}
+    		else{
+    			//desine
+    			if(assets.getDistance(unitData.x, unitData.y, CastleHost.x, CastleHost.y) - CastleHost.range < UnitTypes[unitData.unitType].range){
+		            unitData.path = [];
+		            unitData.attackTimer += delta;
+
+		            if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
+		                unitData.attackTimer = 0;
+		               	opponentData.castleHp -= UnitTypes[unitData.unitType].damage;
+		            }
+		        }
+    		}
+    	}else{
+    		if(gameInstanceScreen.connectionData.host){
+    			//desine
+    			if(assets.getDistance(unitData.x, unitData.y, CastleHost.x, CastleHost.y) - CastleHost.range < UnitTypes[unitData.unitType].range){
+		            unitData.path = [];
+		            unitData.attackTimer += delta;
+
+		            if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
+		                unitData.attackTimer = 0;
+		               	instanceData.castleHp -= UnitTypes[unitData.unitType].damage;
+		            }
+		        }
+    		}
+    		else{
+    			//kaire
+    			if(assets.getDistance(unitData.x, unitData.y, CastleOpponent.x, CastleOpponent.y) - CastleOpponent.range < UnitTypes[unitData.unitType].range){
+		            unitData.path = [];
+		            unitData.attackTimer += delta;
+
+		            if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
+		                unitData.attackTimer = 0;
+		               	instanceData.castleHp -= UnitTypes[unitData.unitType].damage;
+		            }
+		        }
+    		}
+    	}
+
+
 		if(unitData.path.length != 0){
 			var mapPositionToGo = unitData.path[0];
 			var positionToGo = assets.mapToScreen(mapPositionToGo[0], mapPositionToGo[1]);

@@ -2,15 +2,15 @@
     //kazkaip atrodo hack
 
     CastleHost = {
-        x: -1280, 
-        y: 1440,
-        range: 95
+        x: -1170, 
+        y: 1450,
+        range: 70
     };
 
     CastleOpponent= {
-        x: 1216,
-        y: 1440,
-        range: 95
+        x: 1200,
+        y: 1460,
+        range: 70
     };
 
     Races = {
