@@ -12,6 +12,12 @@ var p = createjs.extend(Unit, createjs.Container);
 p.setup = function() {
 	var sprite = null;
 
+	//debug//
+    // var circle = new createjs.Shape();
+    // circle.graphics.beginFill("red").drawCircle(0, 0, UnitTypes[this.unitData.unitType].range);
+    // this.addChild(circle);
+	//debug//
+
 	switch (this.unitData.unitType){
 		case 'Pleb':
 			sprite = tilePlebGround.clone();

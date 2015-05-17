@@ -2,14 +2,14 @@
     //kazkaip atrodo hack
 
     CastleHost = {
-        x: -1150,
-        y: 1500,
+        x: -1280, 
+        y: 1440,
         range: 95
     };
 
     CastleOpponent= {
-        x: 1250,
-        y: 1500,
+        x: 1216,
+        y: 1440,
         range: 95
     };
 

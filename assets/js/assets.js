@@ -396,15 +396,15 @@
 
         if(gameInstanceScreen.connectionData.host){
             if(ours){
-                path = finder.findPath(Math.ceil(tx), Math.ceil(ty), 31, 14, grid);
+                path = finder.findPath(Math.ceil(tx), Math.ceil(ty), 32, 13, grid);
             }else{
-                path = finder.findPath(Math.ceil(tx), Math.ceil(ty), 14, 31, grid);
+                path = finder.findPath(Math.ceil(tx), Math.ceil(ty), 13, 32, grid);
             }
         }else{
             if(ours){
-                path = finder.findPath(Math.ceil(tx), Math.ceil(ty), 14, 31, grid);  
+                path = finder.findPath(Math.ceil(tx), Math.ceil(ty), 13, 32, grid);  
             }else{
-                path = finder.findPath(Math.ceil(tx), Math.ceil(ty), 31, 14, grid);      
+                path = finder.findPath(Math.ceil(tx), Math.ceil(ty), 32, 13, grid);      
             }
         }
         return path;

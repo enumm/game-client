@@ -70,11 +70,17 @@ p.setup = function() {
 	this.addChild(sprite11, sprite12, sprite21, sprite22); 
 
 	var rect = new createjs.Shape();
- 	rect.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * this.life, 5);
  	rect.name = 'greenHP';
  	var rect1 = new createjs.Shape();
- 	rect1.graphics.beginFill("#f00").drawRect(20, -119, 0.2 * this.life, 5);
  	rect1.name = 'redHP';
+
+ 	if (this.ours){
+ 		rect1.graphics.beginFill("#f00").drawRect(20, -119, 0.2 * instanceData.castleHp, 5);
+ 		rect.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * instanceData.castleHp, 5);
+	}else{
+		rect1.graphics.beginFill("#f00").drawRect(20, -119, 0.2 * opponentData.castleHp, 5);
+	 	rect.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * opponentData.castleHp, 5);
+	}
  	
  	this.addChild(rect1, rect);
 
@@ -88,6 +94,19 @@ p.setup = function() {
 	 	});	
  	}
 };
+
+
+p.update = function(){
+	var rectHP = this.getChildByName('greenHP');
+	rectHP.graphics.clear()
+
+	if (this.ours){
+ 		rectHP.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * instanceData.castleHp, 5);
+	}else{
+		rectHP.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * opponentData.castleHp, 5);
+	}
+	
+}
 
 window.Castle = createjs.promote(Castle, "Container");
 }());

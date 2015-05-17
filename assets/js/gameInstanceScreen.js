@@ -156,6 +156,9 @@ p.drawUpdate = function(delta){
 
         return true;
     });
+
+    map.getChildByName('castleOurs').update();
+    map.getChildByName('castleEnemy').update();
 };
 
 window.GameInstanceScreen = createjs.promote(GameInstanceScreen, "Container");
