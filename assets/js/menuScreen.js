@@ -22,7 +22,7 @@ p.setup = function() {
     assets.sendMSG('get_user_statistics');
     var lblStats = new createjs.Text(statsString, "20px Arial", "#fff");
 
-    var btnRacePlebs =  new InitButton('btnRacePlebs', buttons.btnRacePleb, function() {
+    var btnRacePlebs =  new InitButton('btnRacePlebs', buttons.btnRacePlebs, function() {
         raceSelected = 'Plebs';
         lblSelectedRace.text = raceSelected;
     });
@@ -30,6 +30,10 @@ p.setup = function() {
     var btnRaceBlablas =  new InitButton('btnRaceBlablas', buttons.btnRaceBlablas, function() {
         raceSelected = 'BlaBlas'; 
         lblSelectedRace.text = raceSelected;
+    });
+
+    var btnRaceLocked1 =  new InitButton('btnRaceLocked1', buttons.btnLocked, function() {
+        console.log('not available yet');
     });
 
     lblSearchingForGame.x = 550;
@@ -45,8 +49,11 @@ p.setup = function() {
     btnRacePlebs.y = topMargin;
     btnRaceBlablas.x = leftMargin;
     btnRaceBlablas.y = topMargin + 100;
+    btnRaceLocked1.x = leftMargin;
+    btnRaceLocked1.y = btnRaceBlablas.y + 100;
 
     this.addChild(btnRacePlebs,btnRaceBlablas);
+    this.addChild(btnRaceLocked1);
     this.addChild(lblSearchingForGame, lblRace, lblSelectedRace);
 
     var btnMmCasual =  new InitButton("btnCasual", buttons.btnCasual, function() {

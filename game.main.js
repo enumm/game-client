@@ -13,14 +13,16 @@ var btnMmPrivateImg = [];
 var btnFindGameImg = [];
 var btnCancelImg = [];
 var buttons = {
-    btnRaceBlabla: null,
-    btnRacePleb:null,
+    btnRaceBlablas: null,
+    btnRacePlebs:null,
+    btnLocked: null,
     btnCancel:null,
     btnLogout:null,
     btnHelp:null,
     btnCasual:null,
     btnRanked:null,
-    btnPlay:null
+    btnPlay:null,
+    btnEmpty:null
     };
 
 var loginBackGround;
@@ -264,27 +266,19 @@ window.onload = function(){
         {id: "tilesetBlaFlying", src: "img/flyingBla.png"},
         {id: "tilesetBlaRanged", src: "img/rangedBla.png"},
 
-        {id: "btnSheetBlaBlaRace", src: "img/buttons/raceButtons_blablaBtnSheet.jpg"},
-        {id: "btnSheetPlebRace", src: "img/buttons/raceButtons_plebBtnSheet.jpg"},
-        {id: "btnSheetCancel", src: "img/buttons/textButtons_cancelBtnSheet.jpg"},
-        {id: "btnSheetLogout", src: "img/buttons/sqButtons_logoutBtnSheet.jpg"},
-        {id: "btnSheetHelp", src: "img/buttons/textButtons_helpBtnSheet.jpg"},
-        {id: "btnSheetCasual", src: "img/buttons/sqButtons_casualBtnSheet.jpg"},
-        {id: "btnSheetRanked", src: "img/buttons/sqButtons_rankedBtnSheet.jpg"},
-        {id: "btnSheetPlay", src: "img/buttons/sqButtons_playBtnSheet.jpg"},
-
-        // {id: "btnSheetRanked", src: "img/rangedBla.png"},
-        // {id: "btnSheetCasual", src: "img/rangedBla.png"},
-        // {id: "btnSheetPlay", src: "img/rangedBla.png"},
+        {id: "btnSheetBlaBlaRace", src: "img/buttons/shtBtnBlablas.png"},
+        {id: "btnSheetPlebRace", src: "img/buttons/shtBtnPlebs.png"},
+        {id: "btnSheetCancel", src: "img/buttons/shtBtnCancel.png"},
+        {id: "btnSheetLogout", src: "img/buttons/shtBtnLogout.png"},
+        {id: "btnSheetHelp", src: "img/buttons/shtHelpBtn.png"},
+        {id: "btnSheetCasual", src: "img/buttons/shtBtnCasual.png"},
+        {id: "btnSheetRanked", src: "img/buttons/shtBtnRanked.png"},
+        {id: "btnSheetLocked", src: "img/buttons/shtBtnLocked.png"},
+        {id: "btnSheetEmpty", src: "img/buttons/shtBtnEmpty.png"},
+        {id: "btnSheetPlay", src: "img/buttons/shtBtnPlay.png"},
 
         {id: "overlay", src: "img/overlay.png"},
         {id: "buttonImg", src: "img/button.png"},
-        {id: "btnRacePlebs", src: "img/race_plebs.jpg"},
-        {id: "btnRaceBlablas", src: "img/race_blablas.jpg"},
-        {id: "btnMmCasual", src: "img/mmBtnCasual.jpg"},
-        {id: "btnMmRanked", src: "img/mmBtnRanked.jpg"},
-        {id: "btnMmPrivate", src: "img/mmBtnPrivate.jpg"},
-        {id: "btnFindGame", src: "img/btnFindGame.jpg"},
         {id: "btnCancel", src: "img/btnCancel.jpg"},
 
         {id: "loginBackGround", src: "img/bg1.jpg"},
@@ -356,13 +350,13 @@ function handleComplete(event) {
         }
     };
 
-    buttons.btnRaceBlabla = new createjs.SpriteSheet({
+    buttons.btnRaceBlablas = new createjs.SpriteSheet({
                                    images: [preload.getResult("btnSheetBlaBlaRace")],
                                    frames: {width: 240, height: 90},
                                    animations: { out: 0, over: 1, down: 2 }
                                });
 
-    buttons.btnRacePleb = new createjs.SpriteSheet({
+    buttons.btnRacePlebs = new createjs.SpriteSheet({
                                    images: [preload.getResult("btnSheetPlebRace")],
                                    frames: {width: 240, height: 90},
                                    animations: { out: 0, over: 1, down: 2 }
@@ -401,6 +395,18 @@ function handleComplete(event) {
     buttons.btnPlay = new createjs.SpriteSheet({
                                    images: [preload.getResult("btnSheetPlay")],
                                    frames: {width: 190, height: 190},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.btnEmpty = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetEmpty")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.btnLocked = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetLocked")],
+                                   frames: {width: 240, height: 90},
                                    animations: { out: 0, over: 1, down: 2 }
                                });
 

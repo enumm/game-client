@@ -16,7 +16,7 @@ var p = createjs.extend(InitButton, createjs.Container);
 
 p.setup = function() {
 	if(!this.buttonSheet){
-		this.buttonSheet = buttons.btnRaceBlabla;	
+		this.buttonSheet = buttons.btnEmpty;	
 	}
 
 	this.btn = new createjs.Sprite(this.buttonSheet);
@@ -44,13 +44,13 @@ p.handleClick = function (event) {
 };
 
 p.deselect = function(){
-	this.bitmapHelper.outLabel = 'out';
-	this.bitmapHelper.overLabel = 'over';
+	// this.bitmapHelper.outLabel = 'out';
+	// this.bitmapHelper.overLabel = 'over';
 }
 
 p.select = function(){
-	this.bitmapHelper.outLabel = 'down';
-	this.bitmapHelper.overLabel = 'down';
+	// this.bitmapHelper.outLabel = 'down';
+	// this.bitmapHelper.overLabel = 'down';
 }
 
 window.InitButton = createjs.promote(InitButton, "Container");
