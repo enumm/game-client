@@ -89,11 +89,32 @@
     });
 
     socket.on('get_user_friends_response', function (data){
-        console.log(data);
+        // var friends = '';
+        // $.each(data, function(ind, el){
+        //     friends += el.username + '</br>';
+        // });
+
+        userFriends = data;
+        assets.sendMSG('get_online_user_list','');
+
+        //$('#friendsArea').html(friends);
+    });
+
+    socket.on('online_users', function(data){
         var friends = '';
-        $.each(data, function(ind, el){
-            friends += el.username + '</br>';
-        });
+
+        for(var i  in userFriends){
+            var online = false;
+
+            for(var j in data){
+                if(userFriends[i].username == data[j].username){
+                    online = true;
+                    break;
+                }
+            }
+
+            friends += userFriends[i].username + '  <div style="width:13px;height:13px;display:inline-block;background-color:' + (online ? 'green' : 'grey') +'"></div></br>';
+        }
 
         $('#friendsArea').html(friends);
     });
@@ -128,6 +149,7 @@
         if(menuScreen){
             var userCount = $('#onlineUsers');
             userCount.html('Online: ' + data);
+            assets.sendMSG('get_online_user_list','');
         }
     });
 
