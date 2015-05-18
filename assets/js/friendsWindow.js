@@ -83,6 +83,17 @@ p.setup = function() {
 
 };
 
+p.setFriendScale = function(){
+    var friendDOM = this.getChildByName('friendDOM');
+    if (this.open) {
+        friendDOM.scaleX = parseInt(canvas.style.width)/1280;
+    }else{
+        friendDOM.scaleX = 0;
+    }
+
+    chatDOM.scaleY = parseInt(canvas.style.height)/720;
+};
+
 p.onOpenClosed = function(){
     if(!this.open){
         this.open = true;
