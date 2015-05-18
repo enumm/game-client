@@ -91,7 +91,7 @@ p.setFriendScale = function(){
         friendDOM.scaleX = 0;
     }
 
-    chatDOM.scaleY = parseInt(canvas.style.height)/720;
+    friendDOM.scaleY = parseInt(canvas.style.height)/720;
 };
 
 p.onOpenClosed = function(){
@@ -104,13 +104,8 @@ p.onOpenClosed = function(){
 
 p.getFriendX = function(){
     var scale = $(canvas).width()/1280;
-
-    if(this.open){
-        return $(window).width()/2-parseInt(canvas.style.width)/2+(200*scale);
-    }else{
-        return $(window).width()/2-parseInt(canvas.style.width)/2;
-    }
-}
+    return $(window).width()/2-parseInt(canvas.style.width)/2;
+};
 
 p.setFriendPosition = function(clicked){
     var friendDOM = this.getChildByName('friendDOM');
@@ -132,7 +127,7 @@ p.setFriendPosition = function(clicked){
             this.parent.animationComplete = true;
         });
     }
-}
+};
 
 p.getFriendScaleX = function(){
     if(this.open){
@@ -140,7 +135,7 @@ p.getFriendScaleX = function(){
     }else{
         return 0;
     }
-}
+};
 
 window.FriendWindow = createjs.promote(FriendWindow, "Container");
 }());

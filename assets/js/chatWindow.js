@@ -97,7 +97,7 @@ p.setChatPosition = function(clicked){
             this.parent.animationComplete = true;
         });
     }
-}
+};
 
 p.onOpenClosed = function(){
     if(!this.open){
@@ -105,7 +105,7 @@ p.onOpenClosed = function(){
     }else{
         this.open = false;
     }
-}
+};
 
 p.getChatX = function(){
     //TODO: 200 hardcoded chatDOM width.
@@ -115,7 +115,7 @@ p.getChatX = function(){
     }else{
         return $(window).width()/2+parseInt(canvas.style.width)/2;
     }
-}
+};
 
 p.getChatScaleX = function(){
     if(this.open){
@@ -123,7 +123,7 @@ p.getChatScaleX = function(){
     }else{
         return 0;
     }
-}
+};
 
 window.ChatWindow = createjs.promote(ChatWindow, "Container");
 }());
