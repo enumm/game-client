@@ -139,6 +139,8 @@ function showMenu(){
 function hideMenu(){
     var chatElement = document.getElementById("mainChat");
     $(chatElement).hide();
+    var friendsElement = document.getElementById("mainFriends");
+    $(friendsElement).hide();
     stage.removeChild(menuScreen);
     menuScreen = null;
     delete menuScreen;
@@ -235,7 +237,7 @@ window.onload = function(){
 
     manifest = [
         {id: "constants", src: "js/constants.js"},
-        
+
         {id: "jquery-2", src: "js/jquery-2.1.3.min.js"},
         {id: "assets", src: "js/proton-1.0.0.min.js"},
         {id: "pathFinding", src: "js/pathfinding-browser.min.js"},
