@@ -57,6 +57,8 @@ p.setup = function() {
         }
     });
 
+    assets.sendMSG('get_user_friends');
+
 //     assets.sendMSG('add_friend', {friendName : $('#addFriendUsername').val()});
 // //# sourceURL=friendScreen.js
 // (function() {

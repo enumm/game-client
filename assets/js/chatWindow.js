@@ -18,6 +18,15 @@ p.setup = function() {
         }
     });
 
+    $("#friendInputBoxDelete").keyup(function(event){
+        if(event.keyCode == 13){
+            if(this.value){
+                socket.emit('delete_friend', {friendName: this.value});
+                this.value = '';    
+            }
+        }
+    });
+
     //button
     var chatButton = new createjs.Shape();
     chatButton.graphics.beginFill('green');

@@ -89,7 +89,13 @@
     });
 
     socket.on('get_user_friends_response', function (data){
-        userFriends = data.friends;
+        console.log(data);
+        var friends = '';
+        $.each(data, function(ind, el){
+            friends += el.username + '</br>';
+        });
+
+        $('#friendsArea').html(friends);
     });
 
     socket.on('game_starting', function (data) {
