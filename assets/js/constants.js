@@ -1,6 +1,8 @@
 (function() {
     //kazkaip atrodo hack
 
+    GameServerAdress = 'http://pc.enumm.me:10101';
+    
     CastleHost = {
         x: -1170, 
         y: 1450,

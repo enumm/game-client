@@ -234,6 +234,8 @@ window.onload = function(){
     var assetsPath = "assets/";
 
     manifest = [
+        {id: "constants", src: "js/constants.js"},
+        
         {id: "jquery-2", src: "js/jquery-2.1.3.min.js"},
         {id: "assets", src: "js/proton-1.0.0.min.js"},
         {id: "pathFinding", src: "js/pathfinding-browser.min.js"},
@@ -252,8 +254,7 @@ window.onload = function(){
         {id: "instanceScreen", src: "js/gameInstanceScreen.js"},
         {id: "serverInterp", src: "js/serverInterpreter.js"},
         {id: "gameOverlay", src: "js/gameOverlay.js"},
-        {id: "constants", src: "js/constants.js"},
-
+        
         {id: "css", src: "css/style.css"},
 
         {id: "tileset", src: "img/tileCheck.png"},

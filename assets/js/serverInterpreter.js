@@ -1,7 +1,7 @@
 //# sourceURL=serverInterpreter.js
 (function() {
     //socket = io('http://127.0.0.1:3003');
-    socket = io('http://pc.enumm.me:10101');
+    socket = io(GameServerAdress);
 
     socket.on('connect_error', function(){
         gapi.auth.signOut();

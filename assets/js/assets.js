@@ -95,6 +95,11 @@
         }
     }
 
+    o.socketLogOut = function(){
+        socket.disconnect();
+        socket.connect(GameServerAdress);
+    }
+    
     o.sendMainChat = function(msg){
         if(socket && socket.connected){
             socket.emit('mainChat', {message: msg});            

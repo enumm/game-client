@@ -100,6 +100,7 @@ p.setup = function() {
 			});
 	    }
 
+        assets.socketLogOut();
 	    mainPanel.show();
 	    hideMenu();
 	    showDebug();
