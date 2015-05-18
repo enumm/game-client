@@ -107,21 +107,6 @@ p.setup = function() {
     btnLogOut.x = 1200;
     btnLogOut.y = 10;
 
-    //TODO friends panel
-    // var btnAddFriend =  new Button1("Add Friend", "#00F", null, function() {
-    //     friendScreen.showAddFriendInput()
-    // });
-    // btnAddFriend.x = 100;
-    // btnAddFriend.y = 150;
-
-    // var btnFriends =  new Button1("Friends", "#00F", null, function() {
-    //     friendScreen.showFriendPanel();
-    // });
-    // btnFriends.x = 100;
-    // btnFriends.y = 100;
-    
-    // this.addChild(btnFriends,btnAddFriend);
-
     this.addChild(btnMmCasual, btnMmRanked);
     this.addChild(btnFindGame);
     this.addChild(btnLogOut, btnHelp);

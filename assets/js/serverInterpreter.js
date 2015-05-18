@@ -123,7 +123,14 @@
             var userCount = $('#onlineUsers');
             userCount.html('Online: ' + data);
         }
-    });    
+    });
+
+    socket.on('friend_add_responce',  function (data) {
+        if(menuScreen){
+            $('#msgFriendArea').text(data.msg);
+            $('#msgFriendArea').css('color', (data.success ? 'green' : 'red'));
+        }
+    });
 
     socket.on('receiveKongo', function (data) {
         window.location.assign('http://www.matmartinez.net/nsfw/');

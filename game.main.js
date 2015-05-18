@@ -250,7 +250,6 @@ window.onload = function(){
         {id: "instanceScreen", src: "js/gameInstanceScreen.js"},
         {id: "serverInterp", src: "js/serverInterpreter.js"},
         {id: "gameOverlay", src: "js/gameOverlay.js"},
-        {id: "friendScreen", src: "js/friendScreen.js"},
         {id: "constants", src: "js/constants.js"},
 
         {id: "css", src: "css/style.css"},

@@ -47,6 +47,38 @@ p.setup = function() {
             friendsWindow.setFriendPosition(true);
         }
     });
+
+    $("#friendInputBox").keyup(function(event){
+        if(event.keyCode == 13){
+            if(this.value){
+                assets.sendMSG('add_friend', {friendName : this.value});
+                this.value = '';    
+            }
+        }
+    });
+
+//     assets.sendMSG('add_friend', {friendName : $('#addFriendUsername').val()});
+// //# sourceURL=friendScreen.js
+// (function() {
+
+//     var o = window.friendScreen = {};
+    
+//     o.add = function(){
+//     assets.sendMSG('add_friend', {friendName : $('#addFriendUsername').val()});
+//     $('#addFriend').css('display','none');
+//     }
+
+//     o.showFriendPanel = function(){
+//         assets.sendMSG('get_user_friends');
+//     }
+
+//     o.destroy = function(){
+//     //registerScreen.getChildByName('registerBlock').htmlElement.style.display = "none";
+//     }
+
+// }());
+
+
 };
 
 p.onOpenClosed = function(){

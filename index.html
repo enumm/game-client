@@ -69,8 +69,9 @@
         </div>
 
         <div id="mainFriends" style="width: 200px; height:500px; background-color: rgba(0,0,0,0.7); display: none">
+        	<div id="msgFriendArea" style="border: 1px solid purple;">&nbsp;</div>
 			<div id="friendsArea" style="width: 200px; height: 475px; word-break: break-all; overflow-y: scroll; overflow-x: hidden;"></div>
-			<input type="text" name="inputt" id="chatInputBox" style="width: 189px" placeholder="enter friend to add"/>
+			<input type="text" name="inputtfriend" id="friendInputBox" style="width: 189px" placeholder="enter friend to add"/>
         </div>
 
 		<canvas id="canvas" width="1280" height="720"> Canvas not supported. Please update your browser. </canvas>
@@ -113,15 +114,6 @@
 		        <input class="btnMain btnBack" type="submit" style="cursor: hand;" onclick="mainPanel.back();" value=" ">
 		        <input class="btnMain btnRegister" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.submitRegister();">
 	        </div>
-        </div>
-
-        <div id="addFriend" style="display:none;">
-        	<input class="text" type="text" id="addFriendUsername">
-        	<input class="btnMain btnAddFriend" type="submit" style="cursor: hand;" onclick="friendScreen.add();" value="add">
-        </div>
-
-        <div id="friendsList" style="display:block;">
-        	
         </div>
 	</div>
 </body>
