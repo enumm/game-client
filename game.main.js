@@ -200,6 +200,8 @@ function OnResizeCalled() {
     if(menuScreen){
         menuScreen.getChildByName('chatWindow').setChatScale();
         menuScreen.getChildByName('chatWindow').setChatPosition();
+         menuScreen.getChildByName('friendWindow').setFriendScale();
+        menuScreen.getChildByName('friendWindow').setFriendPosition();
     }
 
    //hideAddressbar('#canvasHolder');
