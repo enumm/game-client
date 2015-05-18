@@ -62,10 +62,15 @@
 </head>
 <body>
 	<div class="canvasHolder" id="canvasHolder">
-		<div id="mainChat" style="width: 200px; height:500px; background-color: #000; display: none">
+		<div id="mainChat" style="width: 200px; height:500px; background-color: rgba(0,0,0,0.7); display: none">
 			<div id="onlineUsers" style="border: 1px solid purple;"></div>
 			<div id="chatArea" style="width: 200px; height: 475px; word-break: break-all; overflow-y: scroll; overflow-x: hidden;"></div>
 			<input type="text" name="inputt" id="chatInputBox" style="width: 189px" placeholder="enter message"/>
+        </div>
+
+        <div id="mainFriends" style="width: 200px; height:500px; background-color: rgba(0,0,0,0.7); display: none">
+			<div id="friendsArea" style="width: 200px; height: 475px; word-break: break-all; overflow-y: scroll; overflow-x: hidden;"></div>
+			<input type="text" name="inputt" id="chatInputBox" style="width: 189px" placeholder="enter friend to add"/>
         </div>
 
 		<canvas id="canvas" width="1280" height="720"> Canvas not supported. Please update your browser. </canvas>

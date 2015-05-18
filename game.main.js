@@ -239,6 +239,7 @@ window.onload = function(){
         {id: "button", src: "js/button.js"},
         {id: "buttonNX", src: "js/butonPisauAntMergeNX.js"},
         {id: "chatWindow", src: "js/chatWindow.js"},
+        {id: "friendsWindow", src: "js/friendsWindow.js"},
         {id: "assets", src: "js/assets.js"},
         {id: "debugScreen", src: "js/debugScreen.js"},
         {id: "mainPanel", src: "js/mainPanel.js"},
