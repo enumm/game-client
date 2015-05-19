@@ -165,7 +165,16 @@
     });    
 
     socket.on('game_invite', function(data){
-        alert('Game invite from: ' +data.user + ' game id: ' + data.gameId);
+        //alert('Game invite from: ' +data.user + ' game id: ' + data.gameId);
+        if(menuScreen){
+            menuScreen.showInvite(data);
+        }
     });
+
+    socket.on('game_invite_revoked', function(){
+        if(menuScreen){
+            menuScreen.revokeInvite();
+        }
+    })
 
 }());

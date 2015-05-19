@@ -451,9 +451,18 @@
 
     o.createPrivateGame = function(friendName){
         if(menuScreen){
-            menuScreen.initPrivateGame();
-            assets.sendMSG('find_game', {gameType: 'private', race: raceSelected, friend: friendName});      
+            if(!menuScreen.gamePending){
+                menuScreen.initPrivateGame();
+                assets.sendMSG('find_game', {gameType: 'private', race: raceSelected, friend: friendName});      
+            }
+            else{
+                alert('Game already pending.');
+            }
         }
     }
+
+    // o.cancelPrivateGame = function(){
+    //     assets.sendMSG('calcel_private_game', '');      
+    // }
 }
 )();

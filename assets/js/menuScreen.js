@@ -3,6 +3,7 @@
 
 function MenuScreen() {
 	this.Container_constructor();	
+    this.gamePending = false;
 	this.setup();
 }
 
@@ -71,9 +72,14 @@ p.setup = function() {
     btnMmRanked.y = topMargin+240+70+90+30;
 
     var btnFindGame = new InitButton("btnPlay", buttons.btnPlay, function() {
-        lblSearchingForGame.text = 'searching for a game';
-        assets.sendMSG('find_game', {gameType: gameType, race: raceSelected});
-        this.parent.addChild(btnCancel);
+        if(!this.parent.gamePending ){
+            lblSearchingForGame.text = 'searching for a game';
+            assets.sendMSG('find_game', {gameType: gameType, race: raceSelected});
+            this.parent.addChild(btnCancel);
+            this.parent.gamePending = true;
+        }else{
+            alert('Game already pending.');
+        }
     });
     btnFindGame.x = leftMargin+240+10+90+10;
     btnFindGame.y = topMargin+240+70+20;
@@ -88,7 +94,9 @@ p.setup = function() {
     var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
         assets.sendMSG('cancel_matchmaking');
         lblSearchingForGame.text = '';
+        this.parent.gamePending = false;
         this.parent.removeChild(this);
+        
     });
     btnCancel.x = 100;
     btnCancel.y = topMargin+430;
@@ -127,6 +135,8 @@ p.msgStartGame = function(data){
 };
 
 p.initPrivateGame = function(){
+
+    this.gamePending = true;
     var topMargin = 110;
     
     var lblSearchingForGame = this.getChildByName('lblSearchingForGame');
@@ -136,13 +146,23 @@ p.initPrivateGame = function(){
     var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
         assets.sendMSG('cancel_matchmaking');
         lblSearchingForGame.text = '';
-        this.parent.removeChild(this);
+        this.parent.gamePending = false;
+        this.parent.removeChild(this);      
     });
 
     btnCancel.x = 100;
     btnCancel.y = topMargin+430;
 
     this.addChild(btnCancel);
+};
+
+p.showInvite = function(data){
+    alert('Game invite from: ' +data.user + ' game id: ' + data.gameId);
+};
+
+p.revokeInvite = function(){
+    alert('Game invite revoked');
+
 };
 
 window.MenuScreen = createjs.promote(MenuScreen, "Container");
