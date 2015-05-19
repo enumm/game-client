@@ -146,11 +146,11 @@
     });
 
     socket.on('usersConnected', function (data) {
-        if(menuScreen){
-            var userCount = $('#onlineUsers');
-            userCount.html('Online: ' + data);
-            assets.sendMSG('get_online_user_list','');
-        }
+        //if(menuScreen){
+        var userCount = $('#onlineUsers');
+        userCount.html('Online: ' + data);
+        assets.sendMSG('get_online_user_list','');
+        //}
     });
 
     socket.on('friend_add_responce',  function (data) {
