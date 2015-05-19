@@ -263,13 +263,13 @@ window.onload = function(){
         {id: "tilesetPlebs", src: "img/plebsTile.png"},
         {id: "tilesetBlaBlas", src: "img/blablasTile.png"},
 
-        {id: "tilesetPlebGround", src: "img/groundPleb.png"},
-        {id: "tilesetPlebFlying", src: "img/flyingPleb.png"},
-        {id: "tilesetPlebRanged", src: "img/rangedPleb.png"},
+        {id: "tilesetPlebGround", src: "img/groundPleb1.png"},
+        {id: "tilesetPlebFlying", src: "img/groundPleb2.png"},
+        {id: "tilesetPlebRanged", src: "img/groundPleb1.png"},
 
-        {id: "tilesetBlaGround", src: "img/groundBla.png"},
-        {id: "tilesetBlaFlying", src: "img/flyingBla.png"},
-        {id: "tilesetBlaRanged", src: "img/rangedBla.png"},
+        {id: "tilesetBlaGround", src: "img/groundPleb2.png"},
+        {id: "tilesetBlaFlying", src: "img/groundPleb1.png"},
+        {id: "tilesetBlaRanged", src: "img/groundPleb2.png"},
 
         {id: "btnSheetBlaBlaRace", src: "img/buttons/shtBtnBlablas.png"},
         {id: "btnSheetPlebRace", src: "img/buttons/shtBtnPlebs.png"},
@@ -341,17 +341,17 @@ function handleComplete(event) {
     //create sprites
     var data = {
         images: [preload.getResult("tilesetPlebGround")],
-        frames: {width:24, height:60},
+        frames: {width:45, height:60},
         animations: {
             stand:0,
-            runBotLeft:[0, 15],
-            runBotRight:[16, 31],
-            runTopLeft:[32, 47],
-            runTopRight:[48, 63],
-            runRight:[64, 79],
-            runLeft:[80, 95],
-            runBot:[96, 111],
-            runTop:[112, 127]
+            runBotLeft:[0, 4, "runBotLeft", 0.15],
+            runBotRight:[12, 16, "runBotRight", 0.15],
+            runTopLeft:[24, 25, "runTopLeft", 0.15],
+            runTopRight:[36, 40, "runTopRight", 0.15],
+            runRight:[48, 52, "runRight", 0.15],
+            runLeft:[60, 64, "runLeft", 0.15],
+            runBot:[72, 76, "runBot", 0.15],
+            runTop:[84, 88, "runTop", 0.15]
         }
     };
 
