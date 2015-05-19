@@ -181,7 +181,7 @@ p.showInvite = function(data){
 p.revokeInvite = function(){
     var lblSearchingForGame = this.getChildByName('lblSearchingForGame');
     lblSearchingForGame.text = 'Invitation canceled';
-    this.parent.gamePending = false;
+    this.gamePending = false;
 
     var btn = this.getChildByName('cancel_private');
     if(btn){
