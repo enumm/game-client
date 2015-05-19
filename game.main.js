@@ -264,12 +264,18 @@ window.onload = function(){
         {id: "tilesetBlaBlas", src: "img/blablasTile.png"},
 
         {id: "tilesetPlebGround", src: "img/groundPleb1.png"},
+        {id: "tilesetPlebGround2", src: "img/groundPleb2.png"},
+        {id: "tilesetPlebRanged", src: "img/rangedPleb1.png"},
+        {id: "tilesetPlebRanged2", src: "img/rangedPleb2.png"},
         {id: "tilesetPlebFlying", src: "img/groundPleb2.png"},
-        {id: "tilesetPlebRanged", src: "img/groundPleb1.png"},
+        {id: "tilesetPlebFlying2", src: "img/groundPleb2.png"},
 
-        {id: "tilesetBlaGround", src: "img/groundPleb2.png"},
+        {id: "tilesetBlaGround", src: "img/groundPleb1.png"},
+        {id: "tilesetBlaGround2", src: "img/groundPleb2.png"},
+        {id: "tilesetBlaRanged", src: "img/rangedPleb1.png"},
+        {id: "tilesetBlaRanged2", src: "img/rangedPleb2.png"},
         {id: "tilesetBlaFlying", src: "img/groundPleb1.png"},
-        {id: "tilesetBlaRanged", src: "img/groundPleb2.png"},
+        {id: "tilesetBlaFlying2", src: "img/groundPleb1.png"},
 
         {id: "btnSheetBlaBlaRace", src: "img/buttons/shtBtnBlablas.png"},
         {id: "btnSheetPlebRace", src: "img/buttons/shtBtnPlebs.png"},
@@ -338,20 +344,49 @@ function handleComplete(event) {
     tilesetPlebs = preload.getResult("tilesetPlebs");
     tilesetBlaBlas = preload.getResult("tilesetBlaBlas");
 
+    var animationSpeed = {
+        Attack: 0.06,
+        Walk: 0.15,
+        Death: 0.05
+    };
+
     //create sprites
     var data = {
         images: [preload.getResult("tilesetPlebGround")],
         frames: {width:45, height:60},
         animations: {
             stand:0,
-            runBotLeft:[0, 4, "runBotLeft", 0.15],
-            runBotRight:[12, 16, "runBotRight", 0.15],
-            runTopLeft:[24, 25, "runTopLeft", 0.15],
-            runTopRight:[36, 40, "runTopRight", 0.15],
-            runRight:[48, 52, "runRight", 0.15],
-            runLeft:[60, 64, "runLeft", 0.15],
-            runBot:[72, 76, "runBot", 0.15],
-            runTop:[84, 88, "runTop", 0.15]
+            walkBotLeft:[0, 4, "walkBotLeft", animationSpeed.Walk],
+            attackBotLeft:[5,8,"walkBotLeft", animationSpeed.Attack],
+            dieBotLeft:[9,11,11,0.05],
+
+            walkBotRight:[12, 16, "walkBotRight", animationSpeed.Walk],
+            attackBotRight:[17,20,"walkBotRight", animationSpeed.Attack],
+            dieBotRight:[21,23,23,animationSpeed.Death],
+
+            walkTopLeft:[24, 28, "walkTopLeft", animationSpeed.Walk],
+            attackTopLeft:[29,32,"walkTopLeft", animationSpeed.Attack],
+            dieTopLeft:[33,35,35,animationSpeed.Death],
+
+            walkTopRight:[36, 40, "walkTopRight", animationSpeed.Walk],
+            attackTopRight:[41, 44, "walkTopRight", animationSpeed.Attack],
+            dieTopRight:[45, 47, 47, animationSpeed.Death],
+
+            walkRight:[48, 52, "walkRight", animationSpeed.Walk],
+            attackRight:[53, 56, "walkRight", animationSpeed.Attack],
+            dieRight:[57, 59, 59, animationSpeed.Death],
+
+            walkLeft:[60, 64, "walkLeft", animationSpeed.Walk],
+            attackLeft:[65, 68, "walkLeft", animationSpeed.Attack],
+            dieLeft:[69, 71, 71, animationSpeed.Death],
+
+            walkBot:[72, 76, "walkBot", animationSpeed.Walk],
+            attackBot:[77, 80, "walkBot", animationSpeed.Attack],
+            dieBot:[81, 83, 83, animationSpeed.Death],
+
+            walkTop:[84, 88, "walkTop", animationSpeed.Walk],
+            attackTop:[89, 92, "walkTop", animationSpeed.Attack],
+            dieTop:[93, 95, 95, animationSpeed.Death],
         }
     };
 
@@ -415,22 +450,22 @@ function handleComplete(event) {
                                    animations: { out: 0, over: 1, down: 2 }
                                });
 
-    tilePlebGround = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
+    tilePlebGround = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
     data.images = [preload.getResult("tilesetPlebRanged")];
-    tilePlebRanged = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
+    tilePlebRanged = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
     data.images = [preload.getResult("tilesetPlebFlying")];
-    tilePlebFlying = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
+    tilePlebFlying = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
     data.images = [preload.getResult("tilesetBlaGround")];
-    tileBlaGround = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
+    tileBlaGround = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
     data.images = [preload.getResult("tilesetBlaRanged")];
-    tileBlaRanged = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
+    tileBlaRanged = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
     data.images = [preload.getResult("tilesetBlaFlying")];
-    tileBlaFlying = new createjs.Sprite(new createjs.SpriteSheet(data), "runBot");
+    tileBlaFlying = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
     //other loaded data
     var texture = new createjs.Shape(new createjs.Graphics().beginBitmapFill(preload.getResult("texture1")).drawRect(0, 0, 80, 80));

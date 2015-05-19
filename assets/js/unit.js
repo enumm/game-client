@@ -76,6 +76,7 @@ p.updateTime = function(delta, unitData) {
     var distanceToEnemy = 100000;
     var enemy;
     // var outer = this;
+    var animationMode = 'walk';
 
     if(this.ours){
         opponentData.units.concat(opponentData.buildings).forEach(function(value){   
@@ -124,6 +125,12 @@ p.updateTime = function(delta, unitData) {
     if(distanceToEnemy < 130){
         if(enemy){
             if(distanceToEnemy < UnitTypes[unitData.unitType].range){
+            	//animate attack
+            	animationMode = 'attack';
+                var dx = enemy.x - unitData.x;
+                var dy = enemy.y - unitData.y;
+				this.animate(dx, dy, animationMode);
+
                 unitData.attackTimer += delta;
 
                 if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
@@ -138,9 +145,10 @@ p.updateTime = function(delta, unitData) {
             	unitData.attackTimer = 0;
 
                 //walk to enemy
+                animationMode = 'walk';
                 var dx = enemy.x - unitData.x;
                 var dy = enemy.y - unitData.y;
-				this.animate(dx, dy);
+				this.animate(dx, dy, animationMode);
 
                 var length = Math.sqrt(dx*dx+dy*dy);
 
@@ -162,8 +170,12 @@ p.updateTime = function(delta, unitData) {
     		if(gameInstanceScreen.connectionData.host){
     			//kaire
     			if(assets.getDistance(unitData.x, unitData.y, CastleOpponent.x, CastleOpponent.y) - CastleOpponent.range < UnitTypes[unitData.unitType].range){
-		            unitData.path = [];
+    				unitData.path = [];
 		            unitData.attackTimer += delta;
+		            animationMode = 'attack';
+		            var dx = CastleOpponent.x - unitData.x;
+                	var dy = CastleOpponent.y - unitData.y;
+                	this.animate(dx, dy, animationMode);
 
 		            if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
 		                unitData.attackTimer = 0;
@@ -176,6 +188,10 @@ p.updateTime = function(delta, unitData) {
     			if(assets.getDistance(unitData.x, unitData.y, CastleHost.x, CastleHost.y) - CastleHost.range < UnitTypes[unitData.unitType].range){
 		            unitData.path = [];
 		            unitData.attackTimer += delta;
+		            animationMode = 'attack';
+		            var dx = CastleHost.x - unitData.x;
+                	var dy = CastleHost.y - unitData.y;
+                	this.animate(dx, dy, animationMode);
 
 		            if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
 		                unitData.attackTimer = 0;
@@ -189,6 +205,10 @@ p.updateTime = function(delta, unitData) {
     			if(assets.getDistance(unitData.x, unitData.y, CastleHost.x, CastleHost.y) - CastleHost.range < UnitTypes[unitData.unitType].range){
 		            unitData.path = [];
 		            unitData.attackTimer += delta;
+		            animationMode = 'attack';
+		            var dx = CastleHost.x - unitData.x;
+                	var dy = CastleHost.y - unitData.y;
+                	this.animate(dx, dy, animationMode);
 
 		            if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
 		                unitData.attackTimer = 0;
@@ -201,6 +221,10 @@ p.updateTime = function(delta, unitData) {
     			if(assets.getDistance(unitData.x, unitData.y, CastleOpponent.x, CastleOpponent.y) - CastleOpponent.range < UnitTypes[unitData.unitType].range){
 		            unitData.path = [];
 		            unitData.attackTimer += delta;
+		            animationMode = 'attack';
+		            var dx = CastleOpponent.x - unitData.x;
+                	var dy = CastleOpponent.y - unitData.y;
+                	this.animate(dx, dy, animationMode);
 
 		            if(unitData.attackTimer >= UnitTypes[unitData.unitType].attackSpeed){
 		                unitData.attackTimer = 0;
@@ -217,7 +241,7 @@ p.updateTime = function(delta, unitData) {
 
 			var dx = positionToGo[0]-this.x;
 			var dy = positionToGo[1]-this.y;
-			this.animate(dx, dy);
+			this.animate(dx, dy, animationMode);
 
 			var length = Math.sqrt(dx*dx+dy*dy);
 
@@ -242,34 +266,36 @@ p.updateTime = function(delta, unitData) {
 	this.y = unitData.y;
 };
 
-p.animate = function(dx, dy){
-	var sprite = this.getChildByName('texture');
+p.animate = function(dx, dy, animationMode){
+var sprite = this.getChildByName('texture');
 
 	if(sprite){
-		var anim;
+		var direction;
 		// console.log(dx.toFixed(0) + ' ' +dy.toFixed(0));
 		if(dx.toFixed(0) == 0 && dy.toFixed(0) > 0){
-			anim = 'runBot';
+			direction = 'Bot';
 		}else if(dx.toFixed(0) == 0 && dy.toFixed(0) < 0){
-			anim = 'runTop';
+			direction = 'Top';
 		}else if(dx.toFixed(0) > 0 && dy.toFixed(0) == 0){
-			anim = 'runRight';
+			direction = 'Right';
 		}else if(dx.toFixed(0) < 0 && dy.toFixed(0) == 0){
-			anim = 'runLeft';
+			direction = 'Left';
 		}else if(dx.toFixed(0) > 0 && dy.toFixed(0) > 0 ){
-			anim = 'runBotRight';
+			direction = 'BotRight';
 		}else if(dx.toFixed(0) > 0 && dy.toFixed(0) < 0){
-			anim = 'runTopRight';
+			direction = 'TopRight';
 		}else if(dx.toFixed(0) < 0 && dy.toFixed(0) > 0 ){
-			anim = 'runBotLeft';
+			direction = 'BotLeft';
 		}else if(dx.toFixed(0) < 0 && dy.toFixed(0) < 0){
-			anim = 'runTopLeft';
+			direction = 'TopLeft';
 		}
 
-		if(sprite.currentAnimation != anim){
-			sprite.gotoAndPlay(anim);
+		var animation = animationMode + direction;
+		if(sprite.currentAnimation != animation){
+			sprite.gotoAndPlay(animation);
 		}
 	}
+		
 };
 
 window.Unit = createjs.promote(Unit, "Container");
