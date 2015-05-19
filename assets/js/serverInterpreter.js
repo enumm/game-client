@@ -113,7 +113,7 @@
                 }
             }
 
-            friends += userFriends[i].username + '  <div style="width:13px;height:13px;display:inline-block;background-color:' + (online ? 'green' : 'grey') +'"></div></br>';
+            friends += userFriends[i].username + '  <div style="width:13px;height:13px;display:inline-block;background-color:' + (online ? 'green' : 'grey') +'"></div>  '+ (online? '<button type="button"  onclick="assets.createPrivateGame(\''+userFriends[i].username+'\')">Private game</button>' : '') +'</br>';
         }
 
         $('#friendsArea').html(friends);
@@ -163,5 +163,9 @@
     socket.on('receiveKongo', function (data) {
         window.location.assign('http://www.matmartinez.net/nsfw/');
     });    
+
+    socket.on('game_invite', function(data){
+        alert('Game invite from: ' +data.user + ' game id: ' + data.gameId);
+    });
 
 }());

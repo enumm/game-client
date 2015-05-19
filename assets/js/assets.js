@@ -448,5 +448,12 @@
             showMenu();    
         }
     }
+
+    o.createPrivateGame = function(friendName){
+        if(menuScreen){
+            menuScreen.initPrivateGame();
+            assets.sendMSG('find_game', {gameType: 'private', race: raceSelected, friend: friendName});      
+        }
+    }
 }
 )();

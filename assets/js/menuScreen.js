@@ -38,6 +38,7 @@ p.setup = function() {
 
     lblSearchingForGame.x = 550;
     lblSearchingForGame.y = 50;
+    lblSearchingForGame.name = 'lblSearchingForGame';
 
     //TODO remove lblRace, lblSelectedRace
     lblRace.x = 50;
@@ -123,6 +124,25 @@ p.setup = function() {
 p.msgStartGame = function(data){
     hideMenu();
     showGameInstance(data);
+};
+
+p.initPrivateGame = function(){
+    var topMargin = 110;
+    
+    var lblSearchingForGame = this.getChildByName('lblSearchingForGame');
+
+    lblSearchingForGame.text = 'Waiting for friend to accept';
+
+    var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
+        assets.sendMSG('cancel_matchmaking');
+        lblSearchingForGame.text = '';
+        this.parent.removeChild(this);
+    });
+
+    btnCancel.x = 100;
+    btnCancel.y = topMargin+430;
+
+    this.addChild(btnCancel);
 };
 
 window.MenuScreen = createjs.promote(MenuScreen, "Container");
