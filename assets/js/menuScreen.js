@@ -152,17 +152,46 @@ p.initPrivateGame = function(){
 
     btnCancel.x = 100;
     btnCancel.y = topMargin+430;
+    btnCancel.name = 'cancel_private_send';
 
     this.addChild(btnCancel);
 };
 
 p.showInvite = function(data){
-    alert('Game invite from: ' +data.user + ' game id: ' + data.gameId);
+    //alert('Game invite from: ' +data.user + ' game id: ' + data.gameId);
+    if(!this.gamePending){
+        var lblSearchingForGame = this.getChildByName('lblSearchingForGame');
+        lblSearchingForGame.text = data.user + ' wants to play private game with you';
+
+        var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
+            assets.sendMSG('cancel_invite', {gameId: data.gameId});
+            lblSearchingForGame.text = '';
+            this.parent.gamePending = false;
+            this.parent.removeChild(this);      
+        });
+
+        btnCancel.x = 300;
+        btnCancel.y = 10;
+        btnCancel.name = 'cancel_private'
+
+        this.addChild(btnCancel);
+    }
 };
 
 p.revokeInvite = function(){
-    alert('Game invite revoked');
+    var lblSearchingForGame = this.getChildByName('lblSearchingForGame');
+    lblSearchingForGame.text = 'Invitation canceled';
+    this.parent.gamePending = false;
 
+    var btn = this.getChildByName('cancel_private');
+    if(btn){
+        this.removeChild(btn);  
+    }
+
+    var btn2 = this.getChildByName('cancel_private_send');
+    if(btn2){
+        this.removeChild(btn2);  
+    }
 };
 
 window.MenuScreen = createjs.promote(MenuScreen, "Container");
