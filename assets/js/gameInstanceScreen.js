@@ -59,6 +59,10 @@ p.setup = function() {
         map.x = -250;
         map.y = -1210;
     }
+
+    var ingameChat = new IngameChatWindow();
+    ingameChat.name = 'ingameChat';
+    this.addChild(ingameChat);
 };
 
 p.drawUpdate = function(delta){

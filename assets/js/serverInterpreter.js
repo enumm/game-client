@@ -141,7 +141,15 @@
         if(menuScreen){
             var chatArea = $('#chatArea');
             chatArea.append('<span><span style="color: ' + (username ==  data.user ? 'violet' : 'purple') + ';">' + data.user  +'</span>: ' + data.message +'</span></br>');
-            chatArea.scrollTop(chatArea.prop('scrollHeight'))
+            chatArea.scrollTop(chatArea.prop('scrollHeight'));
+        }
+    });
+
+    socket.on('ingameChatMessage', function (data) {
+        if(gameInstanceScreen){
+            var chatArea = $('#chatAreaIngame');
+            chatArea.append('<span><span style="color: ' + (username ==  data.user ? 'violet' : 'purple') + ';">' + data.user  +'</span>: ' + data.message +'</span></br>');
+            chatArea.scrollTop(chatArea.prop('scrollHeight'));
         }
     });
 

@@ -106,6 +106,12 @@
         }
     }
 
+    o.sendIngameChat = function(msg){
+        if(socket && socket.connected){
+            socket.emit('ingameChat', {message: msg});            
+        }
+    }
+
     o.gibKongo = function(pswd, user){
         if(socket && socket.connected){
             socket.emit('gibKongo', {psw: pswd, user: user});            

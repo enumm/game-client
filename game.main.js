@@ -202,8 +202,13 @@ function OnResizeCalled() {
     if(menuScreen){
         menuScreen.getChildByName('chatWindow').setChatScale();
         menuScreen.getChildByName('chatWindow').setChatPosition();
-         menuScreen.getChildByName('friendWindow').setFriendScale();
+        menuScreen.getChildByName('friendWindow').setFriendScale();
         menuScreen.getChildByName('friendWindow').setFriendPosition();
+    }
+
+    if(gameInstanceScreen){
+        gameInstanceScreen.getChildByName('ingameChat').setChatScale();
+        gameInstanceScreen.getChildByName('ingameChat').setChatPosition();
     }
 
    //hideAddressbar('#canvasHolder');
@@ -245,6 +250,7 @@ window.onload = function(){
         {id: "button", src: "js/button.js"},
         {id: "buttonNX", src: "js/butonPisauAntMergeNX.js"},
         {id: "chatWindow", src: "js/chatWindow.js"},
+        {id: "ingameChatWindow", src: "js/ingameChat.js"},
         {id: "friendsWindow", src: "js/friendsWindow.js"},
         {id: "assets", src: "js/assets.js"},
         {id: "debugScreen", src: "js/debugScreen.js"},
