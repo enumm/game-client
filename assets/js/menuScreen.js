@@ -170,11 +170,19 @@ p.showInvite = function(data){
             this.parent.removeChild(this);      
         });
 
+        var btnAccept =  new InitButton("btnAccept", buttons.btnCasual, function() {
+            assets.sendMSG('accept_invite', {gameId: data.gameId, race: raceSelected});
+        });
+
+        btnAccept.x = 250;
+        btnAccept.y =  10;
+        btnAccept.name = 'btnAccept';
+        
         btnCancel.x = 300;
         btnCancel.y = 10;
         btnCancel.name = 'cancel_private'
 
-        this.addChild(btnCancel);
+        this.addChild(btnCancel, btnAccept);
     }
 };
 
@@ -189,6 +197,11 @@ p.revokeInvite = function(){
     }
 
     var btn2 = this.getChildByName('cancel_private_send');
+    if(btn2){
+        this.removeChild(btn2);  
+    }
+
+    var btn3 = this.getChildByName('btnAccept');
     if(btn2){
         this.removeChild(btn2);  
     }
