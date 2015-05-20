@@ -165,6 +165,11 @@ function showGameInstance(data){
 }
 
 function hideGameInstance(){
+    var chatElement = document.getElementById("ingameChat");
+    $(chatElement).hide();
+    var chatArea = document.getElementById("chatAreaIngame");
+    $(chatArea ).html('');
+    
     stage.removeChild(gameInstanceScreen);
     gameInstanceScreen = null;
     delete gameInstanceScreen;
