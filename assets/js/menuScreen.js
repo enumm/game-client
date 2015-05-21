@@ -74,7 +74,7 @@ p.setup = function() {
     var btnFindGame = new InitButton("btnPlay", buttons.btnPlay, function() {
         if(!this.parent.gamePending ){
             lblSearchingForGame.text = 'searching for a game';
-            assets.sendMSG('find_game', {gameType: gameType, race: raceSelected});
+            assets.sendMSG('find_game', {gameType: gameType, race: raceSelected, statistics: userStats});
             this.parent.addChild(btnCancel);
             this.parent.gamePending = true;
         }else{

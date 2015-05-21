@@ -47,6 +47,7 @@ var username;
 var raceSelected = 'Plebs';
 var gameType = 'casual';
 var userFriends = [];
+var userStats = [];
 var userCurrentSelection;
 var statsString = '';
 
@@ -88,7 +89,12 @@ function translateRank(rank){
         {rank:"gold", strength:4},
         {rank:"platinum", strength:5},
         {rank:"diamond", strength:5},
-        {rank:"kappa", strength:0}
+        {rank:"keepo", strength:5},
+        {rank:"klappa", strength:5},
+        {rank:"pogchamp", strength:5},
+        {rank:"dank memes", strength:5},
+        {rank:"broken dreams", strength:8},
+        {rank:"kappa", strength:5000}
     ];
 
     var yourRank = ranks[0].rank;

@@ -46,6 +46,7 @@
         var userStatistics = data.statistics;
         var userUsername = data.username;
         var statsString;
+        userStats = userStatistics;
 
         if(typeof(userStatistics.wins) != "undefined" 
         && typeof(userStatistics.ranked_wins) != "undefined" 
