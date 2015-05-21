@@ -258,8 +258,8 @@ window.onload = function(){
         {id: "assets", src: "js/proton-1.0.0.min.js"},
         {id: "pathFinding", src: "js/pathfinding-browser.min.js"},
 
-        {id: "button", src: "js/button.js"},
-        {id: "buttonNX", src: "js/butonPisauAntMergeNX.js"},
+        {id: "button", src: "js/buttonDeprecated.js"},
+        {id: "buttonNX", src: "js/button.js"},
         {id: "chatWindow", src: "js/chatWindow.js"},
         {id: "ingameChatWindow", src: "js/ingameChat.js"},
         {id: "friendsWindow", src: "js/friendsWindow.js"},
