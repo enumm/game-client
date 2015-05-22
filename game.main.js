@@ -12,6 +12,7 @@ var btnMmRankedImg = [];
 var btnMmPrivateImg = [];
 var btnFindGameImg = [];
 var btnCancelImg = [];
+
 var buttons = {
     btnRaceBlablas: null,
     btnRacePlebs:null,
@@ -23,7 +24,7 @@ var buttons = {
     btnRanked:null,
     btnPlay:null,
     btnEmpty:null
-    };
+};
 
 var loginBackGround;
 var overlayImg;

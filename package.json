@@ -1,7 +1,7 @@
 {
-  "name": "game-client",
-  "version": "0.0.0",
-  "description": "",
+  "name": "Angry Plebs",
+  "version": "0.0.1",
+  "description": "Angry Plebs game",
   "main": "game.main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,12 +10,12 @@
     "type": "git",
     "url": "https://github.com/enumm/game-client.git"
   },
-  "author": "Paulius Veliulis",
+  "author": "Paulius Veliulis, Tomas Liutvinas, Rytis Daskevicius",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/enumm/game-client/issues"
   },
-  "homepage": "https://github.com/enumm/game-client",
+  "homepage": "https://github.com/enumm/game-client , mm.enumm.me",
   "dependencies": {
     "connect": "^3.3.5",
     "serve-static": "^1.9.2"
