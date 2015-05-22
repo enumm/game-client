@@ -18,14 +18,15 @@ p.setup = function() {
     assets.showParticles();
 
     var lblSearchingForGame = new createjs.Text('', "20px Almendra", "#fff");
-    var lblRace = new createjs.Text('Select race:', "20px Almendra", "#fff");
-    var lblSelectedRace = new createjs.Text(raceSelected, "20px Almendra", "#fff");
+    var blackBox = new createjs.Shape();
+    blackBox.name = 'blackBox';
+
+    //var lblRace = new createjs.Text('Races:', "20px Almendra", "#fff");
     assets.sendMSG('get_user_statistics');
     var lblStats = new createjs.Text(statsString, "20px Almendra", "#fff");
 
     var btnRacePlebs =  new InitButton('btnRacePlebs', buttons.btnRacePlebs, function() {
         raceSelected = 'Plebs';
-        lblSelectedRace.text = raceSelected;
         var btnRP = menuScreen.getChildByName("btnRacePlebs");
         var btnRB = menuScreen.getChildByName("btnRaceBlablas")
         btnRP.bitmapHelper._isPressed  = true;
@@ -36,7 +37,6 @@ p.setup = function() {
 
     var btnRaceBlablas =  new InitButton('btnRaceBlablas', buttons.btnRaceBlablas, function() {
         raceSelected = 'BlaBlas'; 
-        lblSelectedRace.text = raceSelected;
         var btnRP = menuScreen.getChildByName("btnRacePlebs");
         var btnRB = menuScreen.getChildByName("btnRaceBlablas")
         btnRP.bitmapHelper._isPressed  = false;
@@ -49,15 +49,12 @@ p.setup = function() {
         console.log('not available yet');
     });
 
-    lblSearchingForGame.x = 550;
     lblSearchingForGame.y = 50;
     lblSearchingForGame.name = 'lblSearchingForGame';
 
     //TODO remove lblRace, lblSelectedRace
-    lblRace.x = 50;
-    lblRace.y = 50;
-    lblSelectedRace.x = 50;
-    lblSelectedRace.y = 75;
+    // lblRace.x = 450;
+    // lblRace.y = 80;
 
     btnRacePlebs.x = leftMargin;
     btnRacePlebs.y = topMargin;
@@ -71,7 +68,7 @@ p.setup = function() {
 
     this.addChild(btnRacePlebs,btnRaceBlablas);
     this.addChild(btnRaceLocked1);
-    this.addChild(lblSearchingForGame, lblRace, lblSelectedRace);
+    this.addChild(blackBox, lblSearchingForGame);
 
     var btnMmCasual =  new InitButton("btnCasual", buttons.btnCasual, function() {
         gameType = 'casual';
@@ -102,7 +99,7 @@ p.setup = function() {
 
     var btnFindGame = new InitButton("btnPlay", buttons.btnPlay, function() {
         if(!this.parent.gamePending ){
-            lblSearchingForGame.text = 'searching for a game';
+            this.parent.SetStatusLabel('Searching for a game', false);
             assets.sendMSG('find_game', {gameType: gameType, race: raceSelected, statistics: userStats});
             this.parent.addChild(btnCancel);
             this.parent.gamePending = true;
@@ -122,7 +119,7 @@ p.setup = function() {
     //TODO make searching opponent window, move lblSearchingForGame, btnCancel
     var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
         assets.sendMSG('cancel_matchmaking');
-        lblSearchingForGame.text = '';
+        this.parent.SetStatusLabel('', false);
         this.parent.gamePending = false;
         this.parent.removeChild(this);
         
@@ -174,7 +171,7 @@ p.initPrivateGame = function(){
 
     var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
         assets.sendMSG('cancel_matchmaking');
-        lblSearchingForGame.text = '';
+        this.parent.SetStatusLabel('', false);
         this.parent.gamePending = false;
         this.parent.removeChild(this);      
     });
@@ -190,26 +187,33 @@ p.showInvite = function(data){
     //alert('Game invite from: ' +data.user + ' game id: ' + data.gameId);
     if(!this.gamePending){
         var lblSearchingForGame = this.getChildByName('lblSearchingForGame');
-        lblSearchingForGame.text = data.user + ' wants to play private game with you';
+        this.SetStatusLabel(data.user + ' wants to play private game with you', true);
 
-        var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
+        var btnCancel =  new InitButton("cancel_private", buttons.btnLogout, function() {
             assets.sendMSG('cancel_invite', {gameId: data.gameId});
-            lblSearchingForGame.text = '';
+            this.parent.SetStatusLabel('', false);
             this.parent.gamePending = false;
+
+            var acceptButton = this.parent.getChildByName('btnAccept');
+
+            if(acceptButton){
+                this.parent.removeChild(acceptButton);  
+            }
+
             this.parent.removeChild(this);      
         });
 
-        var btnAccept =  new InitButton("btnAccept", buttons.btnCasual, function() {
+        var btnAccept =  new InitButton("btnAccept", buttons.btnLogout, function() {
             assets.sendMSG('accept_invite', {gameId: data.gameId, race: raceSelected});
         });
 
-        btnAccept.x = 250;
-        btnAccept.y =  10;
+        btnAccept.x = 350;
+        btnAccept.y =  25;
         btnAccept.name = 'btnAccept';
         
-        btnCancel.x = 300;
-        btnCancel.y = 10;
-        btnCancel.name = 'cancel_private'
+        btnCancel.x = 430;
+        btnCancel.y = 25;
+        btnCancel.name = 'cancel_private';
 
         this.addChild(btnCancel, btnAccept);
     }
@@ -217,7 +221,7 @@ p.showInvite = function(data){
 
 p.revokeInvite = function(){
     var lblSearchingForGame = this.getChildByName('lblSearchingForGame');
-    lblSearchingForGame.text = 'Invitation canceled';
+    this.SetStatusLabel('Invitation Canceled', false);
     this.gamePending = false;
 
     var btn = this.getChildByName('cancel_private');
@@ -231,8 +235,36 @@ p.revokeInvite = function(){
     }
 
     var btn3 = this.getChildByName('btnAccept');
-    if(btn2){
-        this.removeChild(btn2);  
+    if(btn3){
+        this.removeChild(btn3);  
+    }
+};
+
+p.SetStatusLabel = function(text, buttons){
+    var lblSearchingForGame = this.getChildByName('lblSearchingForGame');
+    var blackBox = this.getChildByName('blackBox');
+
+    if(!text){
+        if(blackBox){
+            blackBox.graphics.clear();    
+        }
+
+        lblSearchingForGame.text = '';
+    }else{
+        lblSearchingForGame.text = text;
+
+        var lableWidth = lblSearchingForGame.getMeasuredWidth();
+        var lableHeight = lblSearchingForGame.getMeasuredHeight();
+
+        lblSearchingForGame.x = 640 - (lableWidth/2) + (buttons?80:0);
+
+        if(blackBox){
+            blackBox.graphics.clear();
+            blackBox.graphics.beginFill('black');
+            blackBox.graphics.drawRect(lblSearchingForGame.x - (buttons?200:30), lblSearchingForGame.y - 30, lableWidth + (buttons? 230:60), lableHeight + 60);
+            blackBox.graphics.endFill();
+            blackBox.alpha = 0.5;
+        } 
     }
 };
 
