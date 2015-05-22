@@ -99,14 +99,15 @@ function signinCallback(authResult){
 			    <input class="btnMain btnLogin" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.login();"><br>
 			    <input class="text" type="password" id="txtPassword" value="" placeholder="PLEBWORD"/>
 			    <input class="btnMain btnRegister" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.register();"><br>
+			    <div id="messageAreaLogin"></div>
+			    <div id="or"></div>
 				<div id="gSignInWrapper" style="display: inline-block;">
 				    <div id="customBtn" class="g-signin customGPlusSignIn" data-gapiattached="true">
 				        <span class="icon"></span>
 				        <span class="buttonText">Sign in</span>
 				    </div>
-    			    <div class="fb-login-button" data-max-rows="1" onlogin="checkLoginState" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
+    			    <div class="fb-login-button" style="margin-left: 60px;" data-max-rows="1" onlogin="checkLoginState" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
 				</div>
-			    <span id="messageAreaLogin"></span>
 	        </div>
 	        <div class="messageAreaRegister">
 		        <table>

@@ -89,7 +89,7 @@ body {
 /*MAINPANEL*/
 #mainPanelContainer{
     display:none;
-    height: 300px;
+    height: 355px;
     width: 400px;
     background: rgba(0,0,0,0.9);
     -webkit-border-radius: 6px;
@@ -99,17 +99,31 @@ body {
 #logo{
     background-image: url(assets/img/logo-l.png);
     position: absolute;
-    top: -37.5%; left: 0; bottom: 0; right: 0;
+    top: -40%; left: 0; bottom: 0; right: 0;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     transition: top 0.5s ease-in-out;
 }
 
+#or{
+    background-image: url(assets/img/Or.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transition: top 0.5s ease-in-out;
+    height: 20px;
+}
+
+#messageAreaLogin{
+    height: 25px;
+    text-align: center;
+}
+
 div.messageAreaLogin{
     position: absolute;
     margin: auto;
-    top: 20%; left: 0; bottom: 0; right: 0;
+    top: 10%; left: 0; bottom: 0; right: 0;
     width: 95%;
     height: 0%;
 }
@@ -188,16 +202,18 @@ input.btnBack {
     white-space: nowrap;
     width: 90px;
     margin: 0 auto;
-    margin-left: 80px;
+    margin-left: 230px;
     border-width: 1px;
     border-style: solid;
     border-color: #D7D7D7;
     border-color: rgba(155, 155, 155, 0.3);
 }
+
 #customBtn:hover {
   background: #e74b37;
   cursor: pointer;
 }
+
 span.icon {
     background: url('https://developers.google.com/+/images/branding/btn_red_32.png') transparent 2px 50% no-repeat;
     background-size: 23px;

@@ -37,7 +37,7 @@
 
 	o.hideRegister = function(){
 		$('.messageAreaRegister').css('display','none');
-		var heigth = 300;
+		var heigth = 355;
 		$('#mainPanelContainer').css('height', heigth + 'px');
 		$('#logo').css('top', -1*heigth/8 + '%');
 	}
