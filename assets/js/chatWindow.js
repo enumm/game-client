@@ -1,4 +1,3 @@
-//# sourceURL=chatWindow.js
 (function() {
 function ChatWindow() {
 	this.Container_constructor();	
@@ -13,15 +12,6 @@ p.setup = function() {
         if(event.keyCode == 13){
             if(this.value){
                 assets.sendMainChat(this.value)
-                this.value = '';    
-            }
-        }
-    });
-
-    $("#friendInputBoxDelete").keyup(function(event){
-        if(event.keyCode == 13){
-            if(this.value){
-                socket.emit('delete_friend', {friendName: this.value});
                 this.value = '';    
             }
         }
@@ -89,7 +79,7 @@ p.setChatPosition = function(clicked){
         // toAlpha = this.open ? 1 : 0;
 
         createjs.Tween.get(chatButton, { loop: false })
-        .to({ x: chatButton.x == 1030 ? 1230 : 1030}, 1000, createjs.Ease.getPowInOut(4));
+        .to({ x: chatButton.x == 930 ? 1230 : 930}, 1000, createjs.Ease.getPowInOut(4));
 
         createjs.Tween.get(chatDOM, { loop: false })
         .to({ x: this.getChatX(), scaleX: this.getChatScaleX()}, 1000, createjs.Ease.getPowInOut(4))
@@ -111,7 +101,7 @@ p.getChatX = function(){
     //TODO: 200 hardcoded chatDOM width.
     var scale = $(canvas).width()/1280;
     if(this.open){
-        return $(window).width()/2+parseInt(canvas.style.width)/2-(200*scale);
+        return $(window).width()/2+parseInt(canvas.style.width)/2-(300*scale);
     }else{
         return $(window).width()/2+parseInt(canvas.style.width)/2;
     }

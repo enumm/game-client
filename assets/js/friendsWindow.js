@@ -1,7 +1,6 @@
-//# sourceURL=chatWindow.js
 (function() {
 function FriendWindow() {
-	this.Container_constructor();	
+	this.Container_constructor();
 	this.name = 'friendWindow';
 	this.setup();
 }
@@ -9,8 +8,8 @@ function FriendWindow() {
 var p = createjs.extend(FriendWindow, createjs.Container);
 
 p.setup = function() {
-
     var friendButton = new createjs.Shape();
+
     friendButton.graphics.beginFill('red');
     friendButton.graphics.drawRect(0, 0, 50, 100);
     friendButton.graphics.endFill();
@@ -35,7 +34,6 @@ p.setup = function() {
 
     this.addChild(friendDOM);
 
-
     this.open = false;
     this.animationComplete = true;
 
@@ -57,30 +55,16 @@ p.setup = function() {
         }
     });
 
+    $("#friendInputBoxDelete").keyup(function(event){
+        if(event.keyCode == 13){
+            if(this.value){
+                socket.emit('delete_friend', {friendName: this.value});
+                this.value = '';    
+            }
+        }
+    });
+
     assets.sendMSG('get_user_friends');
-
-//     assets.sendMSG('add_friend', {friendName : $('#addFriendUsername').val()});
-// //# sourceURL=friendScreen.js
-// (function() {
-
-//     var o = window.friendScreen = {};
-    
-//     o.add = function(){
-//     assets.sendMSG('add_friend', {friendName : $('#addFriendUsername').val()});
-//     $('#addFriend').css('display','none');
-//     }
-
-//     o.showFriendPanel = function(){
-//         assets.sendMSG('get_user_friends');
-//     }
-
-//     o.destroy = function(){
-//     //registerScreen.getChildByName('registerBlock').htmlElement.style.display = "none";
-//     }
-
-// }());
-
-
 };
 
 p.setFriendScale = function(){
@@ -117,7 +101,7 @@ p.setFriendPosition = function(clicked){
 
     }else{
         createjs.Tween.get(friendButton, { loop: false })
-        .to({ x: friendButton.x == 0 ? 200 : 0}, 1000, createjs.Ease.getPowInOut(4)).call(function(){
+        .to({ x: friendButton.x == 0 ? 300 : 0}, 1000, createjs.Ease.getPowInOut(4)).call(function(){
             this.parent.animationComplete = true;
         });
 

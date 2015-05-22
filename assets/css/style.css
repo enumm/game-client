@@ -8,18 +8,21 @@ body {
 
 /*--OTHER--*/
 #mainChat{
-    width: 200px;
-    height:500px;
+    width: 291px;
+    height: 500px;
     background-color: rgba(0,0,0,0.7);
-    display: none
+    display: none;
+    border-left: 10px inset rgb(100, 108, 116);
+    border-top: 10px inset rgb(30, 30, 31);
+    border-bottom: 10px inset rgb(13, 14, 15);
 }
 
 #onlineUsers{
-    border: 1px solid purple;
+    border-bottom: 1px solid rgb(98, 115, 128);
 }
 
 #chatArea{
-    width: 200px; 
+    width: 290px; 
     height: 450px; 
     word-break: break-all; 
     overflow-y: auto; 
@@ -27,7 +30,7 @@ body {
 }
 
 #chatInputBox{
-    width: 189px;
+    width: 275px;
 }
 
 #ingameChat{
@@ -49,30 +52,37 @@ body {
 }
 
 #mainFriends{
-    width: 200px; 
+    width: 290px; 
     height:500px; 
     background-color: rgba(0,0,0,0.7); 
-    display: none
+    display: none;
+    border-right: 10px inset rgb(48, 48, 49);
+    border-top: 10px inset rgb(30, 30, 31);
+    border-bottom: 10px inset rgb(30, 32, 38);
 }
 
 #msgFriendArea{
-    border: 1px solid purple;
+    border-bottom: 1px solid rgb(98, 115, 128);
+    word-break: break-all;
+    overflow: hidden;
+    height: 25px;
 }
 
 #friendsArea{
-    width: 200px; 
-    height: 420px; 
+    width: 270px; 
+    height: 390px; 
     word-break: break-all; 
     overflow-y: auto; 
     overflow-x: hidden;
+    margin: 10px 10px 10px 10px;
 }
 
 #friendInputBoxDelete{
-    width: 189px;
+    width: 275px;
 }
 
 #friendInputBox{
-    width: 189px;
+    width: 275px;
 }
 /*--OTHER--*/
 

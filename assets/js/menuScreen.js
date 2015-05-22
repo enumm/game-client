@@ -11,7 +11,7 @@ var p = createjs.extend(MenuScreen, createjs.Container);
 
 p.setup = function() {
     var raceButtons = [];
-    var leftMargin = 400;
+    var leftMargin = 365;
     var topMargin = 110;
 
     assets.showMenuBackground();
