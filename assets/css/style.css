@@ -6,9 +6,74 @@ body {
     font-family: 'Almendra', serif;
 }
 
+/*--OTHER--*/
+#mainChat{
+    width: 200px;
+    height:500px;
+    background-color: rgba(0,0,0,0.7);
+    display: none
+}
 
-/*OTHER*/
+#onlineUsers{
+    border: 1px solid purple;
+}
 
+#chatArea{
+    width: 200px; 
+    height: 450px; 
+    word-break: break-all; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+}
+
+#chatInputBox{
+    width: 189px;
+}
+
+#ingameChat{
+    width: 400px; 
+    height:300px; 
+    display: none
+}
+
+#chatAreaIngame{
+    width: 300px; 
+    height: 170px; 
+    word-break: break-all; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+}
+
+#ingameInputBox{
+    width: 189px;
+}
+
+#mainFriends{
+    width: 200px; 
+    height:500px; 
+    background-color: rgba(0,0,0,0.7); 
+    display: none
+}
+
+#msgFriendArea{
+    border: 1px solid purple;
+}
+
+#friendsArea{
+    width: 200px; 
+    height: 420px; 
+    word-break: break-all; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+}
+
+#friendInputBoxDelete{
+    width: 189px;
+}
+
+#friendInputBox{
+    width: 189px;
+}
 /*--OTHER--*/
 
 /*MAINPANEL*/
@@ -69,7 +134,6 @@ input.text:hover {
 /*--INPUT--*/
 
 /*BUTTONS*/
-
 input.btnMain{
     background-color: rgba(255,255,255,0);
     width: 100px;
@@ -132,6 +196,8 @@ span.buttonText {
 }      
 
 /*--BUTTONS--*/
+
+/*--SCROLLBAR--*/
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -145,3 +211,4 @@ span.buttonText {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #aaa;
 }
+/*--SCROLLBAR--*/
