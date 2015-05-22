@@ -31,7 +31,7 @@ var stage;
 var mapData;
 
 //debug vars
-var debug = true;
+var debug = false;
 var debugChatDOM; //this is chatDOM
 //debug vars end
 
@@ -59,7 +59,8 @@ var opponentData = {money: 5, castleHp: 1000, buildings: [], units: [], building
 var renderer;
 var proton;
 var emitter;
-var textures = [];
+var fireParticles = [];
+var rainParticles = [];
 
 //pathfinding
 var finder;
@@ -311,6 +312,7 @@ window.onload = function(){
 
         {id: "loginBackGround", src: "img/bg1.jpg"},
         {id: "texture1", src : "img/c1.png"},
+        {id: "texture2", src : "img/r1.png"},
 
         {id: "mapData", src: "json/map.json"},
     ];
@@ -485,11 +487,17 @@ function handleComplete(event) {
     tileBlaFlying = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
     //other loaded data
-    var texture = new createjs.Shape(new createjs.Graphics().beginBitmapFill(preload.getResult("texture1")).drawRect(0, 0, 80, 80));
-    texture.regX = 40;
-    texture.regY = 40;
+    var texture1 = new createjs.Shape(new createjs.Graphics().beginBitmapFill(preload.getResult("texture1")).drawRect(0, 0, 80, 80));
+    texture1.regX = 40;
+    texture1.regY = 40;
 
-    textures.push(texture);
+    fireParticles.push(texture1);
+
+    var texture2 = new createjs.Shape(new createjs.Graphics().beginBitmapFill(preload.getResult("texture2")).drawRect(0, 0, 80, 80));
+    texture2.regX = 40;
+    texture2.regY = 40;
+
+    rainParticles.push(texture2);
 
     mapData = preload.getResult("mapData");
 

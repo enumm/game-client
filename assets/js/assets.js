@@ -21,7 +21,45 @@
 	};
 
     o.showParticles = function() {
-        if(!renderer){
+        // if(!renderer){
+        //     proton = null;
+        //     emitter = null;
+        //     renderer = null;
+        //     delete proton;
+        //     delete emitter;
+        //     delete renderer;
+        //     proton = new Proton;
+        //     emitter = new Proton.Emitter();
+        //     emitter.damping = 0.0075;
+        //     emitter.rate = new Proton.Rate(15);
+        //     emitter.addInitialize(new Proton.ImageTarget(textures));
+        //     emitter.addInitialize(new Proton.Position(new Proton.RectZone(0, 0, 1280, 720)));
+        //     emitter.addInitialize(new Proton.Mass(1), new Proton.Radius(Proton.getSpan(5, 10)));
+        //     var repulsionBehaviour = new Proton.Repulsion({x : canvas.width / 2,y : canvas.height / 2}, 0, 0);
+        //     var crossZoneBehaviour = new Proton.CrossZone(new Proton.RectZone(-2, 0, 1280, 720), 'cross');
+        //     emitter.addBehaviour(repulsionBehaviour, crossZoneBehaviour);
+        //     emitter.addBehaviour(new Proton.Scale(Proton.getSpan(.1, .6)));
+        //     emitter.addBehaviour(new Proton.Alpha(.5));
+        //     emitter.addBehaviour(new Proton.RandomDrift(10, 10, .2));
+        //     emitter.addBehaviour({
+        //         initialize : function(particle) {
+        //             particle.tha = Math.random() * Math.PI;
+        //             particle.thaSpeed = 0.015 * Math.random() + 0.005;
+        //         },
+
+        //         applyBehaviour : function(particle) {
+        //             particle.tha += particle.thaSpeed;
+        //             particle.alpha = Math.abs(Math.cos(particle.tha));
+        //         }
+        //     });
+        //     emitter.emit('once');
+        //     proton.addEmitter(emitter);
+
+        //     renderer = new Proton.Renderer('easel', proton, stage);
+        //     renderer.start();
+        // }
+
+         if(!renderer){
             proton = null;
             emitter = null;
             renderer = null;
@@ -29,31 +67,59 @@
             delete emitter;
             delete renderer;
             proton = new Proton;
-            emitter = new Proton.Emitter();
-            emitter.damping = 0.0075;
-            emitter.rate = new Proton.Rate(15);
-            emitter.addInitialize(new Proton.ImageTarget(textures));
-            emitter.addInitialize(new Proton.Position(new Proton.RectZone(0, 0, 1280, 720)));
-            emitter.addInitialize(new Proton.Mass(1), new Proton.Radius(Proton.getSpan(5, 10)));
-            var repulsionBehaviour = new Proton.Repulsion({x : canvas.width / 2,y : canvas.height / 2}, 0, 0);
-            var crossZoneBehaviour = new Proton.CrossZone(new Proton.RectZone(-2, 0, 1280, 720), 'cross');
-            emitter.addBehaviour(repulsionBehaviour, crossZoneBehaviour);
-            emitter.addBehaviour(new Proton.Scale(Proton.getSpan(.1, .6)));
-            emitter.addBehaviour(new Proton.Alpha(.5));
-            emitter.addBehaviour(new Proton.RandomDrift(10, 10, .2));
-            emitter.addBehaviour({
-                initialize : function(particle) {
-                    particle.tha = Math.random() * Math.PI;
-                    particle.thaSpeed = 0.015 * Math.random() + 0.005;
-                },
 
-                applyBehaviour : function(particle) {
-                    particle.tha += particle.thaSpeed;
-                    particle.alpha = Math.abs(Math.cos(particle.tha));
-                }
-            });
-            emitter.emit('once');
-            proton.addEmitter(emitter);
+            emitterFire = new Proton.Emitter();
+            emitterFire.rate = new Proton.Rate(new Proton.Span(1, 3), new Proton.Span(.05, .2));
+            emitterFire.addInitialize(new Proton.ImageTarget(fireParticles));
+            emitterFire.addInitialize(new Proton.Mass(1));
+            emitterFire.addInitialize(new Proton.Life(13, 17));
+            emitterFire.addInitialize(new Proton.V(new Proton.Span(0.5, 2), new Proton.Span(0, 360), 'polar'));
+            emitterFire.addBehaviour(new Proton.Alpha(1, [.1, .5]));
+            emitterFire.addBehaviour(new Proton.Scale(0.4, 0.1));
+            emitterFire.addBehaviour(new Proton.Rotate(0.7, 1));
+            emitterFire.p.x = canvas.width + 50 ;
+            emitterFire.p.y = canvas.height + 50;
+            emitterFire.emit();
+            proton.addEmitter(emitterFire);
+
+            emitterRain = new Proton.Emitter();
+            emitterRain.rate = new Proton.Rate(new Proton.Span(1, 3), new Proton.Span(.2, .2));
+            emitterRain.addInitialize(new Proton.ImageTarget(rainParticles));
+            emitterRain.addInitialize(new Proton.Mass(1));
+            emitterRain.addInitialize(new Proton.Life(5, 7));
+            emitterRain.addInitialize(new Proton.V(new Proton.Span(1.5, 2), new Proton.Span(170, 190), 'polar'));
+            emitterRain.addBehaviour(new Proton.Alpha(0.2, [1, .8]));
+            emitterRain.addBehaviour(new Proton.Scale([0.2, 0.5], 0.2));
+            emitterRain.p.x = 80;
+            emitterRain.p.y = -100;
+            emitterRain.emit();
+            proton.addEmitter(emitterRain);
+
+            emitterRain1 = new Proton.Emitter();
+            emitterRain1.rate = new Proton.Rate(new Proton.Span(1, 3), new Proton.Span(.2, .2));
+            emitterRain1.addInitialize(new Proton.ImageTarget(rainParticles));
+            emitterRain1.addInitialize(new Proton.Mass(1));
+            emitterRain1.addInitialize(new Proton.Life(5, 7));
+            emitterRain1.addInitialize(new Proton.V(new Proton.Span(1.5, 2), new Proton.Span(170, 190), 'polar'));
+            emitterRain1.addBehaviour(new Proton.Alpha(0.2, [1, .8]));
+            emitterRain1.addBehaviour(new Proton.Scale([0.2, 0.5], 0.2));
+            emitterRain1.p.x = 200;
+            emitterRain1.p.y = -100;
+            emitterRain1.emit();
+            proton.addEmitter(emitterRain1);
+
+            emitterRain2 = new Proton.Emitter();
+            emitterRain2.rate = new Proton.Rate(new Proton.Span(1, 3), new Proton.Span(.2, .2));
+            emitterRain2.addInitialize(new Proton.ImageTarget(rainParticles));
+            emitterRain2.addInitialize(new Proton.Mass(1));
+            emitterRain2.addInitialize(new Proton.Life(5, 7));
+            emitterRain2.addInitialize(new Proton.V(new Proton.Span(1.5, 2), new Proton.Span(170, 190), 'polar'));
+            emitterRain2.addBehaviour(new Proton.Alpha(0.2, [1, .8]));
+            emitterRain2.addBehaviour(new Proton.Scale([0.2, 0.5], 0.2));
+            emitterRain2.p.x = 420;
+            emitterRain2.p.y = -100;
+            emitterRain2.emit();
+            proton.addEmitter(emitterRain2);
 
             renderer = new Proton.Renderer('easel', proton, stage);
             renderer.start();
