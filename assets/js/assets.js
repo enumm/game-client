@@ -61,7 +61,10 @@
 
          if(!renderer){
             proton = null;
-            emitter = null;
+            emitterFire = null;
+            emitterRain = null;
+            emitterRain1 = null;
+            emitterRain2 = null;
             renderer = null;
             delete proton;
             delete emitter;
@@ -128,9 +131,15 @@
 
     o.destroyParticles = function() {
     	proton.destory();
-    	emitter.destory();
+        emitterFire.destory();
+        emitterRain.destory();
+        emitterRain1.destory();
+        emitterRain2.destory();
     	proton = null;
-        emitter = null;
+        emitterFire = null;
+        emitterRain = null;
+        emitterRain1 = null;
+        emitterRain2 = null;
         renderer = null;
         delete proton;
         delete emitter;

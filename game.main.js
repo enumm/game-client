@@ -58,7 +58,10 @@ var opponentData = {money: 5, castleHp: 1000, buildings: [], units: [], building
 //proton vars
 var renderer;
 var proton;
-var emitter;
+emitterFire = null;
+emitterRain = null;
+emitterRain1 = null;
+emitterRain2 = null;
 var fireParticles = [];
 var rainParticles = [];
 
@@ -544,6 +547,13 @@ function render_google_btn() {
 function tick(event) {
     stage.update();
     fpsLabel.text = 'fps   : ' + ((createjs.Ticker.getMeasuredFPS()|0) + ' time: ' + event.delta/1000);
+
+    //particles behind menu elements
+    if(menuScreen)
+    {
+        stage.swapChildrenAt(stage.children.length - 1, stage.getChildIndex(menuScreen));
+    }
+
     if(gameInstanceScreen){
 
         moneyUpdateTimer += event.delta/1000;
