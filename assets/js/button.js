@@ -1,13 +1,13 @@
 //# sourceURL=buttonNX.js
 (function() {
 
-function InitButton(title, buttonSheet, OnClick, selected) {
+function InitButton(title, buttonSheet, OnClick, isCustom) {
 	this.Container_constructor();
 
 	this.title = title;
-	this.selected = selected ? true : false;
 	this.buttonSheet = buttonSheet;
 	this.OnClick = OnClick;
+	this.isCustom = isCustom;	
 		
 	this.setup();
 }
@@ -20,10 +20,13 @@ p.setup = function() {
 	}
 
 	this.btn = new createjs.Sprite(this.buttonSheet);
-    this.bitmapHelper = new createjs.ButtonHelper(this.btn);
-    if(this.selected){
-    	this.select();
-    }
+
+	if(this.isCustom){
+		this.bitmapHelper = new ButtonHelper(this.btn);
+	}
+	else{
+		this.bitmapHelper = new createjs.ButtonHelper(this.btn);
+	}
 
     this.addChild(this.btn);
 	this.btn.on("click", this.handleClick);

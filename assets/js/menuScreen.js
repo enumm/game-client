@@ -26,12 +26,24 @@ p.setup = function() {
     var btnRacePlebs =  new InitButton('btnRacePlebs', buttons.btnRacePlebs, function() {
         raceSelected = 'Plebs';
         lblSelectedRace.text = raceSelected;
-    });
+        var btnRP = menuScreen.getChildByName("btnRacePlebs");
+        var btnRB = menuScreen.getChildByName("btnRaceBlablas")
+        btnRP.bitmapHelper._isPressed  = true;
+		btnRP.children[0].gotoAndStop(2);
+		btnRB.bitmapHelper._isPressed  = false;
+        btnRB.children[0].gotoAndStop(0);
+    }, true);
 
     var btnRaceBlablas =  new InitButton('btnRaceBlablas', buttons.btnRaceBlablas, function() {
         raceSelected = 'BlaBlas'; 
         lblSelectedRace.text = raceSelected;
-    });
+        var btnRP = menuScreen.getChildByName("btnRacePlebs");
+        var btnRB = menuScreen.getChildByName("btnRaceBlablas")
+        btnRP.bitmapHelper._isPressed  = false;
+		btnRP.children[0].gotoAndStop(0);
+		btnRB.bitmapHelper._isPressed  = true;
+        btnRB.children[0].gotoAndStop(2);
+    }, true);
 
     var btnRaceLocked1 =  new InitButton('btnRaceLocked1', buttons.btnLocked, function() {
         console.log('not available yet');
@@ -49,10 +61,13 @@ p.setup = function() {
 
     btnRacePlebs.x = leftMargin;
     btnRacePlebs.y = topMargin;
+    btnRacePlebs.name = "btnRacePlebs"
     btnRaceBlablas.x = leftMargin;
     btnRaceBlablas.y = topMargin + 100;
+    btnRaceBlablas.name = "btnRaceBlablas"
     btnRaceLocked1.x = leftMargin;
     btnRaceLocked1.y = btnRaceBlablas.y + 100;
+    btnRaceLocked1.name = "btnRaceLocked1"
 
     this.addChild(btnRacePlebs,btnRaceBlablas);
     this.addChild(btnRaceLocked1);
@@ -60,16 +75,30 @@ p.setup = function() {
 
     var btnMmCasual =  new InitButton("btnCasual", buttons.btnCasual, function() {
         gameType = 'casual';
-    });
+        var btnMC = menuScreen.getChildByName("btnMmCasual");
+        var btnMR = menuScreen.getChildByName("btnMmRanked")
+        btnMC.bitmapHelper._isPressed  = true;
+		btnMC.children[0].gotoAndStop(2);
+		btnMR.bitmapHelper._isPressed  = false;
+        btnMR.children[0].gotoAndStop(0);
+    }, true);
 
     btnMmCasual.x = leftMargin+240+10;
     btnMmCasual.y = topMargin+240+70+20;
+    btnMmCasual.name = "btnMmCasual"
 
     var btnMmRanked =  new InitButton("btnRanked", buttons.btnRanked, function() {
         gameType = 'ranked';
-    });
+        var btnMC = menuScreen.getChildByName("btnMmCasual");
+        var btnMR = menuScreen.getChildByName("btnMmRanked")
+        btnMR.bitmapHelper._isPressed  = true;
+		btnMR.children[0].gotoAndStop(2);
+		btnMC.bitmapHelper._isPressed  = false;
+        btnMC.children[0].gotoAndStop(0);
+    }, true);
     btnMmRanked.x = leftMargin+240+10;
     btnMmRanked.y = topMargin+240+70+90+30;
+    btnMmRanked.name = "btnMmRanked"
 
     var btnFindGame = new InitButton("btnPlay", buttons.btnPlay, function() {
         if(!this.parent.gamePending ){
