@@ -145,6 +145,11 @@ function showMenu(){
     stage.addChild(menuScreen);
     stage.setChildIndex ( fpsLabel,  1);
     debugChatDOM = menuScreen.getChildByName('chatWindow').children[2];
+    var btnRP = menuScreen.getChildByName("btnRacePlebs");
+	var btnMC = menuScreen.getChildByName("btnMmCasual");
+
+	btnRP.OnClick()
+	btnMC.OnClick()
 }
 
 function hideMenu(){
