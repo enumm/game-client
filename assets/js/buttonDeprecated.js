@@ -22,7 +22,7 @@ p.setup = function() {
 	var sprite = this.images ? this.images[0] : buttonImg;
     
 
-	var text = new createjs.Text(this.label, "20px Arial", "#000");
+	var text = new createjs.Text(this.label, "20px Almendra", "#000");
 	text.textBaseline = "top";
 	text.textAlign = "center";
 	

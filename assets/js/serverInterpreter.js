@@ -82,7 +82,7 @@
             };
         }
 
-        var lblStats = new createjs.Text(statsString, "20px Arial", "#fff");
+        var lblStats = new createjs.Text(statsString, "20px Almendra", "#fff");
         lblStats.x = 400+240+10;
         lblStats.y = 110;
 

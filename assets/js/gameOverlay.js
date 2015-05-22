@@ -51,22 +51,22 @@ p.setup = function() {
     });
 
 	var aa = this.connectionData.host ? 'You are host, Opponent: ' : 'You are guest, Opponent: ' ;
-    var opponentName = new createjs.Text(aa + this.connectionData.opponent, "20px Arial", "#fff");
+    var opponentName = new createjs.Text(aa + this.connectionData.opponent, "20px Almendra", "#fff");
     opponentName.y = 0;
     opponentName.x = 1000;
     
-    var money = new createjs.Text(instanceData.money + '$', "20px Arial", "#ff0");
+    var money = new createjs.Text(instanceData.money + '$', "20px Almendra", "#ff0");
     money.name = 'moneyLabel';
     money.y = 0;
     money.x = 800;
 
-    var selection = new createjs.Text('', "20px Arial", "#fff");
+    var selection = new createjs.Text('', "20px Almendra", "#fff");
     selection.name = 'selection';
     selection.y = 600;
     selection.x = 500;
 
     //debug
-    var pos = new createjs.Text('', "20px Arial", "#fff");
+    var pos = new createjs.Text('', "20px Almendra", "#fff");
     pos.name = 'pos';
     pos.y = 500;
     pos.x = 500;

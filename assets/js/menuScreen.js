@@ -17,11 +17,11 @@ p.setup = function() {
     assets.showMenuBackground();
     assets.showParticles();
 
-    var lblSearchingForGame = new createjs.Text('', "20px Arial", "#fff");
-    var lblRace = new createjs.Text('Select race:', "20px Arial", "#fff");
-    var lblSelectedRace = new createjs.Text(raceSelected, "20px Arial", "#fff");
+    var lblSearchingForGame = new createjs.Text('', "20px Almendra", "#fff");
+    var lblRace = new createjs.Text('Select race:', "20px Almendra", "#fff");
+    var lblSelectedRace = new createjs.Text(raceSelected, "20px Almendra", "#fff");
     assets.sendMSG('get_user_statistics');
-    var lblStats = new createjs.Text(statsString, "20px Arial", "#fff");
+    var lblStats = new createjs.Text(statsString, "20px Almendra", "#fff");
 
     var btnRacePlebs =  new InitButton('btnRacePlebs', buttons.btnRacePlebs, function() {
         raceSelected = 'Plebs';

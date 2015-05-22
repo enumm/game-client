@@ -227,7 +227,7 @@ function OnResizeCalled() {
 
 window.onload = function(){
     //setting stage
-    fpsLabel = new createjs.Text('', "20px Arial", "#0f0");
+    fpsLabel = new createjs.Text('', "20px Almendra", "#0f0");
     fpsLabel.x = 10;
     fpsLabel.y = 10;
 
@@ -237,7 +237,7 @@ window.onload = function(){
     stage.enableMouseOver(10);
     stage.mouseMoveOutside = true;
 
-    loadingLabel = new createjs.Text("Loading", "bold 24px Arial", "#FFFFFF");
+    loadingLabel = new createjs.Text("Loading", "bold 24px Almendra", "#FFFFFF");
     loadingLabel.name = 'loadingLabel';
     loadingLabel.maxWidth = 1000;
     loadingLabel.textAlign = "center";

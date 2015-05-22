@@ -435,7 +435,7 @@
             shape.graphics.endFill();
             shape.alpha = 0.5;
 
-            var text = new createjs.Text(data.msg, "20px Arial", "#ff7700");
+            var text = new createjs.Text(data.msg, "20px Almendra", "#ff7700");
             text.x = (1280/2) - (text.getMeasuredWidth()/2) ;
             text.y = 720/2;
 
