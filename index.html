@@ -12,6 +12,7 @@
 <script src="https://apis.google.com/js/client:platform.js" async defer></script>
 
 <link href='http://fonts.googleapis.com/css?family=Almendra' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Josefin+Slab:100italic' rel='stylesheet' type='text/css'>
 
 <script>
 function checkLoginState(){
@@ -94,9 +95,9 @@ function signinCallback(authResult){
 		<div id="mainPanelContainer" style="display:none;">
 			<div id="logo"></div>
 			<div class="messageAreaLogin">
-			    <input class="text" id="txtUser" type="text" value="" />
+			    <input class="text" id="txtUser" type="text" value="" placeholder="PLEBNAME"/>
 			    <input class="btnMain btnLogin" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.login();"><br>
-			    <input class="text" type="password" id="txtPassword" value="" />
+			    <input class="text" type="password" id="txtPassword" value="" placeholder="PLEBWORD"/>
 			    <input class="btnMain btnRegister" type="submit" style="cursor: hand;" value=" " onclick="mainPanel.register();"><br>
 				<div id="gSignInWrapper" style="display: inline-block;">
 				    <div id="customBtn" class="g-signin customGPlusSignIn" data-gapiattached="true">

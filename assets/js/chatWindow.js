@@ -75,9 +75,6 @@ p.setChatPosition = function(clicked){
         chatDOM.y = 110 * parseInt(canvas.style.height)/720; 
 
     }else{
-        // var toAlpha;
-        // toAlpha = this.open ? 1 : 0;
-
         createjs.Tween.get(chatButton, { loop: false })
         .to({ x: chatButton.x == 930 ? 1230 : 930}, 1000, createjs.Ease.getPowInOut(4));
 
