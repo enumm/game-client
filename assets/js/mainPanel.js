@@ -109,7 +109,9 @@
 	o.msgLoggedIn = function(){
 	    mainPanel.hide();
 	    showMenu();
-	    hideDebug();
+	    if(debug){
+	    	hideDebug();	
+	    }
 	}
 
 	o.msgLoginFailed = function(msg){
