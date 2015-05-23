@@ -558,8 +558,6 @@ function handleComplete(event) {
 
     render_google_btn();
 
-    OnResizeCalled();
-
 	var page = document.getElementById('canvasHolder');
     var ua = navigator.userAgent;
 	var iphone = ~ua.indexOf('iPhone') || ~ua.indexOf('iPod');
@@ -612,6 +610,8 @@ function handleComplete(event) {
 	  lastWidth = pageWidth;
 	  setupScroll();
 	})();
+
+    OnResizeCalled();
 }
 
 var hideAddressbar = function () {
