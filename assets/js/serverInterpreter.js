@@ -107,8 +107,8 @@
         for(var i = 0, len = userFriends.length; i < len; i++){
             var online = false;
             
-            for(var j = 0, len = data.length; j < len; j++){
-                if(userFriends[i].username == data[j].username){
+            for(var j = 0, len1 = data.length; j < len1; j++){
+                if(data[j].username == data[j].username){
                     online = true;
                     break;
                 }
