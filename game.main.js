@@ -576,7 +576,7 @@ function handleComplete(event) {
 	  // returns 0 while the address bar is displayed.
 	  window.onscroll = function() {
 	  	
-	    page.style.height = window.innerHeight + 'px'
+	    document.body.style.height = window.innerHeight + 'px'
 	  } 
 	}
 	var setupScroll = window.onload = function() {
@@ -591,11 +591,11 @@ function handleComplete(event) {
 	    // Only add extra padding to the height on iphone / ipod, since the ipad
 	    // browser doesn't scroll off the location bar.
 	    if (iphone && !fullscreen) height += 60;
-	    page.style.height = height + 'px';
+	    document.body.style.height = height + 'px';
 	  } else if (android) {
 	    // The stock Android browser has a location bar height of 56 pixels, but
 	    // this very likely could be broken in other Android browsers.
-	    page.style.height = (window.innerHeight + 56) + 'px'
+	    document.body.style.height = (window.innerHeight + 56) + 'px'
 	  }
 	  // Scroll after a timeout, since iOS will scroll to the top of the page
 	  // after it fires the onload event
