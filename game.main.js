@@ -237,9 +237,9 @@ function OnResizeCalled() {
 
 window.onload = function(){
     //setting stage
-    fpsLabel = new createjs.Text('', "20px Almendra", "#0f0");
-    fpsLabel.x = 10;
-    fpsLabel.y = 10;
+    fpsLabel = new createjs.Text('', "20px Almendra", "#fff");
+    fpsLabel.x = 2;
+    fpsLabel.y = 2;
 
     //stage
     stage = new createjs.Stage("canvas");
@@ -553,7 +553,7 @@ function render_google_btn() {
 
 function tick(event) {
     stage.update();
-    fpsLabel.text = 'fps   : ' + ((createjs.Ticker.getMeasuredFPS()|0) + ' time: ' + event.delta/1000);
+    fpsLabel.text = (createjs.Ticker.getMeasuredFPS()|0);
 
     //particles behind menu elements
     if(menuScreen)

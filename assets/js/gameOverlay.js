@@ -9,9 +9,33 @@ var p = createjs.extend(GameOverlay, createjs.Container);
 
 p.setup = function() {
     var outer = this;
-    //building buttons
+
+    var btnBuild =  new InitButton("btnBuild", buttons.btnCasual, function() {
+        var btnCont = outer.getChildByName('btnContainer');
+        btnCont.visible = true;
+
+        createjs.Tween.get(btnCont, { loop: false })
+        .to({alpha: 1}, 1000, createjs.Ease.getPowInOut(4));
+    });
+
+    btnBuild.x = 25;
+    btnBuild.y = 25;
+    btnBuild.name = "btnBuild"
+
+    this.addChild(btnBuild);
+
+    var btnContainer = new createjs.Container();
+    btnContainer.name = 'btnContainer';
+    btnContainer.alpha = 0;
+    btnContainer.visible = false;
+    this.addChild(btnContainer);
+
+    // building buttons
     $.each(Races[raceSelected].buildings, function(index, item){
-        var btnBuilding = new Button1(item + ' - ' + BuildingTypes[item].cost + '$', '#fff', null, function(){
+        var btnBuilding =  new InitButton('', buttons.btnLocked, function() {
+            outer.getChildByName('btnContainer').alpha = 0;
+            outer.getChildByName('btnContainer').visible = false;
+
             var map = gameInstanceScreen.getChildByName('map');
 
             $.each(map.getChildByName('bottom').children, function( index, value ) {
@@ -45,15 +69,10 @@ p.setup = function() {
         });
         
         btnBuilding.name = 'Button' +BuildingTypes[item].name ;
-        btnBuilding.x = 10;
-        btnBuilding.y = 80 + 45 * index;
-        outer.addChild(btnBuilding);
+        btnBuilding.x = 120;
+        btnBuilding.y = 25 + 95 * index;
+        outer.getChildByName('btnContainer').addChild(btnBuilding);
     });
-
-	// var aa = this.connectionData.host ? 'You are host, Opponent: ' : 'You are guest, Opponent: ' ;
- //    var opponentName = new createjs.Text(aa + this.connectionData.opponent, "20px Almendra", "#fff");
- //    opponentName.y = 0;
- //    opponentName.x = 1000;
     
     var money = new createjs.Text(instanceData.money + '$', "20px Almendra", "#ff0");
     money.name = 'moneyLabel';
@@ -66,10 +85,10 @@ p.setup = function() {
     selection.x = 500;
 
     //debug
-    var pos = new createjs.Text('', "20px Almendra", "#fff");
-    pos.name = 'pos';
-    pos.y = 500;
-    pos.x = 500;
+    // var pos = new createjs.Text('', "20px Almendra", "#fff");
+    // pos.name = 'pos';
+    // pos.y = 500;
+    // pos.x = 500;
 
     //building stop production--------------------------------------------------------
     var stopProduction = new Button1('Start/Stop Prod.', '#fff', null, function(){
@@ -136,7 +155,7 @@ p.setup = function() {
         destroyBuilding.visible = false;
     }
 
-    this.addChild(money, selection, stopProduction, destroyBuilding, pos);
+    this.addChild(money, selection, stopProduction, destroyBuilding);
 };
 
 p.update = function() {
