@@ -4,15 +4,6 @@ var tilesetBlaBlas;
 
 var tilePlebGround, tilePlebRanged, tilePlebFlying, tileBlaGround, tileBlaRanged, tileBlaFlying;
 
-var buttonImg;
-var btnRacePlebsImg = [];
-var btnRaceBlablasImg = [];
-var btnMmCasualImg = [];
-var btnMmRankedImg = [];
-var btnMmPrivateImg = [];
-var btnFindGameImg = [];
-var btnCancelImg = [];
-
 var buttons = {
     btnRaceBlablas: null,
     btnRacePlebs:null,
@@ -269,6 +260,9 @@ window.onload = function(){
     //loading files
     var assetsPath = "assets/";
 
+    //loading files
+    var assetsPath = "assets/";
+
     manifest = [
         {id: "constants", src: "js/constants.js"},
 
@@ -279,7 +273,6 @@ window.onload = function(){
         {id: "button", src: "js/buttonDeprecated.js"},
         {id: "buttonNX", src: "js/button.js"},
         {id: "buttonHelper", src: "js/buttonHelper.js"},
-        {id: "userInfo", src: "js/userInfo.js"},
         {id: "chatWindow", src: "js/chatWindow.js"},
         {id: "ingameChatWindow", src: "js/ingameChat.js"},
         {id: "friendsWindow", src: "js/friendsWindow.js"},
@@ -287,6 +280,7 @@ window.onload = function(){
         {id: "debugScreen", src: "js/debugScreen.js"},
         {id: "mainPanel", src: "js/mainPanel.js"},
         {id: "menuScreen", src: "js/menuScreen.js"},
+        {id: "userInfo", src: "js/userInfo.js"},
         {id: "castle", src: "js/castle.js"},
         {id: "unit", src: "js/unit.js"},
         {id: "building", src: "js/building.js"},
@@ -317,13 +311,31 @@ window.onload = function(){
         {id: "btnSheetBlaBlaRace", src: "img/buttons/shtBtnBlablas.png"},
         {id: "btnSheetPlebRace", src: "img/buttons/shtBtnPlebs.png"},
         {id: "btnSheetCancel", src: "img/buttons/shtBtnCancel.png"},
-        {id: "btnSheetLogout", src: "img/buttons/shtBtnLogout.png"},
         {id: "btnSheetHelp", src: "img/buttons/shtHelpBtn.png"},
         {id: "btnSheetCasual", src: "img/buttons/shtBtnCasual.png"},
         {id: "btnSheetRanked", src: "img/buttons/shtBtnRanked.png"},
         {id: "btnSheetLocked", src: "img/buttons/shtBtnLocked.png"},
         {id: "btnSheetEmpty", src: "img/buttons/shtBtnEmpty.png"},
         {id: "btnSheetPlay", src: "img/buttons/shtBtnPlay.png"},
+        {id: "btnSheetAccept", src: "img/buttons/shtBtnAccept.png"},
+        {id: "btnSheetDecline", src: "img/buttons/shtBtnDecline.png"},
+        {id: "btnSheetChat", src: "img/buttons/shtBtnChat.png"},
+        {id: "btnSheetFriends", src: "img/buttons/shtBtnFriends.png"},
+        {id: "btnSheetBuild", src: "img/buttons/shtBtnCasual.png"},
+
+        {id: "btnSheetPlebGround1", src: "img/buttons/shtBtnPlebGround1.png"},
+        {id: "btnSheetPlebGround2", src: "img/buttons/shtBtnPlebGround2.png"},
+        {id: "btnSheetPlebRanged1", src: "img/buttons/shtBtnPlebRanged1.png"},
+        {id: "btnSheetPlebRanged2", src: "img/buttons/shtBtnPlebRanged2.png"},
+        {id: "btnSheetPlebFlying1", src: "img/buttons/shtBtnPlebFlying1.png"},
+        {id: "btnSheetPlebFlying2", src: "img/buttons/shtBtnPlebFlying2.png"},
+
+        {id: "btnSheetBlaGround1", src: "img/buttons/shtBtnBlaGround1.png"},
+        {id: "btnSheetBlaGround2", src: "img/buttons/shtBtnBlaGround2.png"},
+        {id: "btnSheetBlaRanged1", src: "img/buttons/shtBtnBlaRanged1.png"},
+        {id: "btnSheetBlaRanged2", src: "img/buttons/shtBtnBlaRanged2.png"},
+        {id: "btnSheetBlaFlying1", src: "img/buttons/shtBtnBlaFlying1.png"},
+        {id: "btnSheetBlaFlying2", src: "img/buttons/shtBtnBlaFlying2.png"},
 
         {id: "overlay", src: "img/overlay.png"},
         {id: "buttonImg", src: "img/button.png"},
@@ -333,7 +345,7 @@ window.onload = function(){
         {id: "texture1", src : "img/c1.png"},
         {id: "texture2", src : "img/r1.png"},
 
-        {id: "mapData", src: "json/map.json"},
+        {id: "mapData", src: "json/map.json"}
     ];
 
     preload = new createjs.LoadQueue(true, assetsPath);
@@ -368,13 +380,6 @@ function handleFileLoad(event) {
 
 function handleComplete(event) {
     buttonImg = preload.getResult("buttonImg");
-    btnMmCasualImg[0] = preload.getResult("btnMmCasual");
-    btnMmRankedImg[0] = preload.getResult("btnMmRanked");
-    btnMmPrivateImg[0] = preload.getResult("btnMmPrivate");
-    btnRacePlebsImg[0] = preload.getResult("btnRacePlebs");
-    btnFindGameImg[0] = preload.getResult("btnFindGame");
-    btnCancelImg[0] = preload.getResult("btnCancel");
-    btnRaceBlablasImg[0] = preload.getResult("btnRaceBlablas");
     overlayImg = preload.getResult("overlay");
     loginBackGround = preload.getResult("loginBackGround");
 
@@ -424,6 +429,103 @@ function handleComplete(event) {
         }
     };
 
+    buttons.BlaHut = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetBlaGround1")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.BlaHut2 = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetBlaGround2")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.BlaRanger = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetBlaRanged1")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.BlaRanger2 = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetBlaRanged2")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.BlaFlying = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetBlaFlying1")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.BlaFlying2 = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetBlaFlying2")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.PlebHut = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetPlebGround1")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.PlebHut2 = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetPlebGround2")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.PlebRanger = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetPlebRanged1")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.PlebRanger2 = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetPlebRanged2")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.PlebFlying = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetPlebFlying1")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.PlebFlying2 = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetPlebFlying2")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+
+    buttons.Accept = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetAccept")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.Decline = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetDecline")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.Friends = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetFriends")],
+                                   frames: {width: 50, height: 100},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.Chat = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetChat")],
+                                   frames: {width: 50, height: 100},
+                                   animations: { out: 2, over: 1, down: 0 }
+                               });
+
     buttons.btnRaceBlablas = new createjs.SpriteSheet({
                                    images: [preload.getResult("btnSheetBlaBlaRace")],
                                    frames: {width: 240, height: 90},
@@ -436,14 +538,14 @@ function handleComplete(event) {
                                    animations: { out: 0, over: 1, down: 2 }
                                });
 
-    buttons.btnCancel = new createjs.SpriteSheet({
-                                   images: [preload.getResult("btnSheetCancel")],
+    buttons.Cancel = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetDecline")],
                                    frames: {width: 240, height: 90},
                                    animations: { out: 0, over: 1, down: 2 }
                                });
 
-    buttons.btnLogout = new createjs.SpriteSheet({
-                                   images: [preload.getResult("btnSheetLogout")],
+    buttons.Logout = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetDecline")],
                                    frames: {width: 70, height: 70},
                                    animations: { out: 0, over: 1, down: 2 }
                                });

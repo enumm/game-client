@@ -117,17 +117,17 @@ p.setup = function() {
     btnHelp.y = topMargin+430;
 
     //TODO make searching opponent window, move lblSearchingForGame, btnCancel
-    var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
+    var btnCancel =  new InitButton("btnCancel",buttons.Decline, function() {
         assets.sendMSG('cancel_matchmaking');
         this.parent.SetStatusLabel('', false);
         this.parent.gamePending = false;
         this.parent.removeChild(this);
         
     });
-    btnCancel.x = 100;
-    btnCancel.y = topMargin+430;
+    btnCancel.x = 775;
+    btnCancel.y = 25;
 
-    var btnLogOut =  new InitButton("btnLogout", buttons.btnLogout, function() {
+    var btnLogOut =  new InitButton("btnLogout", buttons.Logout, function() {
 	    gapi.auth.signOut();
 
 	    if(FB.getAccessToken()){
@@ -189,7 +189,7 @@ p.showInvite = function(data){
         var lblSearchingForGame = this.getChildByName('lblSearchingForGame');
         this.SetStatusLabel(data.user + ' wants to play private game with you', true);
 
-        var btnCancel =  new InitButton("cancel_private", buttons.btnLogout, function() {
+        var btnCancel =  new InitButton("cancel_private", buttons.Decline, function() {
             assets.sendMSG('cancel_invite', {gameId: data.gameId});
             this.parent.SetStatusLabel('', false);
             this.parent.gamePending = false;
@@ -203,16 +203,16 @@ p.showInvite = function(data){
             this.parent.removeChild(this);      
         });
 
-        var btnAccept =  new InitButton("btnAccept", buttons.btnLogout, function() {
+        var btnAccept =  new InitButton("btnAccept", buttons.Accept, function() {
             assets.sendMSG('accept_invite', {gameId: data.gameId, race: raceSelected});
         });
 
-        btnAccept.x = 350;
+        btnAccept.x = 365;
         btnAccept.y =  25;
         btnAccept.name = 'btnAccept';
         
-        btnCancel.x = 430;
-        btnCancel.y = 25;
+        btnCancel.x = btnAccept.x+ 70 +10;
+        btnCancel.y = btnAccept.y;
         btnCancel.name = 'cancel_private';
 
         this.addChild(btnCancel, btnAccept);

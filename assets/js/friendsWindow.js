@@ -8,13 +8,18 @@ function FriendWindow() {
 var p = createjs.extend(FriendWindow, createjs.Container);
 
 p.setup = function() {
-    var friendButton = new createjs.Shape();
+    var friendButton =  new InitButton("friendButton", buttons.Friends, function() {
+        var friendsWindow = this.parent;
+        if(friendsWindow.animationComplete){
+            friendsWindow.onOpenClosed();
+            friendsWindow.animationComplete = false;
+            friendsWindow.setFriendPosition(true);
+        }
+    });
 
-    friendButton.graphics.beginFill('red');
-    friendButton.graphics.drawRect(0, 0, 50, 100);
-    friendButton.graphics.endFill();
     friendButton.x = 0;
     friendButton.y = 310;
+
     friendButton.name = 'friendButton';
 
     this.addChild(friendButton);
@@ -36,15 +41,6 @@ p.setup = function() {
 
     this.open = false;
     this.animationComplete = true;
-
-    friendButton.on("click", function(){
-        var friendsWindow = this.parent;
-        if(friendsWindow.animationComplete){
-            friendsWindow.onOpenClosed();
-            friendsWindow.animationComplete = false;
-            friendsWindow.setFriendPosition(true);
-        }
-    });
 
     $("#friendInputBox").keyup(function(event){
         if(event.keyCode == 13){

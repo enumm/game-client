@@ -18,13 +18,20 @@ p.setup = function() {
     });
 
     //button
-    var chatButton = new createjs.Shape();
-    chatButton.graphics.beginFill('green');
-    chatButton.graphics.drawRect(0, 0, 50, 100);
-    chatButton.graphics.endFill();
+    var chatButton =  new InitButton("chatButton", buttons.Chat, function() {
+        var chatWindow = this.parent;
+        if(chatWindow.animationComplete){
+            chatWindow.onOpenClosed();
+            chatWindow.animationComplete = false;
+            chatWindow.setChatPosition(true);
+        }
+    });
+
     chatButton.x = 1230;
     chatButton.y = 310;
+
     chatButton.name = 'chatButton';
+
     this.addChild(chatButton);
 
     //panel
@@ -45,15 +52,6 @@ p.setup = function() {
     //vars
     this.open = false;
     this.animationComplete = true;
-
-    chatButton.on("click", function(){
-        var chatWindow = this.parent;
-        if(chatWindow.animationComplete){
-            chatWindow.onOpenClosed();
-            chatWindow.animationComplete = false;
-            chatWindow.setChatPosition(true);
-        }
-    });
 };
 
 p.setChatScale = function(){

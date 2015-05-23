@@ -1,3 +1,4 @@
+//# sourceURL=gameOverlay.js
 (function() {
 
 function GameOverlay(data) {
@@ -35,10 +36,9 @@ p.setup = function() {
     btnContainer.alpha = 0;
     btnContainer.visible = false;
     this.addChild(btnContainer);
-
     // building buttons
     $.each(Races[raceSelected].buildings, function(index, item){
-        var btnBuilding =  new InitButton('', buttons.btnLocked, function() {
+        var btnBuilding =  new InitButton('', buttons[item], function() {
             outer.getChildByName('btnContainer').alpha = 0;
             outer.getChildByName('btnContainer').visible = false;
 
