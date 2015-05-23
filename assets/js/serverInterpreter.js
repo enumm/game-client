@@ -80,12 +80,9 @@
                 statsString += "statistics.loss\n";
             };
         }
-
-        var lblStats = new createjs.Text(statsString, "20px Almendra", "#fff");
-        lblStats.x = 400+240+10;
-        lblStats.y = 110;
-
-        menuScreen.addChild(lblStats);
+        
+        var userInfo = new UserInfo(userUsername, statsString);
+        menuScreen.addChild(userInfo);
     });
 
     socket.on('get_user_friends_response', function (data){

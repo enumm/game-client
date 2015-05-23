@@ -279,6 +279,7 @@ window.onload = function(){
         {id: "button", src: "js/buttonDeprecated.js"},
         {id: "buttonNX", src: "js/button.js"},
         {id: "buttonHelper", src: "js/buttonHelper.js"},
+        {id: "userInfo", src: "js/userInfo.js"},
         {id: "chatWindow", src: "js/chatWindow.js"},
         {id: "ingameChatWindow", src: "js/ingameChat.js"},
         {id: "friendsWindow", src: "js/friendsWindow.js"},
