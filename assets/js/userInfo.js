@@ -25,7 +25,7 @@ p.setup = function() {
 
 	container.addEventListener("click", function(event) { 
         createjs.Tween.get(container, { loop: false }) 
-        .to({skewY: container.skewY == 360 ? 90 : 270}, 1000, createjs.Ease.linear).call(function(){
+        .to({skewY: container.skewY == 90 ? 0 : 90}, 1000, createjs.Ease.linear).call(function(){
 
         	if(!this.parent.fliped)
         	{
@@ -39,7 +39,7 @@ p.setup = function() {
         		this.parent.setPicture(container);
         		this.parent.fliped = false;
         	}
-    	}).to({skewY: container.skewY == 270 ? 0 : 360}, 1000, createjs.Ease.linear);
+    	}).to({skewY: container.skewY == 90 ? 90 : 0}, 1000, createjs.Ease.linear);
 	})
 
 	this.addChild(container);
