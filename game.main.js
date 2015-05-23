@@ -235,7 +235,15 @@ function OnResizeCalled() {
    //hideAddressbar('#canvasHolder');
 }
 
+function loadSound(event) {
+    createjs.Sound.play('theme', {loop: -1});
+}
+
 window.onload = function(){
+    createjs.Sound.on("fileload", loadSound);
+    createjs.Sound.registerSound("assets/sound/theme.mp3", 'theme');
+    createjs.Sound.setVolume(0.1);
+
     //setting stage
     fpsLabel = new createjs.Text('', "20px Almendra", "#fff");
     fpsLabel.x = 2;
