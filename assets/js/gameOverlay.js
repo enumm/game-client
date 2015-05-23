@@ -38,39 +38,49 @@ p.setup = function() {
 
             var map = gameInstanceScreen.getChildByName('map');
 
-            $.each(map.getChildByName('bottom').children, function( index, value ) {
-                if(value.base1 && gameInstanceScreen.connectionData.host || value.base2 && !gameInstanceScreen.connectionData.host ){
-                    value.alpha = 0.5;
-                    value.on("mouseover", function(){ this.alpha = 1;});
-                    value.on("mouseout", function(){ this.alpha = 0.5;});
-                    value.on("click", function(){
-                        assets.tileRemoveAllEventListeners(map.getChildByName('bottom'));
+            mapTiles = map.getChildByName('bottom').children;
 
-                        if(instanceData.money >= BuildingTypes[item].cost){
-                            instanceData.buildings.push({
-                            name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildingCount++: 'obuilding' + instanceData.buildingCount++,
-                                x: this.x,
-                                y: this.y,
-                                buildingType: BuildingTypes[item].name,
-                                hp: BuildingTypes[item].life,
-                                old: false, 
-                                producing: true
-                            });
-                        }
+            for(var i in mapTiles){
+                if(mapTiles[i].base1 && gameInstanceScreen.connectionData.host || mapTiles[i].base2 && !gameInstanceScreen.connectionData.host ){
+                    mapTiles[i].removeAllEventListeners();
+                    
+                    var tilePos = assets.screenToMap(mapTiles[i].x, mapTiles[i].y);
+                    var matrix = assets.getMapMatrix(true);
 
-                        assets.sendData();
+                    if( matrix[tilePos[1]][tilePos[0]] != 1){
+                        mapTiles[i].alpha = 0.5;
+                        mapTiles[i].on("mouseover", function(){ this.alpha = 1;});
+                        mapTiles[i].on("mouseout", function(){ this.alpha = 0.5;});
+                        mapTiles[i].on("click", function(){
 
-                        $.each(map.getChildByName('bottom').children, function( index, value ) {
-                            value.alpha = 1;
+                            if(instanceData.money >= BuildingTypes[item].cost){
+                                instanceData.buildings.push({
+                                name: gameInstanceScreen.connectionData.host ? 'hbuilding' + instanceData.buildingCount++: 'obuilding' + instanceData.buildingCount++,
+                                    x: this.x,
+                                    y: this.y,
+                                    buildingType: BuildingTypes[item].name,
+                                    hp: BuildingTypes[item].life,
+                                    old: false, 
+                                    producing: true
+                                });
+                            }
+
+                            assets.sendData();
+
+                            for(var i in mapTiles){
+                                mapTiles[i].removeAllEventListeners();
+                                mapTiles[i].alpha = 1;
+                            }
                         });
-                    });
+                    }
                 }
-            });
+            }
         });
         
-        btnBuilding.name = 'Button' +BuildingTypes[item].name ;
+        btnBuilding.name = 'Button' + BuildingTypes[item].name ;
         btnBuilding.x = 120;
         btnBuilding.y = 25 + 95 * index;
+
         outer.getChildByName('btnContainer').addChild(btnBuilding);
     });
     
