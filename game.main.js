@@ -559,12 +559,6 @@ function handleComplete(event) {
     render_google_btn();
 
     OnResizeCalled();
-
-    if(navigator.userAgent.match(/Android/i)){
-    	window.scrollTo(0,1);
- 	}
-
- 	hideAddressbar();
 }
 
 var hideAddressbar = function () {
