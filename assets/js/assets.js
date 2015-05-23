@@ -75,9 +75,9 @@
             emitterFire.rate = new Proton.Rate(new Proton.Span(1, 3), new Proton.Span(.05, .2));
             emitterFire.addInitialize(new Proton.ImageTarget(fireParticles));
             emitterFire.addInitialize(new Proton.Mass(1));
-            emitterFire.addInitialize(new Proton.Life(13, 17));
-            emitterFire.addInitialize(new Proton.V(new Proton.Span(0.5, 2), new Proton.Span(0, 360), 'polar'));
-            emitterFire.addBehaviour(new Proton.Alpha(1, [.1, .5]));
+            emitterFire.addInitialize(new Proton.Life(12, 16));
+            emitterFire.addInitialize(new Proton.V(new Proton.Span(0.5, 2.4), new Proton.Span(-260, 0), 'polar'));
+            emitterFire.addBehaviour(new Proton.Alpha(1, [0, .4]));
             emitterFire.addBehaviour(new Proton.Scale(0.4, 0.1));
             emitterFire.addBehaviour(new Proton.Rotate(0.7, 1));
             emitterFire.p.x = canvas.width + 50 ;
