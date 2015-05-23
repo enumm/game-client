@@ -18,7 +18,6 @@
 
     // maybe implement more events:  http://socket.io/docs/client-api/#io#emitter
 
-
     socket.on('hello', function (data) {
         console.log('Server says: ' + data.msg);
     });
@@ -108,7 +107,7 @@
             var online = false;
             
             for(var j = 0, len1 = data.length; j < len1; j++){
-                if(data[j].username == data[j].username){
+                if(userFriends[i].username == data[j].username){
                     online = true;
                     break;
                 }
