@@ -10,6 +10,7 @@ var p = createjs.extend(Castle, createjs.Container);
 
 p.setup = function() {
 	var racetileset;
+	var lblUsername = new createjs.Text('', "20px Almendra", "#fff");
 
 	if(this.ours){
 		switch(raceSelected){
@@ -73,16 +74,26 @@ p.setup = function() {
  	rect.name = 'greenHP';
  	var rect1 = new createjs.Shape();
  	rect1.name = 'redHP';
+ 	var rectBlack = new createjs.Shape();
+ 	rectBlack.name = 'rectBlack';
+	rectBlack.alpha = 0.6;
 
  	if (this.ours){
- 		rect1.graphics.beginFill("#f00").drawRect(20, -119, 0.2 * instanceData.castleHp, 5);
- 		rect.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * instanceData.castleHp, 5);
+ 		lblUsername.text = username;
+ 		rect1.graphics.beginFill("#f00").drawRect(25, -95, 0.2 * instanceData.castleHp, 5);
+ 		rect.graphics.beginFill("#0f0").drawRect(25, -95, 0.2 * instanceData.castleHp, 5);
 	}else{
-		rect1.graphics.beginFill("#f00").drawRect(20, -119, 0.2 * opponentData.castleHp, 5);
-	 	rect.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * opponentData.castleHp, 5);
+		lblUsername.text = this.connectionData.opponent;
+		rect1.graphics.beginFill("#f00").drawRect(25, -95, 0.2 * opponentData.castleHp, 5);
+	 	rect.graphics.beginFill("#0f0").drawRect(25, -95, 0.2 * opponentData.castleHp, 5);
 	}
- 	
- 	this.addChild(rect1, rect);
+
+	lblUsername.x = 128 - lblUsername.getMeasuredWidth()/2;
+ 	lblUsername.y = -120;
+
+ 	rectBlack.graphics.beginFill("#000").drawRect(20, -117, (0.2 * instanceData.castleHp)+10, 35);
+
+ 	this.addChild(rectBlack,rect1, rect, lblUsername);
 
  	if(this.connectionData.host && this.ours){
 	 	this.on("click", function(){
@@ -101,12 +112,12 @@ p.update = function(){
 	rectHP.graphics.clear()
 
 	if (this.ours){
- 		rectHP.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * (instanceData.castleHp > 0 ? instanceData.castleHp : 0), 5);
+ 		rectHP.graphics.beginFill("#0f0").drawRect(25, -95, 0.2 * (instanceData.castleHp > 0 ? instanceData.castleHp : 0), 5);
  		if (instanceData.castleHp <= 0) {
  			assets.sendEndGameCheck();
  		}
 	}else{
-		rectHP.graphics.beginFill("#0f0").drawRect(20, -119, 0.2 * (opponentData.castleHp > 0 ? opponentData.castleHp : 0), 5);
+		rectHP.graphics.beginFill("#0f0").drawRect(25, -95, 0.2 * (opponentData.castleHp > 0 ? opponentData.castleHp : 0), 5);
 		if (opponentData.castleHp <= 0) {
  			assets.sendEndGameCheck();
  		}

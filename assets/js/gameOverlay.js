@@ -50,10 +50,10 @@ p.setup = function() {
         outer.addChild(btnBuilding);
     });
 
-	var aa = this.connectionData.host ? 'You are host, Opponent: ' : 'You are guest, Opponent: ' ;
-    var opponentName = new createjs.Text(aa + this.connectionData.opponent, "20px Almendra", "#fff");
-    opponentName.y = 0;
-    opponentName.x = 1000;
+	// var aa = this.connectionData.host ? 'You are host, Opponent: ' : 'You are guest, Opponent: ' ;
+ //    var opponentName = new createjs.Text(aa + this.connectionData.opponent, "20px Almendra", "#fff");
+ //    opponentName.y = 0;
+ //    opponentName.x = 1000;
     
     var money = new createjs.Text(instanceData.money + '$', "20px Almendra", "#ff0");
     money.name = 'moneyLabel';
@@ -136,7 +136,7 @@ p.setup = function() {
         destroyBuilding.visible = false;
     }
 
-    this.addChild(opponentName, money, selection, stopProduction, destroyBuilding, pos);
+    this.addChild(money, selection, stopProduction, destroyBuilding, pos);
 };
 
 p.update = function() {
