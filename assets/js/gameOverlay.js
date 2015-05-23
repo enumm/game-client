@@ -40,7 +40,7 @@ p.setup = function() {
 
             mapTiles = map.getChildByName('bottom').children;
 
-            for(var i in mapTiles){
+            for(var i = 0, len = mapTiles.length; i < len; i++){
                 if(mapTiles[i].base1 && gameInstanceScreen.connectionData.host || mapTiles[i].base2 && !gameInstanceScreen.connectionData.host ){
                     mapTiles[i].removeAllEventListeners();
                     
@@ -67,7 +67,7 @@ p.setup = function() {
 
                             assets.sendData();
 
-                            for(var i in mapTiles){
+                            for(var i = 0, len = mapTiles.length; i < len; i++){
                                 mapTiles[i].removeAllEventListeners();
                                 mapTiles[i].alpha = 1;
                             }
@@ -103,11 +103,11 @@ p.setup = function() {
     //building stop production--------------------------------------------------------
     var stopProduction = new Button1('Start/Stop Prod.', '#fff', null, function(){
         if(userCurrentSelection){
-            $.each(instanceData.buildings, function(index, value){
-                if(value.name == userCurrentSelection){
-                    value.producing = !value.producing;
+            for(var i = 0, len = instanceData.buildings.length; i < len; i++){
+                if(instanceData.buildings[i].name == userCurrentSelection){
+                    instanceData.buildings[i].producing = !instanceData.buildings[i].producing;
                 }
-            }); 
+            }
 
             assets.sendData();
         }
@@ -124,14 +124,13 @@ p.setup = function() {
     //building destroy --------------------------------------------------------------
     var destroyBuilding = new Button1('Destroy', '#fff', null, function(){
         if(userCurrentSelection){
-            $.each(instanceData.buildings, function(index, value){
-                if(value.name == userCurrentSelection){
-                    value.kill = true;
+            for(var i = 0, len = instanceData.buildings.length; i < len; i++){
+                if(instanceData.buildings[i].name == userCurrentSelection){
+                    instanceData.buildings[i].kill = true;
                 }
-            }); 
+            }
 
             userCurrentSelection = null;
-
             assets.sendData();
         }
     });
@@ -139,31 +138,6 @@ p.setup = function() {
     destroyBuilding.name = 'btnDestroyBuilding';
     destroyBuilding.y = 680;
     destroyBuilding.x = 500;
-
-    //building destroy --------------------------------------------------------------
-    var destroyBuilding = new Button1('Sell', '#fff', null, function(){
-        if(userCurrentSelection){
-            $.each(instanceData.buildings, function(index, value){
-                if(value.name == userCurrentSelection){
-                    value.kill = true;
-                    value.sell = true;
-                    instanceData.money += BuildingTypes[value.buildingType].cost/2;
-                }
-            }); 
-
-            userCurrentSelection = null;
-
-            assets.sendData();
-        }
-    });
-
-    destroyBuilding.name = 'btnDestroyBuilding';
-    destroyBuilding.y = 680;
-    destroyBuilding.x = 500;
-
-    if(!userCurrentSelection){
-        destroyBuilding.visible = false;
-    }
 
     this.addChild(money, selection, stopProduction, destroyBuilding);
 };

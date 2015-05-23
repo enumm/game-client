@@ -79,47 +79,51 @@ p.updateTime = function(delta, unitData) {
     var animationMode = 'walk';
 
     if(this.ours){
-        opponentData.units.concat(opponentData.buildings).forEach(function(value){   
-            if(!value.kill){
-            	if(UnitTypes[unitData.unitType].type == 'ground' && UnitTypes[value.unitType] &&  UnitTypes[value.unitType].type == 'flying'){ 
+		var opponentStructures = opponentData.units.concat(opponentData.buildings);
+
+		for(var i = 0, len = opponentStructures.length; i < len; i++){
+		 	if(!opponentStructures[i].kill){
+            	if(UnitTypes[unitData.unitType].type == 'ground' && UnitTypes[opponentStructures[i].unitType] &&  UnitTypes[opponentStructures[i].unitType].type == 'flying'){ 
 
             	}else{
-                	var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
+                	var dst = assets.getDistance(unitData.x, unitData.y, opponentStructures[i].x, opponentStructures[i].y);
                 	if(distanceToEnemy > dst) {
                 		if(enemy && distanceToEnemy < 30){
-                			if(value.hp < enemy.hp){
+                			if(opponentStructures[i].hp < enemy.hp){
 	                			distanceToEnemy = dst;
-	                    		enemy = value; 	
+	                    		enemy = opponentStructures[i]; 	
                 			}
                 		}else{
                 			distanceToEnemy = dst;
-                    		enemy = value; 
+                    		enemy = opponentStructures[i]; 
                     	}
                 	}
             	}
             }
-        });
+		}
     }else{
-       instanceData.units.concat(instanceData.buildings).forEach(function(value){
-            if(!value.kill){
-            	if(UnitTypes[unitData.unitType].type == 'ground' && UnitTypes[value.unitType] &&  UnitTypes[value.unitType].type == 'flying'){ 
+    	var ourStructures = instanceData.units.concat(instanceData.buildings);
+    	
+    	for(var i = 0, len = ourStructures.length; i < len; i++){
+    		if(!ourStructures[i].kill){
+            	if(UnitTypes[unitData.unitType].type == 'ground' && UnitTypes[ourStructures[i].unitType] &&  UnitTypes[ourStructures[i].unitType].type == 'flying'){ 
             		
             	}else{
-                	var dst = assets.getDistance(unitData.x, unitData.y, value.x, value.y);
+                	var dst = assets.getDistance(unitData.x, unitData.y, ourStructures[i].x, ourStructures[i].y);
                 	if(distanceToEnemy > dst) {
                 		if(enemy && distanceToEnemy < 30){
-                			if(value.hp < enemy.hp){
+                			if(ourStructures[i].hp < enemy.hp){
 	                			distanceToEnemy = dst;
-	                    		enemy = value; 	
+	                    		enemy = ourStructures[i]; 	
                 			}
                 		}else{
                 			distanceToEnemy = dst;
-                    		enemy = value; 
+                    		enemy = ourStructures[i]; 
                     	}
                 	}
             	}
             }
-        });
+    	}
     }
 
     if(distanceToEnemy < 130){

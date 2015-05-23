@@ -104,10 +104,10 @@
     socket.on('online_users', function(data){
         var friends = '';
 
-        for(var i  in userFriends){
+        for(var i = 0, len = userFriends.length; i < len; i++){
             var online = false;
-
-            for(var j in data){
+            
+            for(var j = 0, len = data.length; j < len; j++){
                 if(userFriends[i].username == data[j].username){
                     online = true;
                     break;

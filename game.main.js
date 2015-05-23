@@ -104,7 +104,7 @@ function translateRank(rank){
 
     var yourRank = ranks[0].rank;
 
-    for(var i = 0; i < ranks.length; i++){
+    for (var i = 0, len = ranks.length; i < len; i++) {
         if(rankCalculation(rank, ranks[i].strength)){
             return ranks[i].rank;
         }else{
