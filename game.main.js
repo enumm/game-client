@@ -359,7 +359,6 @@ function handleFileLoad(event) {
 
 function handleComplete(event) {
     buttonImg = preload.getResult("buttonImg");
-    tileset = preload.getResult("tileset");
     btnMmCasualImg[0] = preload.getResult("btnMmCasual");
     btnMmRankedImg[0] = preload.getResult("btnMmRanked");
     btnMmPrivateImg[0] = preload.getResult("btnMmPrivate");
@@ -369,9 +368,6 @@ function handleComplete(event) {
     btnRaceBlablasImg[0] = preload.getResult("btnRaceBlablas");
     overlayImg = preload.getResult("overlay");
     loginBackGround = preload.getResult("loginBackGround");
-
-    tilesetPlebs = preload.getResult("tilesetPlebs");
-    tilesetBlaBlas = preload.getResult("tilesetBlaBlas");
 
     var animationSpeed = {
         Attack: 0.06,
@@ -510,6 +506,31 @@ function handleComplete(event) {
     rainParticles.push(texture2);
 
     mapData = preload.getResult("mapData");
+
+    var w = mapData.tilesets[0].tilewidth;
+    var h = mapData.tilesets[0].tileheight;
+    var imageData = {
+        images : [ preload.getResult("tileset") ],
+        frames : {
+            width : w,
+            height : h
+        }
+    };
+
+    tileset = new createjs.Sprite(new createjs.SpriteSheet(imageData));
+   
+    var imageDataRace = {
+        images : [  preload.getResult("tilesetPlebs") ],
+        frames : {
+            width : 128,
+            height : 128
+        }
+    };
+    
+    tilesetPlebs = new createjs.Sprite(new createjs.SpriteSheet(imageDataRace));
+
+    imageDataRace.images = [preload.getResult("tilesetBlaBlas")];
+    tilesetBlaBlas = new createjs.Sprite(new createjs.SpriteSheet(imageDataRace));
 
     console.log('Loading complete');
 

@@ -200,20 +200,6 @@
     }
 
     o.buildMap = function(){
-        var w = mapData.tilesets[0].tilewidth;
-        var h = mapData.tilesets[0].tileheight;
-        var imageData = {
-            images : [ tileset ],
-            frames : {
-                width : w,
-                height : h
-            }
-        };
-
-        // create spritesheet
-        var tilesetSheet = new createjs.SpriteSheet(imageData);
-        var tilesetSheet1 = new createjs.Sprite(tilesetSheet);
-
         var map = new createjs.Container();
         map.name = 'map';
 
@@ -230,9 +216,9 @@
             var layerData = mapData.layers[idx];
             if (layerData.type == 'tilelayer'){
                 if(layerData.name == 'ground' || layerData.name == 'base1' || layerData.name == 'base2' || layerData.name == 'treesBot'){
-                    assets.initLayer(bottom, layerData, tilesetSheet1, mapData.tilewidth, mapData.tileheight);    
+                    assets.initLayer(bottom, layerData, mapData.tilewidth, mapData.tileheight);    
                 }else{
-                    assets.initLayer(top, layerData, tilesetSheet1, mapData.tilewidth, mapData.tileheight);    
+                    assets.initLayer(top, layerData, mapData.tilewidth, mapData.tileheight);    
                 }
             }
         }
@@ -277,7 +263,7 @@
         return map;
     } 
 
-    o.initLayer = function (map, layerData, tilesetSheet, tilewidth, tileheight) {
+    o.initLayer = function (map, layerData, tilewidth, tileheight) {
         for ( var y = 0; y < layerData.height; y++) {
             for ( var x = 0; x < layerData.width; x++) {
                 // layer data has single dimension array
@@ -285,7 +271,7 @@
                 if(layerData.data[idx] != 0){
                     // create a new Bitmap for each cell
                     // var cellBitmap = new createjs.Sprite(tilesetSheet);
-                    var cellBitmap = tilesetSheet.clone();
+                    var cellBitmap = tileset.clone();
                     // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
                     cellBitmap.gotoAndStop(layerData.data[idx] - 1);
                     // isometrix tile positioning based on X Y order from Tiled
@@ -308,27 +294,16 @@
     }
 
     o.createBuilding = function(race, frame){
-        var racetileset;
-
+        var sprite;
         switch(race){
             case 'Plebs':
-                racetileset = tilesetPlebs;
+                 sprite =  tilesetPlebs.clone()
                 break;
             case 'BlaBlas':
-                racetileset = tilesetBlaBlas;
+                sprite = tilesetBlaBlas.clone();
                 break;
         }   
 
-        var imageData = {
-            images : [ racetileset ],
-            frames : {
-                width : 128,
-                height : 128
-            }
-        };
-        
-        var tilesetSheet = new createjs.SpriteSheet(imageData);
-        var sprite =  new createjs.Sprite(tilesetSheet);
         sprite.gotoAndStop(frame);
         return sprite;
     }

@@ -32,16 +32,7 @@ p.setup = function() {
 		}	
 	}
 	
-	var imageData = {
-	    images : [ racetileset ],
-	    frames : {
-	        width : 128,
-	        height : 128
-	    }
-	};
-
-	var tilesetSheet = new createjs.SpriteSheet(imageData);
-	var sprite11 =  new createjs.Sprite(tilesetSheet);
+	var sprite11 =  racetileset.clone();
 	var sprite12 = sprite11.clone();
 	var sprite21 = sprite11.clone();
 	var sprite22 = sprite11.clone();
