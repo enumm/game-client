@@ -26,8 +26,8 @@ p.setup = function() {
     chatDOM.name = 'chatDOM';
 
     var scale = $(canvas).width()/1280;
-    chatDOM.x = $(window).width()/2-parseInt(canvas.style.width)/2+(10*scale);
-    chatDOM.y = 500 * parseInt(canvas.style.height)/720;
+    chatDOM.x = $(window).width()/2-parseInt(canvas.style.width)/2+(350*scale);
+    chatDOM.y = 570 * parseInt(canvas.style.height)/720;
 
     // chatDOM.scaleX = 0;
     chatDOM.scaleX = parseInt(canvas.style.width)/1280;
@@ -46,8 +46,8 @@ p.setChatPosition = function(clicked){
     var chatDOM = this.getChildByName('chatDOM');
 
     var scale = $(canvas).width()/1280;
-    chatDOM.x = $(window).width()/2-parseInt(canvas.style.width)/2+(10*scale);
-    chatDOM.y = 500 * parseInt(canvas.style.height)/720;
+    chatDOM.x = $(window).width()/2-parseInt(canvas.style.width)/2+(350*scale);
+    chatDOM.y = 570 * parseInt(canvas.style.height)/720;
 };
 
 window.IngameChatWindow = createjs.promote(IngameChatWindow, "Container");

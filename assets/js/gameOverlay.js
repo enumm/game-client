@@ -24,6 +24,12 @@ p.setup = function() {
 
     this.addChild(btnBuild);
 
+    var rectBlack = new createjs.Shape();
+    rectBlack.name = 'rectBlack';
+    rectBlack.alpha = 0.5;
+    rectBlack.graphics.beginFill("#000").drawRect(610, 570, 300, 180);
+    this.addChild(rectBlack);
+
     var btnContainer = new createjs.Container();
     btnContainer.name = 'btnContainer';
     btnContainer.alpha = 0;
@@ -92,7 +98,7 @@ p.setup = function() {
     var selection = new createjs.Text('', "20px Almendra", "#fff");
     selection.name = 'selection';
     selection.y = 600;
-    selection.x = 500;
+    selection.x = 650;
 
     //debug
     // var pos = new createjs.Text('', "20px Almendra", "#fff");
@@ -115,7 +121,7 @@ p.setup = function() {
 
     stopProduction.name = 'btnStopProduction';
     stopProduction.y = 630;
-    stopProduction.x = 500;
+    stopProduction.x = 650;
 
     if(!userCurrentSelection){
         stopProduction.visible = false;
@@ -137,7 +143,7 @@ p.setup = function() {
 
     destroyBuilding.name = 'btnDestroyBuilding';
     destroyBuilding.y = 680;
-    destroyBuilding.x = 500;
+    destroyBuilding.x = 650;
 
     this.addChild(money, selection, stopProduction, destroyBuilding);
 };
