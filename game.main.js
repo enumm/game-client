@@ -538,7 +538,27 @@ function handleComplete(event) {
     render_google_btn();
 
     OnResizeCalled();
+
+    if(navigator.userAgent.match(/Android/i)){
+    	window.scrollTo(0,1);
+ 	}
+
+ 	hideAddressbar();
 }
+
+var hideAddressbar = function () {
+	if (!location.hash && window.addEventListener) {
+	var zero_or_one = ( /iPhone|iPad/.test(navigator.userAgent) && !/Opera Mini/.test(navigator.userAgent) ) ? 0 : 1;
+
+	window.addEventListener( "load", function(){
+		setTimeout(function(){
+			if( window.pageYOffset < 20 ){
+						window.scrollTo( 0, zero_or_one );
+					}
+				}, 0);
+			}, false );
+		}
+};
 
 function render_google_btn() {
     gapi.signin.render('customBtn', {
