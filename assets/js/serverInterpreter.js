@@ -58,7 +58,7 @@
                         + "Your rank is: " + translateRank(userStatistics.rank);
         }else{
             statsString = "Hello:" + userUsername + "\n"
-                        + "User DB entry outdated, ineligible for stats\n"
+                        + "User DB entry outdated\n"
                         + "Missing db fields:\n";
             if(typeof(userStatistics.wins) == "undefined"){
                 statsString += "statistics.wins\n";

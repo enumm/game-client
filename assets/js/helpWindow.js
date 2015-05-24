@@ -134,7 +134,7 @@ p.setPage = function (container, pageNumber) {
 p.nextButton = function (container) {
 	var b = container.getBounds();	
 
-    var btnNextPage = new InitButton("btnNextPage", buttons.Accept, function() {
+    var btnNextPage = new InitButton("btnNextPage", buttons.Start, function() {
     	this.parent.parent.pageNumber++;
 
     	this.parent.parent.setPage(container, this.parent.parent.pageNumber)
@@ -149,7 +149,7 @@ p.nextButton = function (container) {
 p.prevButton = function (container) {
 	var b = container.getBounds();	
 
-    var btnPrevPage = new InitButton("btnPrevPage", buttons.Decline, function() {
+    var btnPrevPage = new InitButton("btnPrevPage", buttons.Left, function() {
     	this.parent.parent.pageNumber--;
 
     	this.parent.parent.setPage(container, this.parent.parent.pageNumber)
