@@ -274,6 +274,7 @@ window.onload = function(){
         {id: "buttonNX", src: "js/button.js"},
         {id: "buttonHelper", src: "js/buttonHelper.js"},
         {id: "chatWindow", src: "js/chatWindow.js"},
+        {id: "helpWindow", src: "js/helpWindow.js"},
         {id: "ingameChatWindow", src: "js/ingameChat.js"},
         {id: "friendsWindow", src: "js/friendsWindow.js"},
         {id: "assets", src: "js/assets.js"},
@@ -336,6 +337,10 @@ window.onload = function(){
         {id: "btnSheetBlaRanged2", src: "img/buttons/shtBtnBlaRanged2.png"},
         {id: "btnSheetBlaFlying1", src: "img/buttons/shtBtnBlaFlying1.png"},
         {id: "btnSheetBlaFlying2", src: "img/buttons/shtBtnBlaFlying2.png"},
+
+        {id: "bOptions", src: "img/bOptions.png"},
+        {id: "bSelection", src: "img/bSelection.png"},
+        {id: "mainMenu", src: "img/mainMenu.jpg"},
 
         {id: "overlay", src: "img/overlay.png"},
         {id: "buttonImg", src: "img/button.png"},

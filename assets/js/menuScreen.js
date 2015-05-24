@@ -111,7 +111,11 @@ p.setup = function() {
     btnFindGame.y = topMargin+240+70+20;
 
     var btnHelp = new InitButton("btnHelp", buttons.btnHelp, function() {
-        //TODO open help window
+        var helpWindow = new HelpWindow();
+        this.parent.addChild(helpWindow);
+
+        createjs.Tween.get(helpWindow.children[0], { loop: false })
+        .to({scaleY: 1}, 1000, createjs.Ease.getPowInOut(4));
     });
     btnHelp.x = leftMargin;
     btnHelp.y = topMargin+430;
