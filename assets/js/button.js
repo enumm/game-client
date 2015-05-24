@@ -27,7 +27,8 @@ p.setup = function() {
 	else{
 		this.bitmapHelper = new createjs.ButtonHelper(this.btn);
 	}
-
+	
+	this.removeAllChildren();
     this.addChild(this.btn);
 	this.btn.on("click", this.handleClick);
 } ;

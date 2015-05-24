@@ -328,6 +328,7 @@ window.onload = function(){
         {id: "btnSheetSell", src: "img/buttons/shtBtnSell.png"},
         {id: "btnSheetLeft", src: "img/buttons/shtBtnLeft.png"},
         {id: "btnSheetMusic", src: "img/buttons/shtBtnMusic.png"},
+        {id: "btnSheetMusicOff", src: "img/buttons/shtBtnMusicOff.png"},
         {id: "btnSheetContinue", src: "img/buttons/shtBtnContinue.png"},
 
         {id: "btnSheetPlebGround1", src: "img/buttons/shtBtnPlebGround1.png"},
@@ -629,6 +630,12 @@ function handleComplete(event) {
 
     buttons.MusicOn = new createjs.SpriteSheet({
                                    images: [preload.getResult("btnSheetMusic")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 0, over: 1, down: 1 }
+                               });
+
+    buttons.MusicOff = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetMusicOff")],
                                    frames: {width: 70, height: 70},
                                    animations: { out: 0, over: 1, down: 1 }
                                });

@@ -149,9 +149,13 @@ p.setup = function() {
 
     var btnSound =  new InitButton("sound", buttons.Music, function() {
         if(createjs.Sound.getVolume() == 0.2){
-            createjs.Sound.setVolume(0);    
+            createjs.Sound.setVolume(0);
+            this.buttonSheet = buttons.MusicOff;
+            this.setup();    
         }else{
-            createjs.Sound.setVolume(0.2);   
+            createjs.Sound.setVolume(0.2);  
+            this.buttonSheet = buttons.Music;
+            this.setup();   
         }
     });
 
