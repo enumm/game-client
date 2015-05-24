@@ -233,7 +233,7 @@ function loadSound(event) {
 window.onload = function(){
     createjs.Sound.on("fileload", loadSound);
     createjs.Sound.registerSound("assets/sound/theme.mp3", 'theme');
-    createjs.Sound.setVolume(0.1);
+    createjs.Sound.setVolume(0.2);
 
     //setting stage
     fpsLabel = new createjs.Text('', "20px Almendra", "#fff");

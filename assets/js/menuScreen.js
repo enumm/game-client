@@ -138,14 +138,25 @@ p.setup = function() {
         assets.socketLogOut();
 	    mainPanel.show();
 	    hideMenu();
-	    showDebug();
+	    //showDebug();
     });
     btnLogOut.x = 1200;
     btnLogOut.y = 10;
 
+    var btnSound =  new InitButton("sound", buttons.Logout, function() {
+        if(createjs.Sound.getVolume() == 0.2){
+            createjs.Sound.setVolume(0);    
+        }else{
+            createjs.Sound.setVolume(0.2);   
+        }
+    });
+
+    btnSound.x = 1100;
+    btnSound.y = 10;
+
     this.addChild(btnMmCasual, btnMmRanked);
     this.addChild(btnFindGame);
-    this.addChild(btnLogOut, btnHelp);
+    this.addChild(btnLogOut, btnHelp, btnSound);
 
     var friendWindow = new FriendWindow();
     this.addChild(friendWindow);

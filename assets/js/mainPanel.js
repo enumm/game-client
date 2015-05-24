@@ -12,12 +12,13 @@
 	}
 
 	o.hide = function(){
-		$('#mainPanelContainer').css('display','none');
-		stage.getChildByName('MainPanel').htmlElement.style.display = "none";
+		$('#mainPanelContainer').hide();
+		//stage.getChildByName('MainPanel').htmlElement.style.display = "none";
 	}
 
 	o.show = function(){
-		stage.getChildByName('MainPanel').htmlElement.style.display = "block";
+		$('#mainPanelContainer').show();
+		// stage.getChildByName('MainPanel').htmlElement.style.display = "block";
 	}	
 
 	o.showLogin = function(){
