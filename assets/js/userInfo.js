@@ -30,7 +30,7 @@ p.setup = function() {
             container.parent.animationComplete = false;
             
         	createjs.Tween.get(container, { loop: false }) 
-        	.to({skewY: 90}, 1000, createjs.Ease.linear).call(function(){
+        	.to({skewY: 90}, 400, createjs.Ease.linear).call(function(){
 	        	if(!this.parent.fliped)
 	        	{
 	        		container.removeAllChildren();
@@ -38,7 +38,7 @@ p.setup = function() {
 	        		this.parent.fliped = true;
 
 	        		createjs.Tween.get(container, { loop: false }) 
-	        		.to({skewY: 180}, 1000, createjs.Ease.linear).call(function(){
+	        		.to({skewY: 180}, 400, createjs.Ease.linear).call(function(){
 	        			container.parent.animationComplete = true;
 	        		});
 	        	}
@@ -48,7 +48,7 @@ p.setup = function() {
 	        		this.parent.setPicture(container);
 	        		this.parent.fliped = false;
 	        		createjs.Tween.get(container, { loop: false }) 
-	        		.to({skewY: 0}, 1000, createjs.Ease.linear).call(function(){
+	        		.to({skewY: 0}, 400, createjs.Ease.linear).call(function(){
 	        			container.parent.animationComplete = true;
 	        		});
 	        	}
