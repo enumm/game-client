@@ -60,10 +60,14 @@ p.setPage = function (container, pageNumber) {
             + "Tomas Liutvinas\n"
             + "\n"
             + "UI/Art/Effects:\n"
-            + "Mergaite\n"
+            + "Indre Plauskaite\n"
             + "Tomas Liutvinas\n"
             + "Rytis Daskevicius\n"
-            + "Paulius Veliulis";
+            + "Paulius Veliulis\n"
+            + "Justin Nichol\n"
+            + "\n"
+            + "Music:\n"
+            + "Chris Zabriskie";
 
     		var creditsLable = new createjs.Text("CREDITS", "50px Almendra", "#FFFFFF");
 			creditsLable.x = b.width/2 - 75; 
@@ -93,8 +97,8 @@ p.setPage = function (container, pageNumber) {
 			bitmap.y = b.height/2 - 125;
 			container.addChild(bitmap);
 
-    		var mainPanelLabel = new createjs.Text("Main panel", "50px Almendra", "#FFFFFF");
-			mainPanelLabel.x = b.width/2 - 120; 
+    		var mainPanelLabel = new createjs.Text("Race selection", "50px Almendra", "#FFFFFF");
+			mainPanelLabel.x = b.width/2 - 145; 
 			mainPanelLabel.y = b.height/2 -200;
 
 			container.addChild(mainPanelLabel);
@@ -103,27 +107,72 @@ p.setPage = function (container, pageNumber) {
     		this.nextButton(container);
     		this.prevButton(container);
 
-	    	var bitmap = new createjs.Bitmap("assets/img/bOptions.jpg");
-			bitmap.x = b.width/2 - 151; 
-			bitmap.y = b.height/2 - 133;
+	    	var bitmap = new createjs.Bitmap("assets/img/2page.jpg");
+			bitmap.x = b.width/2 - 150; 
+			bitmap.y = b.height/2 - 125;
 			container.addChild(bitmap);
 
-    		var mainPanelLabel = new createjs.Text("Building options", "50px Almendra", "#FFFFFF");
-			mainPanelLabel.x = b.width/2 - 170; 
+    		var mainPanelLabel = new createjs.Text("Mode selction", "50px Almendra", "#FFFFFF");
+			mainPanelLabel.x = b.width/2 - 145; 
 			mainPanelLabel.y = b.height/2 -200;
 
 			container.addChild(mainPanelLabel);
         break;
     case 4:
+    		this.nextButton(container);
     		this.prevButton(container);
 
-	    	var bitmap = new createjs.Bitmap("assets/img/bSelection.jpg");
+	    	var bitmap = new createjs.Bitmap("assets/img/3page.jpg");
 			bitmap.x = b.width/2 - 150; 
-			bitmap.y = b.height/2 - 150;
+			bitmap.y = b.height/2 - 125;
+			container.addChild(bitmap);
+
+    		var mainPanelLabel = new createjs.Text("Start game", "50px Almendra", "#FFFFFF");
+			mainPanelLabel.x = b.width/2 - 130; 
+			mainPanelLabel.y = b.height/2 -200;
+
+			container.addChild(mainPanelLabel);
+        break;
+    case 5:
+    		this.nextButton(container);
+    		this.prevButton(container);
+
+	    	var bitmap = new createjs.Bitmap("assets/img/4page.jpg");
+			bitmap.x = b.width/2 - 150; 
+			bitmap.y = b.height/2 - 125;
 			container.addChild(bitmap);
 
     		var mainPanelLabel = new createjs.Text("Building selection", "50px Almendra", "#FFFFFF");
-			mainPanelLabel.x = b.width/2 - 180; 
+			mainPanelLabel.x = b.width/2 - 170; 
+			mainPanelLabel.y = b.height/2 -200;
+
+			container.addChild(mainPanelLabel);
+        break;
+    case 6:
+    		this.nextButton(container);
+    		this.prevButton(container);
+
+	    	var bitmap = new createjs.Bitmap("assets/img/5page.jpg");
+			bitmap.x = b.width/2 - 150; 
+			bitmap.y = b.height/2 - 125;
+			container.addChild(bitmap);
+
+    		var mainPanelLabel = new createjs.Text("Building positions", "50px Almendra", "#FFFFFF");
+			mainPanelLabel.x = b.width/2 - 170; 
+			mainPanelLabel.y = b.height/2 -200;
+
+			container.addChild(mainPanelLabel);
+        break;
+    case 7:
+    		this.prevButton(container);
+
+	    	var bitmap = new createjs.Bitmap("assets/img/6page.jpg");
+			bitmap.x = b.width/2 - 150; 
+			bitmap.y = b.height/2 - 125;
+			container.addChild(bitmap);
+
+    		var mainPanelLabel = new createjs.Text("Building options", "50px Almendra", "#FFFFFF");
+			mainPanelLabel.x = b.width/2 - 175; 
 			mainPanelLabel.y = b.height/2 -200;
 
 			container.addChild(mainPanelLabel);
