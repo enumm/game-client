@@ -7,7 +7,7 @@ function UserInfo(name, stats) {
 	this.userName = name;
 	this.stats = stats;
 	this.setup();
-	this.fliped = false;
+	this.animationComplete = true;
 }
 
 var p = createjs.extend(UserInfo, createjs.Container);
@@ -20,27 +20,42 @@ p.setup = function() {
 	var b = container.getBounds();
 	container.regX = b.width/2;
 	container.regY = b.height/2;
+	this.fliped = false;
+
 
 	this.setPicture(container);
 
 	container.addEventListener("click", function(event) { 
-        createjs.Tween.get(container, { loop: false }) 
-        .to({skewY: container.skewY == 90 ? 0 : 90}, 1000, createjs.Ease.linear).call(function(){
+        if(container.parent.animationComplete){
+            container.parent.animationComplete = false;
+            
+        	createjs.Tween.get(container, { loop: false }) 
+        	.to({skewY: 90}, 1000, createjs.Ease.linear).call(function(){
+	        	if(!this.parent.fliped)
+	        	{
+	        		container.removeAllChildren();
+					this.parent.setStats(container);
+	        		this.parent.fliped = true;
 
-        	if(!this.parent.fliped)
-        	{
-        		container.removeAllChildren();
-				this.parent.setStats(container);
-        		this.parent.fliped = true;
-        	}
-        	else
-        	{
-        		container.removeAllChildren();
-        		this.parent.setPicture(container);
-        		this.parent.fliped = false;
-        	}
-    	}).to({skewY: container.skewY == 90 ? 90 : 0}, 1000, createjs.Ease.linear);
-	})
+	        		createjs.Tween.get(container, { loop: false }) 
+	        		.to({skewY: 180}, 1000, createjs.Ease.linear).call(function(){
+	        			container.parent.animationComplete = true;
+	        		});
+	        	}
+	        	else
+	        	{
+	        		container.removeAllChildren();
+	        		this.parent.setPicture(container);
+	        		this.parent.fliped = false;
+	        		createjs.Tween.get(container, { loop: false }) 
+	        		.to({skewY: 0}, 1000, createjs.Ease.linear).call(function(){
+	        			container.parent.animationComplete = true;
+	        		});
+	        	}
+	    	});
+        }
+
+	});
 
 	this.addChild(container);
 };
@@ -73,7 +88,8 @@ p.setStats = function (container) {
 	container.addChild(rect);
 
 	var text = new createjs.Text(this.stats, "20px Almendra", "#FFFFFF");
-	text.x = b.x + 10; 
+	text.skewY = 180;
+	text.x = b.x + 280; 
 	text.y = b.height/2 - text.getMeasuredHeight()/2;
 
 	container.addChild(text);
