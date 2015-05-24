@@ -22,10 +22,6 @@ p.setup = function() {
     var btnDebug1 = new InitButton('debug', null, function() { mainPanel.hide(); assets.sendMSG('user_login', {name: 'jesus', pass: 'jesus'}) });
         btnDebug1.x = 256;
         btnDebug1.y = 300;
-        
-    // var btnDebug2 = new Button1("Debug B", "#00F", null, function() { mainPanel.hide(); assets.sendMSG('user_login', {name: 'vvvv', pass: 'vvvv'}) });
-    //     btnDebug2.x = 256;
-    //     btnDebug2.y = 350;
 
    if(debug){
     this.addChild(btnDebug1);

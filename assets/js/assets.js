@@ -489,7 +489,7 @@
             text.x = (1280/2) - (text.getMeasuredWidth()/2) ;
             text.y = 720/2;
 
-            var cont = new Button1('Continue', '#fff', null, function(){
+            var cont =  new InitButton('Continue', buttons.Continue, function(){
                 hideGameInstance();
                 showMenu();    
             });

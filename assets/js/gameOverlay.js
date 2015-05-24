@@ -11,7 +11,7 @@ var p = createjs.extend(GameOverlay, createjs.Container);
 p.setup = function() {
     var outer = this;
 
-    var btnBuild =  new InitButton("btnBuild", buttons.btnCasual, function() {
+    var btnBuild =  new InitButton("btnBuild", buttons.Build, function() {
         var btnCont = outer.getChildByName('btnContainer');
         btnCont.visible = true;
 
@@ -107,8 +107,9 @@ p.setup = function() {
     // pos.x = 500;
 
     //building stop production--------------------------------------------------------
-    var stopProduction = new Button1('Start/Stop Prod.', '#fff', null, function(){
-        if(userCurrentSelection){
+    
+    var stopProduction =  new InitButton('btnStopProduction', buttons.Stop, function(){
+        //instanceData.buildings[i].producing ? buttons.Start : buttons.Stop
             for(var i = 0, len = instanceData.buildings.length; i < len; i++){
                 if(instanceData.buildings[i].name == userCurrentSelection){
                     instanceData.buildings[i].producing = !instanceData.buildings[i].producing;
@@ -116,19 +117,19 @@ p.setup = function() {
             }
 
             assets.sendData();
-        }
     });
 
     stopProduction.name = 'btnStopProduction';
-    stopProduction.y = 630;
-    stopProduction.x = 650;
+    stopProduction.x = 620;
+    stopProduction.y = 565;
+    
 
     if(!userCurrentSelection){
         stopProduction.visible = false;
     }
 
     //building destroy --------------------------------------------------------------
-    var destroyBuilding = new Button1('Destroy', '#fff', null, function(){
+    var destroyBuilding =  new InitButton('Destroy', buttons.Sell, function(){
         if(userCurrentSelection){
             for(var i = 0, len = instanceData.buildings.length; i < len; i++){
                 if(instanceData.buildings[i].name == userCurrentSelection){
@@ -142,8 +143,9 @@ p.setup = function() {
     });
 
     destroyBuilding.name = 'btnDestroyBuilding';
-    destroyBuilding.y = 680;
-    destroyBuilding.x = 650;
+    destroyBuilding.x = stopProduction.x;
+    destroyBuilding.y = stopProduction.y+70+10;
+
 
     this.addChild(money, selection, stopProduction, destroyBuilding);
 };

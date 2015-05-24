@@ -311,7 +311,7 @@ window.onload = function(){
         {id: "btnSheetBlaBlaRace", src: "img/buttons/shtBtnBlablas.png"},
         {id: "btnSheetPlebRace", src: "img/buttons/shtBtnPlebs.png"},
         {id: "btnSheetCancel", src: "img/buttons/shtBtnCancel.png"},
-        {id: "btnSheetHelp", src: "img/buttons/shtHelpBtn.png"},
+        {id: "btnSheetHelp", src: "img/buttons/shtBtnHelp.png"},
         {id: "btnSheetCasual", src: "img/buttons/shtBtnCasual.png"},
         {id: "btnSheetRanked", src: "img/buttons/shtBtnRanked.png"},
         {id: "btnSheetLocked", src: "img/buttons/shtBtnLocked.png"},
@@ -321,7 +321,13 @@ window.onload = function(){
         {id: "btnSheetDecline", src: "img/buttons/shtBtnDecline.png"},
         {id: "btnSheetChat", src: "img/buttons/shtBtnChat.png"},
         {id: "btnSheetFriends", src: "img/buttons/shtBtnFriends.png"},
-        {id: "btnSheetBuild", src: "img/buttons/shtBtnCasual.png"},
+        {id: "btnSheetBuild", src: "img/buttons/shtBtnBuild.png"},
+        {id: "btnSheetStart", src: "img/buttons/shtBtnStart.png"},
+        {id: "btnSheetStop", src: "img/buttons/shtBtnStop.png"},
+        {id: "btnSheetSell", src: "img/buttons/shtBtnSell.png"},
+        {id: "btnSheetLeft", src: "img/buttons/shtBtnLeft.png"},
+        {id: "btnSheetMusic", src: "img/buttons/shtBtnMusic.png"},
+        {id: "btnSheetContinue", src: "img/buttons/shtBtnContinue.png"},
 
         {id: "btnSheetPlebGround1", src: "img/buttons/shtBtnPlebGround1.png"},
         {id: "btnSheetPlebGround2", src: "img/buttons/shtBtnPlebGround2.png"},
@@ -580,10 +586,64 @@ function handleComplete(event) {
                                    animations: { out: 0, over: 1, down: 2 }
                                });
 
+    buttons.Continue = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetContinue")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
     buttons.btnLocked = new createjs.SpriteSheet({
                                    images: [preload.getResult("btnSheetLocked")],
                                    frames: {width: 240, height: 90},
                                    animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.Build = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetBuild")],
+                                   frames: {width: 90, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.Start = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetStart")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.Stop = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetStop")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.Sell = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetSell")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.MusicOn = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetMusic")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 0, over: 1, down: 1 }
+                               });
+
+    buttons.MusicOff = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetMusic")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 1, over: 0, down: 0 }
+                               });
+
+    buttons.Music = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetMusic")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 0, over: 1, down: 1 }
+                               });
+
+    buttons.Left = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetLeft")],
+                                   frames: {width: 70, height: 70},
+                                   animations: { out: 0, over: 1, down: 1 }
                                });
 
     tilePlebGround = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
