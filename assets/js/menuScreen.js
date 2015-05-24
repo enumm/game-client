@@ -167,17 +167,18 @@ p.initPrivateGame = function(){
     
     var lblSearchingForGame = this.getChildByName('lblSearchingForGame');
 
-    lblSearchingForGame.text = 'Waiting for friend to accept';
+    this.SetStatusLabel('Waiting for friend to accept', true);
 
-    var btnCancel =  new Button1("", "#00F", btnCancelImg, function() {
+    var btnCancel =  new InitButton("cancel_private_send", buttons.Decline, function() {
         assets.sendMSG('cancel_matchmaking');
         this.parent.SetStatusLabel('', false);
         this.parent.gamePending = false;
         this.parent.removeChild(this);      
     });
 
-    btnCancel.x = 100;
-    btnCancel.y = topMargin+430;
+    btnCancel.x = 450;
+    btnCancel.y = 25;
+
     btnCancel.name = 'cancel_private_send';
 
     this.addChild(btnCancel);
