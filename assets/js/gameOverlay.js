@@ -109,19 +109,17 @@ p.setup = function() {
     //building stop production--------------------------------------------------------
     
     var stopProduction =  new InitButton('btnStopProduction', buttons.Stop, function(){
-        //instanceData.buildings[i].producing ? buttons.Start : buttons.Stop
             for(var i = 0, len = instanceData.buildings.length; i < len; i++){
                 if(instanceData.buildings[i].name == userCurrentSelection){
                     instanceData.buildings[i].producing = !instanceData.buildings[i].producing;
                 }
             }
-
             assets.sendData();
     });
 
     stopProduction.name = 'btnStopProduction';
-    stopProduction.x = 620;
-    stopProduction.y = 565;
+    stopProduction.x = 650;
+    stopProduction.y = 645;
     
 
     if(!userCurrentSelection){
@@ -143,8 +141,8 @@ p.setup = function() {
     });
 
     destroyBuilding.name = 'btnDestroyBuilding';
-    destroyBuilding.x = stopProduction.x;
-    destroyBuilding.y = stopProduction.y+70+10;
+    destroyBuilding.x = 800;
+    destroyBuilding.y = 645;
 
 
     this.addChild(money, selection, stopProduction, destroyBuilding);
@@ -153,31 +151,59 @@ p.setup = function() {
 p.update = function() {
     if(userCurrentSelection){
         if(userCurrentSelection.indexOf('building') == 1){
-             this.getChildByName('btnStopProduction').visible = true;
-             this.getChildByName('btnDestroyBuilding').visible = true;
+            var dataItem;
+
+            for(var i = 0, len = instanceData.buildings.length; i < len; i++){
+                if(instanceData.buildings[i].name == userCurrentSelection){
+                    dataItem = instanceData.buildings[i];
+                }
+            }
+
+            if(dataItem){
+                 var btnStopProduction = this.getChildByName('btnStopProduction');
+
+                if(dataItem.producing && btnStopProduction.buttonSheet != buttons.Stop){
+                    btnStopProduction.buttonSheet = buttons.Stop;
+                    btnStopProduction.setup();
+                }
+
+                if(!dataItem.producing && btnStopProduction.buttonSheet != buttons.Start){
+                    btnStopProduction.buttonSheet = buttons.Start;
+                    btnStopProduction.setup();
+                }
+
+                btnStopProduction.visible = true;
+                this.getChildByName('btnDestroyBuilding').visible = true;
+
+                this.getChildByName('selection').text = dataItem.buildingType;
+            }
         }else{
             this.getChildByName('btnStopProduction').visible = false; 
-            this.getChildByName('btnDestroyBuilding').visible = false;    
+            this.getChildByName('btnDestroyBuilding').visible = false;   
+
+            this.getChildByName('selection').text = userCurrentSelection;   
         }
     }else{
-         this.getChildByName('btnStopProduction').visible = false;
-         this.getChildByName('btnDestroyBuilding').visible = false;    
+        this.getChildByName('btnStopProduction').visible = false;
+        this.getChildByName('btnDestroyBuilding').visible = false;  
+
+        this.getChildByName('selection').text = userCurrentSelection;  
     }
     
 	this.getChildByName('moneyLabel').text = instanceData.money + '$';
-	this.getChildByName('selection').text = userCurrentSelection;
 
-    var map = gameInstanceScreen.getChildByName('map').getChildByName('units').getChildByName(userCurrentSelection);
-    if(map){
+
+    var unit = gameInstanceScreen.getChildByName('map').getChildByName('units').getChildByName(userCurrentSelection);
+    if(unit){
         var item = $.grep(instanceData.units, function (el, i) {
-            if(el.name == map.name){
+            if(el.name == unit.name){
                 return true;
             }
         });
 
         if(item.length > 0){
-            this.getChildByName('pos').text = 'c- x: ' + map.x + ' y: ' + map.y + ' s- x: ' + item[0].x + ' y: ' + item[0].y;        
-        }   
+            this.getChildByName('selection').text = item[0].unitType + '\nhp: ' + item[0].hp +'\nDamage: ' +  UnitTypes[item[0].unitType].movementSpeed +'\nArmor: ' + UnitTypes[item[0].unitType].armor + '\nMovement: ' + UnitTypes[item[0].unitType].movementSpeed;        
+        }
     }
 };
 

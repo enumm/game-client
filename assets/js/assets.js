@@ -485,16 +485,16 @@
             shape.graphics.endFill();
             shape.alpha = 0.5;
 
-            var text = new createjs.Text(data.msg, "20px Almendra", "#ff7700");
+            var text = new createjs.Text(data.msg, "50px Almendra", "#ff7700");
             text.x = (1280/2) - (text.getMeasuredWidth()/2) ;
-            text.y = 720/2;
+            text.y = 720/2 - 50;
 
             var cont =  new InitButton('Continue', buttons.Continue, function(){
                 hideGameInstance();
                 showMenu();    
             });
 
-            cont.x =  (1280/2) - 100;
+            cont.x =  (1280/2) - 150;
             cont.y = 720/2 + 50;
 
             gameInstanceScreen.addChild(shape, text, cont);
