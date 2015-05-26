@@ -22,20 +22,38 @@ p.setup = function() {
 		case 'Pleb':
 			sprite = tilePlebGround.clone();
 			break;
+		case 'Pleb2':
+			sprite = tilePlebGround2.clone();
+			break;
 		case 'Bla':
 			sprite = tileBlaGround.clone();
+			break;
+		case 'Bla2':
+			sprite = tileBlaGround2.clone();
 			break;
 		case 'RangedPleb':
 			sprite = tilePlebRanged.clone();
 			break;
+		case 'RangedPleb2':
+			sprite = tilePlebRanged2.clone();
+			break;
 		case 'RangedBla':
 			sprite = tileBlaRanged.clone();
+			break;
+		case 'RangedBla2':
+			sprite = tileBlaRanged2.clone();
 			break;
 		case 'FlyingPleb':
 			sprite = tilePlebFlying.clone();
 			break;
+		case 'FlyingPleb2':
+			sprite = tilePlebFlying2.clone();
+			break;
 		case 'FlyingBla':
 			sprite = tileBlaFlying.clone();
+			break;
+		case 'FlyingBla2':
+			sprite = tileBlaFlying2.clone();
 			break;
 	}
 

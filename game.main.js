@@ -2,20 +2,10 @@ var tileset;
 var tilesetPlebs;
 var tilesetBlaBlas;
 
-var tilePlebGround, tilePlebRanged, tilePlebFlying, tileBlaGround, tileBlaRanged, tileBlaFlying;
+var tilePlebGround, tilePlebGround2, tilePlebRanged, tilePlebRanged2, tilePlebFlying, tilePlebFlying2,
+    tileBlaGround,  tileBlaGround2, tileBlaRanged,   tileBlaRanged2, tileBlaFlying, tileBlaFlying2;
 
-var buttons = {
-    btnRaceBlablas: null,
-    btnRacePlebs:null,
-    btnLocked: null,
-    btnCancel:null,
-    btnLogout:null,
-    btnHelp:null,
-    btnCasual:null,
-    btnRanked:null,
-    btnPlay:null,
-    btnEmpty:null
-};
+var buttons = {};
 
 var loginBackGround;
 var overlayImg;
@@ -295,19 +285,19 @@ window.onload = function(){
         {id: "tilesetPlebs", src: "img/plebsTile.png"},
         {id: "tilesetBlaBlas", src: "img/blablasTile.png"},
 
-        {id: "tilesetPlebGround", src: "img/groundPleb1.png"},
+        {id: "tilesetPlebGround", src:  "img/groundPleb1.png"},
         {id: "tilesetPlebGround2", src: "img/groundPleb2.png"},
-        {id: "tilesetPlebRanged", src: "img/rangedPleb1.png"},
+        {id: "tilesetPlebRanged", src:  "img/rangedPleb1.png"},
         {id: "tilesetPlebRanged2", src: "img/rangedPleb2.png"},
-        {id: "tilesetPlebFlying", src: "img/groundPleb2.png"},
-        {id: "tilesetPlebFlying2", src: "img/groundPleb2.png"},
-
-        {id: "tilesetBlaGround", src: "img/groundPleb1.png"},
-        {id: "tilesetBlaGround2", src: "img/groundPleb2.png"},
-        {id: "tilesetBlaRanged", src: "img/rangedPleb1.png"},
-        {id: "tilesetBlaRanged2", src: "img/rangedPleb2.png"},
-        {id: "tilesetBlaFlying", src: "img/groundPleb1.png"},
-        {id: "tilesetBlaFlying2", src: "img/groundPleb1.png"},
+        {id: "tilesetPlebFlying", src:  "img/flyingPleb1.png"},
+        {id: "tilesetPlebFlying2", src: "img/flyingPleb2.png"},
+ 
+        {id: "tilesetBlaGround", src:  "img/groundBla1.png"},
+        {id: "tilesetBlaGround2", src: "img/groundBla2.png"},
+        {id: "tilesetBlaRanged", src:  "img/rangedBla1.png"},
+        {id: "tilesetBlaRanged2", src: "img/rangedBla2.png"},
+        {id: "tilesetBlaFlying", src:  "img/flyingBla1.png"},
+        {id: "tilesetBlaFlying2", src: "img/flyingBla2.png"},
 
         {id: "btnSheetBlaBlaRace", src: "img/buttons/shtBtnBlablas.png"},
         {id: "btnSheetPlebRace", src: "img/buttons/shtBtnPlebs.png"},
@@ -663,20 +653,38 @@ function handleComplete(event) {
 
     tilePlebGround = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
+    data.images = [preload.getResult("tilesetPlebGround2")];
+    tilePlebGround2 = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
+
     data.images = [preload.getResult("tilesetPlebRanged")];
     tilePlebRanged = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
+
+    data.images = [preload.getResult("tilesetPlebRanged2")];
+    tilePlebRanged2 = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
     data.images = [preload.getResult("tilesetPlebFlying")];
     tilePlebFlying = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
+    data.images = [preload.getResult("tilesetPlebFlying2")];
+    tilePlebFlying2 = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
+
     data.images = [preload.getResult("tilesetBlaGround")];
     tileBlaGround = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
+
+    data.images = [preload.getResult("tilesetBlaGround2")];
+    tileBlaGround2 = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
     data.images = [preload.getResult("tilesetBlaRanged")];
     tileBlaRanged = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
+    data.images = [preload.getResult("tilesetBlaRanged2")];
+    tileBlaRanged2 = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
+
     data.images = [preload.getResult("tilesetBlaFlying")];
     tileBlaFlying = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
+
+    data.images = [preload.getResult("tilesetBlaFlying2")];
+    tileBlaFlying2 = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 
     //other loaded data
     var texture1 = new createjs.Shape(new createjs.Graphics().beginBitmapFill(preload.getResult("texture1")).drawRect(0, 0, 80, 80));
