@@ -344,7 +344,7 @@ window.onload = function(){
 
         {id: "overlay", src: "img/overlay.png"},
         {id: "buttonImg", src: "img/button.png"},
-        {id: "btnCancel", src: "img/btnCancel.jpg"},
+        //{id: "btnCancel", src: "img/btnCancel.jpg"},
 
         {id: "loginBackGround", src: "img/bg1.jpg"},
         {id: "texture1", src : "img/c1.png"},
