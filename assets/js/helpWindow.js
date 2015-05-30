@@ -12,11 +12,11 @@ var p = createjs.extend(HelpWindow, createjs.Container);
 
 p.setup = function() {
 	var container = new createjs.Container();
-	container.x = 365;
-	container.y = 652;
-	container.regY = 542;
+	container.x = 0;
+	container.y = 0;
+	//container.regY = 542;
 	container.scaleY = 0;
-	container.setBounds(0, 0, 542, 521);
+	container.setBounds(0, 0, 1280, 720);
 	var b = container.getBounds();
 
 	container.addEventListener("click", function(event) { 
@@ -31,153 +31,47 @@ p.setPage = function (container, pageNumber) {
 	container.removeAllChildren();
 
 	var b = container.getBounds();	
-	var rect = new createjs.Shape();
-	rect.graphics.beginFill('Black').drawRect(0, 0, 542, 521);
-	container.addChild(rect);
+	var bitmap = new createjs.Bitmap("assets/img/credits.jpg");
 
-    var btnCloseHelp = new InitButton("btnCloseHelp", buttons.Decline, function() {
-
-        createjs.Tween.get(container, { loop: false })
-        .to({scaleY: 0}, 1000, createjs.Ease.getPowInOut(4)).call(function(){
-    					var help = container.parent;
-						help.removeAllChildren();
-						delete help;
-	        		});;
-
-    });
-
-	btnCloseHelp.x = 450;
-	btnCloseHelp.y = 10;
-	container.addChild(btnCloseHelp);
+	container.addChild(bitmap);
+	this.helpButton(container);
 
 	switch(pageNumber) {
     case 1:
-    		this.nextButton(container);
-
-            credits = "Game developers: \n"
-            + "Paulius Veliulis\n"
-            + "Rytis Daskevicius\n"
-            + "Tomas Liutvinas\n"
-            + "\n"
-            + "UI/Art/Effects:\n"
-            + "Indre Plauskaite\n"
-            + "Tomas Liutvinas\n"
-            + "Rytis Daskevicius\n"
-            + "Paulius Veliulis\n"
-            + "Justin Nichol\n"
-            + "\n"
-            + "Music:\n"
-            + "Chris Zabriskie";
-
-    		var creditsLable = new createjs.Text("CREDITS", "50px Almendra", "#FFFFFF");
-			creditsLable.x = b.width/2 - 75; 
-			creditsLable.y = b.height/2 -200;
-
-			container.addChild(creditsLable);
-
-    		var creditsText = new createjs.Text(credits, "20px Almendra", "#FFFFFF");
-			creditsText.x = 40; 
-			creditsText.y = b.height/2 -140;
-
-			container.addChild(creditsText);
-
-    		var tutorialLabel = new createjs.Text("TUTORIAL ----->>", "50px Almendra", "#FFFFFF");
-			tutorialLabel.x =  b.width/2 - 95; 
-			tutorialLabel.y = b.height/2 + 200;
-
-			container.addChild(tutorialLabel);
+    		this.tutorialButton(container);
+    		this.helpButton(container);
 
         break;
     case 2:
-    		this.nextButton(container);
-    		this.prevButton(container);
-
-			var bitmap = new createjs.Bitmap("assets/img/mainMenu.jpg");
-			bitmap.x = b.width/2 - 150; 
-			bitmap.y = b.height/2 - 125;
+			var bitmap = new createjs.Bitmap("assets/img/mainMenuHelp.jpg");
+			bitmap.x = 0; 
+			bitmap.y = 0;
 			container.addChild(bitmap);
 
-    		var mainPanelLabel = new createjs.Text("Race selection", "50px Almendra", "#FFFFFF");
-			mainPanelLabel.x = b.width/2 - 145; 
-			mainPanelLabel.y = b.height/2 -200;
-
-			container.addChild(mainPanelLabel);
+    		this.nextButton(container);
+    		this.prevButton(container);
+    		this.helpButton(container);
         break;
     case 3:
-    		this.nextButton(container);
-    		this.prevButton(container);
-
-	    	var bitmap = new createjs.Bitmap("assets/img/2page.jpg");
-			bitmap.x = b.width/2 - 150; 
-			bitmap.y = b.height/2 - 125;
+	    	var bitmap = new createjs.Bitmap("assets/img/ingame1.jpg");
+			bitmap.x = 0; 
+			bitmap.y = 0;
 			container.addChild(bitmap);
 
-    		var mainPanelLabel = new createjs.Text("Mode selction", "50px Almendra", "#FFFFFF");
-			mainPanelLabel.x = b.width/2 - 145; 
-			mainPanelLabel.y = b.height/2 -200;
-
-			container.addChild(mainPanelLabel);
+    		this.nextButton(container);
+    		this.prevButton(container);
+    		this.helpButton(container);
         break;
     case 4:
-    		this.nextButton(container);
-    		this.prevButton(container);
-
-	    	var bitmap = new createjs.Bitmap("assets/img/3page.jpg");
-			bitmap.x = b.width/2 - 150; 
-			bitmap.y = b.height/2 - 125;
+	    	var bitmap = new createjs.Bitmap("assets/img/ingame2.jpg");
+			bitmap.x = 0; 
+			bitmap.y = 0;
 			container.addChild(bitmap);
 
-    		var mainPanelLabel = new createjs.Text("Start game", "50px Almendra", "#FFFFFF");
-			mainPanelLabel.x = b.width/2 - 130; 
-			mainPanelLabel.y = b.height/2 -200;
-
-			container.addChild(mainPanelLabel);
-        break;
-    case 5:
-    		this.nextButton(container);
     		this.prevButton(container);
-
-	    	var bitmap = new createjs.Bitmap("assets/img/4page.jpg");
-			bitmap.x = b.width/2 - 150; 
-			bitmap.y = b.height/2 - 125;
-			container.addChild(bitmap);
-
-    		var mainPanelLabel = new createjs.Text("Building selection", "50px Almendra", "#FFFFFF");
-			mainPanelLabel.x = b.width/2 - 170; 
-			mainPanelLabel.y = b.height/2 -200;
-
-			container.addChild(mainPanelLabel);
+    		this.helpButton(container);
         break;
-    case 6:
-    		this.nextButton(container);
-    		this.prevButton(container);
-
-	    	var bitmap = new createjs.Bitmap("assets/img/5page.jpg");
-			bitmap.x = b.width/2 - 150; 
-			bitmap.y = b.height/2 - 125;
-			container.addChild(bitmap);
-
-    		var mainPanelLabel = new createjs.Text("Building positions", "50px Almendra", "#FFFFFF");
-			mainPanelLabel.x = b.width/2 - 170; 
-			mainPanelLabel.y = b.height/2 -200;
-
-			container.addChild(mainPanelLabel);
-        break;
-    case 7:
-    		this.prevButton(container);
-
-	    	var bitmap = new createjs.Bitmap("assets/img/6page.jpg");
-			bitmap.x = b.width/2 - 150; 
-			bitmap.y = b.height/2 - 125;
-			container.addChild(bitmap);
-
-    		var mainPanelLabel = new createjs.Text("Building options", "50px Almendra", "#FFFFFF");
-			mainPanelLabel.x = b.width/2 - 175; 
-			mainPanelLabel.y = b.height/2 -200;
-
-			container.addChild(mainPanelLabel);
-        break;
-	}
+    }
 }
 
 p.nextButton = function (container) {
@@ -189,8 +83,8 @@ p.nextButton = function (container) {
     	this.parent.parent.setPage(container, this.parent.parent.pageNumber)
     });
 
-	btnNextPage.x = 450;
-	btnNextPage.y = b.height/2;
+	btnNextPage.x = 1255 - 70;
+	btnNextPage.y = 360;
 
 	container.addChild(btnNextPage);
 }
@@ -204,10 +98,44 @@ p.prevButton = function (container) {
     	this.parent.parent.setPage(container, this.parent.parent.pageNumber)
     });
 
-	btnPrevPage.x = 10; 
-	btnPrevPage.y = b.height/2;
+	btnPrevPage.x = 25; 
+	btnPrevPage.y = 360;
 
 	container.addChild(btnPrevPage);
+}
+
+p.tutorialButton = function (container) {
+	var b = container.getBounds();	
+
+    var btnPrevPage = new InitButton("btnSheetEmpty", buttons.btnEmpty, function() {
+    	this.parent.parent.pageNumber++;
+
+    	this.parent.parent.setPage(container, this.parent.parent.pageNumber)
+    });
+
+	btnPrevPage.x = 640 - 120; 
+	btnPrevPage.y = 480 + 45;
+
+	container.addChild(btnPrevPage);
+}
+
+p.helpButton = function (container) {
+	var b = container.getBounds();	
+
+    var btnCloseHelp = new InitButton("btnCloseHelp", buttons.Decline, function() {
+
+        createjs.Tween.get(container, { loop: false })
+        .to({scaleY: 0}, 1000, createjs.Ease.getPowInOut(4)).call(function(){
+    					var help = container.parent;
+						help.removeAllChildren();
+						delete help;
+	        		});;
+
+    });
+
+	btnCloseHelp.x = 1255 - 70;
+	btnCloseHelp.y = 25;
+	container.addChild(btnCloseHelp);
 }
 
 window.HelpWindow = createjs.promote(HelpWindow, "Container");

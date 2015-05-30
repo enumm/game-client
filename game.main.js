@@ -335,12 +335,10 @@ window.onload = function(){
         {id: "btnSheetBlaFlying1", src: "img/buttons/shtBtnBlaFlying1.png"},
         {id: "btnSheetBlaFlying2", src: "img/buttons/shtBtnBlaFlying2.png"},
 
-        {id: "mainMenu", src: "img/mainMenu.jpg"},
-        {id: "2page", src: "img/2page.jpg"},
-        {id: "3page", src: "img/3page.jpg"},
-        {id: "4page", src: "img/4page.jpg"},
-        {id: "5page", src: "img/5page.jpg"},
-        {id: "6page", src: "img/6page.jpg"},
+        {id: "credits", src: "img/credits.jpg"},
+        {id: "mainMenu", src: "img/mainMenuHelp.jpg"},
+        {id: "ingame1", src: "img/ingame1.jpg"},
+        {id: "ingame2", src: "img/ingame2.jpg"},
 
         {id: "overlay", src: "img/overlay.png"},
         {id: "buttonImg", src: "img/button.png"},
