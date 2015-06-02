@@ -107,16 +107,16 @@ p.prevButton = function (container) {
 p.tutorialButton = function (container) {
 	var b = container.getBounds();	
 
-    var btnPrevPage = new InitButton("btnSheetEmpty", buttons.btnEmpty, function() {
+    var btnTutorial = new InitButton("btnTutorial", buttons.btnTutorial, function() {
     	this.parent.parent.pageNumber++;
 
     	this.parent.parent.setPage(container, this.parent.parent.pageNumber)
     });
 
-	btnPrevPage.x = 640 - 120; 
-	btnPrevPage.y = 480 + 45;
+	btnTutorial.x = 640 - 120; 
+	btnTutorial.y = 480 + 45;
 
-	container.addChild(btnPrevPage);
+	container.addChild(btnTutorial);
 }
 
 p.helpButton = function (container) {

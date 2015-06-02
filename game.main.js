@@ -304,6 +304,7 @@ window.onload = function(){
         {id: "btnSheetPlebRace", src: "img/buttons/shtBtnPlebs.png"},
         {id: "btnSheetCancel", src: "img/buttons/shtBtnCancel.png"},
         {id: "btnSheetHelp", src: "img/buttons/shtBtnHelp.png"},
+        {id: "btnSheetTutorial", src: "img/buttons/shtBtnTutorial.png"},
         {id: "btnSheetCasual", src: "img/buttons/shtBtnCasual.png"},
         {id: "btnSheetRanked", src: "img/buttons/shtBtnRanked.png"},
         {id: "btnSheetLocked", src: "img/buttons/shtBtnLocked.png"},
@@ -580,6 +581,12 @@ function handleComplete(event) {
 
     buttons.btnEmpty = new createjs.SpriteSheet({
                                    images: [preload.getResult("btnSheetEmpty")],
+                                   frames: {width: 240, height: 90},
+                                   animations: { out: 0, over: 1, down: 2 }
+                               });
+
+    buttons.btnTutorial = new createjs.SpriteSheet({
+                                   images: [preload.getResult("btnSheetTutorial")],
                                    frames: {width: 240, height: 90},
                                    animations: { out: 0, over: 1, down: 2 }
                                });
