@@ -6,6 +6,7 @@ var tilePlebGround, tilePlebGround2, tilePlebRanged, tilePlebRanged2, tilePlebFl
     tileBlaGround,  tileBlaGround2, tileBlaRanged,   tileBlaRanged2, tileBlaFlying, tileBlaFlying2;
 
 var buttons = {};
+var helpImages = {};
 
 var loginBackGround;
 var overlayImg;
@@ -648,6 +649,11 @@ function handleComplete(event) {
                                    frames: {width: 70, height: 70},
                                    animations: { out: 0, over: 1, down: 1 }
                                });
+
+    helpImages.Credits = new createjs.Bitmap(preload.getResult("credits"));
+	helpImages.MainMenu = new createjs.Bitmap(preload.getResult("mainMenu"));
+	helpImages.Ingame1 = new createjs.Bitmap(preload.getResult("ingame1"));
+	helpImages.Ingame2 = new createjs.Bitmap(preload.getResult("ingame2"));
 
     tilePlebGround = new createjs.Sprite(new createjs.SpriteSheet(data), "walkBot");
 

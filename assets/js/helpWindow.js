@@ -31,7 +31,7 @@ p.setPage = function (container, pageNumber) {
 	container.removeAllChildren();
 
 	var b = container.getBounds();	
-	var bitmap = new createjs.Bitmap("assets/img/credits.jpg");
+	var bitmap = helpImages.Credits;
 
 	container.addChild(bitmap);
 	this.helpButton(container);
@@ -43,7 +43,7 @@ p.setPage = function (container, pageNumber) {
 
         break;
     case 2:
-			var bitmap = new createjs.Bitmap("assets/img/mainMenuHelp.jpg");
+			var bitmap = helpImages.MainMenu;
 			bitmap.x = 0; 
 			bitmap.y = 0;
 			container.addChild(bitmap);
@@ -53,7 +53,7 @@ p.setPage = function (container, pageNumber) {
     		this.helpButton(container);
         break;
     case 3:
-	    	var bitmap = new createjs.Bitmap("assets/img/ingame1.jpg");
+	    	var bitmap = helpImages.Ingame1;
 			bitmap.x = 0; 
 			bitmap.y = 0;
 			container.addChild(bitmap);
@@ -63,7 +63,7 @@ p.setPage = function (container, pageNumber) {
     		this.helpButton(container);
         break;
     case 4:
-	    	var bitmap = new createjs.Bitmap("assets/img/ingame2.jpg");
+	    	var bitmap = helpImages.Ingame2;
 			bitmap.x = 0; 
 			bitmap.y = 0;
 			container.addChild(bitmap);
