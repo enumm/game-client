@@ -13,10 +13,18 @@ p.setup = function() {
 
     var btnBuild =  new InitButton("btnBuild", buttons.Build, function() {
         var btnCont = outer.getChildByName('btnContainer');
-        btnCont.visible = true;
+        if(btnCont.visible == true){
+            createjs.Tween.get(btnCont, { loop: false })
+            .to({alpha: 0}, 1000, createjs.Ease.getPowInOut(4))
+            .call(function(){
+               btnCont.visible = false;
+            });    
+        }else{
+            btnCont.visible = true;
 
-        createjs.Tween.get(btnCont, { loop: false })
-        .to({alpha: 1}, 1000, createjs.Ease.getPowInOut(4));
+            createjs.Tween.get(btnCont, { loop: false })
+            .to({alpha: 1}, 1000, createjs.Ease.getPowInOut(4));    
+        }
     });
 
     btnBuild.x = 25;
